@@ -1,8 +1,8 @@
 {
-  "name": "ffc-template-node",
+  "name": "ffc-pay-statement-generator",
   "version": "0.1.0",
-  "description": "description-of-project-goes-here",
-  "homepage": "https://github.com/DEFRA/ffc-template-node",
+  "description": "FFC payment statement generator",
+  "homepage": "https://github.com/DEFRA/ffc-pay-statement-generator",
   "main": "app/index.js",
   "scripts": {
     "pretest": "npm run test:lint",

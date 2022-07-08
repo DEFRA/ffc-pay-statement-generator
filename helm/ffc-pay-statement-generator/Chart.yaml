@@ -1,7 +1,7 @@
 apiVersion: v2
-description: description-of-project-goes-here
-name: ffc-template-node
-# this version is automatically updated in the build pipline
+description: FFC payment statement generator
+name: ffc-pay-statement-generator
+# this version is automatically updated in the build pipeline
 version: 1.0.0
 dependencies:
 - name: ffc-helm-library
