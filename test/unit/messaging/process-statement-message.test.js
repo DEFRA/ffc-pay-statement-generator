@@ -2,7 +2,7 @@ jest.mock('ffc-messaging')
 const processStatementMessage = require('../../../app/messaging/process-statement-message')
 let receiver
 
-describe('process payment message', () => {
+describe('process statement message', () => {
   beforeEach(() => {
     receiver = {
       completeMessage: jest.fn()
