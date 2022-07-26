@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  return sequelize.define('generations', {
+  return sequelize.define('generation', {
     generationId: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     statementData: DataTypes.JSON,
     generated: DataTypes.DATE,
