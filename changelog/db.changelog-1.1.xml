@@ -12,7 +12,7 @@
         <constraints nullable="false" primaryKey="true" primaryKeyName="generationId_pkey" />
       </column>
       <column name="statementData" type="JSON" />
-      <column name="generated" type="TIMESTAMP" />
+      <column name="dateGenerated" type="TIMESTAMP" />
       <column name="filename" type="VARCHAR(255)" />     
     </createTable>
   </changeSet>
