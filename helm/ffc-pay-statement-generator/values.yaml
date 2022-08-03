@@ -35,7 +35,7 @@ container:
   limitCpu: 180m
   messageQueueHost: namespace.servicebus.windows.net
   statementTopicAddress: ffc-pay-statements
-  statementSubscriptionAddress: ffc-pay-ffc-pay-statement-generator
+  statementSubscriptionAddress: ffc-pay-statement-generator
   azureStorageAccountName: ffcpay
   azureStorageConnectionString: dummy
   azureStorageUseConnectionString: false
