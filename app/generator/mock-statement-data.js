@@ -52,7 +52,7 @@ module.exports = {
     quarterlyReduction: '50.00',
     quarterlyPayment: '92.50',
     reductions: [{
-      reason: 'Land area has changed',
+      reason: 'Over declaration reduction',
       value: '50.00'
     }]
   }, {
