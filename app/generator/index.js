@@ -13,7 +13,7 @@ const generateStatement = (_statement) => {
     content: generateContent(statement),
     styles,
     defaultStyle: {
-      font: 'Helvetica'
+      font: 'Arial'
     }
   }
 
