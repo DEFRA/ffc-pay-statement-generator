@@ -7,7 +7,14 @@ module.exports = {
     fontSize: 18,
     bold: true
   },
+  header3: {
+    bold: true
+  },
   subTitle: {
     fontSize: 16
+  },
+  link: {
+    decoration: 'underline',
+    color: 'blue'
   }
 }
