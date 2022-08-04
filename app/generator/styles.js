@@ -1,17 +1,22 @@
 module.exports = {
   header1: {
-    fontSize: 22,
-    bold: true
+    fontSize: 24,
+    bold: true,
+    lineHeight: 1.5
   },
   header2: {
     fontSize: 18,
-    bold: true
+    bold: true,
+    lineHeight: 1.5
   },
   header3: {
-    bold: true
+    fontSize: 12,
+    bold: true,
+    lineHeight: 1.5
   },
   subTitle: {
-    fontSize: 16
+    fontSize: 16,
+    lineHeight: 1.5
   },
   link: {
     decoration: 'underline',

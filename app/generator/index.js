@@ -13,7 +13,9 @@ const generateStatement = (_statement) => {
     content: generateContent(statement),
     styles,
     defaultStyle: {
-      font: 'Arial'
+      font: 'Arial',
+      fontSize: 12,
+      lineHeight: 1.15
     }
   }
 
