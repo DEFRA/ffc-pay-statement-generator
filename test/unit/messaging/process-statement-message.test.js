@@ -1,5 +1,6 @@
 jest.mock('ffc-messaging')
 const processStatementMessage = require('../../../app/messaging/process-statement-message')
+const mockStatement = require('../../mock-statement-data')
 let receiver
 
 describe('process statement message', () => {
@@ -15,7 +16,7 @@ describe('process statement message', () => {
 
   test('completes message', async () => {
     const message = {
-      body: {}
+      body: mockStatement
     }
     await processStatementMessage(message, receiver)
     expect(receiver.completeMessage).toHaveBeenCalledWith(message)
