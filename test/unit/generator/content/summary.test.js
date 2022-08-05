@@ -1,10 +1,14 @@
+const summary = require('../../../../app/generator/content/summary')
+const mockStatement = require('../../../mock-statement-data')
 
 describe('generate summary', () => {
-  afterEach(() => {
-    jest.clearAllMocks()
+  test('includes header', () => {
+    const result = summary(mockStatement)
+    expect(result[0].text).toBe('Sustainable Farming Incentive 2022')
   })
 
-  test('placeholder', async () => {
-    expect(true).toBeTruthy()
+  test('includes subtitle', () => {
+    const result = summary(mockStatement)
+    expect(result[1].text).toBe('Payment statement')
   })
 })

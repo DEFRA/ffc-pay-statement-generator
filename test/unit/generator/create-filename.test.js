@@ -12,39 +12,39 @@ describe('create filename', () => {
     timestamp = moment(new Date()).format('YYYYMMDDHHmmss')
   })
 
-  test('writes full filename', async () => {
+  test('writes full filename', () => {
     const result = getFilename(mockStatement, timestamp)
     expect(result).toBe('FFC_PaymentStatement_SFI_2022_12345674890_20220805153010.pdf')
   })
 
-  test('starts filename prefix', async () => {
+  test('starts filename prefix', () => {
     const result = getFilename(mockStatement, timestamp)
     expect(result.startsWith(PREFIX)).toBeTruthy()
   })
 
-  test('has PDF extension', async () => {
+  test('has PDF extension', () => {
     const result = getFilename(mockStatement, timestamp)
     expect(result.endsWith(EXTENSION)).toBeTruthy()
   })
 
-  test('includes scheme short name', async () => {
+  test('includes scheme short name', () => {
     mockStatement.scheme.shortName = 'SFI'
     const result = getFilename(mockStatement, timestamp)
     expect(result).toContain('_SFI_')
   })
 
-  test('includes FRN', async () => {
+  test('includes FRN', () => {
     mockStatement.frn = 1234567890
     const result = getFilename(mockStatement, timestamp)
     expect(result).toContain('_1234567890_')
   })
 
-  test('includes timestamp', async () => {
+  test('includes timestamp', () => {
     const result = getFilename(mockStatement, timestamp)
     expect(result).toContain('_20220805153010')
   })
 
-  test('removes spaces', async () => {
+  test('removes spaces', () => {
     mockStatement.scheme.shortName = 'My Scheme'
     const result = getFilename(mockStatement, timestamp)
     expect(result).toContain('_MyScheme_')
