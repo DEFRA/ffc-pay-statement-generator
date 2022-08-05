@@ -39,19 +39,52 @@ const getTable = (funding, reductions) => {
       hLineStyle: () => 'solid',
       vLineStyle: () => 'solid'
     },
+    style: 'table',
     table: {
       headerRows: 1,
-      widths: ['auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto'],
+      widths: ['*', '*', '*', '*', '*', '*', '*', '*'],
       body: [
-        ['Standard', 'Level', 'Rate', 'Land area (ha)', 'Annual value', 'Quarterly value', 'Quarterly reduction', 'Quarterly reduction'],
-        ...mapFundingRows(funding, reductions)
+        [
+          { text: 'Standard', style: 'tableHeader' },
+          { text: 'Level', style: 'tableHeader' },
+          { text: 'Rate', style: 'tableHeader' },
+          { text: 'Land area (ha)', style: 'tableHeader' },
+          { text: 'Annual value', style: 'tableHeader' },
+          { text: 'Quarterly value', style: 'tableHeader' },
+          { text: 'Quarterly reduction', style: 'tableHeader' },
+          { text: 'Quarterly reduction', style: 'tableHeader' }
+        ],
+        ...mapFundingRows(funding.filter(x => x.name !== 'Overall'), reductions),
+        mapOverallRow(funding.find(x => x.name === 'Overall'))
       ]
     }
   }
 }
 
 const mapFundingRows = (funding, reductions) => {
-  return funding.map(x => ([x.name, x.level, x.rate, x.area, x.annualValue, x.quarterlyValue, x.quarterlyReduction, x.quarterlyPayment]))
+  return funding.map(x => ([
+    x.name,
+    x.level,
+    { text: x.rate, style: 'tableNumber' },
+    { text: x.area, style: 'tableNumber' },
+    { text: `£${x.annualValue}`, style: 'tableNumber' },
+    { text: `£${x.quarterlyValue}`, style: 'tableNumber' },
+    { text: `£${x.quarterlyReduction}`, style: 'tableNumber' },
+    { text: `£${x.quarterlyPayment}`, style: 'tableNumber' }
+  ]))
+}
+
+const mapOverallRow = (row) => {
+  return [
+    { text: row.name, bold: true },
+    { text: row.level, bold: true },
+    { text: row.rate, style: 'tableNumber', bold: true },
+    { text: row.area, style: 'tableNumber', bold: true },
+    { text: `£${row.annualValue}`, style: 'tableNumber', bold: true },
+    { text: `£${row.quarterlyValue}`, style: 'tableNumber', bold: true },
+    { text: `£${row.quarterlyReduction}`, style: 'tableNumber', bold: true },
+    { text: `£${row.quarterlyPayment}`, style: 'tableNumber', bold: true }
+  ]
 }
 
 const getReductions = (reductions) => {

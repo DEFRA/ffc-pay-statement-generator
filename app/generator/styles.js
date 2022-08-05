@@ -21,5 +21,16 @@ module.exports = {
   link: {
     decoration: 'underline',
     color: 'blue'
+  },
+  table: {
+    fontSize: 10,
+    margin: [0, 10, 0, 10]
+  },
+  tableHeader: {
+    fontSize: 12,
+    bold: true
+  },
+  tableNumber: {
+    alignment: 'right'
   }
 }

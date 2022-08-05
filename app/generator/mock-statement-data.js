@@ -26,7 +26,7 @@ module.exports = {
     name: 'Arable and horticultural soils',
     level: 'Introductory',
     area: '5.00',
-    rate: '2.52',
+    rate: '22.00',
     annualValue: '110.00',
     quarterlyValue: '27.50',
     quarterlyReduction: '0.00',
@@ -36,17 +36,23 @@ module.exports = {
     name: 'Arable and horticultural soils',
     level: 'Intermediate',
     area: '10.00',
-    rate: '2.52',
+    rate: '40.00',
     annualValue: '400.00',
     quarterlyValue: '100.00',
-    quarterlyReduction: '0.00',
-    quarterlyPayment: '100.00',
-    reductions: []
+    quarterlyReduction: '75.00',
+    quarterlyPayment: '25.00',
+    reductions: [{
+      reason: 'Late claim submission',
+      value: '25.00'
+    }, {
+      reason: 'Over declaration reduction',
+      value: '50.00'
+    }]
   }, {
     name: 'Improved grassland soils',
     level: 'Introductory',
     area: '15.00',
-    rate: '2.52',
+    rate: '28.00',
     annualValue: '420.00',
     quarterlyValue: '105.00',
     quarterlyReduction: '50.00',
@@ -59,7 +65,7 @@ module.exports = {
     name: 'Moorland',
     level: 'Introductory',
     area: '12.00',
-    rate: '2.52',
+    rate: '32.38',
     annualValue: '388.60',
     quarterlyValue: '97.15',
     quarterlyReduction: '0.00',
@@ -69,7 +75,7 @@ module.exports = {
     name: 'Overall',
     level: '',
     area: '42.00',
-    rate: '2.52',
+    rate: '',
     annualValue: '1318.60',
     quarterlyValue: '329.65',
     quarterlyReduction: '50.00',
