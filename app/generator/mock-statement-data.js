@@ -78,7 +78,7 @@ module.exports = {
     rate: '',
     annualValue: '1318.60',
     quarterlyValue: '329.65',
-    quarterlyReduction: '50.00',
-    quarterlyPayment: '317.15'
+    quarterlyReduction: '125.00',
+    quarterlyPayment: '342.15'
   }]
 }
