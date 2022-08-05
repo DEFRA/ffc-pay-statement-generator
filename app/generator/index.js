@@ -4,6 +4,7 @@ const statement = require('./mock-statement-data')
 const fonts = require('./fonts')
 const styles = require('./styles')
 const generateContent = require('./content')
+const createFilename = require('./create-filename')
 
 const printer = new PdfPrinter(fonts)
 
@@ -12,11 +13,12 @@ const generateStatement = (_statement) => {
     pageSize: 'A4',
     content: generateContent(statement),
     styles,
-    defaultStyle: 'default'
+    defaultStyle: styles.default
   }
 
   const pdfDoc = printer.createPdfKitDocument(docDefinition)
-  pdfDoc.pipe(fs.createWriteStream('app/pdfs/payment-statement.pdf'))
+  const filename = createFilename(statement)
+  pdfDoc.pipe(fs.createWriteStream(`app/pdfs/${filename}`))
   pdfDoc.end()
 }
 
