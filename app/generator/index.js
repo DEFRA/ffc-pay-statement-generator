@@ -12,11 +12,7 @@ const generateStatement = (_statement) => {
     pageSize: 'A4',
     content: generateContent(statement),
     styles,
-    defaultStyle: {
-      font: 'Arial',
-      fontSize: 12,
-      lineHeight: 1.15
-    }
+    defaultStyle: 'default'
   }
 
   const pdfDoc = printer.createPdfKitDocument(docDefinition)

@@ -1,4 +1,9 @@
 module.exports = {
+  default: {
+    font: 'Arial',
+    fontSize: 12,
+    lineHeight: 1.15
+  },
   header1: {
     fontSize: 24,
     bold: true,
