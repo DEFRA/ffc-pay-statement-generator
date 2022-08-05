@@ -5,6 +5,7 @@ const generateContent = require('./content')
 const createFilename = require('./create-filename')
 const { getOutboundBlobClient } = require('../storage')
 const createLog = require('./create-log')
+const moment = require('moment')
 
 const printer = new PdfPrinter(fonts)
 
@@ -16,14 +17,15 @@ const generateStatement = async (statement) => {
     defaultStyle: styles.default
   }
 
+  const timestamp = moment().format('YYYYMMDDHHmmss')
   const pdfDoc = printer.createPdfKitDocument(docDefinition)
-  const filename = await publishPDF(pdfDoc, statement)
-  await createLog(statement, filename)
+  const filename = await publishPDF(pdfDoc, statement, timestamp)
+  await createLog(statement, filename, timestamp)
 }
 
-const publishPDF = (pdfDoc, statement) => {
+const publishPDF = (pdfDoc, statement, timestamp) => {
   pdfDoc.end()
-  const filename = createFilename(statement)
+  const filename = createFilename(statement, timestamp)
   return new Promise((resolve, reject) => {
     const chunks = []
     pdfDoc.on('data', chunk => chunks.push(chunk))

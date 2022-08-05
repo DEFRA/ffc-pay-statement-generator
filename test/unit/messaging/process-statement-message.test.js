@@ -1,4 +1,5 @@
 jest.mock('ffc-messaging')
+jest.mock('../../../app/data')
 const processStatementMessage = require('../../../app/messaging/process-statement-message')
 const mockStatement = require('../../mock-statement-data')
 let receiver

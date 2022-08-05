@@ -1,7 +1,7 @@
 const db = require('../data')
 
-const createLog = async (statementData, filename) => {
-  await db.generation.create({ statementData, dateGenerated: new Date(), filename })
+const createLog = async (statementData, filename, dateGenerated) => {
+  await db.generation.create({ statementData, filename, dateGenerated })
 }
 
 module.exports = createLog
