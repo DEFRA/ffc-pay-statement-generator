@@ -22,11 +22,13 @@ const mapReductions = (funding) => {
   funding.forEach(x => {
     if (x.reductions) {
       x.reductions.forEach(y => {
-        reductions.push({
-          id: i,
-          reason: y.reason
-        })
-        i++
+        if (!reductions.find(z => z.reason === y.reason)) {
+          reductions.push({
+            id: i,
+            reason: y.reason
+          })
+          i++
+        }
       })
     }
   })
@@ -54,8 +56,8 @@ const getTable = (funding, reductions) => {
           { text: 'Quarterly reduction', style: 'tableHeader' },
           { text: 'Quarterly reduction', style: 'tableHeader' }
         ],
-        ...mapFundingRows(funding.filter(x => x.name !== 'Overall'), reductions),
-        mapOverallRow(funding.find(x => x.name === 'Overall'))
+        ...mapFundingRows(funding.filter(x => x.name !== 'Total'), reductions),
+        mapTotalRow(funding.find(x => x.name === 'Total'))
       ]
     }
   }
@@ -69,12 +71,12 @@ const mapFundingRows = (funding, reductions) => {
     { text: x.area, style: 'tableNumber' },
     { text: `£${x.annualValue}`, style: 'tableNumber' },
     { text: `£${x.quarterlyValue}`, style: 'tableNumber' },
-    { text: `£${x.quarterlyReduction}`, style: 'tableNumber' },
+    { text: `£${x.quarterlyReduction}${mapReductionIds(x.reductions, reductions)}`, style: 'tableNumber' },
     { text: `£${x.quarterlyPayment}`, style: 'tableNumber' }
   ]))
 }
 
-const mapOverallRow = (row) => {
+const mapTotalRow = (row) => {
   return [
     { text: row.name, bold: true },
     { text: row.level, bold: true },
@@ -85,6 +87,10 @@ const mapOverallRow = (row) => {
     { text: `£${row.quarterlyReduction}`, style: 'tableNumber', bold: true },
     { text: `£${row.quarterlyPayment}`, style: 'tableNumber', bold: true }
   ]
+}
+
+const mapReductionIds = (fundReductions, reductions) => {
+  return ''
 }
 
 const getReductions = (reductions) => {

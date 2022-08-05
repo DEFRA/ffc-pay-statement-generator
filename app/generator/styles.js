@@ -16,7 +16,7 @@ module.exports = {
   },
   subTitle: {
     fontSize: 18,
-    margin: [0, 10, 0, 10]
+    margin: [0, 0, 0, 10]
   },
   link: {
     decoration: 'underline',
@@ -28,7 +28,8 @@ module.exports = {
   },
   tableHeader: {
     fontSize: 12,
-    bold: true
+    bold: true,
+    margin: [0, 0, 0, 5]
   },
   tableNumber: {
     alignment: 'right'

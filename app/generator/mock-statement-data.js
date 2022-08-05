@@ -72,7 +72,7 @@ module.exports = {
     quarterlyPayment: '97.15',
     reductions: []
   }, {
-    name: 'Overall',
+    name: 'Total',
     level: '',
     area: '42.00',
     rate: '',
