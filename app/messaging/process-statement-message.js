@@ -5,6 +5,7 @@ const processStatementMessage = async (message, receiver) => {
   try {
     console.log('Statement received:', util.inspect(message.body, false, null, true))
     await generateStatement(message.body)
+    console.log('Generation complete')
     await receiver.completeMessage(message)
   } catch (err) {
     console.error('Unable to process statement message:', err)

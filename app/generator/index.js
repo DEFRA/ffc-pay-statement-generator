@@ -4,6 +4,7 @@ const styles = require('./styles')
 const generateContent = require('./content')
 const createFilename = require('./create-filename')
 const { getOutboundBlobClient } = require('../storage')
+const createLog = require('./create-log')
 
 const printer = new PdfPrinter(fonts)
 
@@ -17,16 +18,16 @@ const generateStatement = async (statement) => {
 
   const filename = createFilename(statement)
   const blobClient = await getOutboundBlobClient(filename)
-  const chunks = []
   const pdfDoc = printer.createPdfKitDocument(docDefinition)
+  const chunks = []
   pdfDoc.on('data', chunk => chunks.push(chunk))
   pdfDoc.on('end', async () => {
     const result = Buffer.concat(chunks)
     await blobClient.upload(result, result.length)
-    console.log(`Generated statement ${filename}`)
+    await createLog(statement, filename)
+    console.log(`Generated statement: ${filename}`)
   })
   pdfDoc.end()
-  console.log('Generation complete')
 }
 
 module.exports = generateStatement
