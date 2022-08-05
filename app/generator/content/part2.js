@@ -2,10 +2,16 @@ const part2 = (statement) => {
   const reductions = mapReductions(statement.funding)
 
   return [
-    title,
-    getSummaryText(statement.scheme),
+    { text: 'Part 2. Calculation', style: 'header2' },
+    { text: `We calculated the total ${statement.scheme.shortName} payment amount by adding together payments for all the standards which are part of your agreement, as shown in this table.` },
     getTable(statement.funding, reductions),
-    standardsText,
+    {
+      text: [
+        'You can check which land parcels are part of each standard in the Rural Payments service at ',
+        { text: 'www.gov.uk/claim-rural-payments', link: 'https://www.gov.uk/claim-rural-payments', style: 'link' },
+        '.'
+      ]
+    },
     ...getReductions(reductions)
   ]
 }
@@ -25,17 +31,6 @@ const mapReductions = (funding) => {
     }
   })
   return reductions
-}
-
-const title = {
-  text: 'Part 2. Calculation',
-  style: 'header2'
-}
-
-const getSummaryText = (scheme) => {
-  return {
-    text: `We calculated the total ${scheme.shortName} payment amount by adding together payments for all the standards which are part of your agreement, as shown in this table.`
-  }
 }
 
 const getTable = (funding, reductions) => {
@@ -59,27 +54,14 @@ const mapFundingRows = (funding, reductions) => {
   return funding.map(x => ([x.name, x.level, x.rate, x.area, x.annualValue, x.quarterlyValue, x.quarterlyReduction, x.quarterlyPayment]))
 }
 
-const standardsText = {
-  text: [
-    'You can check which land parcels are part of each standard in the Rural Payments service at ',
-    { text: 'www.gov.uk/claim-rural-payments', link: 'https://www.gov.uk/claim-rural-payments', style: 'link' },
-    '.'
-  ]
-}
-
 const getReductions = (reductions) => {
   if (!reductions.length) {
     return []
   }
   return [
-    reductionReasonHeader,
+    { text: 'Reason for reductions', style: 'header3' },
     ...getReductionList(reductions)
   ]
-}
-
-const reductionReasonHeader = {
-  text: 'Reason for reductions',
-  style: 'header3'
 }
 
 const getReductionList = (reductions) => {

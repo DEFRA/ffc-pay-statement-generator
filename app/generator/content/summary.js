@@ -1,20 +1,8 @@
 const summary = (statement) => {
   return [
-    getTitle(statement.scheme),
-    subTitle
+    { text: `${statement.scheme.name} ${statement.scheme.year}`, style: 'header1' },
+    { text: 'Payment statement', style: 'subTitle' }
   ]
-}
-
-const getTitle = (scheme) => {
-  return {
-    text: `${scheme.name} ${scheme.year}`,
-    style: 'header1'
-  }
-}
-
-const subTitle = {
-  text: 'Payment statement',
-  style: 'subTitle'
 }
 
 module.exports = summary
