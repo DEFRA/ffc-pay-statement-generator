@@ -1,4 +1,3 @@
-jest.mock('ffc-messaging')
 const { BlobServiceClient } = require('@azure/storage-blob')
 const config = require('../../app/config/storage')
 const db = require('../../app/data')
