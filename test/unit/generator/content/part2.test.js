@@ -47,4 +47,15 @@ describe('generate part 2', () => {
     const result = part2(mockStatement)
     expect(result[3].text[2]).toBe('.')
   })
+
+  test('includes reductions header if reductions', () => {
+    const result = part2(mockStatement)
+    expect(result[4].text).toBe('Reason for reductions')
+  })
+
+  test('includes reductions list', () => {
+    const result = part2(mockStatement)
+    expect(result[5]).toBe('(1) Late claim submission')
+    expect(result[6]).toBe('(2) Over declaration reduction')
+  })
 })
