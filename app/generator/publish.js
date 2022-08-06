@@ -2,7 +2,6 @@ const { getOutboundBlobClient } = require('../storage')
 const createFilename = require('./create-filename')
 
 const publish = (pdfDoc, statement, timestamp) => {
-  pdfDoc.end()
   const filename = createFilename(statement, timestamp)
   return new Promise((resolve, reject) => {
     const chunks = []
@@ -12,6 +11,7 @@ const publish = (pdfDoc, statement, timestamp) => {
       resolve(filename)
     })
     pdfDoc.on('error', (err) => reject(err))
+    pdfDoc.end()
   })
 }
 
