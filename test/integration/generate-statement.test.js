@@ -51,4 +51,9 @@ describe('generate statements', () => {
     expect(log.statementData).toStrictEqual(mockStatement)
     expect(log.dateGenerated).toStrictEqual(new Date(2022, 7, 5, 15, 30, 10))
   })
+
+  test('completes message', async () => {
+    await processStatementMessage(message, receiver)
+    expect(receiver.completeMessage).toHaveBeenCalled()
+  })
 })
