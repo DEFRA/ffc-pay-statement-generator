@@ -1,7 +1,7 @@
 const schema = require('../../../../app/messaging/schemas/scheme')
 let mockScheme
 
-describe('address schema', () => {
+describe('scheme schema', () => {
   beforeEach(() => {
     mockScheme = JSON.parse(JSON.stringify(require('../../../mock-statement-data').scheme))
   })
