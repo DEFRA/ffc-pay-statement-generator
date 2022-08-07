@@ -18,6 +18,7 @@ module.exports = {
   },
   payments: [{
     invoiceNumber: 'S0000001C000001V001',
+    reference: 'PY1234567',
     dueDate: '1 July 2022',
     settled: '1 July 2022',
     calculated: '16 June 2022',
