@@ -4,7 +4,7 @@ const db = require('../../app/data')
 const mockStatement = require('../mock-statement-data')
 const processStatementMessage = require('../../app/messaging/process-statement-message')
 
-const FILE_NAME = 'FFC_PaymentStatement_SFI_2022_1234567890_20220805153010.pdf'
+const FILE_NAME = 'FFC_PaymentStatement_SFI_2022_1234567890_2022080515301012.pdf'
 
 let blobServiceClient
 let container
@@ -13,7 +13,7 @@ let message
 
 describe('generate statements', () => {
   beforeEach(async () => {
-    jest.useFakeTimers().setSystemTime(new Date(2022, 7, 5, 15, 30, 10))
+    jest.useFakeTimers().setSystemTime(new Date(2022, 7, 5, 15, 30, 10, 120))
     blobServiceClient = BlobServiceClient.fromConnectionString(config.connectionStr)
     container = blobServiceClient.getContainerClient(config.container)
     await container.deleteIfExists()
@@ -48,7 +48,7 @@ describe('generate statements', () => {
     const log = await db.generation.findOne({ where: { filename: `${FILE_NAME}` } })
     expect(log).not.toBeNull()
     expect(log.statementData).toStrictEqual(mockStatement)
-    expect(log.dateGenerated).toStrictEqual(new Date(2022, 7, 5, 15, 30, 10))
+    expect(log.dateGenerated).toStrictEqual(new Date(2022, 7, 5, 15, 30, 10, 120))
   })
 
   test('completes message', async () => {

@@ -8,13 +8,13 @@ let timestamp
 describe('create filename', () => {
   beforeEach(() => {
     mockStatement = require('../../mock-statement-data')
-    jest.useFakeTimers().setSystemTime(new Date(2022, 7, 5, 15, 30, 10))
-    timestamp = moment(new Date()).format('YYYYMMDDHHmmss')
+    jest.useFakeTimers().setSystemTime(new Date(2022, 7, 5, 15, 30, 10, 120))
+    timestamp = moment(new Date()).format('YYYYMMDDHHmmssSS')
   })
 
   test('writes full filename', () => {
     const result = getFilename(mockStatement, timestamp)
-    expect(result).toBe('FFC_PaymentStatement_SFI_2022_1234567890_20220805153010.pdf')
+    expect(result).toBe('FFC_PaymentStatement_SFI_2022_1234567890_2022080515301012.pdf')
   })
 
   test('starts filename prefix', () => {
@@ -41,7 +41,7 @@ describe('create filename', () => {
 
   test('includes timestamp', () => {
     const result = getFilename(mockStatement, timestamp)
-    expect(result).toContain('_20220805153010')
+    expect(result).toContain('_2022080515301012')
   })
 
   test('removes spaces', () => {

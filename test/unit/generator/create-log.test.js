@@ -11,8 +11,8 @@ let timestamp
 
 describe('create log', () => {
   beforeEach(() => {
-    jest.useFakeTimers().setSystemTime(new Date(2022, 7, 5, 15, 30, 10))
-    timestamp = moment(new Date()).format('YYYYMMDDHHmmss')
+    jest.useFakeTimers().setSystemTime(new Date(2022, 7, 5, 15, 30, 10, 12))
+    timestamp = moment(new Date()).format('YYYYMMDDHHmmssSS')
   })
 
   test('creates new log with statement data', async () => {
