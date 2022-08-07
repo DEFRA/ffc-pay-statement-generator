@@ -14,7 +14,7 @@ describe('create filename', () => {
 
   test('writes full filename', () => {
     const result = getFilename(mockStatement, timestamp)
-    expect(result).toBe('FFC_PaymentStatement_SFI_2022_12345674890_20220805153010.pdf')
+    expect(result).toBe('FFC_PaymentStatement_SFI_2022_1234567890_20220805153010.pdf')
   })
 
   test('starts filename prefix', () => {

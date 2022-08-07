@@ -4,7 +4,7 @@ const db = require('../../app/data')
 const mockStatement = require('../mock-statement-data')
 const processStatementMessage = require('../../app/messaging/process-statement-message')
 
-const FILE_NAME = 'FFC_PaymentStatement_SFI_2022_12345674890_20220805153010.pdf'
+const FILE_NAME = 'FFC_PaymentStatement_SFI_2022_1234567890_20220805153010.pdf'
 
 let blobServiceClient
 let container
