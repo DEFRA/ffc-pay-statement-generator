@@ -12,4 +12,4 @@ module.exports = Joi.object({
   scheme,
   payments: Joi.array().items(payment).required().min(1),
   funding: Joi.array().items(funding).required().min(1)
-})
+}).required()
