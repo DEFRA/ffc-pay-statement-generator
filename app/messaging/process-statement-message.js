@@ -12,7 +12,7 @@ const processStatementMessage = async (message, receiver) => {
     await receiver.completeMessage(message)
   } catch (err) {
     console.error('Unable to process statement:', err)
-    if(err.category === VALIDATION) {
+    if (err.category === VALIDATION) {
       await receiver.deadLetterMessage(message)
     }
   }
