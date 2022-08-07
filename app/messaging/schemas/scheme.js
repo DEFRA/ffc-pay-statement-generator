@@ -5,4 +5,4 @@ module.exports = Joi.object({
   shortName: Joi.string().required(),
   year: Joi.string().required(),
   frequency: Joi.string().required()
-})
+}).required()

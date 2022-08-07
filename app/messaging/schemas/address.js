@@ -7,4 +7,4 @@ module.exports = Joi.object({
   line4: Joi.string().optional().allow(''),
   line5: Joi.string().optional().allow(''),
   postcode: Joi.string().required()
-})
+}).required()
