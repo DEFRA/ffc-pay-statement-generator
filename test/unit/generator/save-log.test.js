@@ -5,7 +5,7 @@ jest.mock('../../../app/data', () => {
     generation: { create: mockCreate }
   }
 })
-const createLog = require('../../../app/generator/create-log')
+const saveLog = require('../../../app/generator/save-log')
 const mockStatement = require('../../mock-statement-data')
 let timestamp
 
@@ -16,17 +16,17 @@ describe('create log', () => {
   })
 
   test('creates new log with statement data', async () => {
-    await createLog(mockStatement, 'test.pdf', timestamp)
+    await saveLog(mockStatement, 'test.pdf', timestamp)
     expect(mockCreate.mock.calls[0][0].statementData).toStrictEqual(mockStatement)
   })
 
   test('creates new log with generation time', async () => {
-    await createLog(mockStatement, 'test.pdf', timestamp)
+    await saveLog(mockStatement, 'test.pdf', timestamp)
     expect(mockCreate.mock.calls[0][0].dateGenerated).toStrictEqual(timestamp)
   })
 
   test('creates new log with filename', async () => {
-    await createLog(mockStatement, 'test.pdf', timestamp)
+    await saveLog(mockStatement, 'test.pdf', timestamp)
     expect(mockCreate.mock.calls[0][0].filename).toBe('test.pdf')
   })
 })
