@@ -34,7 +34,7 @@ describe('generate statements', () => {
     await db.sequelize.close()
   })
 
-  test('publishes statement to storage', async () => {
+  test('publishes PDF statement to blob storage outbound location', async () => {
     await processStatementMessage(message, receiver)
     const fileList = []
     for await (const item of container.listBlobsFlat({ prefix: config.archiveFolder })) {
