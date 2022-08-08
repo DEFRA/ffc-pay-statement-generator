@@ -54,7 +54,7 @@ const getTable = (funding, reductions) => {
           { text: 'Annual value', style: 'tableHeader' },
           { text: 'Quarterly value', style: 'tableHeader' },
           { text: 'Quarterly reduction', style: 'tableHeader' },
-          { text: 'Quarterly reduction', style: 'tableHeader' }
+          { text: 'Quarterly payment', style: 'tableHeader' }
         ],
         ...mapFundingRows(funding.filter(x => x.name !== 'Total'), reductions),
         mapTotalRow(funding.find(x => x.name === 'Total'))
