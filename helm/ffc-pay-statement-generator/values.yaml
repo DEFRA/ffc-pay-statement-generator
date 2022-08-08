@@ -32,7 +32,7 @@ container:
   requestMemory: 150Mi
   requestCpu: 120m
   limitMemory: 150Mi
-  limitCpu: 180m
+  limitCpu: 120m
   messageQueueHost: namespace.servicebus.windows.net
   statementTopicAddress: ffc-pay-statements
   statementSubscriptionAddress: ffc-pay-statement-generator

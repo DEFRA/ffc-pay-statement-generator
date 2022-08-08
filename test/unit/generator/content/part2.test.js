@@ -27,6 +27,46 @@ describe('generate part 2', () => {
     expect(result[2].table.body.length).toBe(6)
   })
 
+  test('includes funding option', () => {
+    const result = part2(mockStatement)
+    expect(result[2].table.body[1][0]).toBe(mockStatement.funding[0].name)
+  })
+
+  test('includes funding level', () => {
+    const result = part2(mockStatement)
+    expect(result[2].table.body[1][1]).toBe(mockStatement.funding[0].level)
+  })
+
+  test('includes funding rate', () => {
+    const result = part2(mockStatement)
+    expect(result[2].table.body[1][2].text).toBe(mockStatement.funding[0].rate)
+  })
+
+  test('includes area', () => {
+    const result = part2(mockStatement)
+    expect(result[2].table.body[1][3].text).toBe(mockStatement.funding[0].area)
+  })
+
+  test('includes annual value', () => {
+    const result = part2(mockStatement)
+    expect(result[2].table.body[1][4].text).toBe(`£${mockStatement.funding[0].annualValue}`)
+  })
+
+  test('includes quarterly value', () => {
+    const result = part2(mockStatement)
+    expect(result[2].table.body[1][5].text).toBe(`£${mockStatement.funding[0].quarterlyValue}`)
+  })
+
+  test('includes quarterly reduction', () => {
+    const result = part2(mockStatement)
+    expect(result[2].table.body[1][6].text).toBe(`£${mockStatement.funding[0].quarterlyReduction}`)
+  })
+
+  test('includes quarterly payment', () => {
+    const result = part2(mockStatement)
+    expect(result[2].table.body[1][7].text).toBe(`£${mockStatement.funding[0].quarterlyPayment}`)
+  })
+
   test('includes all help text lines', () => {
     const result = part2(mockStatement)
     expect(result[3].text.length).toBe(3)

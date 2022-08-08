@@ -17,7 +17,7 @@ const generateStatement = async (statement) => {
 
   const timestamp = new Date()
   const pdfDoc = printer.createPdfKitDocument(docDefinition)
-  const filename = await publish(pdfDoc, statement, moment(timestamp).format('YYYYMMDDHHmmss'))
+  const filename = await publish(pdfDoc, statement, moment(timestamp).format('YYYYMMDDHHmmssSS'))
   await createLog(statement, filename, timestamp)
 }
 
