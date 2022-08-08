@@ -4,98 +4,98 @@ const mockStatement = require('../../../mock-statement-data')
 describe('generate part 2', () => {
   test('includes header', () => {
     const result = part2(mockStatement)
-    expect(result[0].text).toBe('Part 2. Calculation')
+    expect(result.stack[0].text).toBe('Part 2. Calculation')
   })
 
   test('includes introduction with scheme short name', () => {
     const result = part2(mockStatement)
-    expect(result[1].text).toBe(`We calculated the total ${mockStatement.scheme.shortName} payment amount by adding together payments for all the standards which are part of your agreement, as shown in this table.`)
+    expect(result.stack[1].text).toBe(`We calculated the total ${mockStatement.scheme.shortName} payment amount by adding together payments for all the standards which are part of your agreement, as shown in this table.`)
   })
 
   test('includes all table columns', () => {
     const result = part2(mockStatement)
-    expect(result[2].table.body.length).toBe(6)
+    expect(result.stack[2].table.body.length).toBe(6)
   })
 
   test('includes all table columns', () => {
     const result = part2(mockStatement)
-    expect(result[2].table.body[0].length).toBe(8)
+    expect(result.stack[2].table.body[0].length).toBe(8)
   })
 
   test('includes all table rows', () => {
     const result = part2(mockStatement)
-    expect(result[2].table.body.length).toBe(6)
+    expect(result.stack[2].table.body.length).toBe(6)
   })
 
   test('includes funding option', () => {
     const result = part2(mockStatement)
-    expect(result[2].table.body[1][0]).toBe(mockStatement.funding[0].name)
+    expect(result.stack[2].table.body[1][0]).toBe(mockStatement.funding[0].name)
   })
 
   test('includes funding level', () => {
     const result = part2(mockStatement)
-    expect(result[2].table.body[1][1]).toBe(mockStatement.funding[0].level)
+    expect(result.stack[2].table.body[1][1]).toBe(mockStatement.funding[0].level)
   })
 
   test('includes funding rate', () => {
     const result = part2(mockStatement)
-    expect(result[2].table.body[1][2].text).toBe(mockStatement.funding[0].rate)
+    expect(result.stack[2].table.body[1][2].text).toBe(mockStatement.funding[0].rate)
   })
 
   test('includes area', () => {
     const result = part2(mockStatement)
-    expect(result[2].table.body[1][3].text).toBe(mockStatement.funding[0].area)
+    expect(result.stack[2].table.body[1][3].text).toBe(mockStatement.funding[0].area)
   })
 
   test('includes annual value', () => {
     const result = part2(mockStatement)
-    expect(result[2].table.body[1][4].text).toBe(`£${mockStatement.funding[0].annualValue}`)
+    expect(result.stack[2].table.body[1][4].text).toBe(`£${mockStatement.funding[0].annualValue}`)
   })
 
   test('includes quarterly value', () => {
     const result = part2(mockStatement)
-    expect(result[2].table.body[1][5].text).toBe(`£${mockStatement.funding[0].quarterlyValue}`)
+    expect(result.stack[2].table.body[1][5].text).toBe(`£${mockStatement.funding[0].quarterlyValue}`)
   })
 
   test('includes quarterly reduction', () => {
     const result = part2(mockStatement)
-    expect(result[2].table.body[1][6].text).toBe(`£${mockStatement.funding[0].quarterlyReduction}`)
+    expect(result.stack[2].table.body[1][6].text).toBe(`£${mockStatement.funding[0].quarterlyReduction}`)
   })
 
   test('includes quarterly payment', () => {
     const result = part2(mockStatement)
-    expect(result[2].table.body[1][7].text).toBe(`£${mockStatement.funding[0].quarterlyPayment}`)
+    expect(result.stack[2].table.body[1][7].text).toBe(`£${mockStatement.funding[0].quarterlyPayment}`)
   })
 
   test('includes all help text lines', () => {
     const result = part2(mockStatement)
-    expect(result[3].text.length).toBe(3)
+    expect(result.stack[3].text.length).toBe(3)
   })
 
   test('includes help text introduction', () => {
     const result = part2(mockStatement)
-    expect(result[3].text[0]).toBe('You can check which land parcels are part of each standard in the Rural Payments service at ')
+    expect(result.stack[3].text[0]).toBe('You can check which land parcels are part of each standard in the Rural Payments service at ')
   })
 
   test('includes help text link', () => {
     const result = part2(mockStatement)
-    expect(result[3].text[1].link).toBe('https://www.gov.uk/claim-rural-payments')
-    expect(result[3].text[1].style).toBe('link')
+    expect(result.stack[3].text[1].link).toBe('https://www.gov.uk/claim-rural-payments')
+    expect(result.stack[3].text[1].style).toBe('link')
   })
 
   test('includes help text full stop', () => {
     const result = part2(mockStatement)
-    expect(result[3].text[2]).toBe('.')
+    expect(result.stack[3].text[2]).toBe('.')
   })
 
   test('includes reductions header if reductions', () => {
     const result = part2(mockStatement)
-    expect(result[4].text).toBe('Reason for reductions')
+    expect(result.stack[4].text).toBe('Reason for reductions')
   })
 
   test('includes reductions list', () => {
     const result = part2(mockStatement)
-    expect(result[5]).toBe('(1) Late claim submission')
-    expect(result[6]).toBe('(2) Over declaration reduction')
+    expect(result.stack[5]).toBe('(1) Late claim submission')
+    expect(result.stack[6]).toBe('(2) Over declaration reduction')
   })
 })

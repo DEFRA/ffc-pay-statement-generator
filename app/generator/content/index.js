@@ -5,10 +5,10 @@ const part3 = require('./part3')
 
 const createContent = (statement) => {
   return [
-    ...summary(statement),
-    ...part1(statement),
-    ...part2(statement),
-    ...part3(statement)
+    summary(statement),
+    part1(statement),
+    part2(statement),
+    part3(statement)
   ]
 }
 
