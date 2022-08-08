@@ -12,7 +12,8 @@ const generateStatement = async (statement) => {
     pageSize: 'A4',
     content: generateContent(statement),
     styles,
-    defaultStyle: styles.default
+    defaultStyle: styles.default,
+    pageMargins: [42.5197, 14.1732, 42.5197, 14.1732]
   }
 
   const timestamp = new Date()

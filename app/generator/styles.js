@@ -38,5 +38,9 @@ module.exports = {
   },
   tableNumber: {
     alignment: 'right'
+  },
+  address: {
+    fontSize: 10,
+    lineHeight: 1
   }
 }
