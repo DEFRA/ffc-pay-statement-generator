@@ -27,7 +27,7 @@ describe('generate part 3', () => {
   test('includes do not agree link', () => {
     const result = part3(mockStatement)
     expect(result.stack[3].text[0]).toBe('If you still do not agree with the amount you have been paid, contact us within 3 months of the payment date at ')
-    expect(result.stack[3].text[1].link).toBe('ruralpayments@defra.gov.uk')
+    expect(result.stack[3].text[1].link).toBe('mailto:ruralpayments@defra.gov.uk')
   })
 
   test('includes get in touch link', () => {
