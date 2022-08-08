@@ -14,7 +14,7 @@ describe('create filename', () => {
 
   test('writes full filename', () => {
     const result = getFilename(mockStatement, timestamp)
-    expect(result).toBe('FFC_PaymentStatement_SFI_2022_1234567890_2022080515301012.pdf')
+    expect(result).toBe(`${PREFIX}SFI_2022_1234567890_2022080515301012${EXTENSION}`)
   })
 
   test('starts filename prefix', () => {
@@ -28,6 +28,12 @@ describe('create filename', () => {
   })
 
   test('includes scheme short name', () => {
+    mockStatement.scheme.shortName = 'SFI'
+    const result = getFilename(mockStatement, timestamp)
+    expect(result).toContain('SFI')
+  })
+
+  test('includes scheme short name with underscore prefix and suffix', () => {
     mockStatement.scheme.shortName = 'SFI'
     const result = getFilename(mockStatement, timestamp)
     expect(result).toContain('_SFI_')
