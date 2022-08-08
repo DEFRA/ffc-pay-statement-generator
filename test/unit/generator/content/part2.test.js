@@ -12,7 +12,7 @@ describe('generate part 2', () => {
     expect(result[1].text).toBe(`We calculated the total ${mockStatement.scheme.shortName} payment amount by adding together payments for all the standards which are part of your agreement, as shown in this table.`)
   })
 
-  test('includes all table columns', () => {
+  test('includes all table rows when five funding options and total row', () => {
     const result = part2(mockStatement)
     expect(result[2].table.body.length).toBe(6)
   })
@@ -20,11 +20,6 @@ describe('generate part 2', () => {
   test('includes all table columns', () => {
     const result = part2(mockStatement)
     expect(result[2].table.body[0].length).toBe(8)
-  })
-
-  test('includes all table rows', () => {
-    const result = part2(mockStatement)
-    expect(result[2].table.body.length).toBe(6)
   })
 
   test('includes funding option', () => {
