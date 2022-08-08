@@ -69,27 +69,27 @@ components:
         line1:
           type: string
           description: The first line of the address
-          example: '1 The Street'
+          example: 1 The Street
         line2:
           type: string
           description: The second line of the address
-          example: 'The Area'
+          example: The Area
         line3:
           type: string
           description: The third line of the address
-          example: 'The Town'
+          example: The Town
         line4:
           type: string
           description: The fourth line of the address
-          example: 'The Region'
+          example: The Region
         line5:
           type: string
           description: The fifth line of the address
-          example: 'The County'
+          example: The County
         postcode:
           type: string
           description: The postcode
-          example: 'AB1 2CD'
+          example: AB1 2CD
     Scheme:
       type: object
       required:
@@ -101,7 +101,7 @@ components:
         name:
           type: string
           description: The name of the scheme
-          example: 'Sustainable Farming Incentive'
+          example: Sustainable Farming Incentive
         shortName:
           type: string
           description: The short name of the scheme
@@ -109,11 +109,11 @@ components:
         year:
           type: string
           description: The marketing year
-          example: "2022"
+          example: 2022
         frequency:
           type: string
           description: The frequency of payments
-          example: "Quarterly"
+          example: Quarterly
     Payment:
       type: object
       required:
@@ -126,23 +126,23 @@ components:
         invoiceNumber:
           type: string
           description: Invoice number of payment request
-          example: "S0000001C000001V001"
+          example: S0000001C000001V001
         reference:
           type: string
           description: Settlement reference of payment request
-          example: "PY1234567"
+          example: PY1234567
         dueDate:
           type: string
           description: The due date of the payment request
-          example: "1 July 2022"
+          example: 1 July 2022
         settled:
           type: string
           description: The settled date of the payment request
-          example: "1 July 2022"
+          example: 1 July 2022
         calculated:
           type: string
           description: The calculated date of the payment request
-          example: "1 July 2022"
+          example: 1 July 2022
     Funding:
       type: object
       required:
@@ -164,27 +164,27 @@ components:
         area:
           type: string
           description: The funding option area in hectares
-          example: "10.00"
+          example: 10.00
         rate:
           type: string
           description: The funding option rate in pounds per hectare
-          example: "40.00"
+          example: 40.00
         annualValue:
           type: string
           description: The funding option annual value in pounds
-          example: "400.00"
+          example: 400.00
         quarterlyValue:
           type: string
           description: The funding option quarterly value in pounds
-          example: "100.00"
+          example: 100.00
         quarterlyReduction:
           type: string
           description: The funding option quarterly reduction in pounds
-          example: "75.00"
+          example: 75.00
         quarterlyPayment:
           type: string
           description: The funding option quarterly payment in pounds
-          example: "25.00"
+          example: 25.00
         reductions:
           type: array
           items:
@@ -198,8 +198,8 @@ components:
         reason:
           type: string
           description: The reduction name
-          example: "Over declaration reduction"
+          example: Over declaration reduction
         value:
           type: string
           description: The reduction level
-          example: "75.00"
+          example: 75.00
