@@ -90,7 +90,7 @@ const mapTotalRow = (row) => {
 }
 
 const mapReductionIds = (fundReductions, reductions) => {
-  if (!fundReductions.length) {
+  if (!fundReductions || !fundReductions.length) {
     return ''
   }
   return `\n${(fundReductions.map(x => {
@@ -101,7 +101,7 @@ const mapReductionIds = (fundReductions, reductions) => {
 
 const getReductions = (reductions) => {
   if (!reductions.length) {
-    return []
+    return ['']
   }
   return [
     { text: 'Reason for reductions', style: 'header3' },
