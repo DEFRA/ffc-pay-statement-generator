@@ -13,6 +13,12 @@ describe('get reductions', () => {
     expect(result[0].text).toBe('Reason for reductions')
   })
 
+  test('includes reductions header with style if reductions', () => {
+    const reductions = [{ id: 1, reason: 'reason' }]
+    const result = getReductions(reductions)
+    expect(result[0].style).toBe('header3')
+  })
+
   test('includes reductions list if single reduction', () => {
     const reductions = [{ id: 1, reason: 'reason' }]
     const result = getReductions(reductions)
