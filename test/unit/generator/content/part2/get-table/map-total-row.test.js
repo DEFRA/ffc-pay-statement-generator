@@ -13,9 +13,19 @@ describe('map total row', () => {
     expect(result.length).toBe(8)
   })
 
+  test('returns empty array if undefined total row', () => {
+    const result = mapTotalRow(undefined, reductions)
+    expect(result.length).toBe(0)
+  })
+
   test('includes funding option', () => {
     const result = mapTotalRow(totalRow, reductions)
     expect(result[0].text).toBe(totalRow.name)
+  })
+
+  test('includes funding option in bold', () => {
+    const result = mapTotalRow(totalRow, reductions)
+    expect(result[0].bold).toBeTruthy()
   })
 
   test('includes funding level', () => {
@@ -23,9 +33,19 @@ describe('map total row', () => {
     expect(result[1].text).toBe(totalRow.level)
   })
 
+  test('includes funding level in bold', () => {
+    const result = mapTotalRow(totalRow, reductions)
+    expect(result[1].bold).toBeTruthy()
+  })
+
   test('includes funding rate', () => {
     const result = mapTotalRow(totalRow, reductions)
     expect(result[2].text).toBe(totalRow.rate)
+  })
+
+  test('includes funding rate in bold', () => {
+    const result = mapTotalRow(totalRow, reductions)
+    expect(result[2].bold).toBeTruthy()
   })
 
   test('includes area', () => {
@@ -33,9 +53,29 @@ describe('map total row', () => {
     expect(result[3].text).toBe(totalRow.area)
   })
 
+  test('includes area in bold', () => {
+    const result = mapTotalRow(totalRow, reductions)
+    expect(result[3].bold).toBeTruthy()
+  })
+
+  test('includes area with style number', () => {
+    const result = mapTotalRow(totalRow, reductions)
+    expect(result[3].style).toBe('tableNumber')
+  })
+
   test('includes annual value', () => {
     const result = mapTotalRow(totalRow, reductions)
     expect(result[4].text).toBe(`£${totalRow.annualValue}`)
+  })
+
+  test('includes annual value in bold', () => {
+    const result = mapTotalRow(totalRow, reductions)
+    expect(result[4].bold).toBeTruthy()
+  })
+
+  test('includes annual value with style number', () => {
+    const result = mapTotalRow(totalRow, reductions)
+    expect(result[4].style).toBe('tableNumber')
   })
 
   test('includes quarterly value', () => {
@@ -43,13 +83,43 @@ describe('map total row', () => {
     expect(result[5].text).toBe(`£${totalRow.quarterlyValue}`)
   })
 
+  test('includes quarterly value in bold', () => {
+    const result = mapTotalRow(totalRow, reductions)
+    expect(result[5].bold).toBeTruthy()
+  })
+
+  test('includes quarterly value with style number', () => {
+    const result = mapTotalRow(totalRow, reductions)
+    expect(result[5].style).toBe('tableNumber')
+  })
+
   test('includes quarterly reduction', () => {
     const result = mapTotalRow(totalRow, reductions)
     expect(result[6].text).toBe(`£${totalRow.quarterlyReduction}`)
   })
 
+  test('includes quarterly reduction in bold', () => {
+    const result = mapTotalRow(totalRow, reductions)
+    expect(result[6].bold).toBeTruthy()
+  })
+
+  test('includes quarterly reduction with style number', () => {
+    const result = mapTotalRow(totalRow, reductions)
+    expect(result[6].style).toBe('tableNumber')
+  })
+
   test('includes quarterly payment', () => {
     const result = mapTotalRow(totalRow, reductions)
     expect(result[7].text).toBe(`£${totalRow.quarterlyPayment}`)
+  })
+
+  test('includes quarterly payment in bold', () => {
+    const result = mapTotalRow(totalRow, reductions)
+    expect(result[7].bold).toBeTruthy()
+  })
+
+  test('includes quarterly payment with style number', () => {
+    const result = mapTotalRow(totalRow, reductions)
+    expect(result[7].style).toBe('tableNumber')
   })
 })
