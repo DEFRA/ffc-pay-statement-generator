@@ -79,13 +79,13 @@ describe('generate part 2', () => {
 
   test('includes help text link', () => {
     const result = part2(mockStatement)
-    expect(result[3].text[1].link).toBe('https://www.gov.uk/claim-rural-payments')
-    expect(result[3].text[1].style).toBe('link')
+    expect(result.stack[3].text[1].link).toBe('https://www.gov.uk/claim-rural-payments')
+    expect(result.stack[3].text[1].style).toBe('link')
   })
 
   test('includes help text full stop', () => {
     const result = part2(mockStatement)
-    expect(result[3].text[2]).toBe('.')
+    expect(result.stack[3].text[2]).toBe('.')
   })
 
   test('includes reductions header if reductions', () => {
