@@ -5,7 +5,7 @@ let reductions
 describe('map total row', () => {
   beforeEach(() => {
     totalRow = JSON.parse(JSON.stringify(require('../../../../../mocks/statement-data').funding.find(x => x.name === 'Total')))
-    reductions = [{ id: 1, reason: 'Late claim submission' }, { id: 2, reason: 'Over declaration reduction' }]
+    reductions = require('../../../../../mocks/reductions')
   })
 
   test('includes all table columns', () => {

@@ -30,13 +30,13 @@ describe('map reduction ids', () => {
     expect(result).toMatch('\n(1)\n(2)')
   })
 
-  test('returns reduction ids when multiple reductions', () => {
-    const result = mapReductionIds([{ reason: 'Late claim submission' }, { reason: 'Over declaration reduction' }], reductions)
+  test('ignores unknown reductions', () => {
+    const result = mapReductionIds([{ reason: 'Late claim submission' }, { reason: 'Over declaration reduction' }, { reason: 'reason3' }], reductions)
     expect(result).toMatch('\n(1)\n(2)')
   })
 
-  test('ignores unknown reductions', () => {
-    const result = mapReductionIds([{ reason: 'Late claim submission' }, { reason: 'Over declaration reduction' }, { reason: 'reason3' }], reductions)
+  test('ignores unknown reductions when unknown in middle', () => {
+    const result = mapReductionIds([{ reason: 'Late claim submission' }, { reason: 'reason3' }, { reason: 'Over declaration reduction' }], reductions)
     expect(result).toMatch('\n(1)\n(2)')
   })
 })
