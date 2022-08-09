@@ -9,6 +9,7 @@ describe('generate part 2', () => {
   test('includes header', () => {
     const result = part2(mockStatement)
     expect(result[0].text).toBe('Part 2. Calculation')
+    expect(result[0].style).toBe('header2')
   })
 
   test('includes introduction with scheme short name', () => {
@@ -79,6 +80,10 @@ describe('generate part 2', () => {
   test('includes help text link', () => {
     const result = part2(mockStatement)
     expect(result[3].text[1].link).toBe('https://www.gov.uk/claim-rural-payments')
+  })
+
+  test('includes help text link with style', () => {
+    const result = part2(mockStatement)
     expect(result[3].text[1].style).toBe('link')
   })
 
