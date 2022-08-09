@@ -40,7 +40,7 @@ module.exports = {
     alignment: 'right'
   },
   address: {
-    fontSize: 10,
+    fontSize: 9.5,
     lineHeight: 1
   }
 }

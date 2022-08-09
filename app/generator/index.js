@@ -5,15 +5,19 @@ const styles = require('./styles')
 const generateContent = require('./content')
 const saveLog = require('./save-log')
 const publish = require('./publish')
+const { millimetresToPoints } = require('./conversion')
 const printer = new PdfPrinter(fonts)
 
 const generateStatement = async (statement) => {
+  const topMargin = millimetresToPoints(5)
+  const sideMargin = millimetresToPoints(15)
+
   const docDefinition = {
     pageSize: 'A4',
     content: generateContent(statement),
     styles,
     defaultStyle: styles.default,
-    pageMargins: [42.5197, 14.1732, 42.5197, 14.1732]
+    pageMargins: [sideMargin, topMargin, sideMargin, topMargin]
   }
 
   const timestamp = new Date()
