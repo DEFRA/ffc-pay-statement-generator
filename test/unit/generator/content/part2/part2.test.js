@@ -3,12 +3,13 @@ let mockStatement
 
 describe('generate part 2', () => {
   beforeEach(() => {
-    mockStatement = JSON.parse(JSON.stringify(require('../../../../mock-statement-data')))
+    mockStatement = JSON.parse(JSON.stringify(require('../../../../mocks/statement-data')))
   })
 
   test('includes header', () => {
     const result = part2(mockStatement)
     expect(result.stack[0].text).toBe('Part 2. Calculation')
+    expect(result.stack[0].style).toBe('header2')
   })
 
   test('includes introduction with scheme short name', () => {
@@ -16,7 +17,7 @@ describe('generate part 2', () => {
     expect(result.stack[1].text).toBe(`We calculated the total ${mockStatement.scheme.shortName} payment amount by adding together payments for all the standards which are part of your agreement, as shown in this table.`)
   })
 
-  test('includes all table rows when five funding options and total row', () => {
+  test('includes all table rows with five funding options and total row', () => {
     const result = part2(mockStatement)
     expect(result.stack[2].table.body.length).toBe(6)
   })
@@ -78,13 +79,13 @@ describe('generate part 2', () => {
 
   test('includes help text link', () => {
     const result = part2(mockStatement)
-    expect(result.stack[3].text[1].link).toBe('https://www.gov.uk/claim-rural-payments')
-    expect(result.stack[3].text[1].style).toBe('link')
+    expect(result[3].text[1].link).toBe('https://www.gov.uk/claim-rural-payments')
+    expect(result[3].text[1].style).toBe('link')
   })
 
   test('includes help text full stop', () => {
     const result = part2(mockStatement)
-    expect(result.stack[3].text[2]).toBe('.')
+    expect(result[3].text[2]).toBe('.')
   })
 
   test('includes reductions header if reductions', () => {

@@ -1,7 +1,7 @@
 const { BlobServiceClient } = require('@azure/storage-blob')
 const config = require('../../app/config/storage')
 const db = require('../../app/data')
-const mockStatement = require('../mock-statement-data')
+const mockStatement = require('../mocks/statement-data')
 const processStatementMessage = require('../../app/messaging/process-statement-message')
 
 const FILE_NAME = 'FFC_PaymentStatement_SFI_2022_1234567890_2022080515301012.pdf'

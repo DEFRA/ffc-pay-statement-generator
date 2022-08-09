@@ -4,8 +4,8 @@ let reductions
 
 describe('map funding rows', () => {
   beforeEach(() => {
-    mockStatement = JSON.parse(JSON.stringify(require('../../../../../mock-statement-data')))
-    reductions = [{ id: 1, reason: 'Late claim submission' }, { id: 2, reason: 'Over declaration reduction' }]
+    mockStatement = JSON.parse(JSON.stringify(require('../../../../../mocks/statement-data')))
+    reductions = require('../../../../../mocks/reductions')
   })
 
   test('includes all table rows when five funding options', () => {
@@ -33,9 +33,19 @@ describe('map funding rows', () => {
     expect(result[0][2].text).toBe(mockStatement.funding[0].rate)
   })
 
+  test('includes funding rate with style', () => {
+    const result = mapFundingRows(mockStatement.funding, reductions)
+    expect(result[0][2].style).toBe('tableNumber')
+  })
+
   test('includes area', () => {
     const result = mapFundingRows(mockStatement.funding, reductions)
     expect(result[0][3].text).toBe(mockStatement.funding[0].area)
+  })
+
+  test('includes area with style', () => {
+    const result = mapFundingRows(mockStatement.funding, reductions)
+    expect(result[0][3].style).toBe('tableNumber')
   })
 
   test('includes annual value', () => {
@@ -43,9 +53,19 @@ describe('map funding rows', () => {
     expect(result[0][4].text).toBe(`£${mockStatement.funding[0].annualValue}`)
   })
 
+  test('includes annual value with style', () => {
+    const result = mapFundingRows(mockStatement.funding, reductions)
+    expect(result[0][4].style).toBe('tableNumber')
+  })
+
   test('includes quarterly value', () => {
     const result = mapFundingRows(mockStatement.funding, reductions)
     expect(result[0][5].text).toBe(`£${mockStatement.funding[0].quarterlyValue}`)
+  })
+
+  test('includes quarterly value with style', () => {
+    const result = mapFundingRows(mockStatement.funding, reductions)
+    expect(result[0][5].style).toBe('tableNumber')
   })
 
   test('includes quarterly reduction', () => {
@@ -53,8 +73,18 @@ describe('map funding rows', () => {
     expect(result[0][6].text).toBe(`£${mockStatement.funding[0].quarterlyReduction}`)
   })
 
+  test('includes quarterly reduction with style', () => {
+    const result = mapFundingRows(mockStatement.funding, reductions)
+    expect(result[0][6].style).toBe('tableNumber')
+  })
+
   test('includes quarterly payment', () => {
     const result = mapFundingRows(mockStatement.funding, reductions)
     expect(result[0][7].text).toBe(`£${mockStatement.funding[0].quarterlyPayment}`)
+  })
+
+  test('includes quarterly payment with style', () => {
+    const result = mapFundingRows(mockStatement.funding, reductions)
+    expect(result[0][7].style).toBe('tableNumber')
   })
 })

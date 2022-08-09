@@ -9,9 +9,15 @@ jest.mock('../../../app/messaging/validate-statement', () => {
   return mockValidation
 })
 const processStatementMessage = require('../../../app/messaging/process-statement-message')
-const mockStatement = require('../../mock-statement-data')
+const mockStatement = require('../../mocks/statement-data')
 const { VALIDATION } = require('../../../app/errors')
 let receiver
+
+const mockValidationImplementation = () => {
+  const err = new Error('Validation error')
+  err.category = VALIDATION
+  throw err
+}
 
 describe('process statement message', () => {
   beforeEach(() => {
@@ -77,6 +83,14 @@ describe('process statement message', () => {
     mockGenerator.mockImplementation(() => { throw new Error('Unable to generate') })
     await processStatementMessage(message, receiver)
     expect(receiver.completeMessage).not.toHaveBeenCalled()
+  })
+
+  test('does not dead letter message on non-validation error', async () => {
+    const message = {
+      body: mockStatement
+    }
+    mockGenerator.mockImplementation(() => { throw new Error('Unable to generate') })
+    await processStatementMessage(message, receiver)
     expect(receiver.deadLetterMessage).not.toHaveBeenCalled()
   })
 
@@ -84,15 +98,27 @@ describe('process statement message', () => {
     const message = {
       body: mockStatement
     }
-    mockValidation.mockImplementation(() => {
-      const err = new Error('Validation error')
-      err.category = VALIDATION
-      throw err
-    })
+    mockValidation.mockImplementation(() => mockValidationImplementation())
     await processStatementMessage(message, receiver)
-    expect(receiver.completeMessage).not.toHaveBeenCalledWith(message)
     expect(receiver.deadLetterMessage).toHaveBeenCalledWith(message)
+  })
+
+  test('dead letters message only once if validation error', async () => {
+    const message = {
+      body: mockStatement
+    }
+    mockValidation.mockImplementation(() => mockValidationImplementation())
+    await processStatementMessage(message, receiver)
     expect(receiver.deadLetterMessage).toHaveBeenCalledTimes(1)
+  })
+
+  test('does not complete message if validation error', async () => {
+    const message = {
+      body: mockStatement
+    }
+    mockValidation.mockImplementation(() => mockValidationImplementation())
+    await processStatementMessage(message, receiver)
+    expect(receiver.completeMessage).not.toHaveBeenCalled()
   })
 
   test('does not dead letter message on non-validation error', async () => {
@@ -103,7 +129,17 @@ describe('process statement message', () => {
       throw new Error('A generation error')
     })
     await processStatementMessage(message, receiver)
-    expect(receiver.completeMessage).not.toHaveBeenCalledWith(message)
-    expect(receiver.deadLetterMessage).not.toHaveBeenCalledWith(message)
+    expect(receiver.deadLetterMessage).not.toHaveBeenCalled()
+  })
+
+  test('does not complete message on non-validation error', async () => {
+    const message = {
+      body: mockStatement
+    }
+    mockGenerator.mockImplementation(() => {
+      throw new Error('A generation error')
+    })
+    await processStatementMessage(message, receiver)
+    expect(receiver.completeMessage).not.toHaveBeenCalled()
   })
 })

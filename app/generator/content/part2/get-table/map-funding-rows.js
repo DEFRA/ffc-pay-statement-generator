@@ -1,7 +1,7 @@
 const mapReductionIds = require('./map-reduction-ids')
 
-const mapFundingRows = (funding, reductions) => {
-  return funding.map(x => ([
+const mapFundingRows = (fundings, reductions) => {
+  return fundings.map(x => ([
     x.name,
     x.level,
     { text: x.rate, style: 'tableNumber' },

@@ -1,7 +1,7 @@
-const mapReductions = (funding) => {
+const mapReductions = (fundings) => {
   const reductions = []
   let i = 1
-  funding.forEach(x => {
+  fundings.forEach(x => {
     if (x.reductions) {
       x.reductions.forEach(y => {
         if (!reductions.find(z => z.reason === y.reason)) {
