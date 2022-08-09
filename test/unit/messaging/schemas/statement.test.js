@@ -75,4 +75,16 @@ describe('statement schema', () => {
     const result = schema.validate(mockStatement)
     expect(result.error).toBeDefined()
   })
+
+  test('validates success if missing email', () => {
+    delete mockStatement.email
+    const result = schema.validate(mockStatement)
+    expect(result.error).toBeUndefined()
+  })
+
+  test('validates fail if invalid email', () => {
+    mockStatement.email = 'This is not an emaijl'
+    const result = schema.validate(mockStatement)
+    expect(result.error).toBeDefined()
+  })
 })
