@@ -28,6 +28,13 @@ describe('process statement message', () => {
     }
     await processStatementMessage(message, receiver)
     expect(receiver.completeMessage).toHaveBeenCalledWith(message)
+  })
+
+  test('completes message on success only once', async () => {
+    const message = {
+      body: mockStatement
+    }
+    await processStatementMessage(message, receiver)
     expect(receiver.completeMessage).toHaveBeenCalledTimes(1)
   })
 
@@ -37,6 +44,13 @@ describe('process statement message', () => {
     }
     await processStatementMessage(message, receiver)
     expect(mockValidation).toHaveBeenCalledWith(message.body)
+  })
+
+  test('calls validate statement only once', async () => {
+    const message = {
+      body: mockStatement
+    }
+    await processStatementMessage(message, receiver)
     expect(mockValidation).toHaveBeenCalledTimes(1)
   })
 
@@ -46,6 +60,13 @@ describe('process statement message', () => {
     }
     await processStatementMessage(message, receiver)
     expect(mockGenerator).toHaveBeenCalledWith(message.body)
+  })
+
+  test('calls generator with statement only once', async () => {
+    const message = {
+      body: mockStatement
+    }
+    await processStatementMessage(message, receiver)
     expect(mockGenerator).toHaveBeenCalledTimes(1)
   })
 
@@ -55,8 +76,8 @@ describe('process statement message', () => {
     }
     mockGenerator.mockImplementation(() => { throw new Error('Unable to generate') })
     await processStatementMessage(message, receiver)
-    expect(receiver.completeMessage).not.toHaveBeenCalledWith(message)
-    expect(receiver.deadLetterMessage).not.toHaveBeenCalledWith(message)
+    expect(receiver.completeMessage).not.toHaveBeenCalled()
+    expect(receiver.deadLetterMessage).not.toHaveBeenCalled()
   })
 
   test('dead letters message if validation error', async () => {

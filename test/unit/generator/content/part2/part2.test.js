@@ -1,9 +1,9 @@
-const part2 = require('../../../../app/generator/content/part2')
+const part2 = require('../../../../../app/generator/content/part2')
 let mockStatement
 
 describe('generate part 2', () => {
   beforeEach(() => {
-    mockStatement = JSON.parse(JSON.stringify(require('../../../mock-statement-data')))
+    mockStatement = JSON.parse(JSON.stringify(require('../../../../mock-statement-data')))
   })
 
   test('includes header', () => {
@@ -98,7 +98,7 @@ describe('generate part 2', () => {
       return x
     })
     const result = part2(mockStatement)
-    expect(result[4]).toBe('')
+    expect(result.stack[4]).toBe('')
   })
 
   test('includes reductions list', () => {

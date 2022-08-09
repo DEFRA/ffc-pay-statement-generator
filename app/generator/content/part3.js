@@ -1,4 +1,4 @@
-const part3 = (_statement) => {
+const part3 = () => {
   return {
     stack: [
       { text: 'Part 3. More support', style: 'header2' },
