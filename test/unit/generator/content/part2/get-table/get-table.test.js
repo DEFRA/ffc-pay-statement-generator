@@ -4,8 +4,8 @@ let reductions
 
 describe('get table', () => {
   beforeEach(() => {
-    mockStatement = JSON.parse(JSON.stringify(require('../../../../../mock-statement-data')))
-    reductions = [{ id: 1, reason: 'Late claim submission' }, { id: 2, reason: 'Over declaration reduction' }]
+    mockStatement = JSON.parse(JSON.stringify(require('../../../../../mocks/statement-data')))
+    reductions = require('../../../../../mocks/reductions')
   })
 
   test('includes all table rows when five funding options and total row', () => {

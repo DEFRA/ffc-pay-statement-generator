@@ -3,7 +3,7 @@ let reductions
 
 describe('map reduction ids', () => {
   beforeEach(() => {
-    reductions = [{ id: 1, reason: 'reason' }, { id: 2, reason: 'reason2' }]
+    reductions = require('../../../../../mocks/reductions')
   })
 
   test('returns empty string if no funding reductions', () => {
@@ -17,26 +17,26 @@ describe('map reduction ids', () => {
   })
 
   test('returns newline before reduction id', () => {
-    const result = mapReductionIds([{ reason: 'reason' }], reductions)
+    const result = mapReductionIds([{ reason: 'Late claim submission' }], reductions)
     expect(result.startsWith('\n')).toBeTruthy()
   })
 
   test('returns reduction id when one reduction', () => {
-    const result = mapReductionIds([{ reason: 'reason' }], reductions)
+    const result = mapReductionIds([{ reason: 'Late claim submission' }], reductions)
     expect(result).toMatch('\n(1)')
   })
   test('returns reduction ids when multiple reductions', () => {
-    const result = mapReductionIds([{ reason: 'reason' }, { reason: 'reason2' }], reductions)
+    const result = mapReductionIds([{ reason: 'Late claim submission' }, { reason: 'Over declaration reduction' }], reductions)
     expect(result).toMatch('\n(1)\n(2)')
   })
 
   test('returns reduction ids when multiple reductions', () => {
-    const result = mapReductionIds([{ reason: 'reason' }, { reason: 'reason2' }], reductions)
+    const result = mapReductionIds([{ reason: 'Late claim submission' }, { reason: 'Over declaration reduction' }], reductions)
     expect(result).toMatch('\n(1)\n(2)')
   })
 
   test('ignores unknown reductions', () => {
-    const result = mapReductionIds([{ reason: 'reason' }, { reason: 'reason2' }, { reason: 'reason3' }], reductions)
+    const result = mapReductionIds([{ reason: 'Late claim submission' }, { reason: 'Over declaration reduction' }, { reason: 'reason3' }], reductions)
     expect(result).toMatch('\n(1)\n(2)')
   })
 })
