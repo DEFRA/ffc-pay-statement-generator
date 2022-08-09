@@ -57,7 +57,7 @@ const getTable = (funding, reductions) => {
           { text: 'Annual value', style: 'tableHeader' },
           { text: 'Quarterly value', style: 'tableHeader' },
           { text: 'Quarterly reduction', style: 'tableHeader' },
-          { text: 'Quarterly reduction', style: 'tableHeader' }
+          { text: 'Quarterly payment', style: 'tableHeader' }
         ],
         ...mapFundingRows(funding.filter(x => x.name !== 'Total'), reductions),
         mapTotalRow(funding.find(x => x.name === 'Total'))
@@ -93,7 +93,7 @@ const mapTotalRow = (row) => {
 }
 
 const mapReductionIds = (fundReductions, reductions) => {
-  if (!fundReductions.length) {
+  if (!fundReductions || !fundReductions.length) {
     return ''
   }
   return `\n${(fundReductions.map(x => {
@@ -104,7 +104,7 @@ const mapReductionIds = (fundReductions, reductions) => {
 
 const getReductions = (reductions) => {
   if (!reductions.length) {
-    return []
+    return ['']
   }
   return [
     { text: 'Reason for reductions', style: 'header3' },

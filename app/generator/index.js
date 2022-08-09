@@ -3,7 +3,7 @@ const moment = require('moment')
 const fonts = require('./fonts')
 const styles = require('./styles')
 const generateContent = require('./content')
-const createLog = require('./create-log')
+const saveLog = require('./save-log')
 const publish = require('./publish')
 const printer = new PdfPrinter(fonts)
 
@@ -18,7 +18,7 @@ const generateStatement = async (statement) => {
   const timestamp = new Date()
   const pdfDoc = printer.createPdfKitDocument(docDefinition)
   const filename = await publish(pdfDoc, statement, moment(timestamp).format('YYYYMMDDHHmmssSS'))
-  await createLog(statement, filename, timestamp)
+  await saveLog(statement, filename, timestamp)
 }
 
 module.exports = generateStatement
