@@ -3,7 +3,7 @@ let mockScheme
 
 describe('scheme schema', () => {
   beforeEach(() => {
-    mockScheme = JSON.parse(JSON.stringify(require('../../../mock-statement-data').scheme))
+    mockScheme = JSON.parse(JSON.stringify(require('../../../mocks/statement-data').scheme))
   })
   test('validates success if all present', () => {
     const result = schema.validate(mockScheme)

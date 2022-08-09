@@ -1,5 +1,5 @@
 const summary = require('../../../../app/generator/content/summary')
-const mockStatement = require('../../../mock-statement-data')
+const mockStatement = require('../../../mocks/statement-data')
 
 describe('generate summary', () => {
   test('includes RPA logo', () => {
