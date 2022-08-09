@@ -2,6 +2,7 @@ module.exports = {
   businessName: 'Mr A Farmer',
   sbi: 123456789,
   frn: 1234567890,
+  email: 'farmer@farms.com',
   address: {
     line1: 'A Farm',
     line2: '',
