@@ -83,7 +83,7 @@ describe('statement schema', () => {
   })
 
   test('validates fail if invalid email', () => {
-    mockStatement.email = 'This is not an emaijl'
+    mockStatement.email = 'This is not an email'
     const result = schema.validate(mockStatement)
     expect(result.error).toBeDefined()
   })
