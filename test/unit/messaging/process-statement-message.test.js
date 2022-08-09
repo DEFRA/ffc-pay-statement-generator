@@ -118,7 +118,7 @@ describe('process statement message', () => {
     }
     mockValidation.mockImplementation(() => mockValidationImplementation())
     await processStatementMessage(message, receiver)
-    expect(receiver.completeMessage).not.toHaveBeenCalledWith(message)
+    expect(receiver.completeMessage).not.toHaveBeenCalled()
   })
 
   test('does not dead letter message on non-validation error', async () => {
@@ -129,7 +129,7 @@ describe('process statement message', () => {
       throw new Error('A generation error')
     })
     await processStatementMessage(message, receiver)
-    expect(receiver.deadLetterMessage).not.toHaveBeenCalledWith(message)
+    expect(receiver.deadLetterMessage).not.toHaveBeenCalled()
   })
 
   test('does not complete message on non-validation error', async () => {
@@ -140,6 +140,6 @@ describe('process statement message', () => {
       throw new Error('A generation error')
     })
     await processStatementMessage(message, receiver)
-    expect(receiver.completeMessage).not.toHaveBeenCalledWith(message)
+    expect(receiver.completeMessage).not.toHaveBeenCalled()
   })
 })
