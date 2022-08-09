@@ -25,6 +25,7 @@ describe('map reduction ids', () => {
     const result = mapReductionIds([{ reason: 'Late claim submission' }], reductions)
     expect(result).toMatch('\n(1)')
   })
+
   test('returns reduction ids when multiple reductions', () => {
     const result = mapReductionIds([{ reason: 'Late claim submission' }, { reason: 'Over declaration reduction' }], reductions)
     expect(result).toMatch('\n(1)\n(2)')
