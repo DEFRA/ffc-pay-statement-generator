@@ -42,10 +42,21 @@ describe('create filename', () => {
   test('includes FRN', () => {
     mockStatement.frn = 1234567890
     const result = getFilename(mockStatement, timestamp)
+    expect(result).toContain('1234567890')
+  })
+
+  test('includes FRN with underscore prefix and suffix', () => {
+    mockStatement.frn = 1234567890
+    const result = getFilename(mockStatement, timestamp)
     expect(result).toContain('_1234567890_')
   })
 
   test('includes timestamp', () => {
+    const result = getFilename(mockStatement, timestamp)
+    expect(result).toContain('2022080515301012')
+  })
+
+  test('includes timestamp with underscore prefix', () => {
     const result = getFilename(mockStatement, timestamp)
     expect(result).toContain('_2022080515301012')
   })
@@ -53,6 +64,6 @@ describe('create filename', () => {
   test('removes spaces', () => {
     mockStatement.scheme.shortName = 'My Scheme'
     const result = getFilename(mockStatement, timestamp)
-    expect(result).toContain('_MyScheme_')
+    expect(result).toContain('MyScheme')
   })
 })
