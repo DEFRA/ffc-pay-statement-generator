@@ -98,7 +98,7 @@ describe('generate part 2', () => {
       return x
     })
     const result = part2(mockStatement)
-    expect(result[4]).toBe('')
+    expect(result.stack[4]).toBe('')
   })
 
   test('includes reductions list', () => {

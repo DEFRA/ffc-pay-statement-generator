@@ -8,7 +8,7 @@ const createContent = (statement) => {
     summary(statement),
     part1(statement),
     part2(statement),
-    part3(statement)
+    part3()
   ]
 }
 
