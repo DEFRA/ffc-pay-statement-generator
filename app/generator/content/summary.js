@@ -5,7 +5,7 @@ const imagePath = path.join(__dirname, '..', 'images')
 const summary = (statement) => {
   return {
     stack: [
-      { image: `${imagePath}/rpa-logo.jfif`, fit: [millimetresToPoints(200), millimetresToPoints(25)] },
+      { image: `${imagePath}/rpa-logo.jfif`, fit: [millimetresToPoints(200), millimetresToPoints(25)], style: 'logo' },
       getAddress(statement.businessName, statement.address),
       { text: `${statement.scheme.name} ${statement.scheme.year}`, style: 'header1' },
       { text: 'Payment statement', style: 'subTitle' }
