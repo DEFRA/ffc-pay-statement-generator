@@ -4,6 +4,9 @@ const mapReductionIds = (fundReductions, reductions) => {
   }
   return `\n${(fundReductions.map(x => {
     const reduction = reductions.find(y => y.reason === x.reason)
+    if (!reduction) {
+      return ''
+    }
     return `\n(${reduction.id})`
   })).join('')}`
 }
