@@ -1,7 +1,7 @@
 const validateStatement = require('../../../app/messaging/validate-statement')
 const mockStatement = require('../../mock-statement-data')
 
-describe('validate statement', () => {
+describe('validate message body can be processed as statement', () => {
   test('does not throw on valid statement', async () => {
     expect(() => validateStatement(mockStatement)).not.toThrow()
   })

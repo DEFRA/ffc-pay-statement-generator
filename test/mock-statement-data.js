@@ -2,6 +2,7 @@ module.exports = {
   businessName: 'Mr A Farmer',
   sbi: 123456789,
   frn: 1234567890,
+  email: 'farmer@farms.com',
   address: {
     line1: 'A Farm',
     line2: '',
@@ -58,7 +59,7 @@ module.exports = {
     annualValue: '420.00',
     quarterlyValue: '105.00',
     quarterlyReduction: '50.00',
-    quarterlyPayment: '92.50',
+    quarterlyPayment: '45.00',
     reductions: [{
       reason: 'Over declaration reduction',
       value: '50.00'
@@ -81,6 +82,6 @@ module.exports = {
     annualValue: '1318.60',
     quarterlyValue: '329.65',
     quarterlyReduction: '125.00',
-    quarterlyPayment: '342.15'
+    quarterlyPayment: '242.15'
   }]
 }

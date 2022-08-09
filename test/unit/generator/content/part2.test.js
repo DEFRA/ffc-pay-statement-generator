@@ -1,7 +1,11 @@
 const part2 = require('../../../../app/generator/content/part2')
-const mockStatement = require('../../../mock-statement-data')
+let mockStatement
 
 describe('generate part 2', () => {
+  beforeEach(() => {
+    mockStatement = JSON.parse(JSON.stringify(require('../../../mock-statement-data')))
+  })
+
   test('includes header', () => {
     const result = part2(mockStatement)
     expect(result.stack[0].text).toBe('Part 2. Calculation')
@@ -12,7 +16,7 @@ describe('generate part 2', () => {
     expect(result.stack[1].text).toBe(`We calculated the total ${mockStatement.scheme.shortName} payment amount by adding together payments for all the standards which are part of your agreement, as shown in this table.`)
   })
 
-  test('includes all table columns', () => {
+  test('includes all table rows when five funding options and total row', () => {
     const result = part2(mockStatement)
     expect(result.stack[2].table.body.length).toBe(6)
   })
@@ -20,11 +24,6 @@ describe('generate part 2', () => {
   test('includes all table columns', () => {
     const result = part2(mockStatement)
     expect(result.stack[2].table.body[0].length).toBe(8)
-  })
-
-  test('includes all table rows', () => {
-    const result = part2(mockStatement)
-    expect(result.stack[2].table.body.length).toBe(6)
   })
 
   test('includes funding option', () => {
@@ -91,6 +90,15 @@ describe('generate part 2', () => {
   test('includes reductions header if reductions', () => {
     const result = part2(mockStatement)
     expect(result.stack[4].text).toBe('Reason for reductions')
+  })
+
+  test('does not include reductions header if no reductions', () => {
+    mockStatement.funding.map(x => {
+      delete x.reductions
+      return x
+    })
+    const result = part2(mockStatement)
+    expect(result[4]).toBe('')
   })
 
   test('includes reductions list', () => {
