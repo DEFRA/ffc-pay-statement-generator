@@ -23,7 +23,7 @@ module.exports = {
   },
   subTitle: {
     fontSize: 18,
-    margin: [0, 0, 0, 10]
+    margin: [0, 0, 0, 30]
   },
   link: {
     decoration: 'underline',
@@ -47,5 +47,8 @@ module.exports = {
   address: {
     fontSize: 9.5,
     lineHeight: 1
+  },
+  style: {
+    margin: [0, 0, 0, 5]
   }
 }

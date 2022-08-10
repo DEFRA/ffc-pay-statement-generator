@@ -8,7 +8,13 @@ const summary = (statement) => {
       { image: `${imagePath}/rpa-logo.jfif`, fit: [millimetresToPoints(200), millimetresToPoints(25)], style: 'logo' },
       getAddress(statement.businessName, statement.address),
       { text: `${statement.scheme.name} ${statement.scheme.year}`, style: 'header1' },
-      { text: 'Payment statement', style: 'subTitle' }
+      { text: 'Payment statement', style: 'subTitle' },
+      getBusinessNameColumns(statement.businessName),
+      getSBIColumns(statement.sbi),
+      `\n\nThis statement explains your payment for the ${statement.scheme.name} (${statement.scheme.shortName}). It is made up of 3 parts.`,
+      '\nPart 1 provides a summary of the most recent payment.',
+      'Part 2 explains how we calculated the payment.',
+      'Part 3 highlights were to go for more information.'
     ],
     unbreakable: true
   }
@@ -21,6 +27,28 @@ const getAddress = (businessName, address) => {
     fullAddress += `${x}\n`
   })
   return { text: fullAddress, style: 'address', absolutePosition: { x: millimetresToPoints(10), y: millimetresToPoints(35) } }
+}
+
+const getBusinessNameColumns = (businessName) => {
+  return {
+    columns: [
+      { width: 200, text: 'Business name:' },
+      { width: '*', text: businessName }
+    ],
+    style: 'column',
+    columnGap: 10
+  }
+}
+
+const getSBIColumns = (sbi) => {
+  return {
+    columns: [
+      { width: 200, text: 'Single business identifier (SBI):' },
+      { width: '*', text: sbi }
+    ],
+    style: 'column',
+    columnGap: 10
+  }
 }
 
 module.exports = summary
