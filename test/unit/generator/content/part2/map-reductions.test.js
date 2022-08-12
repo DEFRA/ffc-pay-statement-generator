@@ -51,12 +51,20 @@ describe('map reductions', () => {
   test('maps reason to reduction if duplicate reductions in multiple fundings', () => {
     const result = mapReductions([{ reductions: [{ reason: 'Late claim submission' }] }, { reductions: [{ reason: 'Late claim submission' }] }])
     expect(result[0].reason).toBe('Late claim submission')
+  })
+
+  test('has correct total reasons if duplicate reductions in multiple fundings', () => {
+    const result = mapReductions([{ reductions: [{ reason: 'Late claim submission' }] }, { reductions: [{ reason: 'Late claim submission' }] }])
     expect(result.length).toBe(1)
   })
 
   test('maps reason to reduction if duplicate reductions in same funding', () => {
     const result = mapReductions([{ reductions: [{ reason: 'Late claim submission' }, { reason: 'Late claim submission' }] }])
     expect(result[0].reason).toBe('Late claim submission')
+  })
+
+  test('has correct total reasons if duplicate reductions in same funding', () => {
+    const result = mapReductions([{ reductions: [{ reason: 'Late claim submission' }, { reason: 'Late claim submission' }] }])
     expect(result.length).toBe(1)
   })
 
@@ -68,6 +76,14 @@ describe('map reductions', () => {
     expect(result[0].reason).toBe('Late claim submission')
     expect(result[1].reason).toBe('Over declaration reduction')
     expect(result[2].reason).toBe('Late amendment reduction')
+    expect(result.length).toBe(3)
+  })
+
+  test('has correct total reasons if duplicate reductions in multiple fundings with non-duplicates', () => {
+    const result = mapReductions([
+      { reductions: [{ reason: 'Late claim submission' }, { reason: 'Over declaration reduction' }] },
+      { reductions: [{ reason: 'Late claim submission' }, { reason: 'Late amendment reduction' }] }
+    ])
     expect(result.length).toBe(3)
   })
 
@@ -83,6 +99,18 @@ describe('map reductions', () => {
     expect(result[0].reason).toBe('Late claim submission')
     expect(result[1].reason).toBe('Over declaration reduction')
     expect(result[2].reason).toBe('Late amendment reduction')
+    expect(result.length).toBe(3)
+  })
+
+  test('has correct total if duplicate reductions in same fundings with non-duplicates', () => {
+    const result = mapReductions([{
+      reductions: [
+        { reason: 'Late claim submission' },
+        { reason: 'Over declaration reduction' },
+        { reason: 'Late claim submission' },
+        { reason: 'Late amendment reduction' }
+      ]
+    }])
     expect(result.length).toBe(3)
   })
 })
