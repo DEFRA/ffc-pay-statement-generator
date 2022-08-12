@@ -4,7 +4,7 @@ const mapReductions = (fundings) => {
   fundings.forEach(x => {
     if (x.reductions) {
       x.reductions.forEach(y => {
-        if (!reductions.find(z => z.reason === y.reason)) {
+        if (!reductions.some(z => z.reason === y.reason)) {
           reductions.push({
             id: i,
             reason: y.reason
