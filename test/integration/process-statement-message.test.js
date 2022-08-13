@@ -1,3 +1,14 @@
+const mockSendMessage = jest.fn()
+jest.mock('ffc-messaging', () => {
+  return {
+    MessageSender: jest.fn().mockImplementation(() => {
+      return {
+        sendMessage: mockSendMessage,
+        closeConnection: jest.fn()
+      }
+    })
+  }
+})
 const { BlobServiceClient } = require('@azure/storage-blob')
 const config = require('../../app/config/storage')
 const db = require('../../app/data')
@@ -13,6 +24,7 @@ let message
 
 describe('generate statements', () => {
   beforeEach(async () => {
+    jest.clearAllMocks()
     jest.useFakeTimers().setSystemTime(new Date(2022, 7, 5, 15, 30, 10, 120))
     blobServiceClient = BlobServiceClient.fromConnectionString(config.connectionStr)
     container = blobServiceClient.getContainerClient(config.container)
@@ -66,5 +78,15 @@ describe('generate statements', () => {
   test('completes message', async () => {
     await processStatementMessage(message, receiver)
     expect(receiver.completeMessage).toHaveBeenCalled()
+  })
+
+  test('sends publish message once', async () => {
+    await processStatementMessage(message, receiver)
+    expect(mockSendMessage).toHaveBeenCalledTimes(1)
+  })
+
+  test('sends publish message with statement filename', async () => {
+    await processStatementMessage(message, receiver)
+    expect(mockSendMessage.mock.calls[0][0].body.filename).toBe(FILE_NAME)
   })
 })
