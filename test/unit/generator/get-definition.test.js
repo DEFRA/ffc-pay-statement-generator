@@ -18,4 +18,24 @@ describe('get definition', () => {
     const result = getDefinition(mockStatement)
     expect(result.defaultStyle).toBe(styles.default)
   })
+
+  test('sets left margin', () => {
+    const result = getDefinition(mockStatement)
+    expect(result.pageMargins[0]).toBe(42.525)
+  })
+
+  test('sets top margin', () => {
+    const result = getDefinition(mockStatement)
+    expect(result.pageMargins[1]).toBe(14.175)
+  })
+
+  test('sets right margin', () => {
+    const result = getDefinition(mockStatement)
+    expect(result.pageMargins[2]).toBe(42.525)
+  })
+
+  test('sets bottom margin', () => {
+    const result = getDefinition(mockStatement)
+    expect(result.pageMargins[3]).toBe(14.175)
+  })
 })
