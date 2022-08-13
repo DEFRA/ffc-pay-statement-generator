@@ -32,7 +32,7 @@ const mqConfig = {
     type: 'subscription'
   },
   publishTopic: {
-    topic: process.env.PUBLISH_TOPIC_ADDRESS
+    address: process.env.PUBLISH_TOPIC_ADDRESS
   }
 }
 
