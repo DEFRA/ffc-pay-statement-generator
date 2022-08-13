@@ -36,6 +36,7 @@ container:
   messageQueueHost: namespace.servicebus.windows.net
   statementTopicAddress: ffc-pay-statements
   statementSubscriptionAddress: ffc-pay-statement-generator
+  publishTopicAddress: ffc-pay-statement-publish
   azureStorageAccountName: ffcpay
   azureStorageConnectionString: dummy
   azureStorageUseConnectionString: false
