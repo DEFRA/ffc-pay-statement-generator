@@ -1,5 +1,5 @@
-const part1 = require('../../../../app/generator/content/part1')
-const mockStatement = require('../../../mocks/statement-data')
+const part1 = require('../../../../../app/generator/content/part1')
+const mockStatement = require('../../../../mocks/statement-data')
 
 describe('generate part 1', () => {
   test('includes header', () => {
