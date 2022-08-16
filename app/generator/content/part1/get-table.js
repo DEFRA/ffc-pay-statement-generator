@@ -11,7 +11,7 @@ const getTable = (statement) => {
         [{
           stack: [
             { text: `Your ${statement.scheme.frequency.toLowerCase()} ${statement.scheme.shortName} payment for ${statement.payments[0].settled} is £${statement.payments[0].value}`, bold: true },
-            `We will pay this into your account on ${statement.payments[0].settled}.`,
+            `\nWe will pay this into your account on ${statement.payments[0].settled}.\n\n`,
             {
               columns: [
                 { width: 200, text: 'Calculation date:' },
@@ -27,7 +27,8 @@ const getTable = (statement) => {
               style: 'column',
               columnGap: 10
             }
-          ]
+          ],
+          fillColor: '#d9d9d9'
         }]
       ]
     }
