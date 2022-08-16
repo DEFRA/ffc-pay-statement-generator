@@ -23,7 +23,7 @@ module.exports = {
     dueDate: '1 July 2022',
     settled: '1 July 2022',
     calculated: '16 June 2022',
-    value: '317.15'
+    value: '242.15'
   }],
   funding: [{
     name: 'Arable and horticultural soils',
