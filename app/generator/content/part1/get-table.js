@@ -1,3 +1,6 @@
+const getCalculationDate = require('./get-calculation-date')
+const getReference = require('./get-reference')
+
 const getTable = (scheme, latestPayment, latestPeriod) => {
   return {
     layout: {
@@ -11,21 +14,8 @@ const getTable = (scheme, latestPayment, latestPeriod) => {
           stack: [
             { text: `Your ${scheme.frequency.toLowerCase()} ${scheme.shortName} payment for ${latestPeriod} is £${latestPayment.value}`, bold: true },
             `\nWe will pay this into your account on ${latestPayment.settled}.\n\n`,
-            {
-              columns: [
-                { width: 200, text: 'Calculation date:' },
-                { width: '*', text: latestPayment.calculated }
-              ],
-              style: 'column',
-              columnGap: 10
-            }, {
-              columns: [
-                { width: 200, text: 'Payment reference number:' },
-                { width: '*', text: latestPayment.reference }
-              ],
-              style: 'column',
-              columnGap: 10
-            }
+            getCalculationDate(latestPayment.calculated),
+            getReference(latestPayment.reference)
           ],
           fillColor: '#d9d9d9'
         }]
