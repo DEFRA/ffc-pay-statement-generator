@@ -12,7 +12,7 @@ const getTable = (scheme, latestPayment, latestPeriod) => {
       body: [
         [{
           stack: [
-            { text: `Your ${scheme.frequency.toLowerCase()} ${scheme.shortName} payment for ${latestPeriod} is £${latestPayment.value}`, bold: true },
+            { text: `Your ${scheme.frequency.toLowerCase()} ${scheme.shortName} payment ${latestPeriod} is £${latestPayment.value}`, bold: true },
             `\nWe will pay this into your account on ${latestPayment.settled}.\n\n`,
             getCalculationDate(latestPayment.calculated),
             getReference(latestPayment.reference)
