@@ -9,6 +9,10 @@ describe('generate part 2', () => {
   test('includes header', () => {
     const result = part2(mockStatement)
     expect(result[0].text).toBe('Part 2. Calculation')
+  })
+
+  test('includes header style', () => {
+    const result = part2(mockStatement)
     expect(result[0].style).toBe('header2')
   })
 
@@ -25,6 +29,11 @@ describe('generate part 2', () => {
   test('includes all table columns', () => {
     const result = part2(mockStatement)
     expect(result[2].table.body[0].length).toBe(8)
+  })
+
+  test('includes table style', () => {
+    const result = part2(mockStatement)
+    expect(result[2].style).toBe('table')
   })
 
   test('includes funding option', () => {

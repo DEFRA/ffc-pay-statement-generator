@@ -48,6 +48,11 @@ describe('map total row', () => {
     expect(result[2].bold).toBeTruthy()
   })
 
+  test('includes funding rate style bold', () => {
+    const result = mapTotalRow(totalRow, reductions)
+    expect(result[2].style).toBe('tableNumber')
+  })
+
   test('includes area', () => {
     const result = mapTotalRow(totalRow, reductions)
     expect(result[3].text).toBe(totalRow.area)
