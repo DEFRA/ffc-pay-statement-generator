@@ -106,4 +106,9 @@ describe('generate part 3', () => {
     const result = part3(mockStatement)
     expect(result.stack[5].style).toBe('header2')
   })
+
+  test('includes unbreakable instruction', () => {
+    const result = part3(mockStatement)
+    expect(result.unbreakable).toBeTruthy()
+  })
 })

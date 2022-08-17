@@ -107,4 +107,9 @@ describe('generate part 2', () => {
     expect(result.stack[5]).toBe('(1) Late claim submission')
     expect(result.stack[6]).toBe('(2) Over declaration reduction')
   })
+
+  test('includes unbreakable instruction', () => {
+    const result = part2(mockStatement)
+    expect(result.unbreakable).toBeTruthy()
+  })
 })
