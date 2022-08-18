@@ -2,7 +2,7 @@ const part3 = () => {
   return {
     stack: [
       { text: 'Part 3. More support', style: 'header2' },
-      'If you think your payment is wrong you should:\n\n',
+      'If you think your payment is wrong, you should:\n\n',
       {
         ul: [
           {
@@ -29,11 +29,10 @@ const part3 = () => {
       {
         text: [
           'Find other ways to get in touch at ',
-          { text: 'www.gov.uk/guidance/contacting-the-rpa-about-sfi', link: 'https://www.gov.uk/guidance/contacting-the-rpa-about-sfi', style: 'link' },
-          '.'
+          { text: 'www.gov.uk/guidance/contacting-the-rpa-about-sfi', link: 'https://www.gov.uk/guidance/contacting-the-rpa-about-sfi', style: 'link' }
         ]
       },
-      { text: 'To receive this statement in large print or alternative format, contact the Rural Payments Agency', style: 'header2' }
+      { text: 'To receive this statement in large print or another alternative format, contact the Rural Payments Agency', style: 'header2' }
     ],
     unbreakable: true
   }
