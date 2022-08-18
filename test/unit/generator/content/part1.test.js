@@ -4,11 +4,6 @@ const mockStatement = require('../../../mocks/statement-data')
 describe('generate part 1', () => {
   test('includes header', () => {
     const result = part1(mockStatement)
-    expect(result.stack[0].text).toBe('Part 1. Payment summary')
-  })
-
-  test('includes unbreakable instruction', () => {
-    const result = part1(mockStatement)
-    expect(result.unbreakable).toBeTruthy()
+    expect(result[0].text).toBe('Part 1. Payment summary')
   })
 })
