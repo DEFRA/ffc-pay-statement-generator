@@ -62,9 +62,4 @@ describe('generate statements', () => {
     const log = await db.generation.findOne({ where: { filename: `${FILE_NAME}` } })
     expect(log.dateGenerated).toStrictEqual(new Date(2022, 7, 5, 15, 30, 10, 120))
   })
-
-  test('completes message', async () => {
-    await processStatementMessage(message, receiver)
-    expect(receiver.completeMessage).toHaveBeenCalled()
-  })
 })
