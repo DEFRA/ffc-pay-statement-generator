@@ -1,3 +1,4 @@
 resources:
   topics:
     - name: statement
+    - name: publish

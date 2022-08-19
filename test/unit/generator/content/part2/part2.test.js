@@ -9,6 +9,10 @@ describe('generate part 2', () => {
   test('includes header', () => {
     const result = part2(mockStatement)
     expect(result.stack[0].text).toBe('Part 2. Calculation')
+  })
+
+  test('includes header style', () => {
+    const result = part2(mockStatement)
     expect(result.stack[0].style).toBe('header2')
   })
 
@@ -106,5 +110,10 @@ describe('generate part 2', () => {
     const result = part2(mockStatement)
     expect(result.stack[5]).toBe('(1) Late claim submission')
     expect(result.stack[6]).toBe('(2) Over declaration reduction')
+  })
+
+  test('includes unbreakable instruction', () => {
+    const result = part2(mockStatement)
+    expect(result.unbreakable).toBeTruthy()
   })
 })
