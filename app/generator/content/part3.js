@@ -32,7 +32,7 @@ const part3 = () => {
           { text: 'www.gov.uk/guidance/contacting-the-rpa-about-sfi', link: 'https://www.gov.uk/guidance/contacting-the-rpa-about-sfi', style: 'link' }
         ]
       },
-      { text: 'To receive this statement in large print or another alternative format, contact the Rural Payments Agency', style: 'header2' }
+      { text: 'To receive this statement in large print or another alternative format, contact the Rural Payments Agency.', style: 'header2' }
     ],
     unbreakable: true
   }

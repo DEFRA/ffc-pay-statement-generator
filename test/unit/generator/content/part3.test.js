@@ -94,7 +94,7 @@ describe('generate part 3', () => {
 
   test('includes large text', () => {
     const result = part3(mockStatement)
-    expect(result.stack[5].text).toBe('To receive this statement in large print or another alternative format, contact the Rural Payments Agency')
+    expect(result.stack[5].text).toBe('To receive this statement in large print or another alternative format, contact the Rural Payments Agency.')
   })
 
   test('includes large text style', () => {
