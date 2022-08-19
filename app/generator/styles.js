@@ -1,3 +1,5 @@
+const { millimetresToPoints } = require('./conversion')
+
 module.exports = {
   default: {
     font: 'Arial',
@@ -21,7 +23,7 @@ module.exports = {
   },
   subTitle: {
     fontSize: 18,
-    margin: [0, 0, 0, 10]
+    margin: [0, 0, 0, 30]
   },
   link: {
     decoration: 'underline',
@@ -38,5 +40,15 @@ module.exports = {
   },
   tableNumber: {
     alignment: 'right'
+  },
+  logo: {
+    margin: [0, 0, 0, millimetresToPoints(50)]
+  },
+  address: {
+    fontSize: 9.5,
+    lineHeight: 1
+  },
+  style: {
+    margin: [0, 0, 0, 5]
   }
 }
