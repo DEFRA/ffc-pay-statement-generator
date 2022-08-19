@@ -14,7 +14,7 @@ module.exports = {
   header2: {
     fontSize: 16,
     bold: true,
-    margin: [0, 10, 0, 10]
+    margin: [0, 40, 0, 10]
   },
   header3: {
     fontSize: 12,
