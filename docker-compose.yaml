@@ -7,7 +7,7 @@ services:
     image: ffc-pay-statement-generator
     container_name: ffc-pay-statement-generator
     depends_on:
-      - ffc-pay-statement-generator-azurite
+      - ffc-pay-statement-azurite
       - ffc-pay-statement-generator-postgres
     environment:
       APPINSIGHTS_CLOUDROLE: ffc-pay-statement-generator-local
@@ -34,6 +34,6 @@ services:
       POSTGRES_PASSWORD: ppp
       POSTGRES_USERNAME: postgres
 
-  ffc-pay-statement-generator-azurite:
+  ffc-pay-statement-azurite:
     image: mcr.microsoft.com/azure-storage/azurite:3.17.1
     command: "azurite-blob --loose --blobHost 0.0.0.0"
