@@ -34,7 +34,7 @@ describe('generate part 1', () => {
 
   test('includes payment date', () => {
     const result = part1(mockStatement)
-    expect(result.stack[1].table.body[0][0].stack[1]).toMatch('\nWe will pay this into your account on 1 July 2022.\n')
+    expect(result.stack[1].table.body[0][0].stack[1]).toMatch('\nWe will usually pay this into your account by 1 July 2022.\n')
   })
 
   test('includes calculation date title', () => {

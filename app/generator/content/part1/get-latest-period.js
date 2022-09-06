@@ -2,7 +2,7 @@ const moment = require('moment')
 const SETTLEMENT_DATE_FORMAT = 'DD MMMM YYYY'
 
 const getLatestPeriod = (scheme, latestPayment) => {
-  const period = scheme.frequency !== 'Quarterly' ? `for ${moment(latestPayment.settled, SETTLEMENT_DATE_FORMAT).format('MMMM YYYY')}` : getQuarterlyPeriod(latestPayment.dueDate)
+  const period = scheme.frequency !== 'Quarterly' ? `for ${moment(latestPayment.expected, SETTLEMENT_DATE_FORMAT).format('MMMM YYYY')}` : getQuarterlyPeriod(latestPayment.dueDate)
   return period.includes('Invalid date') ? '' : period
 }
 

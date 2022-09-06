@@ -60,6 +60,6 @@ describe('generate summary', () => {
 
   test('includes summary text for part 3', () => {
     const result = summary(mockStatement)
-    expect(result.stack[9]).toMatch('Part 3 highlights were to go for more information.')
+    expect(result.stack[9]).toMatch('Part 3 highlights were to go for more support.')
   })
 })

@@ -9,7 +9,7 @@ describe('for get latest period', () => {
     }
     payment = {
       dueDate: '1 June 2022',
-      settled: '1 July 2022'
+      expected: '1 July 2022'
     }
   })
 
@@ -19,25 +19,25 @@ describe('for get latest period', () => {
   })
 
   test('returns single month of settlement date if first of month', () => {
-    payment.settled = '1 June 2022'
+    payment.expected = '1 June 2022'
     const result = getLatestPeriod(scheme, payment)
     expect(result).toBe('for June 2022')
   })
 
   test('returns single month of settlement date if 30th of month', () => {
-    payment.settled = '30 June 2022'
+    payment.expected = '30 June 2022'
     const result = getLatestPeriod(scheme, payment)
     expect(result).toBe('for June 2022')
   })
 
   test('returns single month of settlement date if 31st of month', () => {
-    payment.settled = '31 July 2022'
+    payment.expected = '31 July 2022'
     const result = getLatestPeriod(scheme, payment)
     expect(result).toBe('for July 2022')
   })
 
   test('returns single month of settlement date if leap year', () => {
-    payment.settled = '29 February 2024'
+    payment.expected = '29 February 2024'
     const result = getLatestPeriod(scheme, payment)
     expect(result).toBe('for February 2024')
   })
@@ -64,13 +64,13 @@ describe('for get latest period', () => {
   })
 
   test('returns empty string if not quarterly and invalid date', () => {
-    payment.settled = '31 June 2022'
+    payment.expected = '31 June 2022'
     const result = getLatestPeriod(scheme, payment)
     expect(result).toBe('')
   })
 
   test('returns empty string if not quarterly and invalid leap year', () => {
-    payment.settled = '29 February 2022'
+    payment.expected = '29 February 2022'
     const result = getLatestPeriod(scheme, payment)
     expect(result).toBe('')
   })

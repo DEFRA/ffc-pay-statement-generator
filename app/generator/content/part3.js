@@ -13,7 +13,7 @@ const part3 = () => {
           }, {
             text: [
               'review the SFI scheme information at ',
-              { text: 'www.gov.uk/sfi', link: 'https://www.gov.uk/sfi', style: 'link' },
+              { text: 'www.gov.uk/government/collections/sustainable-farming-incentive-guidance', link: 'https://www.gov.uk/government/collections/sustainable-farming-incentive-guidance', style: 'link' },
               '\n\n'
             ]
           }
@@ -21,9 +21,9 @@ const part3 = () => {
       },
       {
         text: [
-          'If you still do not agree with the amount you have been paid, contact us within 3 months of the payment date at ',
+          'If you still have questions, contact us within 3 months of the payment date at ',
           { text: 'ruralpayments@defra.gov.uk', link: 'mailto:ruralpayments@defra.gov.uk', style: 'link' },
-          '.\n\n'
+          '. We currently resolve 80% of queries within 2 weeks.\n\n'
         ]
       },
       {
