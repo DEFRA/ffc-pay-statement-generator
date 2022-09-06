@@ -34,16 +34,16 @@ describe('payment schema', () => {
     expect(result.error).toBeUndefined()
   })
 
-  test('validates fail if missing area', () => {
+  test('validates success if missing area', () => {
     delete mockFunding.area
     const result = schema.validate(mockFunding)
-    expect(result.error).toBeDefined()
+    expect(result.error).toBeUndefined()
   })
 
-  test('validates fail if empty area', () => {
+  test('validates success if empty area', () => {
     mockFunding.area = ''
     const result = schema.validate(mockFunding)
-    expect(result.error).toBeDefined()
+    expect(result.error).toBeUndefined()
   })
 
   test('validates success if missing rate', () => {
