@@ -6,7 +6,8 @@ const createMessage = (statement, filename) => {
       frn: statement.frn,
       address: statement.address,
       email: statement.email,
-      filename
+      filename,
+      scheme: statement.scheme
     },
     type: 'uk.gov.pay.statement.publish',
     source: 'ffc-pay-statement-generator'

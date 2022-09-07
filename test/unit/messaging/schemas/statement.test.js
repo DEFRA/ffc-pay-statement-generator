@@ -76,10 +76,10 @@ describe('statement schema', () => {
     expect(result.error).toBeDefined()
   })
 
-  test('validates success if missing email', () => {
+  test('validates fail if missing email', () => {
     delete mockStatement.email
     const result = schema.validate(mockStatement)
-    expect(result.error).toBeUndefined()
+    expect(result.error).toBeDefined()
   })
 
   test('validates fail if invalid email', () => {
