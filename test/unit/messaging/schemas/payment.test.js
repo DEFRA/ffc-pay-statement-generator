@@ -46,14 +46,14 @@ describe('payment schema', () => {
     expect(result.error).toBeDefined()
   })
 
-  test('validates fail if missing expected', () => {
-    delete mockPayment.expected
+  test('validates fail if missing settled', () => {
+    delete mockPayment.settled
     const result = schema.validate(mockPayment)
     expect(result.error).toBeDefined()
   })
 
-  test('validates fail if empty expected', () => {
-    mockPayment.expected = ''
+  test('validates fail if empty settled', () => {
+    mockPayment.settled = ''
     const result = schema.validate(mockPayment)
     expect(result.error).toBeDefined()
   })

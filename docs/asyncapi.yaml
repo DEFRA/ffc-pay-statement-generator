@@ -127,7 +127,7 @@ components:
       - invoiceNumber
       - reference
       - dueDate
-      - expected
+      - settled
       - calculated      
       properties:
         invoiceNumber:
@@ -142,9 +142,9 @@ components:
           type: string
           description: The due date of the payment request
           example: 1 July 2022
-        expected:
+        settled:
           type: string
-          description: The expected date of the payment request
+          description: The settled date of the payment request
           example: 1 July 2022
         calculated:
           type: string

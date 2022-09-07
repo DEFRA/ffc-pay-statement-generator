@@ -13,7 +13,7 @@ const getTable = (scheme, latestPayment, latestPeriod) => {
         [{
           stack: [
             { text: `Your ${scheme.frequency.toLowerCase()} ${scheme.shortName} payment ${latestPeriod} is £${latestPayment.value}`, bold: true },
-            `\nWe will usually pay this into your account by ${latestPayment.expected}.\n\n`,
+            `\nWe will usually pay this into your account within 2 working days of ${latestPayment.settled}.\n\n`,
             getCalculationDate(latestPayment.calculated),
             getReference(latestPayment.reference)
           ],
