@@ -15,7 +15,8 @@ module.exports = {
     name: 'Sustainable Farming Incentive',
     shortName: 'SFI',
     year: '2022',
-    frequency: 'Quarterly'
+    frequency: 'Quarterly',
+    agreementNumber: 'SFI1234567'
   },
   payments: [{
     invoiceNumber: 'S0000001C000001V001',
