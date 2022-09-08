@@ -21,7 +21,7 @@ const part3 = () => {
       },
       {
         text: [
-          'If you still have questions, contact us within 3 months of the payment date at ',
+          'If you still have questions, please contact us within 3 months of receiving your payment at ',
           { text: 'ruralpayments@defra.gov.uk', link: 'mailto:ruralpayments@defra.gov.uk', style: 'link' },
           '. We currently resolve 80% of queries within 2 weeks.\n\n'
         ]

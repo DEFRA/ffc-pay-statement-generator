@@ -64,7 +64,7 @@ describe('generate part 3', () => {
 
   test('includes do not agree link text', () => {
     const result = part3(mockStatement)
-    expect(result.stack[3].text[0]).toBe('If you still have questions, contact us within 3 months of the payment date at ')
+    expect(result.stack[3].text[0]).toBe('If you still have questions, please contact us within 3 months of receiving your payment at ')
   })
 
   test('includes do not agree link', () => {
