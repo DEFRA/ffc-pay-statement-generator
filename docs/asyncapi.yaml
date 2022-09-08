@@ -104,6 +104,7 @@ components:
       - shortName
       - year
       - frequency
+      - agreementNumber
       properties:
         name:
           type: string
@@ -121,6 +122,10 @@ components:
           type: string
           description: The frequency of payments
           example: Quarterly
+        agreementNumber:
+          type: string
+          description: The agreement number
+          example: SFI1234567
     Payment:
       type: object
       required:
@@ -128,7 +133,7 @@ components:
       - reference
       - dueDate
       - settled
-      - calculated      
+      - calculated
       properties:
         invoiceNumber:
           type: string

@@ -39,7 +39,7 @@ describe('generate part 3', () => {
 
   test('includes more support review SFI scheme link', () => {
     const result = part3(mockStatement)
-    expect(result.stack[2].ul[1].text[1].link).toBe('https://www.gov.uk/sfi')
+    expect(result.stack[2].ul[1].text[1].link).toBe('https://www.gov.uk/government/collections/sustainable-farming-incentive-guidance')
   })
 
   test('includes more support review SFI scheme link style', () => {
@@ -54,7 +54,7 @@ describe('generate part 3', () => {
 
   test('includes more support review SFI scheme link', () => {
     const result = part3(mockStatement)
-    expect(result.stack[2].ul[1].text[1].link).toBe('https://www.gov.uk/sfi')
+    expect(result.stack[2].ul[1].text[1].link).toBe('https://www.gov.uk/government/collections/sustainable-farming-incentive-guidance')
   })
 
   test('includes more support review SFI scheme link style', () => {
@@ -64,7 +64,7 @@ describe('generate part 3', () => {
 
   test('includes do not agree link text', () => {
     const result = part3(mockStatement)
-    expect(result.stack[3].text[0]).toBe('If you still do not agree with the amount you have been paid, contact us within 3 months of the payment date at ')
+    expect(result.stack[3].text[0]).toBe('If you still have questions, please contact us within 3 months of receiving your payment at ')
   })
 
   test('includes do not agree link', () => {
@@ -75,6 +75,11 @@ describe('generate part 3', () => {
   test('includes do not agree link style', () => {
     const result = part3(mockStatement)
     expect(result.stack[3].text[1].style).toBe('link')
+  })
+
+  test('includes do not agree resolution time text', () => {
+    const result = part3(mockStatement)
+    expect(result.stack[3].text[2]).toMatch('. We currently resolve 80% of queries within 2 weeks.\n\n')
   })
 
   test('includes get in touch link text', () => {

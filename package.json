@@ -1,6 +1,6 @@
 {
   "name": "ffc-pay-statement-generator",
-  "version": "1.4.2",
+  "version": "1.5.3",
   "description": "FFC payment statement generator",
   "homepage": "https://github.com/DEFRA/ffc-pay-statement-generator",
   "main": "app/index.js",
