@@ -1,6 +1,6 @@
 const mapTotalRow = (row) => {
   if (!row) {
-    return []
+    return ['', '', '', '', '', '', '', '']
   }
   return [
     { text: row.name, bold: true },
