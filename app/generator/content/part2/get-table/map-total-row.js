@@ -1,7 +1,4 @@
 const mapTotalRow = (row) => {
-  if (!row) {
-    return ['', '', '', '', '', '', '', '']
-  }
   return [
     { text: row.name, bold: true },
     { text: row.level, bold: true },

@@ -13,12 +13,6 @@ describe('map total row', () => {
     expect(result.length).toBe(8)
   })
 
-  test('returns array of 8 empty strings if undefined total row', () => {
-    const result = mapTotalRow(undefined, reductions)
-    expect(result.length).toBe(8)
-    expect(result.every(x => x === '')).toBeTruthy()
-  })
-
   test('includes funding option', () => {
     const result = mapTotalRow(totalRow, reductions)
     expect(result[0].text).toBe(totalRow.name)
