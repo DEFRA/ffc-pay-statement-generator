@@ -70,6 +70,12 @@ describe('statement schema', () => {
     expect(result.error).toBeDefined()
   })
 
+  test('validates fail if missing funding total', () => {
+    delete mockStatement.funding[4]
+    const result = schema.validate(mockStatement)
+    expect(result.error).toBeDefined()
+  })
+
   test('validates fail if missing scheme', () => {
     delete mockStatement.scheme
     const result = schema.validate(mockStatement)
