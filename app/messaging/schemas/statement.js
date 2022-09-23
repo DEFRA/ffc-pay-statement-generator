@@ -12,5 +12,5 @@ module.exports = Joi.object({
   address,
   scheme,
   payments: Joi.array().items(payment).required().min(1),
-  funding: Joi.array().items(funding).required().min(2).has(funding.keys({ name: 'Total' }).required())
+  funding: Joi.array().items(funding).required().min(1)
 }).required()
