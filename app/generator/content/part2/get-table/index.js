@@ -2,7 +2,7 @@ const mapFundingRows = require('./map-funding-rows')
 const mapTotalRow = require('./map-total-row')
 
 const getTable = (fundings, reductions) => {
-  return {
+  const table = {
     layout: {
       hLineStyle: () => 'solid',
       vLineStyle: () => 'solid'
@@ -22,11 +22,16 @@ const getTable = (fundings, reductions) => {
           { text: 'Quarterly reduction', style: 'tableHeader' },
           { text: 'Quarterly payment', style: 'tableHeader' }
         ],
-        ...mapFundingRows(fundings.filter(x => x.name !== 'Total'), reductions),
-        mapTotalRow(fundings.find(x => x.name === 'Total'))
+        ...mapFundingRows(fundings.filter(x => x.name !== 'Total'), reductions)
       ]
     }
   }
+  const totalRow = fundings.find(x => x.name === 'Total')
+  if (totalRow) {
+    table.table.body.push(mapTotalRow(totalRow))
+  }
+
+  return table
 }
 
 module.exports = getTable
