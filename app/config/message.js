@@ -15,6 +15,9 @@ const mqSchema = Joi.object({
   },
   publishTopic: {
     address: Joi.string()
+  },
+  crmTopic: {
+    address: Joi.string()
   }
 })
 
@@ -33,6 +36,9 @@ const mqConfig = {
   },
   publishTopic: {
     address: process.env.PUBLISH_TOPIC_ADDRESS
+  },
+  crmTopic: {
+    address: process.env.CRM_TOPIC_ADDRESS
   }
 }
 
@@ -47,8 +53,10 @@ if (mqResult.error) {
 
 const statementSubscription = { ...mqResult.value.messageQueue, ...mqResult.value.statementSubscription }
 const publishTopic = { ...mqResult.value.messageQueue, ...mqResult.value.publishTopic }
+const crmTopic = { ...mqResult.value.messageQueue, ...mqResult.value.crmTopic }
 
 module.exports = {
   statementSubscription,
-  publishTopic
+  publishTopic,
+  crmTopic
 }
