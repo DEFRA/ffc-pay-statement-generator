@@ -32,6 +32,7 @@ value.isTest = value.env === 'test'
 value.isProd = value.env === 'production'
 value.statementSubscription = mqConfig.statementSubscription
 value.publishTopic = mqConfig.publishTopic
+value.crmTopic = mqConfig.crmTopic
 value.dbConfig = dbConfig
 value.storageConfig = storageConfig
 
