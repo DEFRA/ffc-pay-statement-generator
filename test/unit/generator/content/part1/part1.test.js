@@ -29,7 +29,7 @@ describe('generate part 1', () => {
 
   test('includes payment schedule', () => {
     const result = part1(mockStatement)
-    expect(result.stack[1].table.body[0][0].stack[0].text).toBe('Your payment for your SFI agreement is £242.15.')
+    expect(result.stack[1].table.body[0][0].stack[0].text).toBe('Your payment for your SFI agreement is £242.15')
   })
 
   test('includes payment date', () => {

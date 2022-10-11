@@ -1,3 +1,4 @@
+const toCurrencyString = require('../../../to-currency-string')
 const mapReductionIds = require('./map-reduction-ids')
 
 const mapFundingRows = (fundings, reductions) => {
@@ -6,9 +7,9 @@ const mapFundingRows = (fundings, reductions) => {
     x.level,
     { text: x.rate, style: 'tableNumber' },
     { text: x.area, style: 'tableNumber' },
-    { text: `£${x.annualValue}`, style: 'tableNumber' },
-    { text: `£${x.quarterlyValue}`, style: 'tableNumber' },
-    { text: `£${x.quarterlyReduction}${mapReductionIds(x.reductions, reductions)}`, style: 'tableNumber' },
+    { text: `${toCurrencyString(x.annualValue)}`, style: 'tableNumber' },
+    { text: `${toCurrencyString(x.quarterlyValue)}`, style: 'tableNumber' },
+    { text: `${toCurrencyString(x.quarterlyReduction)}${mapReductionIds(x.reductions, reductions)}`, style: 'tableNumber' },
     { text: `£${x.quarterlyPayment}`, style: 'tableNumber' }
   ]))
 }
