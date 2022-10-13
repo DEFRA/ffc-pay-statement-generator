@@ -92,26 +92,6 @@ describe('generate part 2', () => {
     expect(result.stack[3].text[2]).toBe('.')
   })
 
-  test('includes reductions header if reductions', () => {
-    const result = part2(mockStatement)
-    expect(result.stack[4].text).toBe('Reason for reductions')
-  })
-
-  test('does not include reductions header if no reductions', () => {
-    mockStatement.funding.map(x => {
-      delete x.reductions
-      return x
-    })
-    const result = part2(mockStatement)
-    expect(result.stack[4]).toBe('')
-  })
-
-  test('includes reductions list', () => {
-    const result = part2(mockStatement)
-    expect(result.stack[5]).toBe('(1) Late claim submission')
-    expect(result.stack[6]).toBe('(2) Over declaration reduction')
-  })
-
   test('includes unbreakable instruction', () => {
     const result = part2(mockStatement)
     expect(result.unbreakable).toBeTruthy()
