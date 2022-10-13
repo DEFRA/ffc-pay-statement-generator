@@ -2,6 +2,7 @@ const Joi = require('joi')
 const mqConfig = require('./message')
 const dbConfig = require('./database')
 const storageConfig = require('./storage')
+const crmConfig = require('./crm')
 
 // Define config schema
 const schema = Joi.object({
@@ -35,5 +36,6 @@ value.publishTopic = mqConfig.publishTopic
 value.crmTopic = mqConfig.crmTopic
 value.dbConfig = dbConfig
 value.storageConfig = storageConfig
+value.crmConfig = crmConfig
 
 module.exports = value

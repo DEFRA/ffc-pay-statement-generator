@@ -44,6 +44,9 @@ container:
   azureStorageCreateContainers: false
   storageContainer: statements
   storageFolder: outbound
+  blobBaseUrl: https://devffcpayst1001.blob.core.windows.net/statements/outbound/
+  sendRetryInterval: 500
+  sendRetryNoOfTimes: 3
 
 postgresService:
   postgresDb: ffc_pay_statement_generator
