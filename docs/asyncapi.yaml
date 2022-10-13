@@ -213,5 +213,5 @@ components:
           example: Over declaration reduction
         value:
           type: string
-          description: The reduction level
+          description: The reduction value
           example: 75.00
