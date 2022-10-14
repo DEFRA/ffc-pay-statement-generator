@@ -1,7 +1,8 @@
-const toCurrencyString = (num) => {
-  const numParts = Math.abs(num).toFixed(2).toString().split('.')
+const toCurrencyString = (value) => {
+  const numParts = value.split('.')
   numParts[0] = numParts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-  return num >= 0 ? '£' + numParts.join('.') : '-£' + numParts.join('.')
+  numParts[1] = numParts[1] ? numParts[1].padEnd(2, '0') : '00'
+  return `£${numParts.join('.')}`
 }
 
 module.exports = toCurrencyString
