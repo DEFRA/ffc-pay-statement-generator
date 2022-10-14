@@ -1,7 +1,9 @@
 const toCurrencyString = require('../../../to-currency-string')
+const orderFunding = require('./order-funding')
 
 const mapFundingRows = (fundings) => {
-  return fundings.map(x => ([
+  const orderedFundings = orderFunding(fundings)
+  return orderedFundings.map(x => ([
     x.name,
     x.level,
     { text: x.rate, style: 'tableNumber' },
