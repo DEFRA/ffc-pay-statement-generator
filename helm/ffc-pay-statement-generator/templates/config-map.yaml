@@ -25,7 +25,4 @@ data:
   AZURE_STORAGE_CREATE_CONTAINERS: {{ quote .Values.container.azureStorageCreateContainers }}
   AZURE_STORAGE_CONTAINER: {{ quote .Values.container.storageContainer }}
   AZURE_STORAGE_FOLDER: {{ quote .Values.container.storageFolder }}
-  BLOB_BASE_URL: {{ quote .Values.container.blobBaseUrl }}
-  SEND_RETRY_INTERVAL: {{ quote .Values.container.sendRetryInterval }}
-  SEND_RETRY_NO_OF_TIMES: {{ quote .Values.container.sendRetryNoOfTimes }}
 {{- end -}}

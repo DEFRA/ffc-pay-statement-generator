@@ -10,56 +10,50 @@ jest.mock('ffc-messaging', () => {
     })
   }
 })
-jest.mock('../../../app/config')
-const { crmConfig } = require('../../../app/config')
-jest.mock('../../../app/messaging/crm/crm-component-schema')
-const schema = require('../../../app/messaging/crm/crm-component-schema')
+
+jest.mock('../../../app/messaging/crm/crm-schema')
+const schema = require('../../../app/messaging/crm/crm-schema')
 
 const createCrmMessage = require('../../../app/messaging/crm/create-crm-message')
 const mockStatement = require('../../mocks/statement-data')
-const BLOB_BASE_URL = 'https://devffcpayst1001.blob.core.windows.net/statements/outbound/'
-const FILE_NAME = 'FFC_PaymentStatement_SFI_2022_1234567890_2022080515301012.pdf'
+const BLOB_URL = 'https://devffcpayst1001.blob.core.windows.net/statements/outbound/FFC_PaymentStatement_SFI_2022_1234567890_2022080515301012.pdf'
 
-let crmComponent
+let crmValid
 let crmMessage
 
 describe('send crm message', () => {
   beforeEach(() => {
     jest.clearAllMocks()
-    crmConfig.blobBaseUrl = BLOB_BASE_URL
 
-    crmComponent = {
+    crmValid = {
       sbi: mockStatement.sbi,
       frn: mockStatement.frn,
-      blobBaseUrl: BLOB_BASE_URL,
-      filename: FILE_NAME
+      blobUrl: BLOB_URL
     }
 
     crmMessage = {
       body: {
-        sbi: mockStatement.sbi,
-        frn: mockStatement.frn,
-        blobUrl: BLOB_BASE_URL.concat(FILE_NAME)
+        ...crmValid
       },
       type: 'uk.gov.pay.statement.crm',
       source: 'ffc-pay-statement-generator'
     }
 
-    schema.validate.mockReturnValue({ value: crmComponent })
+    schema.validate.mockReturnValue({ value: crmValid })
   })
 
-  test('should call schema.validate when statement, blobBaseUrl and fileName are given', async () => {
-    createCrmMessage(mockStatement, crmConfig.blobBaseUrl, FILE_NAME)
+  test('should call schema.validate when statement and blobUrl are given', async () => {
+    createCrmMessage(mockStatement, BLOB_URL)
     expect(schema.validate).toHaveBeenCalled()
   })
 
-  test('should call schema.validate once when statement, blobBaseUrl and fileName are given', async () => {
-    createCrmMessage(mockStatement, crmConfig.blobBaseUrl, FILE_NAME)
+  test('should call schema.validate once when statement and blobUrl are given', async () => {
+    createCrmMessage(mockStatement, BLOB_URL)
     expect(schema.validate).toHaveBeenCalledTimes(1)
   })
 
-  test('should return valid message when statement, blobBaseUrl and fileName are given', async () => {
-    const result = createCrmMessage(mockStatement, crmConfig.blobBaseUrl, FILE_NAME)
+  test('should return valid message when statement and blobUrl are given', async () => {
+    const result = createCrmMessage(mockStatement, BLOB_URL)
     expect(result).toStrictEqual(crmMessage)
   })
 
@@ -67,7 +61,7 @@ describe('send crm message', () => {
     schema.validate.mockReturnValue({ error: 'Not a valid object' })
 
     const wrapper = async () => {
-      createCrmMessage(mockStatement, crmConfig.blobBaseUrl, FILE_NAME)
+      createCrmMessage(mockStatement, BLOB_URL)
     }
 
     expect(wrapper).rejects.toThrow(Error)

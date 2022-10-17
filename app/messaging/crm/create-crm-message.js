@@ -1,26 +1,23 @@
-const schema = require('./crm-component-schema')
+const schema = require('./crm-schema')
 
-const createCrmMessage = (statement, baseUrl, filename) => {
-  const crmComponent = {
+const createCrmMessage = (statement, blobUrl) => {
+  const crm = {
     sbi: statement.sbi,
     frn: statement.frn,
-    blobBaseUrl: baseUrl,
-    filename
+    blobUrl
   }
 
-  const result = schema.validate(crmComponent, {
+  const result = schema.validate(crm, {
     abortEarly: false
   })
 
   if (result.error) {
-    throw new Error(`Invalid crm details for file ${filename}: ${result.error.message}`)
+    throw new Error(`Invalid crm details for file ${statement.sbi}: ${result.error.message}`)
   }
 
   return {
     body: {
-      sbi: statement.sbi,
-      frn: statement.frn,
-      blobUrl: baseUrl.concat(filename)
+      ...crm
     },
     type: 'uk.gov.pay.statement.crm',
     source: 'ffc-pay-statement-generator'

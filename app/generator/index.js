@@ -12,9 +12,9 @@ const generateStatement = async (statement) => {
   const docDefinition = getDefinition(statement)
   const timestamp = new Date()
   const pdfDoc = printer.createPdfKitDocument(docDefinition)
-  const filename = await publish(pdfDoc, statement, moment(timestamp).format('YYYYMMDDHHmmssSS'))
+  const { filename, blobUrl } = await publish(pdfDoc, statement, moment(timestamp).format('YYYYMMDDHHmmssSS'))
   await sendPublishMessage(statement, filename)
-  await sendCrmMessage(statement, filename)
+  await sendCrmMessage(statement, blobUrl)
   await saveLog(statement, filename, timestamp)
 }
 
