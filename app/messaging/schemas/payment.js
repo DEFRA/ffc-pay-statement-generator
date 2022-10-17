@@ -6,5 +6,6 @@ module.exports = Joi.object({
   dueDate: Joi.string().required(),
   settled: Joi.string().required(),
   calculated: Joi.string().required(),
-  value: Joi.string().required()
+  value: Joi.string().required(),
+  period: Joi.string().required()
 })
