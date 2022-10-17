@@ -13,7 +13,7 @@ jest.mock('ffc-messaging', () => {
 jest.mock('../../app/config')
 const createCrmMessage = require('../../app/messaging/crm/create-crm-message')
 const mockStatement = require('../mocks/statement-data')
-const BLOB_URL = 'https://devffcpayst1001.blob.core.windows.net/statements/outbound/FFC_PaymentStatement_SFI_2022_1234567890_2022080515301012.pdf'
+const BLOB_URL = 'https://myBlobStorageAccount.blob.core.windows.net/statements/outbound/FFC_PaymentStatement_SFI_2022_1234567890_2022080515301012.pdf'
 
 describe('send crm message', () => {
   beforeEach(() => {

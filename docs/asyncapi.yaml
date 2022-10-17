@@ -40,7 +40,7 @@ components:
               blobUrl:
                 type: string
                 description: url address of statement file that has been published unto blob
-                example: 'https://devffcpayst1001.blob.core.windows.net/statements/outbound/FFC_PaymentStatement_SFI_2022_1234567890_2022090615023001.pdf'
+                example: 'https://myBlobStorageAccount.blob.core.windows.net/statements/outbound/FFC_PaymentStatement_SFI_2022_1234567890_2022090615023001.pdf'
           type: 'uk.gov.pay.statement.crm'
           source: 'ffc-pay-statement-generator'
   schemas:
