@@ -1,14 +1,16 @@
-const mapReductionIds = require('./map-reduction-ids')
+const toCurrencyString = require('../../../to-currency-string')
+const orderFunding = require('./order-funding')
 
-const mapFundingRows = (fundings, reductions) => {
-  return fundings.map(x => ([
+const mapFundingRows = (fundings) => {
+  const orderedFundings = orderFunding(fundings)
+  return orderedFundings.map(x => ([
     x.name,
     x.level,
     { text: x.rate, style: 'tableNumber' },
     { text: x.area, style: 'tableNumber' },
-    { text: `£${x.annualValue}`, style: 'tableNumber' },
-    { text: `£${x.quarterlyValue}`, style: 'tableNumber' },
-    { text: `£${x.quarterlyReduction}${mapReductionIds(x.reductions, reductions)}`, style: 'tableNumber' },
+    { text: `${toCurrencyString(x.annualValue)}`, style: 'tableNumber' },
+    { text: `${toCurrencyString(x.quarterlyValue)}`, style: 'tableNumber' },
+    { text: `${toCurrencyString(x.quarterlyReduction)}`, style: 'tableNumber' },
     { text: `£${x.quarterlyPayment}`, style: 'tableNumber' }
   ]))
 }

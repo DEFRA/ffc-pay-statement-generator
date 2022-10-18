@@ -4,7 +4,7 @@ const createCrmMessage = (statement, blobUrl) => {
   const crm = {
     sbi: statement.sbi,
     frn: statement.frn,
-    blobUrl
+    blobUrl: decodeURIComponent(blobUrl)
   }
 
   const result = schema.validate(crm, {

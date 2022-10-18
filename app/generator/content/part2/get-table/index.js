@@ -1,7 +1,7 @@
 const mapFundingRows = require('./map-funding-rows')
 const mapTotalRow = require('./map-total-row')
 
-const getTable = (fundings, reductions) => {
+const getTable = (fundings) => {
   const table = {
     layout: {
       hLineStyle: () => 'solid',
@@ -22,7 +22,7 @@ const getTable = (fundings, reductions) => {
           { text: 'Quarterly reduction', style: 'tableHeader' },
           { text: 'Quarterly payment', style: 'tableHeader' }
         ],
-        ...mapFundingRows(fundings.filter(x => x.name !== 'Total'), reductions)
+        ...mapFundingRows(fundings.filter(x => x.name !== 'Total'))
       ]
     }
   }

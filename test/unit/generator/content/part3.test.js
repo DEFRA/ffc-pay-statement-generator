@@ -97,16 +97,6 @@ describe('generate part 3', () => {
     expect(result.stack[4].text[1].style).toBe('link')
   })
 
-  test('includes large text', () => {
-    const result = part3(mockStatement)
-    expect(result.stack[5].text).toBe('To receive this statement in large print or another alternative format, contact the Rural Payments Agency.')
-  })
-
-  test('includes large text style', () => {
-    const result = part3(mockStatement)
-    expect(result.stack[5].style).toBe('header2')
-  })
-
   test('includes unbreakable instruction', () => {
     const result = part3(mockStatement)
     expect(result.unbreakable).toBeTruthy()

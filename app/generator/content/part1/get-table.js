@@ -1,9 +1,10 @@
+const toCurrencyString = require('../../to-currency-string')
 const getAgreementNumber = require('./get-agreement-number')
 const getCalculationDate = require('./get-calculation-date')
 const getPaymentPeriod = require('./get-payment-period')
 const getReference = require('./get-reference')
 
-const getTable = (scheme, latestPayment, latestPeriod) => {
+const getTable = (scheme, latestPayment) => {
   return {
     layout: {
       hLineStyle: () => 'solid',
@@ -14,9 +15,9 @@ const getTable = (scheme, latestPayment, latestPeriod) => {
       body: [
         [{
           stack: [
-            { text: `Your payment for your ${scheme.shortName} agreement is £${latestPayment.value}.`, bold: true },
+            { text: `Your payment for your ${scheme.shortName} agreement is ${toCurrencyString(latestPayment.value)}`, bold: true },
             `\nWe will usually pay this into your account within 2 working days of ${latestPayment.settled}.\n\n`,
-            getPaymentPeriod(latestPeriod),
+            getPaymentPeriod(latestPayment.period),
             getCalculationDate(latestPayment.calculated),
             getAgreementNumber(scheme.agreementNumber),
             getReference(latestPayment.reference)

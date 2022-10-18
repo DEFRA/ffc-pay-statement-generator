@@ -81,4 +81,16 @@ describe('payment schema', () => {
     const result = schema.validate(mockPayment)
     expect(result.error).toBeDefined()
   })
+
+  test('validates fail if missing period', () => {
+    delete mockPayment.period
+    const result = schema.validate(mockPayment)
+    expect(result.error).toBeDefined()
+  })
+
+  test('validates fail if empty period', () => {
+    mockPayment.period = ''
+    const result = schema.validate(mockPayment)
+    expect(result.error).toBeDefined()
+  })
 })

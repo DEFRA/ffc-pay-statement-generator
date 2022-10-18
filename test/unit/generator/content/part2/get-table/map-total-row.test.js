@@ -65,7 +65,7 @@ describe('map total row', () => {
 
   test('includes annual value', () => {
     const result = mapTotalRow(totalRow, reductions)
-    expect(result[4].text).toBe(`£${totalRow.annualValue}`)
+    expect(result[4].text).toBe('£1,318.60')
   })
 
   test('includes annual value in bold', () => {

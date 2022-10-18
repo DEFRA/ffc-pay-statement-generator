@@ -162,6 +162,8 @@ components:
       - dueDate
       - settled
       - calculated
+      - value
+      - period
       properties:
         invoiceNumber:
           type: string
@@ -183,6 +185,14 @@ components:
           type: string
           description: The calculated date of the payment request
           example: 1 July 2022
+        value:
+          type: string
+          description: The value of the payment
+          example: 1000.00
+        period:
+          type: string
+          description: The period of the payment
+          example: July 2022 to September 2022
     Funding:
       type: object
       required:
@@ -241,5 +251,5 @@ components:
           example: Over declaration reduction
         value:
           type: string
-          description: The reduction level
+          description: The reduction value
           example: 75.00
