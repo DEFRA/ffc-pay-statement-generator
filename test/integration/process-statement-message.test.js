@@ -14,7 +14,6 @@ const config = require('../../app/config/storage')
 const db = require('../../app/data')
 const mockStatement = require('../mocks/statement-data')
 const processStatementMessage = require('../../app/messaging/process-statement-message')
-
 const FILE_NAME = 'FFC_PaymentStatement_SFI_2022_1234567890_2022080515301012.pdf'
 
 let blobServiceClient
@@ -31,7 +30,6 @@ describe('generate statements', () => {
     await container.deleteIfExists()
     await container.createIfNotExists()
     await db.sequelize.truncate({ cascade: true })
-
     receiver = {
       completeMessage: jest.fn()
     }
@@ -80,13 +78,18 @@ describe('generate statements', () => {
     expect(receiver.completeMessage).toHaveBeenCalled()
   })
 
-  test('sends publish message once', async () => {
+  test('sends each of publish-message and crm-message  once', async () => {
     await processStatementMessage(message, receiver)
-    expect(mockSendMessage).toHaveBeenCalledTimes(1)
+    expect(mockSendMessage).toHaveBeenCalledTimes(2)
   })
 
   test('sends publish message with statement filename', async () => {
     await processStatementMessage(message, receiver)
     expect(mockSendMessage.mock.calls[0][0].body.filename).toBe(FILE_NAME)
+  })
+
+  test('sends crm message with statement blobUrl that contains filename', async () => {
+    await processStatementMessage(message, receiver)
+    expect(mockSendMessage.mock.calls[1][0].body.blobUrl).toContain(FILE_NAME)
   })
 })

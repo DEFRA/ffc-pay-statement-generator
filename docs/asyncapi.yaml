@@ -15,6 +15,34 @@ components:
       contentType: application/json
       payload:
         $ref: '#/components/schemas/PaymentStatement'
+    Crm:
+      name: Crm Message
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          body:
+            type: object
+            $ref: '#/messaging/crm/crm-schema'
+            properties:
+              sbi:
+                type: number
+                description: Single Business Identifier
+                minimum: 105000000
+                maximum: 999999999
+                example: 123456789
+              frn:
+                type: number
+                description: Firm Reference Number
+                minimum: 1000000000
+                maximum: 9999999999
+                example: 1234567890
+              blobUrl:
+                type: string
+                description: url address of statement file that has been published unto blob
+                example: 'https://myBlobStorageAccount.blob.core.windows.net/statements/outbound/FFC_PaymentStatement_SFI_2022_1234567890_2022090615023001.pdf'
+          type: 'uk.gov.pay.statement.crm'
+          source: 'ffc-pay-statement-generator'
   schemas:
     PaymentStatement:
       type: object
