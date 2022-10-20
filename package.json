@@ -1,6 +1,6 @@
 {
   "name": "ffc-pay-statement-generator",
-  "version": "1.8.1",
+  "version": "1.8.2",
   "description": "FFC payment statement generator",
   "homepage": "https://github.com/DEFRA/ffc-pay-statement-generator",
   "main": "app/index.js",
@@ -14,7 +14,9 @@
     "start:debug": "nodemon --inspect-brk=0.0.0.0 --ext js --legacy-watch app/index.js"
   },
   "author": "Defra",
-  "contributors": [],
+  "contributors": [
+    "Callum Leighton callum.leighton@kainos.com"
+  ],
   "license": "OGL-UK-3.0",
   "dependencies": {
     "@azure/identity": "2.0.5",
