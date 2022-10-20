@@ -64,12 +64,12 @@ describe('generate part 3', () => {
 
   test('includes do not agree link text', () => {
     const result = part3(mockStatement)
-    expect(result.stack[3].text[0]).toBe('If you still have questions, please contact us within 3 months of receiving your payment at ')
+    expect(result.stack[3].text[0]).toBe('If you still have questions, please contact us within 3 months of receiving your payment by visiting ')
   })
 
   test('includes do not agree link', () => {
     const result = part3(mockStatement)
-    expect(result.stack[3].text[1].link).toBe('mailto:ruralpayments@defra.gov.uk')
+    expect(result.stack[3].text[1].link).toBe('https://www.gov.uk/government/publications/contact-the-rpa-about-sfi|https://www.gov.uk/government/publications/contact-the-rpa-about-sfi')
   })
 
   test('includes do not agree link style', () => {
