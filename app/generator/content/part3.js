@@ -21,8 +21,8 @@ const part3 = () => {
       },
       {
         text: [
-          'If you still have questions, please contact us within 3 months of receiving your payment at ',
-          { text: 'ruralpayments@defra.gov.uk', link: 'mailto:ruralpayments@defra.gov.uk', style: 'link' },
+          'If you still have questions, please contact us within 3 months of receiving your payment by visiting ',
+          { text: 'https://www.gov.uk/government/publications/contact-the-rpa-about-sfi', link: 'https://www.gov.uk/government/publications/contact-the-rpa-about-sfi', style: 'link' },
           '. We currently resolve 80% of queries within 2 weeks.\n\n'
         ]
       },
