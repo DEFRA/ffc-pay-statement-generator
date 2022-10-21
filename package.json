@@ -15,7 +15,8 @@
   },
   "author": "Defra",
   "contributors": [
-    "Callum Leighton callum.leighton@kainos.com"
+    "Callum Leighton callum.leighton@kainos.com",
+    "John Watson john.watson2@rpa.gov.uk"
   ],
   "license": "OGL-UK-3.0",
   "dependencies": {
