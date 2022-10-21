@@ -64,7 +64,12 @@ describe('generate part 3', () => {
 
   test('includes questions contact link text', () => {
     const result = part3(mockStatement)
-    expect(result.stack[3].text[0]).toBe('If you still have questions, please contact us within 3 months of receiving your payment by visiting ')
+    expect(result.stack[3].text[0]).toBe('If you still have questions, you can ')
+  })
+
+  test('includes questions contact link text', () => {
+    const result = part3(mockStatement)
+    expect(result.stack[3].text[1].text).toBe('use the query form')
   })
 
   test('includes questions contact link', () => {
@@ -79,7 +84,7 @@ describe('generate part 3', () => {
 
   test('includes questions contact resolution time text', () => {
     const result = part3(mockStatement)
-    expect(result.stack[3].text[2]).toMatch('. We currently resolve 80% of queries within 2 weeks.\n\n')
+    expect(result.stack[3].text[2]).toMatch(' to contact us. You should contact us within 3 months of receiving your payment.\n\n')
   })
 
   test('includes get in touch link text', () => {

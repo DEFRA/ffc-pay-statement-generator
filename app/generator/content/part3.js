@@ -21,9 +21,9 @@ const part3 = () => {
       },
       {
         text: [
-          'If you still have questions, please contact us within 3 months of receiving your payment by visiting ',
-          { text: 'https://www.gov.uk/government/publications/contact-the-rpa-about-sfi', link: 'https://www.gov.uk/government/publications/contact-the-rpa-about-sfi', style: 'link' },
-          '. We currently resolve 80% of queries within 2 weeks.\n\n'
+          'If you still have questions, you can ',
+          { text: 'use the query form', link: 'https://www.gov.uk/government/publications/contact-the-rpa-about-sfi', style: 'link' },
+          ' to contact us. You should contact us within 3 months of receiving your payment.\n\n'
         ]
       },
       {
