@@ -11,7 +11,10 @@ const getDefinition = (statement) => {
     content: generateContent(statement),
     styles,
     defaultStyle: styles.default,
-    pageMargins: [sideMargin, topMargin, sideMargin, topMargin]
+    pageMargins: [sideMargin, topMargin, sideMargin, topMargin],
+    info: {
+      PDF: "Yes"
+    }
   }
 }
 
