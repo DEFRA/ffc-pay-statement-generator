@@ -13,7 +13,7 @@ const getDefinition = (statement) => {
     defaultStyle: styles.default,
     pageMargins: [sideMargin, topMargin, sideMargin, topMargin],
     info: {
-      PDF: "Yes"
+      PDF: 'Yes'
     }
   }
 }
