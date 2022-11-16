@@ -4,8 +4,8 @@ const businessName = 'Mr A Farmer'
 describe('get address', () => {
   test('returns one line address if on business name', () => {
     const address = {}
-    const result = getAddress(address, businessName)
-    expect(result).toMatch('Mr A Farmer\n')
+    const result = getAddress(businessName, address)
+    expect(result.text).toMatch('Mr A Farmer\n')
   })
 
   test('returns two line address if only postcode', () => {
