@@ -6,5 +6,5 @@ module.exports = Joi.object({
   line3: Joi.string().optional().allow('', null),
   line4: Joi.string().optional().allow('', null),
   line5: Joi.string().optional().allow('', null),
-  postcode: Joi.string().required()
+  postcode: Joi.string().optional().allow('', null)
 }).required()

@@ -50,7 +50,6 @@ components:
       - businessName
       - sbi
       - frn
-      - email
       - address
       - scheme
       - payments
@@ -98,8 +97,6 @@ components:
       example: farm@farms.com
     Address:
       type: object
-      required:
-      - postcode
       properties:
         line1:
           type: string
