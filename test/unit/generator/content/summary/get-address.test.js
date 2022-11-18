@@ -2,6 +2,12 @@ const getAddress = require('../../../../../app/generator/content/summary/get-add
 const businessName = 'Mr A Farmer'
 
 describe('get address', () => {
+  test('returns one line address if on business name', () => {
+    const address = {}
+    const result = getAddress(businessName, address)
+    expect(result.text).toMatch('Mr A Farmer\n')
+  })
+
   test('returns two line address if only postcode', () => {
     const address = {
       postcode: 'NE1 1AA'

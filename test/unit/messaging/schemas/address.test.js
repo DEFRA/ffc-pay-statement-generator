@@ -10,16 +10,16 @@ describe('address schema', () => {
     expect(result.error).toBeUndefined()
   })
 
-  test('validates fail if missing postcode', () => {
+  test('validates success if missing postcode', () => {
     delete mockAddress.postcode
     const result = schema.validate(mockAddress)
-    expect(result.error).toBeDefined()
+    expect(result.error).toBeUndefined()
   })
 
-  test('validates fail if empty postcode', () => {
+  test('validates success if empty postcode', () => {
     mockAddress.postcode = ''
     const result = schema.validate(mockAddress)
-    expect(result.error).toBeDefined()
+    expect(result.error).toBeUndefined()
   })
 
   test('validates success if missing line 1', () => {
