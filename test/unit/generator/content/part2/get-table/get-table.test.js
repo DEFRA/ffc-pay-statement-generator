@@ -1,4 +1,4 @@
-const getTable = require('../../../../../../app/generator/content/part2/get-table')
+const getTable = require('../../../../../../app/generator/content/statement/part2/get-table')
 let mockStatement
 
 describe('get table', () => {

@@ -1,18 +1,18 @@
 const config = require('../config')
-const processStatementMessage = require('./process-statement-message')
+const processMessage = require('./process-message')
 const { MessageReceiver } = require('ffc-messaging')
-let statementReceiver
+let receiver
 
 const start = async () => {
-  const statementAction = message => processStatementMessage(message, statementReceiver)
-  statementReceiver = new MessageReceiver(config.statementSubscription, statementAction)
-  await statementReceiver.subscribe()
+  const action = message => processMessage(message, receiver)
+  receiver = new MessageReceiver(config.statementSubscription, action)
+  await receiver.subscribe()
 
   console.info('Ready to generate payment statements')
 }
 
 const stop = async () => {
-  await statementReceiver.closeConnection()
+  await receiver.closeConnection()
 }
 
 module.exports = { start, stop }

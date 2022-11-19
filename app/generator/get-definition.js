@@ -3,12 +3,12 @@ const generateContent = require('./content')
 const { A4 } = require('./page-sizes')
 const { millimetresToPoints } = require('./conversion')
 
-const getDefinition = (statement) => {
+const getDefinition = (request, type) => {
   const topMargin = millimetresToPoints(5)
   const sideMargin = millimetresToPoints(15)
   return {
     pageSize: A4,
-    content: generateContent(statement),
+    content: generateContent(request, type),
     styles,
     defaultStyle: styles.default,
     pageMargins: [sideMargin, topMargin, sideMargin, topMargin]

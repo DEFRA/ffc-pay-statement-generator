@@ -1,4 +1,4 @@
-const toCurrencyString = require('../../to-currency-string')
+const toCurrencyString = require('../../../to-currency-string')
 const getAgreementNumber = require('./get-agreement-number')
 const getCalculationDate = require('./get-calculation-date')
 const getPaymentPeriod = require('./get-payment-period')

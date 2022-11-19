@@ -1,48 +1,49 @@
-const validateStatement = require('../../../app/messaging/validate-statement')
+const validate = require('../../../app/messaging/validate')
+const { STATEMENT } = require('../../../app/types')
 const mockStatement = require('../../mocks/statement-data')
 
 describe('validate message body can be processed as statement', () => {
   test('does not throw on valid statement', async () => {
-    expect(() => validateStatement(mockStatement)).not.toThrow()
+    expect(() => validate(mockStatement, STATEMENT)).not.toThrow()
   })
 
   test('throws on undefined statement', async () => {
-    expect(() => validateStatement(undefined)).toThrow()
+    expect(() => validate(undefined, STATEMENT)).toThrow()
   })
 
   test('throws on missing statement', async () => {
-    expect(() => validateStatement()).toThrow()
+    expect(() => validate(STATEMENT)).toThrow()
   })
 
   test('throws on empty statement', async () => {
-    expect(() => validateStatement({})).toThrow()
+    expect(() => validate({}, STATEMENT)).toThrow()
   })
 
   test('throws on array statement', async () => {
-    expect(() => validateStatement([])).toThrow()
+    expect(() => validate([], STATEMENT)).toThrow()
   })
 
   test('throws on true statement', async () => {
-    expect(() => validateStatement(true)).toThrow()
+    expect(() => validate(true, STATEMENT)).toThrow()
   })
 
   test('throws on false statement', async () => {
-    expect(() => validateStatement(false)).toThrow()
+    expect(() => validate(false, STATEMENT)).toThrow()
   })
 
   test('throws on 0 statement', async () => {
-    expect(() => validateStatement(0)).toThrow()
+    expect(() => validate(0, STATEMENT)).toThrow()
   })
 
   test('throws on 1 statement', async () => {
-    expect(() => validateStatement(1)).toThrow()
+    expect(() => validate(1, STATEMENT)).toThrow()
   })
 
   test('throws on empty string statement', async () => {
-    expect(() => validateStatement('')).toThrow()
+    expect(() => validate('', STATEMENT)).toThrow()
   })
 
   test('throws on string statement', async () => {
-    expect(() => validateStatement('statement')).toThrow()
+    expect(() => validate('statement', STATEMENT)).toThrow()
   })
 })

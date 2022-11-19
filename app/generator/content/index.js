@@ -1,15 +1,16 @@
-const summary = require('./summary')
-const part1 = require('./part1')
-const part2 = require('./part2')
-const part3 = require('./part3')
+const createStatementContent = require('./statement')
+const createScheduleContent = require('./schedule')
+const { STATEMENT, SCHEDULE } = require('../../types')
 
-const createContent = (statement) => {
-  return [
-    summary(statement),
-    part1(statement),
-    part2(statement),
-    part3()
-  ]
+const generateContent = (request, type) => {
+  switch (type) {
+    case STATEMENT:
+      return createStatementContent(request)
+    case SCHEDULE:
+      return createScheduleContent(request)
+    default:
+      throw new Error(`Unknown request type: ${type}`)
+  }
 }
 
-module.exports = createContent
+module.exports = generateContent

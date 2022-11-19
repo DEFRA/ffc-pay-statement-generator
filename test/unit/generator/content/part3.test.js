@@ -1,4 +1,4 @@
-const part3 = require('../../../../app/generator/content/part3')
+const part3 = require('../../../../app/generator/content/statement/part3')
 const mockStatement = require('../../../mocks/statement-data')
 
 describe('generate part 3', () => {

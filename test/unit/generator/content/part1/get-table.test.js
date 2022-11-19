@@ -1,4 +1,4 @@
-const getTable = require('../../../../../app/generator/content/part1/get-table')
+const getTable = require('../../../../../app/generator/content/statement/part1/get-table')
 let mockStatement
 let latestPeriod
 

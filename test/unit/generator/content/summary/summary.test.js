@@ -1,4 +1,4 @@
-const summary = require('../../../../../app/generator/content/summary')
+const summary = require('../../../../../app/generator/content/statement/summary')
 const mockStatement = require('../../../../mocks/statement-data')
 
 describe('generate summary', () => {

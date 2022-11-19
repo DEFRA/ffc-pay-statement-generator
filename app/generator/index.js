@@ -8,14 +8,14 @@ const sendPublishMessage = require('../messaging/send-publish-message')
 const sendCrmMessage = require('../messaging/crm/send-crm-message')
 const printer = new PdfPrinter(fonts)
 
-const generateStatement = async (statement) => {
-  const docDefinition = getDefinition(statement)
+const generateDocument = async (request, type) => {
+  const docDefinition = getDefinition(request, type)
   const timestamp = new Date()
   const pdfDoc = printer.createPdfKitDocument(docDefinition)
-  const { filename, blobUrl } = await publish(pdfDoc, statement, moment(timestamp).format('YYYYMMDDHHmmssSS'))
-  await sendPublishMessage(statement, filename)
-  await sendCrmMessage(statement, blobUrl)
-  await saveLog(statement, filename, timestamp)
+  const { filename, blobUrl } = await publish(pdfDoc, request, moment(timestamp).format('YYYYMMDDHHmmssSS'), type)
+  await sendPublishMessage(request, filename)
+  await sendCrmMessage(request, blobUrl)
+  await saveLog(request, filename, timestamp)
 }
 
-module.exports = generateStatement
+module.exports = generateDocument
