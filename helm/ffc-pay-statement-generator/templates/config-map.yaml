@@ -25,4 +25,6 @@ data:
   AZURE_STORAGE_CREATE_CONTAINERS: {{ quote .Values.container.azureStorageCreateContainers }}
   AZURE_STORAGE_CONTAINER: {{ quote .Values.container.storageContainer }}
   AZURE_STORAGE_FOLDER: {{ quote .Values.container.storageFolder }}
+  FFC_API_PATH: {{ quote .Values.container.ffcApiPath }}
+  STATEMENT_RECEIVER_ENDPOINT: {{ quote .Values.container.statementReceiverEndpoint }}
 {{- end -}}

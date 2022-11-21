@@ -27,6 +27,8 @@ services:
       POSTGRES_USERNAME: ${POSTGRES_SCHEMA_USERNAME:-postgres}
       AZURE_STORAGE_ACCOUNT_NAME: ${AZURE_STORAGE_ACCOUNT_NAME:-devstoreaccount1}
       AZURE_STORAGE_USE_CONNECTION_STRING: "true"
+      FFC_API_PATH: ffcApi
+      STATEMENT_RECEIVER_ENDPOINT: http://ffc-pay-statement-receiver
 
   ffc-pay-statement-generator-postgres:
     image: postgres:11.4-alpine
