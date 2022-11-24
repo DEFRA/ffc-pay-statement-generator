@@ -1,10 +1,9 @@
 const schema = require('./crm-schema')
-const { ffcApiPath, statementReceiverEndpoint } = require('../../config')
+const { statementVersion, statementReceiverEndpoint } = require('../../config')
 
-const createCrmMessage = (statement, blobUrl, filename) => {
+const createCrmMessage = (statement, filename) => {
   const crm = {
-    apiLink: `${statementReceiverEndpoint}/${ffcApiPath}/statement?filename=${filename}`,
-    blobUrl: decodeURIComponent(blobUrl),
+    apiLink: `${statementReceiverEndpoint}/statement/${statementVersion}/${filename}`,
     frn: statement.frn,
     sbi: statement.sbi
   }

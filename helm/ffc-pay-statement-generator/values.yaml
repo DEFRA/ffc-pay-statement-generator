@@ -39,8 +39,8 @@ container:
   azureStorageCreateContainers: false
   storageContainer: statements
   storageFolder: outbound
-  ffcApiPath: ffcApi
-  statementReceiverEndpoint: http://ffc-pay-statement-receiver
+  statementVersion: v1
+  statementReceiverEndpoint: 
 
 postgresService:
   postgresDb: ffc_pay_statement_generator
