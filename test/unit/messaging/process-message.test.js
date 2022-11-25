@@ -32,7 +32,9 @@ describe('process statement message', () => {
   test('completes message on success', async () => {
     const message = {
       body: mockStatement,
-      type: STATEMENT
+      applicationProperties: {
+        type: STATEMENT
+      }
     }
     await processMessage(message, receiver)
     expect(receiver.completeMessage).toHaveBeenCalledWith(message)
@@ -41,7 +43,9 @@ describe('process statement message', () => {
   test('completes message on success only once', async () => {
     const message = {
       body: mockStatement,
-      type: STATEMENT
+      applicationProperties: {
+        type: STATEMENT
+      }
     }
     await processMessage(message, receiver)
     expect(receiver.completeMessage).toHaveBeenCalledTimes(1)
@@ -50,16 +54,20 @@ describe('process statement message', () => {
   test('calls validate statement', async () => {
     const message = {
       body: mockStatement,
-      type: STATEMENT
+      applicationProperties: {
+        type: STATEMENT
+      }
     }
     await processMessage(message, receiver)
-    expect(mockValidation).toHaveBeenCalledWith(message.body, message.type)
+    expect(mockValidation).toHaveBeenCalledWith(message.body, message.applicationProperties.type)
   })
 
   test('calls validate statement only once', async () => {
     const message = {
       body: mockStatement,
-      type: STATEMENT
+      applicationProperties: {
+        type: STATEMENT
+      }
     }
     await processMessage(message, receiver)
     expect(mockValidation).toHaveBeenCalledTimes(1)
@@ -68,16 +76,20 @@ describe('process statement message', () => {
   test('calls generator with statement', async () => {
     const message = {
       body: mockStatement,
-      type: STATEMENT
+      applicationProperties: {
+        type: STATEMENT
+      }
     }
     await processMessage(message, receiver)
-    expect(mockGenerator).toHaveBeenCalledWith(message.body, message.type)
+    expect(mockGenerator).toHaveBeenCalledWith(message.body, message.applicationProperties.type)
   })
 
   test('calls generator with statement only once', async () => {
     const message = {
       body: mockStatement,
-      type: STATEMENT
+      applicationProperties: {
+        type: STATEMENT
+      }
     }
     await processMessage(message, receiver)
     expect(mockGenerator).toHaveBeenCalledTimes(1)
@@ -86,7 +98,9 @@ describe('process statement message', () => {
   test('does not complete message on error', async () => {
     const message = {
       body: mockStatement,
-      type: STATEMENT
+      applicationProperties: {
+        type: STATEMENT
+      }
     }
     mockGenerator.mockImplementation(() => { throw new Error('Unable to generate') })
     await processMessage(message, receiver)
@@ -96,7 +110,9 @@ describe('process statement message', () => {
   test('does not dead letter message on non-validation error', async () => {
     const message = {
       body: mockStatement,
-      type: STATEMENT
+      applicationProperties: {
+        type: STATEMENT
+      }
     }
     mockGenerator.mockImplementation(() => { throw new Error('Unable to generate') })
     await processMessage(message, receiver)
@@ -106,7 +122,9 @@ describe('process statement message', () => {
   test('dead letters message if validation error', async () => {
     const message = {
       body: mockStatement,
-      type: STATEMENT
+      applicationProperties: {
+        type: STATEMENT
+      }
     }
     mockValidation.mockImplementation(() => mockValidationImplementation())
     await processMessage(message, receiver)
@@ -116,7 +134,9 @@ describe('process statement message', () => {
   test('dead letters message only once if validation error', async () => {
     const message = {
       body: mockStatement,
-      type: STATEMENT
+      applicationProperties: {
+        type: STATEMENT
+      }
     }
     mockValidation.mockImplementation(() => mockValidationImplementation())
     await processMessage(message, receiver)
@@ -126,7 +146,9 @@ describe('process statement message', () => {
   test('does not complete message if validation error', async () => {
     const message = {
       body: mockStatement,
-      type: STATEMENT
+      applicationProperties: {
+        type: STATEMENT
+      }
     }
     mockValidation.mockImplementation(() => mockValidationImplementation())
     await processMessage(message, receiver)
@@ -136,7 +158,9 @@ describe('process statement message', () => {
   test('does not dead letter message on non-validation error', async () => {
     const message = {
       body: mockStatement,
-      type: STATEMENT
+      applicationProperties: {
+        type: STATEMENT
+      }
     }
     mockGenerator.mockImplementation(() => {
       throw new Error('A generation error')
@@ -148,7 +172,9 @@ describe('process statement message', () => {
   test('does not complete message on non-validation error', async () => {
     const message = {
       body: mockStatement,
-      type: STATEMENT
+      applicationProperties: {
+        type: STATEMENT
+      }
     }
     mockGenerator.mockImplementation(() => {
       throw new Error('A generation error')

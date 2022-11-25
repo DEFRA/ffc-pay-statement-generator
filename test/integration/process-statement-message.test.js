@@ -37,7 +37,9 @@ describe('generate statements', () => {
 
     message = {
       body: mockStatement,
-      type: STATEMENT
+      applicationProperties: {
+        type: STATEMENT
+      }
     }
   })
 
