@@ -38,8 +38,7 @@ describe('send crm message', () => {
     expect(wrapper).rejects.toThrow(Error)
   })
 
-  test('should throw Error when blobUrl is null ', async () => {
-    mockStatement.frn = null
+  test('should throw Error when filename is null ', async () => {
     const wrapper = async () => {
       createCrmMessage(mockStatement, null)
     }

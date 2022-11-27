@@ -5,12 +5,16 @@ const storageConfig = require('./storage')
 
 // Define config schema
 const schema = Joi.object({
-  env: Joi.string().valid('development', 'test', 'production').default('development')
+  env: Joi.string().valid('development', 'test', 'production').default('development'),
+  statementVersion: Joi.string().required(),
+  statementReceiverEndpoint: Joi.string().required()
 })
 
 // Build config
 const config = {
-  env: process.env.NODE_ENV
+  env: process.env.NODE_ENV,
+  statementVersion: process.env.STATEMENT_VERSION,
+  statementReceiverEndpoint: process.env.STATEMENT_RECEIVER_ENDPOINT
 }
 
 // Validate config

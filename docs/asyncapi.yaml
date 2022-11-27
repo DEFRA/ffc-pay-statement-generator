@@ -37,10 +37,10 @@ components:
                 minimum: 1000000000
                 maximum: 9999999999
                 example: 1234567890
-              blobUrl:
-                type: string
-                description: url address of statement file that has been published unto blob
-                example: 'https://myBlobStorageAccount.blob.core.windows.net/statements/outbound/FFC_PaymentStatement_SFI_2022_1234567890_2022090615023001.pdf'
+              apiLink:
+                type: url
+                description: api link for calling file stream of statement file that has been published unto blob
+                example: 'https://myStatementRetreivalApiEndpoint/statement-receiver/statement/v1/FFC_PaymentStatement_SFI_2022_1234567890_2022090615023001.pdf'  
           type: 'uk.gov.pay.statement.crm'
           source: 'ffc-pay-statement-generator'
   schemas:
