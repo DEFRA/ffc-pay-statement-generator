@@ -26,6 +26,5 @@ data:
   AZURE_STORAGE_CONTAINER: {{ quote .Values.container.storageContainer }}
   AZURE_STORAGE_FOLDER: {{ quote .Values.container.storageFolder }}
   STATEMENT_VERSION: {{ quote .Values.container.statementVersion }}
-  STATEMENT_RECEIVER_ENDPOINT: {{ .Values.container.statementReceiverEndpoint }}-{{ .Values.environmentCode }}.{{ .Values.container.statementReceiverDomain }}
-  {{ else }}
+  STATEMENT_RECEIVER_ENDPOINT: {{ .Values.container.statementReceiverEndpoint }}-{{ .Values.environmentCode }}.{{ .Values.ingress.server }}
 {{- end -}}
