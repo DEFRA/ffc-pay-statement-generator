@@ -11,7 +11,7 @@ services:
       - ffc-pay-statement-generator-postgres
     environment:
       APPINSIGHTS_CLOUDROLE: ffc-pay-statement-generator-local
-      APPINSIGHTS_INSTRUMENTATIONKEY: ${APPINSIGHTS_INSTRUMENTATIONKEY}      
+      APPINSIGHTS_INSTRUMENTATIONKEY: ${APPINSIGHTS_INSTRUMENTATIONKEY}
       MESSAGE_QUEUE_HOST: ${MESSAGE_QUEUE_HOST}
       MESSAGE_QUEUE_PASSWORD: ${MESSAGE_QUEUE_PASSWORD}
       MESSAGE_QUEUE_USER: ${MESSAGE_QUEUE_USER}
@@ -28,7 +28,7 @@ services:
       AZURE_STORAGE_ACCOUNT_NAME: ${AZURE_STORAGE_ACCOUNT_NAME:-devstoreaccount1}
       AZURE_STORAGE_USE_CONNECTION_STRING: "true"
       STATEMENT_VERSION: v1
-      STATEMENT_RECEIVER_ENDPOINT: http://localhost:3000
+      STATEMENT_RECEIVER_ENDPOINT: http://localhost:3021
 
   ffc-pay-statement-generator-postgres:
     image: postgres:11.4-alpine

@@ -40,7 +40,10 @@ container:
   storageContainer: statements
   storageFolder: outbound
   statementVersion: v1
-  statementReceiverEndpoint: http://ffc-pay-statement-receiver.ffc-pay
+  statementReceiverEndpoint: https://ffc-pay-statement-receiver
+
+ingress:
+  server: example.com
 
 postgresService:
   postgresDb: ffc_pay_statement_generator
