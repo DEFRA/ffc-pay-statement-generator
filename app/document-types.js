@@ -1,3 +1,3 @@
 module.exports = {
-  STATEMENT: 'statement'
+  STATEMENT: 'Payment statement'
 }
