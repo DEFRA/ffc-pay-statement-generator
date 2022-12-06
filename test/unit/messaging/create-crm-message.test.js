@@ -56,7 +56,7 @@ describe('send crm message', () => {
     expect(schema.validate).toHaveBeenCalledTimes(1)
   })
 
-  test('should return valid message when statement and filrname are given', async () => {
+  test('should return valid message when statement and filename are given', async () => {
     const result = createCrmMessage(mockStatement, FILENAME)
     expect(result).toStrictEqual(crmMessage)
   })
