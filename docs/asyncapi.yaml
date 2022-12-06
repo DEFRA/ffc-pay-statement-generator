@@ -23,7 +23,6 @@ components:
         properties:
           body:
             type: object
-            $ref: '#/messaging/crm/crm-schema'
             properties:
               sbi:
                 type: number
