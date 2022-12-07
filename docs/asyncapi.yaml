@@ -23,7 +23,6 @@ components:
         properties:
           body:
             type: object
-            $ref: '#/messaging/crm/crm-schema'
             properties:
               sbi:
                 type: number
@@ -41,6 +40,18 @@ components:
                 type: url
                 description: api link for calling file stream of statement file that has been published unto blob
                 example: 'https://myStatementRetreivalApiEndpoint/statement-receiver/statement/v1/FFC_PaymentStatement_SFI_2022_1234567890_2022090615023001.pdf'  
+              documentType:
+                type: string
+                enum:
+                  - Payment statement
+                description: document type
+                example: 'Payment statement'
+              scheme:
+                type: string
+                enum:
+                  - SFI
+                description: Scheme name
+                example: SFI
           type: 'uk.gov.pay.statement.crm'
           source: 'ffc-pay-statement-generator'
   schemas:
