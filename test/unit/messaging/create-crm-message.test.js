@@ -14,7 +14,7 @@ jest.mock('ffc-messaging', () => {
 jest.mock('../../../app/messaging/crm/crm-schema')
 const schema = require('../../../app/messaging/crm/crm-schema')
 
-const { statementVersion, statementReceiverEndpoint } = require('../../../app/config')
+const { statementReceiverApiVersion, statementReceiverEndpoint } = require('../../../app/config')
 const createCrmMessage = require('../../../app/messaging/crm/create-crm-message')
 const mockStatement = require('../../mocks/statement-data')
 const { STATEMENT } = require('../../../app/document-types')
@@ -30,7 +30,7 @@ describe('send crm message', () => {
     crmValid = {
       sbi: mockStatement.sbi,
       frn: mockStatement.frn,
-      apiLink: `${statementReceiverEndpoint}/statement/${statementVersion}/${FILENAME}`,
+      apiLink: `${statementReceiverEndpoint}/${statementReceiverApiVersion}/statements/statement/${FILENAME}`,
       scheme: mockStatement.scheme.shortName,
       documentType: STATEMENT
     }

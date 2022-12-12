@@ -13,7 +13,7 @@ jest.mock('ffc-messaging', () => {
 jest.mock('../../app/config')
 const sendCrmMessage = require('../../app/messaging/crm/send-crm-message')
 const mockStatement = require('../mocks/statement-data')
-const { statementVersion, statementReceiverEndpoint } = require('../../app/config')
+const { statementReceiverApiVersion, statementReceiverEndpoint } = require('../../app/config')
 const FILENAME = 'FFC_PaymentStatement_SFI_2022_1234567890_2022080515301012.pdf'
 
 describe('send crm message', () => {
@@ -33,7 +33,7 @@ describe('send crm message', () => {
 
   test('sends crm message with apiLink', async () => {
     await sendCrmMessage(mockStatement, FILENAME)
-    expect(mockSendMessage.mock.calls[0][0].body.apiLink).toBe(`${statementReceiverEndpoint}/statement/${statementVersion}/${FILENAME}`)
+    expect(mockSendMessage.mock.calls[0][0].body.apiLink).toBe(`${statementReceiverEndpoint}/${statementReceiverApiVersion}/statements/statement/${FILENAME}`)
   })
 
   test('sends crm message with FRN', async () => {
