@@ -1,6 +1,6 @@
 {
   "name": "ffc-pay-statement-generator",
-  "version": "1.10.3",
+  "version": "1.10.4",
   "description": "FFC payment statement generator",
   "homepage": "https://github.com/DEFRA/ffc-pay-statement-generator",
   "main": "app/index.js",
@@ -16,7 +16,8 @@
   "author": "Defra",
   "contributors": [
     "Callum Leighton callum.leighton@kainos.com",
-    "John Watson john.watson2@rpa.gov.uk"
+    "John Watson john.watson2@rpa.gov.uk",
+    "Marc Templeton m.templeton@kainos.com"
   ],
   "license": "OGL-UK-3.0",
   "dependencies": {
