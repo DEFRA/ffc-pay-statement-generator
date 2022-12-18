@@ -14,9 +14,11 @@ jest.mock('ffc-messaging', () => {
 jest.mock('../../../app/messaging/crm/crm-schema')
 const schema = require('../../../app/messaging/crm/crm-schema')
 
+const { statementReceiverApiVersion, statementReceiverEndpoint } = require('../../../app/config')
 const createCrmMessage = require('../../../app/messaging/crm/create-crm-message')
 const mockStatement = require('../../mocks/statement-data')
-const BLOB_URL = 'https://myBlobStorageAccount.blob.core.windows.net/statements/outbound/FFC_PaymentStatement_SFI_2022_1234567890_2022080515301012.pdf'
+const { STATEMENT } = require('../../../app/document-types')
+const FILENAME = 'FFC_PaymentStatement_SFI_2022_1234567890_2022080515301012.pdf'
 
 let crmValid
 let crmMessage
@@ -28,7 +30,9 @@ describe('send crm message', () => {
     crmValid = {
       sbi: mockStatement.sbi,
       frn: mockStatement.frn,
-      blobUrl: BLOB_URL
+      apiLink: `${statementReceiverEndpoint}/${statementReceiverApiVersion}/statements/statement/${FILENAME}`,
+      scheme: mockStatement.scheme.shortName,
+      documentType: STATEMENT
     }
 
     crmMessage = {
@@ -42,18 +46,18 @@ describe('send crm message', () => {
     schema.validate.mockReturnValue({ value: crmValid })
   })
 
-  test('should call schema.validate when statement and blobUrl are given', async () => {
-    createCrmMessage(mockStatement, BLOB_URL)
+  test('should call schema.validate when statement and filename are given', async () => {
+    createCrmMessage(mockStatement, FILENAME)
     expect(schema.validate).toHaveBeenCalled()
   })
 
-  test('should call schema.validate once when statement and blobUrl are given', async () => {
-    createCrmMessage(mockStatement, BLOB_URL)
+  test('should call schema.validate once when statement and filename are given', async () => {
+    createCrmMessage(mockStatement, FILENAME)
     expect(schema.validate).toHaveBeenCalledTimes(1)
   })
 
-  test('should return valid message when statement and blobUrl are given', async () => {
-    const result = createCrmMessage(mockStatement, BLOB_URL)
+  test('should return valid message when statement and filename are given', async () => {
+    const result = createCrmMessage(mockStatement, FILENAME)
     expect(result).toStrictEqual(crmMessage)
   })
 
@@ -61,7 +65,7 @@ describe('send crm message', () => {
     schema.validate.mockReturnValue({ error: 'Not a valid object' })
 
     const wrapper = async () => {
-      createCrmMessage(mockStatement, BLOB_URL)
+      createCrmMessage(mockStatement, FILENAME)
     }
 
     expect(wrapper).rejects.toThrow(Error)

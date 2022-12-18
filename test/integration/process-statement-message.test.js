@@ -90,8 +90,8 @@ describe('generate statements', () => {
     expect(mockSendMessage.mock.calls[0][0].body.filename).toBe(FILE_NAME)
   })
 
-  test('sends crm message with statement blobUrl that contains filename', async () => {
+  test('sends crm message with statement apiLink that contains filename', async () => {
     await processMessage(message, receiver)
-    expect(mockSendMessage.mock.calls[1][0].body.blobUrl).toContain(FILE_NAME)
+    expect(mockSendMessage.mock.calls[1][0].body.apiLink).toContain(FILE_NAME)
   })
 })
