@@ -11,7 +11,7 @@ const summary = (schedule) => {
       { image: `${imagePath}/rpa-logo.jfif`, fit: [millimetresToPoints(200), millimetresToPoints(25)], style: 'logo' },
       getAddress(schedule.businessName, schedule.address),
       { text: `${schedule.scheme.name} ${schedule.scheme.year}`, style: 'header1' },
-      { text: 'Payment statement', style: 'subTitle' },
+      { text: 'Revised payment schedule', style: 'subTitle' },
       getBusinessName(schedule.businessName),
       getSBI(schedule.sbi),
       `\n\nThis document explains your payment schedule for the ${schedule.scheme.name} (${schedule.scheme.shortName}).`
