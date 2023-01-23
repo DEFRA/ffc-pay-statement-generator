@@ -17,6 +17,7 @@ const createCrmMessage = require('../../../app/messaging/crm/create-crm-message'
 const sendCrmMessage = require('../../../app/messaging/crm/send-crm-message')
 const mockStatement = require('../../mocks/statement-data')
 const FILENAME = 'FFC_PaymentStatement_SFI_2022_1234567890_2022080515301012.pdf'
+const { STATEMENT } = require('../../../app/types')
 
 describe('send crm message', () => {
   beforeEach(() => {
@@ -24,17 +25,17 @@ describe('send crm message', () => {
   })
 
   test('should call createCrmMessage when statement and filename are given', async () => {
-    await sendCrmMessage(mockStatement, FILENAME)
+    await sendCrmMessage(mockStatement, FILENAME, STATEMENT)
     expect(createCrmMessage).toHaveBeenCalled()
   })
 
   test('should call createCrmMessage once when statement and filename are given', async () => {
-    await sendCrmMessage(mockStatement, FILENAME)
+    await sendCrmMessage(mockStatement, FILENAME, STATEMENT)
     expect(createCrmMessage).toHaveBeenCalledTimes(1)
   })
 
   test('should call createCrmMessage with statement and filename when statement and filename are given', async () => {
-    await sendCrmMessage(mockStatement, FILENAME)
-    expect(createCrmMessage).toHaveBeenCalledWith(mockStatement, FILENAME)
+    await sendCrmMessage(mockStatement, FILENAME, STATEMENT)
+    expect(createCrmMessage).toHaveBeenCalledWith(mockStatement, FILENAME, STATEMENT)
   })
 })

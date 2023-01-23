@@ -17,7 +17,7 @@ const schema = require('../../../app/messaging/crm/crm-schema')
 const { statementReceiverApiVersion, statementReceiverEndpoint } = require('../../../app/config')
 const createCrmMessage = require('../../../app/messaging/crm/create-crm-message')
 const mockStatement = require('../../mocks/statement-data')
-const { STATEMENT } = require('../../../app/document-types')
+const { STATEMENT } = require('../../../app/types')
 const FILENAME = 'FFC_PaymentStatement_SFI_2022_1234567890_2022080515301012.pdf'
 
 let crmValid
@@ -47,17 +47,17 @@ describe('send crm message', () => {
   })
 
   test('should call schema.validate when statement and filename are given', async () => {
-    createCrmMessage(mockStatement, FILENAME)
+    createCrmMessage(mockStatement, FILENAME, STATEMENT)
     expect(schema.validate).toHaveBeenCalled()
   })
 
   test('should call schema.validate once when statement and filename are given', async () => {
-    createCrmMessage(mockStatement, FILENAME)
+    createCrmMessage(mockStatement, FILENAME, STATEMENT)
     expect(schema.validate).toHaveBeenCalledTimes(1)
   })
 
   test('should return valid message when statement and filename are given', async () => {
-    const result = createCrmMessage(mockStatement, FILENAME)
+    const result = createCrmMessage(mockStatement, FILENAME, STATEMENT)
     expect(result).toStrictEqual(crmMessage)
   })
 
@@ -65,7 +65,7 @@ describe('send crm message', () => {
     schema.validate.mockReturnValue({ error: 'Not a valid object' })
 
     const wrapper = async () => {
-      createCrmMessage(mockStatement, FILENAME)
+      createCrmMessage(mockStatement, FILENAME, STATEMENT)
     }
 
     expect(wrapper).rejects.toThrow(Error)
