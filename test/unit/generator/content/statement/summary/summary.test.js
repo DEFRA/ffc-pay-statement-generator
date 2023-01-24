@@ -4,7 +4,6 @@ const mockStatement = require('../../../../../mocks/mock-statement')
 describe('generate summary', () => {
   test('includes RPA logo', () => {
     const result = summary(mockStatement)
-    console.log(result)
     expect(result.stack[0].image.endsWith('rpa-logo.jfif')).toBeTruthy()
   })
 
