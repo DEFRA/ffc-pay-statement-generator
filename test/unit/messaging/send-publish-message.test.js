@@ -11,7 +11,7 @@ jest.mock('ffc-messaging', () => {
   }
 })
 const sendPublishMessage = require('../../../app/messaging/send-publish-message')
-const mockStatement = require('../../mocks/statement-data')
+const mockStatement = require('../../mocks/mock-statement')
 const FILE_NAME = 'FFC_PaymentStatement_SFI_2022_1234567890_2022080515301012.pdf'
 const { STATEMENT: documentType } = require('../../../app/document-types')
 

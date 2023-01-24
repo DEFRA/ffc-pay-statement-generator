@@ -4,7 +4,7 @@ let latestPeriod
 
 describe('get table', () => {
   beforeEach(() => {
-    mockStatement = JSON.parse(JSON.stringify(require('../../../../mocks/statement-data')))
+    mockStatement = JSON.parse(JSON.stringify(require('../../../../mocks/mock-statement')))
     latestPeriod = 'July to September 2022'
   })
 

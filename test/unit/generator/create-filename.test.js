@@ -8,7 +8,7 @@ let timestamp
 
 describe('create filename', () => {
   beforeEach(() => {
-    mockStatement = require('../../mocks/statement-data')
+    mockStatement = require('../../mocks/mock-statement')
     jest.useFakeTimers().setSystemTime(new Date(2022, 7, 5, 15, 30, 10, 120))
     timestamp = moment(new Date()).format('YYYYMMDDHHmmssSS')
   })

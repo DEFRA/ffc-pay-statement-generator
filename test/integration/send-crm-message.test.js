@@ -12,7 +12,7 @@ jest.mock('ffc-messaging', () => {
 })
 jest.mock('../../app/config')
 const sendCrmMessage = require('../../app/messaging/crm/send-crm-message')
-const mockStatement = require('../mocks/statement-data')
+const mockStatement = require('../mocks/mock-statement')
 const { statementReceiverApiVersion, statementReceiverEndpoint } = require('../../app/config')
 const { STATEMENT } = require('../../app/document-types')
 const FILENAME = 'FFC_PaymentStatement_SFI_2022_1234567890_2022080515301012.pdf'

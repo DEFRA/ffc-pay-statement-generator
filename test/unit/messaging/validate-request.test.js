@@ -1,7 +1,7 @@
 const { validateRequest } = require('../../../app/messaging/validate-request')
 const { STATEMENT, SCHEDULE } = require('../../../app/document-types')
-const mockStatement = require('../../mocks/statement-data')
-const mockSchedule = require('../../mocks/schedule-data')
+const mockStatement = require('../../mocks/mock-statement')
+const mockSchedule = require('../../mocks/mock-schedule')
 
 describe('validate message body can be processed as statement', () => {
   test('does not throw on valid statement', async () => {

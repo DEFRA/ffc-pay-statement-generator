@@ -6,7 +6,7 @@ jest.mock('../../../app/data', () => {
   }
 })
 const saveLog = require('../../../app/generator/save-log')
-const mockStatement = require('../../mocks/statement-data')
+const mockStatement = require('../../mocks/mock-statement')
 let timestamp
 
 describe('create log', () => {

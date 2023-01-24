@@ -3,7 +3,7 @@ let mockStatement
 
 describe('map funding rows', () => {
   beforeEach(() => {
-    mockStatement = JSON.parse(JSON.stringify(require('../../../../../mocks/statement-data')))
+    mockStatement = JSON.parse(JSON.stringify(require('../../../../../mocks/mock-statement')))
   })
 
   test('includes all table rows when five funding options', () => {

@@ -3,7 +3,7 @@ let mockStatement
 
 describe('generate part 2', () => {
   beforeEach(() => {
-    mockStatement = JSON.parse(JSON.stringify(require('../../../../mocks/statement-data')))
+    mockStatement = JSON.parse(JSON.stringify(require('../../../../mocks/mock-statement')))
   })
 
   test('includes header', () => {
