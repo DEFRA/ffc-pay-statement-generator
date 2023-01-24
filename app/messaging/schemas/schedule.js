@@ -5,6 +5,8 @@ const sbi = require('./sbi')
 const email = require('./email')
 const address = require('./address')
 const scheme = require('./scheme')
+const adjustment = require('./adjustment')
+const paymentSchedule = require('./payment-schedule')
 
 module.exports = Joi.object({
   businessName,
@@ -12,5 +14,7 @@ module.exports = Joi.object({
   sbi,
   email,
   address,
-  scheme
+  scheme,
+  adjustment,
+  schedule: Joi.array().items(paymentSchedule).required()
 }).required()
