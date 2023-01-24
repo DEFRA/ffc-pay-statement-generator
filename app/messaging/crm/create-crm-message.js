@@ -1,11 +1,14 @@
 const schema = require('./crm-schema')
-const { statementVersion, statementReceiverEndpoint } = require('../../config')
+const { statementReceiverApiVersion, statementReceiverEndpoint } = require('../../config')
+const { STATEMENT } = require('../../document-types')
 
 const createCrmMessage = (statement, filename) => {
   const crm = {
-    apiLink: `${statementReceiverEndpoint}/statement/${statementVersion}/${filename}`,
+    apiLink: `${statementReceiverEndpoint}/${statementReceiverApiVersion}/statements/statement/${filename}`,
     frn: statement.frn,
-    sbi: statement.sbi
+    sbi: statement.sbi,
+    scheme: statement.scheme.shortName,
+    documentType: STATEMENT
   }
 
   const result = schema.validate(crm, {

@@ -17,7 +17,8 @@
   "contributors": [
     "Callum Leighton callum.leighton@kainos.com",
     "John Watson john.watson2@rpa.gov.uk",
-    "Simon Dunn simon.dunn1@defra.gov.uk"
+    "Simon Dunn simon.dunn1@defra.gov.uk",
+    "Marc Templeton m.templeton@kainos.com"
   ],
   "license": "OGL-UK-3.0",
   "dependencies": {

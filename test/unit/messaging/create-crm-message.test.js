@@ -14,9 +14,10 @@ jest.mock('ffc-messaging', () => {
 jest.mock('../../../app/messaging/crm/crm-schema')
 const schema = require('../../../app/messaging/crm/crm-schema')
 
-const { statementVersion, statementReceiverEndpoint } = require('../../../app/config')
+const { statementReceiverApiVersion, statementReceiverEndpoint } = require('../../../app/config')
 const createCrmMessage = require('../../../app/messaging/crm/create-crm-message')
 const mockStatement = require('../../mocks/statement-data')
+const { STATEMENT } = require('../../../app/document-types')
 const FILENAME = 'FFC_PaymentStatement_SFI_2022_1234567890_2022080515301012.pdf'
 
 let crmValid
@@ -29,7 +30,9 @@ describe('send crm message', () => {
     crmValid = {
       sbi: mockStatement.sbi,
       frn: mockStatement.frn,
-      apiLink: `${statementReceiverEndpoint}/statement/${statementVersion}/${FILENAME}`
+      apiLink: `${statementReceiverEndpoint}/${statementReceiverApiVersion}/statements/statement/${FILENAME}`,
+      scheme: mockStatement.scheme.shortName,
+      documentType: STATEMENT
     }
 
     crmMessage = {
@@ -53,7 +56,7 @@ describe('send crm message', () => {
     expect(schema.validate).toHaveBeenCalledTimes(1)
   })
 
-  test('should return valid message when statement and filrname are given', async () => {
+  test('should return valid message when statement and filename are given', async () => {
     const result = createCrmMessage(mockStatement, FILENAME)
     expect(result).toStrictEqual(crmMessage)
   })
