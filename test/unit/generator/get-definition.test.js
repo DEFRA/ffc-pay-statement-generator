@@ -2,7 +2,7 @@ const styles = require('../../../app/generator/styles')
 const getDefinition = require('../../../app/generator/get-definition')
 const mockStatement = require('../../mocks/statement-data')
 const { A4 } = require('../../../app/generator/page-sizes')
-const { STATEMENT } = require('../../../app/types')
+const { STATEMENT } = require('../../../app/document-types')
 
 describe('get definition', () => {
   test('includes A4 paper size', () => {

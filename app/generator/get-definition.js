@@ -1,5 +1,5 @@
 const styles = require('./styles')
-const generateContent = require('./content')
+const { generateContent } = require('./content')
 const { A4 } = require('./page-sizes')
 const { millimetresToPoints } = require('./conversion')
 

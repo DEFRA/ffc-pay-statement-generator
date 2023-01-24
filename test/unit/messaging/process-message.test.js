@@ -2,16 +2,20 @@ jest.mock('ffc-messaging')
 jest.mock('../../../app/data')
 const mockGenerator = jest.fn()
 jest.mock('../../../app/generator', () => {
-  return mockGenerator
+  return {
+    generateDocument: mockGenerator
+  }
 })
 const mockValidation = jest.fn()
-jest.mock('../../../app/messaging/validate', () => {
-  return mockValidation
+jest.mock('../../../app/messaging/validate-request', () => {
+  return {
+    validateRequest: mockValidation
+  }
 })
-const processMessage = require('../../../app/messaging/process-message')
 const mockStatement = require('../../mocks/statement-data')
+const { processMessage } = require('../../../app/messaging/process-message')
 const { VALIDATION } = require('../../../app/errors')
-const { STATEMENT } = require('../../../app/types')
+const { STATEMENT } = require('../../../app/document-types')
 let receiver
 
 const mockValidationImplementation = () => {
@@ -33,7 +37,7 @@ describe('process statement message', () => {
     const message = {
       body: mockStatement,
       applicationProperties: {
-        type: STATEMENT
+        type: STATEMENT.type
       }
     }
     await processMessage(message, receiver)
@@ -44,7 +48,7 @@ describe('process statement message', () => {
     const message = {
       body: mockStatement,
       applicationProperties: {
-        type: STATEMENT
+        type: STATEMENT.type
       }
     }
     await processMessage(message, receiver)
@@ -55,18 +59,18 @@ describe('process statement message', () => {
     const message = {
       body: mockStatement,
       applicationProperties: {
-        type: STATEMENT
+        type: STATEMENT.type
       }
     }
     await processMessage(message, receiver)
-    expect(mockValidation).toHaveBeenCalledWith(message.body, message.applicationProperties.type)
+    expect(mockValidation).toHaveBeenCalledWith(message.body, STATEMENT)
   })
 
   test('calls validate statement only once', async () => {
     const message = {
       body: mockStatement,
       applicationProperties: {
-        type: STATEMENT
+        type: STATEMENT.type
       }
     }
     await processMessage(message, receiver)
@@ -77,18 +81,18 @@ describe('process statement message', () => {
     const message = {
       body: mockStatement,
       applicationProperties: {
-        type: STATEMENT
+        type: STATEMENT.type
       }
     }
     await processMessage(message, receiver)
-    expect(mockGenerator).toHaveBeenCalledWith(message.body, message.applicationProperties.type)
+    expect(mockGenerator).toHaveBeenCalledWith(message.body, STATEMENT)
   })
 
   test('calls generator with statement only once', async () => {
     const message = {
       body: mockStatement,
       applicationProperties: {
-        type: STATEMENT
+        type: STATEMENT.type
       }
     }
     await processMessage(message, receiver)
@@ -99,7 +103,7 @@ describe('process statement message', () => {
     const message = {
       body: mockStatement,
       applicationProperties: {
-        type: STATEMENT
+        type: STATEMENT.type
       }
     }
     mockGenerator.mockImplementation(() => { throw new Error('Unable to generate') })
@@ -111,7 +115,7 @@ describe('process statement message', () => {
     const message = {
       body: mockStatement,
       applicationProperties: {
-        type: STATEMENT
+        type: STATEMENT.type
       }
     }
     mockGenerator.mockImplementation(() => { throw new Error('Unable to generate') })
@@ -123,7 +127,7 @@ describe('process statement message', () => {
     const message = {
       body: mockStatement,
       applicationProperties: {
-        type: STATEMENT
+        type: STATEMENT.type
       }
     }
     mockValidation.mockImplementation(() => mockValidationImplementation())
@@ -135,7 +139,7 @@ describe('process statement message', () => {
     const message = {
       body: mockStatement,
       applicationProperties: {
-        type: STATEMENT
+        type: STATEMENT.type
       }
     }
     mockValidation.mockImplementation(() => mockValidationImplementation())
@@ -147,7 +151,7 @@ describe('process statement message', () => {
     const message = {
       body: mockStatement,
       applicationProperties: {
-        type: STATEMENT
+        type: STATEMENT.type
       }
     }
     mockValidation.mockImplementation(() => mockValidationImplementation())
@@ -159,7 +163,7 @@ describe('process statement message', () => {
     const message = {
       body: mockStatement,
       applicationProperties: {
-        type: STATEMENT
+        type: STATEMENT.type
       }
     }
     mockGenerator.mockImplementation(() => {
@@ -173,7 +177,8 @@ describe('process statement message', () => {
     const message = {
       body: mockStatement,
       applicationProperties: {
-        type: STATEMENT
+        type: STATEMENT.type
+
       }
     }
     mockGenerator.mockImplementation(() => {

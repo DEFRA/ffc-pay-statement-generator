@@ -1,6 +1,6 @@
-const createStatementContent = require('./statement')
-const createScheduleContent = require('./schedule')
-const { STATEMENT, SCHEDULE } = require('../../types')
+const { createContent: createStatementContent } = require('./statement')
+const { createContent: createScheduleContent } = require('./schedule')
+const { STATEMENT, SCHEDULE } = require('../../document-types')
 
 const generateContent = (request, type) => {
   switch (type) {
@@ -13,4 +13,6 @@ const generateContent = (request, type) => {
   }
 }
 
-module.exports = generateContent
+module.exports = {
+  generateContent
+}

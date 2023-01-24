@@ -1,6 +1,6 @@
 const moment = require('moment')
 const getFilename = require('../../../app/generator/create-filename')
-const { STATEMENT } = require('../../../app/types')
+const { STATEMENT } = require('../../../app/document-types')
 const PREFIX = 'FFC_PaymentStatement_'
 const EXTENSION = '.pdf'
 let mockStatement

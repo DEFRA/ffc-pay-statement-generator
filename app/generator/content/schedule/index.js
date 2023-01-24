@@ -8,4 +8,6 @@ const createContent = (schedule) => {
   ]
 }
 
-module.exports = createContent
+module.exports = {
+  createContent
+}

@@ -1,4 +1,4 @@
-const { millimetresToPoints } = require('../../../conversion')
+const { millimetresToPoints } = require('../conversion')
 
 const getAddress = (businessName, address) => {
   let fullAddress = `${businessName}\n`
@@ -9,4 +9,6 @@ const getAddress = (businessName, address) => {
   return { text: fullAddress, style: 'address', absolutePosition: { x: millimetresToPoints(10), y: millimetresToPoints(35) } }
 }
 
-module.exports = getAddress
+module.exports = {
+  getAddress
+}

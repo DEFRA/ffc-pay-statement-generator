@@ -7,7 +7,7 @@ const createCrmMessage = (statement, filename, type) => {
     frn: statement.frn,
     sbi: statement.sbi,
     scheme: statement.scheme.shortName,
-    documentType: type
+    documentType: type.name
   }
 
   const result = schema.validate(crm, {
@@ -22,7 +22,7 @@ const createCrmMessage = (statement, filename, type) => {
     body: {
       ...crm
     },
-    type: `uk.gov.pay.${type.toLowerCase()}.crm`,
+    type: `uk.gov.pay.${type.id}.crm`,
     source: 'ffc-pay-statement-generator'
   }
 }

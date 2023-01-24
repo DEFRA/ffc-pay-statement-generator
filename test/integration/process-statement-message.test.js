@@ -13,8 +13,8 @@ const { BlobServiceClient } = require('@azure/storage-blob')
 const config = require('../../app/config/storage')
 const db = require('../../app/data')
 const mockStatement = require('../mocks/statement-data')
-const processMessage = require('../../app/messaging/process-message')
-const { STATEMENT } = require('../../app/types')
+const { processMessage } = require('../../app/messaging/process-message')
+const { STATEMENT } = require('../../app/document-types')
 const FILE_NAME = 'FFC_PaymentStatement_SFI_2022_1234567890_2022080515301012.pdf'
 
 let blobServiceClient
@@ -38,7 +38,7 @@ describe('generate statements', () => {
     message = {
       body: mockStatement,
       applicationProperties: {
-        type: STATEMENT
+        type: STATEMENT.type
       }
     }
   })

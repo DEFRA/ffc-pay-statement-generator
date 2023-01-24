@@ -13,9 +13,11 @@ const generateDocument = async (request, type) => {
   const timestamp = new Date()
   const pdfDoc = printer.createPdfKitDocument(docDefinition)
   const filename = await publish(pdfDoc, request, moment(timestamp).format('YYYYMMDDHHmmssSS'), type)
-  await sendPublishMessage(request, filename)
+  await sendPublishMessage(request, filename, type.id)
   await sendCrmMessage(request, filename, type)
   await saveLog(request, filename, timestamp)
 }
 
-module.exports = generateDocument
+module.exports = {
+  generateDocument
+}

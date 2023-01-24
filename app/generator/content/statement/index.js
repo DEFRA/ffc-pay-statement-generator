@@ -12,4 +12,6 @@ const createContent = (statement) => {
   ]
 }
 
-module.exports = createContent
+module.exports = {
+  createContent
+}
