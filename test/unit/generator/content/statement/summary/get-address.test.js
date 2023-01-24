@@ -1,4 +1,4 @@
-const getAddress = require('../../../../../app/generator/content/statement/summary/get-address')
+const getAddress = require('../../../../../../app/generator/content/statement/summary/get-address')
 const businessName = 'Mr A Farmer'
 
 describe('get address', () => {

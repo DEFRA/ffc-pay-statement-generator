@@ -1,4 +1,4 @@
-const getReference = require('../../../../../app/generator/content/statement/part1/get-reference')
+const getReference = require('../../../../../../app/generator/content/statement/part1/get-reference')
 const reference = 'PY1234567'
 
 describe('get reference', () => {

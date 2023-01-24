@@ -1,10 +1,10 @@
-const getTable = require('../../../../../app/generator/content/statement/part1/get-table')
+const getTable = require('../../../../../../app/generator/content/statement/part1/get-table')
 let mockStatement
 let latestPeriod
 
 describe('get table', () => {
   beforeEach(() => {
-    mockStatement = JSON.parse(JSON.stringify(require('../../../../mocks/mock-statement')))
+    mockStatement = JSON.parse(JSON.stringify(require('../../../../../mocks/mock-statement')))
     latestPeriod = 'July to September 2022'
   })
 

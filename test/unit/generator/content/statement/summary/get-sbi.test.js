@@ -1,4 +1,4 @@
-const getSBI = require('../../../../../app/generator/content/statement/summary/get-sbi')
+const getSBI = require('../../../../../../app/generator/content/statement/summary/get-sbi')
 const sbi = 123456789
 
 describe('get SBI', () => {

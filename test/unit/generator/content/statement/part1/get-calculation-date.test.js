@@ -1,4 +1,4 @@
-const getCalculationDate = require('../../../../../app/generator/content/statement/part1/get-calculation-date')
+const getCalculationDate = require('../../../../../../app/generator/content/statement/part1/get-calculation-date')
 const calculated = '1 July 2022'
 
 describe('get calculation date', () => {
