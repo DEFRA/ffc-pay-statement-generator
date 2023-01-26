@@ -1,5 +1,5 @@
-const getAdjustment = require('./get-adjustment')
-const getTable = require('./get-table')
+const { getAdjustment } = require('./get-adjustment')
+const { getTable } = require('./get-table')
 
 const part1 = (schedule) => {
   return {

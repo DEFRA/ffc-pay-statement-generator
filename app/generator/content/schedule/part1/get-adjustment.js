@@ -6,4 +6,6 @@ const getAdjustment = (adjustment) => {
   ]
 }
 
-module.exports = getAdjustment
+module.exports = {
+  getAdjustment
+}

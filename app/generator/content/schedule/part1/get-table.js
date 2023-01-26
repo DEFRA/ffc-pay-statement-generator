@@ -28,4 +28,6 @@ const getTable = (schedule) => {
   return table
 }
 
-module.exports = getTable
+module.exports = {
+  getTable
+}

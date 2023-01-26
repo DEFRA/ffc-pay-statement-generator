@@ -1,4 +1,4 @@
-const getTable = require('../../../../../../app/generator/content/schedule/part1/get-table')
+const { getTable } = require('../../../../../../app/generator/content/schedule/part1/get-table')
 let mockSchedule
 
 describe('get table', () => {
