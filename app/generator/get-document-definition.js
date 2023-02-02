@@ -3,7 +3,7 @@ const { generateContent } = require('./content')
 const { A4 } = require('./page-sizes')
 const { millimetresToPoints } = require('./conversion')
 
-const getDefinition = (request, type) => {
+const getDocumentDefinition = (request, type) => {
   const topMargin = millimetresToPoints(5)
   const sideMargin = millimetresToPoints(15)
   return {
@@ -15,4 +15,4 @@ const getDefinition = (request, type) => {
   }
 }
 
-module.exports = getDefinition
+module.exports = getDocumentDefinition
