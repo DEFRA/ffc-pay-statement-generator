@@ -1,4 +1,4 @@
-const createMessage = (statement, filename) => {
+const createMessage = (statement, filename, typeId) => {
   return {
     body: {
       businessName: statement.businessName,
@@ -9,7 +9,7 @@ const createMessage = (statement, filename) => {
       filename,
       scheme: statement.scheme
     },
-    type: 'uk.gov.pay.statement.publish',
+    type: `uk.gov.pay.${typeId}.publish`,
     source: 'ffc-pay-statement-generator'
   }
 }

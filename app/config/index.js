@@ -2,9 +2,10 @@ const Joi = require('joi')
 const mqConfig = require('./message')
 const dbConfig = require('./database')
 const storageConfig = require('./storage')
+const { DEVELOPMENT, TEST, PRODUCTION } = require('./environments')
 
 const schema = Joi.object({
-  env: Joi.string().valid('development', 'test', 'production').default('development'),
+  env: Joi.string().valid(DEVELOPMENT, TEST, PRODUCTION).default(DEVELOPMENT),
   statementReceiverApiVersion: Joi.string().required(),
   statementReceiverEndpoint: Joi.string().required()
 })
@@ -25,9 +26,9 @@ if (result.error) {
 
 const value = result.value
 
-value.isDev = value.env === 'development'
-value.isTest = value.env === 'test'
-value.isProd = value.env === 'production'
+value.isDev = value.env === DEVELOPMENT
+value.isTest = value.env === TEST
+value.isProd = value.env === PRODUCTION
 value.statementSubscription = mqConfig.statementSubscription
 value.publishTopic = mqConfig.publishTopic
 value.crmTopic = mqConfig.crmTopic
