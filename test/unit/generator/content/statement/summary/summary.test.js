@@ -42,23 +42,35 @@ describe('generate summary', () => {
     expect(result.stack[5].columns[1].text).toBe(123456789)
   })
 
+  test('includes agreement number title', () => {
+    const result = summary(mockStatement)
+    expect(result.stack[6].columns[0].text).toBe('Agreement reference number:')
+    // expect(result.table.body[0][0].stack[4].columns[0].text).toBe('Agreement reference number:')
+  })
+
+  test('includes agreement number value', () => {
+    const result = summary(mockStatement)
+    expect(result.stack[6].columns[1].text).toBe('SFI1234567')
+    // expect(result.table.body[0][0].stack[4].columns[1].text).toBe('SFI1234567')
+  })
+
   test('includes summary text introduction', () => {
     const result = summary(mockStatement)
-    expect(result.stack[6]).toMatch('\n\nThis statement explains your payment for the Sustainable Farming Incentive (SFI). It is made up of 3 parts.')
+    expect(result.stack[7]).toMatch('\n\nThis statement explains your payment for the Sustainable Farming Incentive (SFI). It is made up of 3 parts.')
   })
 
   test('includes summary text for part 1', () => {
     const result = summary(mockStatement)
-    expect(result.stack[7]).toMatch('\nPart 1 provides a summary of the most recent payment.')
+    expect(result.stack[8]).toMatch('\nPart 1 provides a summary of the most recent payment.')
   })
 
   test('includes summary text for part 2', () => {
     const result = summary(mockStatement)
-    expect(result.stack[8]).toMatch('Part 2 explains how we calculated the payment.')
+    expect(result.stack[9]).toMatch('Part 2 explains how we calculated the payment.')
   })
 
   test('includes summary text for part 3', () => {
     const result = summary(mockStatement)
-    expect(result.stack[9]).toMatch('Part 3 highlights where to go for more support.')
+    expect(result.stack[10]).toMatch('Part 3 highlights where to go for more support.')
   })
 })
