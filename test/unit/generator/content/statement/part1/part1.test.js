@@ -56,7 +56,7 @@ describe('generate part 1', () => {
     const result = part1(mockStatement)
     expect(result.stack[1].table.body[0][0].stack[3].columns[1].text).toBe('16 June 2022')
   })
-  
+
   test('includes reference title', () => {
     const result = part1(mockStatement)
     expect(result.stack[1].table.body[0][0].stack[4].columns[0].text).toBe('Payment reference number:')
