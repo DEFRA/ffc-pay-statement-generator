@@ -1,7 +1,7 @@
 asyncapi: 2.4.0
 info:
   title: FFC Payment Statement Generator
-  version: '1.0.0'
+  version: '1.11.1'
   description: Generate PDF payment statements
 channels:
   payment/request:
@@ -59,80 +59,179 @@ components:
       type: object
       required:
       - businessName
-      - sbi
       - frn
+      - sbi
       - address
-      - scheme
-      - payments
       - funding
+      - payments
+      - scheme
       properties:
         businessName:
           $ref: '#/components/schemas/BusinessName'
-        sbi:
-          $ref: '#/components/schemas/SBI'
-        frn:
-          $ref: '#/components/schemas/FRN'
         email:
           $ref: '#/components/schemas/Email'
+        frn:
+          $ref: '#/components/schemas/FRN'
+        sbi:
+          $ref: '#/components/schemas/SBI'
         address:
           $ref: '#/components/schemas/Address'
-        scheme:
-          $ref: '#/components/schemas/Scheme'
-        payments:
-          type: array
-          items:
-            $ref: '#/components/schemas/Payment'
         funding:
           type: array
           items:
             $ref: '#/components/schemas/Funding'
+        payments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Payment'
+        scheme:
+          $ref: '#/components/schemas/Scheme'
     BusinessName:
       type: string
       description: The business name
-      example: 'FFC Ltd'
-    SBI:
-      type: number
-      description: Single Business Identifier
-      minimum: 105000000
-      maximum: 999999999
-      example: 123456789
+      example: 'Summer Days Farm'
+    Email:
+      type: string
+      description: The business email address
+      example: farm@farms.com
     FRN:
       type: number
       description: Firm Reference Number
       minimum: 1000000000
       maximum: 9999999999
       example: 1234567890
-    Email:
-      type: string
-      description: The business email address
-      example: farm@farms.com
+    SBI:
+      type: number
+      description: Single Business Identifier
+      minimum: 105000000
+      maximum: 999999999
+      example: 123456789
     Address:
       type: object
       properties:
         line1:
           type: string
           description: The first line of the address
-          example: 1 The Street
+          example: 1 Some Street
         line2:
           type: string
           description: The second line of the address
-          example: The Area
+          example: Some Area
         line3:
           type: string
           description: The third line of the address
-          example: The Town
+          example: Some Town
         line4:
           type: string
           description: The fourth line of the address
-          example: The Region
+          example: Some Region
         line5:
           type: string
           description: The fifth line of the address
-          example: The County
+          example: Some County
         postcode:
           type: string
           description: The postcode
-          example: AB1 2CD
+          example: FA1 2PY
+    Funding:
+      type: object
+      required:
+      - name
+      - area
+      - annualValue
+      - quarterlyValue
+      - quarterlyReduction
+      - quarterlyPayment
+      properties:
+        name:
+          type: string
+          description: The funding option name
+          example: Arable and horticultural soils
+        level:
+          type: string
+          description: The funding option level
+          example: Introductory
+        area:
+          type: string
+          description: The funding option area in hectares
+          example: '45.4545'
+        rate:
+          type: string
+          description: The funding option rate in pounds per hectare
+          example: '22.00'
+        annualValue:
+          type: string
+          description: The funding option annual value in pounds
+          example: '1000.00'
+        quarterlyValue:
+          type: string
+          description: The funding option quarterly value in pounds
+          example: '250.00'
+        quarterlyReduction:
+          type: string
+          description: The funding option quarterly reduction in pounds
+          example: '0.00'
+        quarterlyPayment:
+          type: string
+          description: The funding option quarterly payment in pounds
+          example: '250.00'
+        reductions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Reduction'
+    Reduction:
+      type: object
+      required:
+      - reason
+      - value
+      properties:
+        reason:
+          type: string
+          description: The reduction name
+          example: Over declaration reduction
+        value:
+          type: string
+          description: The reduction value
+          example: '75.00'
+    Payment:
+      type: object
+      required:
+      - invoiceNumber
+      - reference
+      - dueDate
+      - settled
+      - calculated
+      - value
+      - period
+      properties:
+        invoiceNumber:
+          type: string
+          description: Invoice number of payment request
+          example: S000000200000002V001
+        reference:
+          type: string
+          description: Settlement reference of payment request
+          example: '10027651'
+        dueDate:
+          type: string
+          description: The due date of the payment request
+          example: 1 August 2022
+        settled:
+          type: string
+          description: The settled date of the payment request
+          example: 3 July 2022
+        calculated:
+          type: string
+          description: The calculated date of the payment request
+          example: 16 June 2022
+        value:
+          type: string
+          description: The value of the payment
+          example: '250.00'
+        period:
+          type: string
+          description: The period of the payment
+          example: April to June 2022
     Scheme:
       type: object
       required:
@@ -153,7 +252,7 @@ components:
         year:
           type: string
           description: The marketing year
-          example: 2022
+          example: '2022'
         frequency:
           type: string
           description: The frequency of payments
@@ -161,103 +260,4 @@ components:
         agreementNumber:
           type: string
           description: The agreement number
-          example: SFI1234567
-    Payment:
-      type: object
-      required:
-      - invoiceNumber
-      - reference
-      - dueDate
-      - settled
-      - calculated
-      - value
-      - period
-      properties:
-        invoiceNumber:
-          type: string
-          description: Invoice number of payment request
-          example: S0000001C000001V001
-        reference:
-          type: string
-          description: Settlement reference of payment request
-          example: PY1234567
-        dueDate:
-          type: string
-          description: The due date of the payment request
-          example: 1 July 2022
-        settled:
-          type: string
-          description: The settled date of the payment request
-          example: 1 July 2022
-        calculated:
-          type: string
-          description: The calculated date of the payment request
-          example: 1 July 2022
-        value:
-          type: string
-          description: The value of the payment
-          example: 1000.00
-        period:
-          type: string
-          description: The period of the payment
-          example: July 2022 to September 2022
-    Funding:
-      type: object
-      required:
-      - name
-      - area
-      - annualValue
-      - quarterlyValue
-      - quarterlyReduction
-      - quarterlyPayment
-      properties:
-        name:
-          type: string
-          description: The funding option name
-          example: Arable and horticultural soils
-        level:
-          type: string
-          description: The funding option level
-          example: Intermediate
-        area:
-          type: string
-          description: The funding option area in hectares
-          example: 10.00
-        rate:
-          type: string
-          description: The funding option rate in pounds per hectare
-          example: 40.00
-        annualValue:
-          type: string
-          description: The funding option annual value in pounds
-          example: 400.00
-        quarterlyValue:
-          type: string
-          description: The funding option quarterly value in pounds
-          example: 100.00
-        quarterlyReduction:
-          type: string
-          description: The funding option quarterly reduction in pounds
-          example: 75.00
-        quarterlyPayment:
-          type: string
-          description: The funding option quarterly payment in pounds
-          example: 25.00
-        reductions:
-          type: array
-          items:
-            $ref: '#/components/schemas/Reduction'
-    Reduction:
-      type: object
-      required:
-      - reason
-      - value
-      properties:
-        reason:
-          type: string
-          description: The reduction name
-          example: Over declaration reduction
-        value:
-          type: string
-          description: The reduction value
-          example: 75.00
+          example: '00000002'
