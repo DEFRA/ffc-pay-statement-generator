@@ -34,7 +34,7 @@ describe('generate summary', () => {
 
   test('includes SBI title', () => {
     const result = summary(mockStatement)
-    expect(result.stack[5].columns[0].text).toBe('Single business identifier (SBI):')
+    expect(result.stack[5].columns[0].text).toBe('Single Business Identifier (SBI):')
   })
 
   test('includes SBI', () => {
