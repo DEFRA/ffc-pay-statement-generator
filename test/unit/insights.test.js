@@ -34,7 +34,7 @@ describe('Application Insights', () => {
 
   test('does setup application insights if connection string present', () => {
     const appInsights = require('../../app/insights')
-    process.env.APPINSIGHTS_INSTRUMENTATIONKEY = 'test-key'
+    process.env.APPINSIGHTS_CONNECTIONSTRING = 'test-key'
     appInsights.setup()
     expect(applicationInsights.setup.mock.calls.length).toBe(1)
   })
