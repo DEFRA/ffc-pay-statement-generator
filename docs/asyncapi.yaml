@@ -60,6 +60,7 @@ components:
       - sbi
       - address
       - funding
+      - fundingTotal
       - payments
       - scheme
       properties:
@@ -76,7 +77,8 @@ components:
         funding:
           type: array
           items:
-            $ref: '#/components/schemas/Funding'
+            - $ref: '#/components/schemas/Funding'
+            - $ref: '#/components/schemas/FundingTotal'
         payments:
           type: array
           items:
@@ -190,6 +192,48 @@ components:
           type: string
           description: The reduction value
           example: '75.00'
+    FundingTotal:
+      type: object
+      required:
+      - name
+      - area
+      - annualValue
+      - quarterlyValue
+      - quarterlyReduction
+      - quarterlyPayment
+      properties:
+        name:
+          type: string
+          description: The funding option name
+          example: Total
+        level:
+          type: string
+          description: The funding option level
+          example: ''
+        area:
+          type: string
+          description: The funding option area in hectares
+          example: '45.4545'
+        rate:
+          type: string
+          description: The funding option rate in pounds per hectare
+          example: ''
+        annualValue:
+          type: string
+          description: The funding option annual value in pounds
+          example: '1000.00'
+        quarterlyValue:
+          type: string
+          description: The funding option quarterly value in pounds
+          example: '250.00'
+        quarterlyReduction:
+          type: string
+          description: The funding option quarterly reduction in pounds
+          example: '0.00'
+        quarterlyPayment:
+          type: string
+          description: The funding option quarterly payment in pounds
+          example: '250.00'
     Payment:
       type: object
       required:
