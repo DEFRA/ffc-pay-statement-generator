@@ -25,14 +25,14 @@ describe('Application Insights', () => {
     process.env = DEFAULT_ENV
   })
 
-  test('does not setup application insights if no instrumentation key', () => {
-    process.env.APPINSIGHTS_INSTRUMENTATIONKEY = undefined
+  test('does not setup application insights if no connection string', () => {
+    process.env.APPINSIGHTS_CONNECTIONSTRING = undefined
     const appInsights = require('../../app/insights')
     appInsights.setup()
     expect(applicationInsights.setup.mock.calls.length).toBe(0)
   })
 
-  test('does setup application insights if instrumentation key present', () => {
+  test('does setup application insights if connection string present', () => {
     const appInsights = require('../../app/insights')
     process.env.APPINSIGHTS_INSTRUMENTATIONKEY = 'test-key'
     appInsights.setup()
