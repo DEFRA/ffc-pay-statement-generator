@@ -45,13 +45,11 @@ describe('generate summary', () => {
   test('includes agreement number title', () => {
     const result = summary(mockStatement)
     expect(result.stack[6].columns[0].text).toBe('Agreement reference number:')
-    // expect(result.table.body[0][0].stack[4].columns[0].text).toBe('Agreement reference number:')
   })
 
   test('includes agreement number value', () => {
     const result = summary(mockStatement)
     expect(result.stack[6].columns[1].text).toBe('SFI1234567')
-    // expect(result.table.body[0][0].stack[4].columns[1].text).toBe('SFI1234567')
   })
 
   test('includes summary text introduction', () => {

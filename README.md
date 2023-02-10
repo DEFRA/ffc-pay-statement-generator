@@ -64,13 +64,7 @@ Use Docker Compose to run service locally.
 
 ```
 Key = type
-```
-
-```
 Type = String
-```
-
-```
 Value: uk.gov.pay.statement
 ```
 
