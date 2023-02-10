@@ -1,10 +1,10 @@
 asyncapi: 2.4.0
 info:
   title: FFC Payment Statement Generator
-  version: '1.0.1'
+  version: 1.0.1
   description: Generate PDF payment statements
 channels:
-  payment/request:
+  ffc-pay-statements/ffc-pay-statement-generator:
     subscribe:
       message:
         $ref: '#/components/messages/PaymentStatement'
@@ -19,9 +19,11 @@ components:
       name: Crm Message
       contentType: application/json
       payload:
+        additionalProperties: false
         type: object
         properties:
           body:
+            additionalProperties: false
             type: object
             properties:
               sbi:
@@ -43,8 +45,12 @@ components:
                 type: string
                 enum:
                   - Payment statement
+                  - Payment schedule
                 description: document type
-                example: Payment statement
+                example: 
+                  items:
+                    - Payment statement
+                    - Payment schedule
               scheme:
                 type: string
                 enum:
@@ -53,6 +59,7 @@ components:
                 example: SFI
   schemas:
     PaymentStatement:
+      additionalProperties: false
       type: object
       required:
       - businessName
@@ -145,6 +152,7 @@ components:
       description: The postcode
       example: FA1 2PY
     Funding:
+      additionalProperties: false
       type: object
       required:
       - name
@@ -189,6 +197,7 @@ components:
           description: The reduction value
           example: '75.00'
     FundingTotal:
+      additionalProperties: false
       type: object
       required:
       - name
@@ -220,7 +229,7 @@ components:
       example: Arable and horticultural soils
     FundingTotalName:
       type: string
-      description: The funding option name
+      description: The funding total name
       example: Total
     FundingLevel:
       type: string
@@ -228,7 +237,7 @@ components:
       example: Introductory
     FundingTotalLevel:
       type: string
-      description: The funding option level
+      description: The funding total level
       example: ''
     FundingArea:
       type: string
@@ -240,7 +249,7 @@ components:
       example: '22.00'
     FundingTotalRate:
       type: string
-      description: The funding option rate in pounds per hectare
+      description: The funding total rate in pounds per hectare
       example: ''
     FundingAnnualValue:
       type: string
