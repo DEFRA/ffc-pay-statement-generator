@@ -67,7 +67,6 @@ components:
       - sbi
       - address
       - funding
-      - fundingTotal
       - payments
       - scheme
       properties:
@@ -113,17 +112,22 @@ components:
       maximum: 999999999
       example: 123456789
     Address:
+      additionalProperties: false
+      required:
+        - town
+        - county
+        - postcode
       type: object
       properties:
-        line1:
+        street:
           $ref: '#/components/schemas/Street'
-        line2:
+        area:
           $ref: '#/components/schemas/Area'
-        line3:
+        town:
           $ref: '#/components/schemas/Town'
-        line4:
+        region:
           $ref: '#/components/schemas/Region'
-        line5:
+        county:
           $ref: '#/components/schemas/County'
         postcode:
           $ref: '#/components/schemas/Postcode'
@@ -156,7 +160,6 @@ components:
       type: object
       required:
       - name
-      - area
       - annualValue
       - quarterlyValue
       - quarterlyReduction
@@ -201,7 +204,6 @@ components:
       type: object
       required:
       - name
-      - area
       - annualValue
       - quarterlyValue
       - quarterlyReduction
@@ -321,6 +323,7 @@ components:
       description: The period of the payment
       example: April to June 2022
     Scheme:
+      additionalProperties: false
       type: object
       required:
       - name
