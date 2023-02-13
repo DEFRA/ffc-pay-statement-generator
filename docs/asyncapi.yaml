@@ -1,10 +1,10 @@
 asyncapi: 2.4.0
 info:
   title: FFC Payment Statement Generator
-  version: '1.0.0'
+  version: 1.0.1
   description: Generate PDF payment statements
 channels:
-  payment/request:
+  ffc-pay-statements/ffc-pay-statement-generator:
     subscribe:
       message:
         $ref: '#/components/messages/PaymentStatement'
@@ -19,9 +19,11 @@ components:
       name: Crm Message
       contentType: application/json
       payload:
+        additionalProperties: false
         type: object
         properties:
           body:
+            additionalProperties: false
             type: object
             properties:
               sbi:
@@ -37,212 +39,148 @@ components:
                 maximum: 9999999999
                 example: 1234567890
               apiLink:
-                type: url
                 description: api link for calling file stream of statement file that has been published unto blob
                 example: 'https://myStatementRetreivalApiEndpoint/statement-receiver/statement/v1/FFC_PaymentStatement_SFI_2022_1234567890_2022090615023001.pdf'  
               documentType:
                 type: string
                 enum:
                   - Payment statement
+                  - Payment schedule
                 description: document type
-                example: 'Payment statement'
+                example: 
+                  items:
+                    - Payment statement
+                    - Payment schedule
               scheme:
                 type: string
                 enum:
                   - SFI
                 description: Scheme name
                 example: SFI
-          type: 'uk.gov.pay.statement.crm'
-          source: 'ffc-pay-statement-generator'
   schemas:
     PaymentStatement:
+      additionalProperties: false
       type: object
       required:
       - businessName
-      - sbi
       - frn
+      - sbi
       - address
-      - scheme
-      - payments
       - funding
+      - payments
+      - scheme
       properties:
         businessName:
           $ref: '#/components/schemas/BusinessName'
-        sbi:
-          $ref: '#/components/schemas/SBI'
-        frn:
-          $ref: '#/components/schemas/FRN'
         email:
           $ref: '#/components/schemas/Email'
+        frn:
+          $ref: '#/components/schemas/FRN'
+        sbi:
+          $ref: '#/components/schemas/SBI'
         address:
           $ref: '#/components/schemas/Address'
-        scheme:
-          $ref: '#/components/schemas/Scheme'
+        funding:
+          type: array
+          items:
+            - $ref: '#/components/schemas/Funding'
+            - $ref: '#/components/schemas/FundingTotal'
         payments:
           type: array
           items:
             $ref: '#/components/schemas/Payment'
-        funding:
-          type: array
-          items:
-            $ref: '#/components/schemas/Funding'
+        scheme:
+          $ref: '#/components/schemas/Scheme'
     BusinessName:
       type: string
       description: The business name
-      example: 'FFC Ltd'
-    SBI:
-      type: number
-      description: Single Business Identifier
-      minimum: 105000000
-      maximum: 999999999
-      example: 123456789
+      example: Summer Days Farm
+    Email:
+      type: string
+      description: The business email address
+      example: farm@farms.com
     FRN:
       type: number
       description: Firm Reference Number
       minimum: 1000000000
       maximum: 9999999999
       example: 1234567890
-    Email:
-      type: string
-      description: The business email address
-      example: farm@farms.com
+    SBI:
+      type: number
+      description: Single Business Identifier
+      minimum: 105000000
+      maximum: 999999999
+      example: 123456789
     Address:
+      additionalProperties: false
+      required:
+        - town
+        - county
+        - postcode
       type: object
       properties:
-        line1:
-          type: string
-          description: The first line of the address
-          example: 1 The Street
-        line2:
-          type: string
-          description: The second line of the address
-          example: The Area
-        line3:
-          type: string
-          description: The third line of the address
-          example: The Town
-        line4:
-          type: string
-          description: The fourth line of the address
-          example: The Region
-        line5:
-          type: string
-          description: The fifth line of the address
-          example: The County
+        street:
+          $ref: '#/components/schemas/Street'
+        area:
+          $ref: '#/components/schemas/Area'
+        town:
+          $ref: '#/components/schemas/Town'
+        region:
+          $ref: '#/components/schemas/Region'
+        county:
+          $ref: '#/components/schemas/County'
         postcode:
-          type: string
-          description: The postcode
-          example: AB1 2CD
-    Scheme:
-      type: object
-      required:
-      - name
-      - shortName
-      - year
-      - frequency
-      - agreementNumber
-      properties:
-        name:
-          type: string
-          description: The name of the scheme
-          example: Sustainable Farming Incentive
-        shortName:
-          type: string
-          description: The short name of the scheme
-          example: SFI
-        year:
-          type: string
-          description: The marketing year
-          example: 2022
-        frequency:
-          type: string
-          description: The frequency of payments
-          example: Quarterly
-        agreementNumber:
-          type: string
-          description: The agreement number
-          example: SFI1234567
-    Payment:
-      type: object
-      required:
-      - invoiceNumber
-      - reference
-      - dueDate
-      - settled
-      - calculated
-      - value
-      - period
-      properties:
-        invoiceNumber:
-          type: string
-          description: Invoice number of payment request
-          example: S0000001C000001V001
-        reference:
-          type: string
-          description: Settlement reference of payment request
-          example: PY1234567
-        dueDate:
-          type: string
-          description: The due date of the payment request
-          example: 1 July 2022
-        settled:
-          type: string
-          description: The settled date of the payment request
-          example: 1 July 2022
-        calculated:
-          type: string
-          description: The calculated date of the payment request
-          example: 1 July 2022
-        value:
-          type: string
-          description: The value of the payment
-          example: 1000.00
-        period:
-          type: string
-          description: The period of the payment
-          example: July 2022 to September 2022
+          $ref: '#/components/schemas/Postcode'
+    Street:
+      type: string
+      description: The first line of the address
+      example: 1 Some Street
+    Area:
+      type: string
+      description: The second line of the address
+      example: Some Area
+    Town:
+      type: string
+      description: The third line of the address
+      example: Some Town
+    Region:
+      type: string
+      description: The fourth line of the address
+      example: Some Region
+    County:
+      type: string
+      description: The fifth line of the address
+      example: Some County
+    Postcode:
+      type: string
+      description: The postcode
+      example: FA1 2PY
     Funding:
+      additionalProperties: false
       type: object
       required:
       - name
-      - area
       - annualValue
       - quarterlyValue
       - quarterlyReduction
       - quarterlyPayment
       properties:
         name:
-          type: string
-          description: The funding option name
-          example: Arable and horticultural soils
+          $ref: '#/components/schemas/FundingName'
         level:
-          type: string
-          description: The funding option level
-          example: Intermediate
+          $ref: '#/components/schemas/FundingLevel'
         area:
-          type: string
-          description: The funding option area in hectares
-          example: 10.00
+          $ref: '#/components/schemas/FundingArea'
         rate:
-          type: string
-          description: The funding option rate in pounds per hectare
-          example: 40.00
+          $ref: '#/components/schemas/FundingRate'
         annualValue:
-          type: string
-          description: The funding option annual value in pounds
-          example: 400.00
+          $ref: '#/components/schemas/FundingAnnualValue'
         quarterlyValue:
-          type: string
-          description: The funding option quarterly value in pounds
-          example: 100.00
+          $ref: '#/components/schemas/FundingQuarterlyValue'
         quarterlyReduction:
-          type: string
-          description: The funding option quarterly reduction in pounds
-          example: 75.00
+          $ref: '#/components/schemas/FundingQuarterlyReduction'
         quarterlyPayment:
-          type: string
-          description: The funding option quarterly payment in pounds
-          example: 25.00
+          $ref: '#/components/schemas/FundingQuarterlyPayment'
         reductions:
           type: array
           items:
@@ -260,4 +198,167 @@ components:
         value:
           type: string
           description: The reduction value
-          example: 75.00
+          example: '75.00'
+    FundingTotal:
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - annualValue
+      - quarterlyValue
+      - quarterlyReduction
+      - quarterlyPayment
+      properties:
+        name:
+          $ref: '#/components/schemas/FundingTotalName'
+        level:
+          $ref: '#/components/schemas/FundingTotalLevel'
+        area:
+          $ref: '#/components/schemas/FundingArea'
+        rate:
+          $ref: '#/components/schemas/FundingTotalRate'
+        annualValue:
+          $ref: '#/components/schemas/FundingAnnualValue'
+        quarterlyValue:
+          $ref: '#/components/schemas/FundingQuarterlyValue'
+        quarterlyReduction:
+          $ref: '#/components/schemas/FundingQuarterlyReduction'
+        quarterlyPayment:
+          $ref: '#/components/schemas/FundingQuarterlyPayment'
+    FundingName:
+      type: string
+      description: The funding option name
+      example: Arable and horticultural soils
+    FundingTotalName:
+      type: string
+      description: The funding total name
+      example: Total
+    FundingLevel:
+      type: string
+      description: The funding option level
+      example: Introductory
+    FundingTotalLevel:
+      type: string
+      description: The funding total level
+      example: ''
+    FundingArea:
+      type: string
+      description: The funding option area in hectares
+      example: '45.4545'
+    FundingRate:
+      type: string
+      description: The funding option rate in pounds per hectare
+      example: '22.00'
+    FundingTotalRate:
+      type: string
+      description: The funding total rate in pounds per hectare
+      example: ''
+    FundingAnnualValue:
+      type: string
+      description: The funding option annual value in pounds
+      example: '1000.00'
+    FundingQuarterlyValue:
+      type: string
+      description: The funding option quarterly value in pounds
+      example: '250.00'
+    FundingQuarterlyReduction:
+      type: string
+      description: The funding option quarterly reduction in pounds
+      example: '0.00'
+    FundingQuarterlyPayment:
+      type: string
+      description: The funding option quarterly payment in pounds
+      example: '250.00'
+    Payment:
+      type: object
+      required:
+      - invoiceNumber
+      - reference
+      - dueDate
+      - settled
+      - calculated
+      - value
+      - period
+      properties:
+        invoiceNumber:
+          $ref: '#/components/schemas/InvoiceNumber'
+        reference:
+          $ref: '#/components/schemas/Reference'
+        dueDate:
+          $ref: '#/components/schemas/DueDate'
+        settled:
+          $ref: '#/components/schemas/Settled'
+        calculated:
+          $ref: '#/components/schemas/Calculated'
+        value:
+          $ref: '#/components/schemas/Value'
+        period:
+          $ref: '#/components/schemas/Period'
+    InvoiceNumber:
+      type: string
+      description: Invoice number of payment request
+      example: S000000200000002V001
+    Reference:
+      type: string
+      description: Settlement reference of payment request
+      example: '10027651'
+    DueDate:
+      type: string
+      description: The due date of the payment request
+      example: 1 August 2022
+    Settled:
+      type: string
+      description: The settled date of the payment request
+      example: 3 July 2022
+    Calculated:
+      type: string
+      description: The calculated date of the payment request
+      example: 16 June 2022
+    Value:
+      type: string
+      description: The value of the payment
+      example: '250.00'
+    Period:
+      type: string
+      description: The period of the payment
+      example: April to June 2022
+    Scheme:
+      additionalProperties: false
+      type: object
+      required:
+      - name
+      - shortName
+      - year
+      - frequency
+      - agreementNumber
+      properties:
+        name:
+          $ref: '#/components/schemas/SchemeName'
+        shortName:
+          $ref: '#/components/schemas/SchemeShortName'
+        year:
+          $ref: '#/components/schemas/SchemeYear'
+        frequency:
+          $ref: '#/components/schemas/SchemeFrequency'
+        agreementNumber:
+          $ref: '#/components/schemas/SchemeAgreementNumber'
+    SchemeName:
+      type: string
+      description: The name of the scheme
+      example: Sustainable Farming Incentive
+    SchemeShortName:
+      type: string
+      description: The short name of the scheme
+      example: SFI
+    SchemeYear:
+      type: string
+      description: The marketing year
+      example: '2022'
+    SchemeFrequency:
+      type: string
+      description: The frequency of payments
+      example: Quarterly
+    SchemeAgreementNumber:
+      type: string
+      description: The agreement number
+      example: '00000002'

@@ -60,6 +60,14 @@ Use Docker Compose to run service locally.
 ./scripts/start
 ```
 
+*Note: When running the service to generate a statement locally and using the Azure Portal, you must include an additional custom property alongside a message with the values:*
+
+```
+Key = type
+Type = String
+Value: uk.gov.pay.statement
+```
+
 ## Test structure
 
 The tests have been structured into subfolders of `./test` as per the

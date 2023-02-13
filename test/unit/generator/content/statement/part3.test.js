@@ -82,9 +82,9 @@ describe('generate part 3', () => {
     expect(result.stack[3].text[1].style).toBe('link')
   })
 
-  test('includes questions contact resolution time text', () => {
+  test('includes contact us resolution text', () => {
     const result = part3(mockStatement)
-    expect(result.stack[3].text[2]).toMatch(' to contact us. You should contact us within 3 months of receiving your payment.\n\n')
+    expect(result.stack[3].text[2]).toMatch(' to contact us.\n\n')
   })
 
   test('includes get in touch link text', () => {

@@ -59,23 +59,13 @@ describe('get table', () => {
     expect(result.table.body[0][0].stack[3].columns[1].text).toBe('16 June 2022')
   })
 
-  test('includes agreement number title', () => {
-    const result = getTable(mockStatement.scheme, mockStatement.payments[0], latestPeriod)
-    expect(result.table.body[0][0].stack[4].columns[0].text).toBe('Agreement reference number:')
-  })
-
-  test('includes agreement number value', () => {
-    const result = getTable(mockStatement.scheme, mockStatement.payments[0], latestPeriod)
-    expect(result.table.body[0][0].stack[4].columns[1].text).toBe('SFI1234567')
-  })
-
   test('includes reference title', () => {
     const result = getTable(mockStatement.scheme, mockStatement.payments[0], latestPeriod)
-    expect(result.table.body[0][0].stack[5].columns[0].text).toBe('Payment reference number:')
+    expect(result.table.body[0][0].stack[4].columns[0].text).toBe('Payment reference number:')
   })
 
   test('includes reference value', () => {
     const result = getTable(mockStatement.scheme, mockStatement.payments[0], latestPeriod)
-    expect(result.table.body[0][0].stack[5].columns[1].text).toBe('PY1234567')
+    expect(result.table.body[0][0].stack[4].columns[1].text).toBe('PY1234567')
   })
 })
