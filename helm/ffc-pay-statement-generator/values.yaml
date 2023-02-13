@@ -8,7 +8,7 @@ image: ffc-pay-statement-generator
 labels: {}
 
 appInsights:
-  key:
+  connectionString:
 
 containerConfigMap:
   name: ffc-pay-statement-generator-config-map
