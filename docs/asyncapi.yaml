@@ -314,7 +314,7 @@ components:
     DueDateAdjustment:
       type: string      
       description: The due date of the adjustment payment
-      example: undefined
+      example: ''
     Email:
       type: string
       description: The business email address
