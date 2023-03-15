@@ -21,13 +21,14 @@ const BASE_SERVICE_BUS_MESSAGE = {
   delivery: {} // incomplete
 }
 
-const SCHEDULE_MESSAGE = {...BASE_SERVICE_BUS_MESSAGE,
-body: MOCK_SCHEDULE,
-applicationProperties: {
+const SCHEDULE_MESSAGE = {
+  ...BASE_SERVICE_BUS_MESSAGE,
+  body: MOCK_SCHEDULE,
+  applicationProperties: {
     type: SCHEDULE.type
   }
 }
 
 module.exports = {
-    SCHEDULE_MESSAGE
+  SCHEDULE_MESSAGE
 }
