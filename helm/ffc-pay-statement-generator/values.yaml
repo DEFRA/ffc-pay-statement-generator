@@ -41,6 +41,7 @@ container:
   storageFolder: outbound
   statementReceiverApiVersion: v1
   statementReceiverEndpoint: https://ffc-pay-statement-receiver
+  schedulesArePublished: false
 
 ingress:
   server: example.com

@@ -7,13 +7,15 @@ const { DEVELOPMENT, TEST, PRODUCTION } = require('./environments')
 const schema = Joi.object({
   env: Joi.string().valid(DEVELOPMENT, TEST, PRODUCTION).default(DEVELOPMENT),
   statementReceiverApiVersion: Joi.string().required(),
-  statementReceiverEndpoint: Joi.string().required()
+  statementReceiverEndpoint: Joi.string().required(),
+  schedulesArePublished: Joi.boolean().required().default(false)
 })
 
 const config = {
   env: process.env.NODE_ENV,
   statementReceiverApiVersion: process.env.STATEMENT_RECEIVER_API_VERSION,
-  statementReceiverEndpoint: process.env.STATEMENT_RECEIVER_ENDPOINT
+  statementReceiverEndpoint: process.env.STATEMENT_RECEIVER_ENDPOINT,
+  schedulesArePublished: process.env.SCHEDULES_ARE_PUBLISHED
 }
 
 const result = schema.validate(config, {
