@@ -14,20 +14,20 @@ const {
 
 const { mockPdfPrinter } = require('../../mocks/objects/pdfPrinter')
 
-jest.mock('../../../app/generator/save-log')
-const saveLog = require('../../../app/generator/save-log')
+jest.mock('../../../app/generator/get-document-definition')
+const getDocumentDefinition = require('../../../app/generator/get-document-definition')
 
 jest.mock('../../../app/generator/publish')
 const publish = require('../../../app/generator/publish')
-
-jest.mock('../../../app/generator/get-document-definition')
-const getDocumentDefinition = require('../../../app/generator/get-document-definition')
 
 jest.mock('../../../app/messaging/send-publish-message')
 const sendPublishMessage = require('../../../app/messaging/send-publish-message')
 
 jest.mock('../../../app/messaging/crm/send-crm-message')
 const sendCrmMessage = require('../../../app/messaging/crm/send-crm-message')
+
+jest.mock('../../../app/generator/save-log')
+const saveLog = require('../../../app/generator/save-log')
 
 const { generateDocument } = require('../../../app/generator')
 
@@ -39,9 +39,9 @@ describe('Generate document', () => {
     jest.useFakeTimers().setSystemTime(SYSTEM_TIME)
 
     getDocumentDefinition.mockReturnValue('docDef')
-    saveLog.mockResolvedValue(undefined)
     sendPublishMessage.mockResolvedValue(undefined)
     sendCrmMessage.mockResolvedValue(undefined)
+    saveLog.mockResolvedValue(undefined)
   })
 
   describe('When schedulesArePublished is false', () => {
