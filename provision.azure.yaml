@@ -1,5 +1,5 @@
 resources:
   topics:
-    - name: statement
+    - name: statements
     - name: publish
     - name: crm
