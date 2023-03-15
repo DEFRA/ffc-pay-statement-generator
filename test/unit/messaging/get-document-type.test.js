@@ -1,5 +1,5 @@
 const { getDocumentType } = require('../../../app/messaging/get-document-type')
-const { STATEMENT, SCHEDULE } = require('../../../app/document-types')
+const { STATEMENT, SCHEDULE } = require('../../../app/constants/document-types')
 
 describe('get document type', () => {
   test('returns statement type', async () => {

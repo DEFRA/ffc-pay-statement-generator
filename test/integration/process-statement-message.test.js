@@ -14,7 +14,7 @@ const config = require('../../app/config/storage')
 const db = require('../../app/data')
 const mockStatement = require('../mocks/mock-statement')
 const { processMessage } = require('../../app/messaging/process-message')
-const { STATEMENT } = require('../../app/document-types')
+const { STATEMENT } = require('../../app/constants/document-types')
 const FILE_NAME = 'FFC_PaymentStatement_SFI_2022_1234567890_2022080515301012.pdf'
 
 let blobServiceClient

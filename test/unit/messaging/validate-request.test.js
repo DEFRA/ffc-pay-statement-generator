@@ -1,5 +1,5 @@
 const { validateRequest } = require('../../../app/messaging/validate-request')
-const { STATEMENT, SCHEDULE } = require('../../../app/document-types')
+const { STATEMENT, SCHEDULE } = require('../../../app/constants/document-types')
 const mockStatement = require('../../mocks/mock-statement')
 const mockSchedule = require('../../mocks/mock-schedule')
 

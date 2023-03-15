@@ -1,6 +1,6 @@
 const moment = require('moment')
 const getFilename = require('../../../app/generator/create-filename')
-const { STATEMENT, SCHEDULE } = require('../../../app/document-types')
+const { STATEMENT, SCHEDULE } = require('../../../app/constants/document-types')
 const STATEMENT_PREFIX = 'FFC_PaymentStatement_'
 const SCHEDULE_PREFIX = 'FFC_PaymentSchedule_'
 const DOCUMENT_PREFIX = 'FFC_PaymentDocument_'

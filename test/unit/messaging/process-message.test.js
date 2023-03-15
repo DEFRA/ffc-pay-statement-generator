@@ -15,7 +15,7 @@ jest.mock('../../../app/messaging/validate-request', () => {
 const mockStatement = require('../../mocks/mock-statement')
 const { processMessage } = require('../../../app/messaging/process-message')
 const { VALIDATION } = require('../../../app/errors')
-const { STATEMENT } = require('../../../app/document-types')
+const { STATEMENT } = require('../../../app/constants/document-types')
 let receiver
 
 const mockValidationImplementation = () => {

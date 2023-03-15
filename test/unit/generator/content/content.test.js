@@ -1,4 +1,4 @@
-const { STATEMENT, SCHEDULE } = require('../../../../app/document-types')
+const { STATEMENT, SCHEDULE } = require('../../../../app/constants/document-types')
 const { generateContent } = require('../../../../app/generator/content')
 const mockStatement = require('../../../mocks/mock-statement')
 const mockSchedule = require('../../../mocks/mock-schedule')

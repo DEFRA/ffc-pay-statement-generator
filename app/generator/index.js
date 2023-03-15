@@ -3,7 +3,7 @@ const config = require('../config')
 const PdfPrinter = require('pdfmake')
 const moment = require('moment')
 
-const { SCHEDULE } = require('../document-types')
+const { SCHEDULE } = require('../constants/document-types')
 
 const getDocumentDefinition = require('./get-document-definition')
 const publish = require('./publish')
