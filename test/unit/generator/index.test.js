@@ -418,7 +418,6 @@ describe('Generate document', () => {
         expect(sendPublishMessage).toHaveBeenCalledWith(request, (await publish()), type.id)
       })
 
-
       test('should call sendCrmMessage', async () => {
         await generateDocument(request, type)
         expect(sendCrmMessage).toHaveBeenCalled()
