@@ -1,4 +1,4 @@
-const { STATEMENT, SCHEDULE } = require('../document-types')
+const { STATEMENT, SCHEDULE } = require('../constants/document-types')
 
 const createFilename = (statement, timestamp, type) => {
   const prefix = getPrefix(type)

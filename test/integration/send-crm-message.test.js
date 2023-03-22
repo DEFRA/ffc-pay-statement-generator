@@ -14,7 +14,7 @@ jest.mock('../../app/config')
 const sendCrmMessage = require('../../app/messaging/crm/send-crm-message')
 const mockStatement = require('../mocks/mock-statement')
 const { statementReceiverApiVersion, statementReceiverEndpoint } = require('../../app/config')
-const { STATEMENT } = require('../../app/document-types')
+const { STATEMENT } = require('../../app/constants/document-types')
 const FILENAME = 'FFC_PaymentStatement_SFI_2022_1234567890_2022080515301012.pdf'
 
 describe('send crm message', () => {

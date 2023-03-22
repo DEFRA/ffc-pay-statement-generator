@@ -1,4 +1,4 @@
-const documentTypes = require('../document-types')
+const documentTypes = require('../constants/document-types')
 
 const getDocumentType = (type) => {
   const documentType = Object.entries(documentTypes).map(x => x[1]).find(x => x.type === type)

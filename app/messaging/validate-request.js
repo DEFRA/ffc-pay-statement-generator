@@ -1,7 +1,7 @@
 const statementSchema = require('./schemas/statement')
 const scheduleSchema = require('./schemas/schedule')
 const { VALIDATION } = require('../errors')
-const { STATEMENT, SCHEDULE } = require('../document-types')
+const { STATEMENT, SCHEDULE } = require('../constants/document-types')
 
 const validateRequest = (request, type) => {
   let validationResult

@@ -29,6 +29,7 @@ services:
       AZURE_STORAGE_USE_CONNECTION_STRING: "true"
       STATEMENT_RECEIVER_API_VERSION: v1
       STATEMENT_RECEIVER_ENDPOINT: http://localhost:3021
+      SCHEDULES_ARE_PUBLISHED: "false"
 
   ffc-pay-statement-generator-postgres:
     image: postgres:11.4-alpine

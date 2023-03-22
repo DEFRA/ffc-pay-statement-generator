@@ -31,4 +31,5 @@ data:
   {{ else }}
   STATEMENT_RECEIVER_ENDPOINT: {{ .Values.container.statementReceiverEndpoint }}.{{ .Values.ingress.server }}
   {{- end }}
+  SCHEDULES_ARE_PUBLISHED: {{ quote .Values.container.schedulesArePublished }}
 {{- end -}}

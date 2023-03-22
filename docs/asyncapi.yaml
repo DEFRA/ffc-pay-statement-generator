@@ -1,15 +1,22 @@
 asyncapi: 2.4.0
 info:
   title: FFC Payment Statement Generator
-  version: 1.0.1
+  version: 1.0.2
   description: Generate PDF payment statements
 channels:
   ffc-pay-statements/ffc-pay-statement-generator:
     subscribe:
       message:
-        $ref: '#/components/messages/PaymentStatement'
+        oneOf:
+          - $ref: '#/components/messages/PaymentSchedule'
+          - $ref: '#/components/messages/PaymentStatement'
 components:
   messages:
+    PaymentSchedule:
+      name: Payment schedule
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/PaymentSchedule'
     PaymentStatement:
       name: Payment statement
       contentType: application/json
@@ -58,6 +65,38 @@ components:
                 description: Scheme name
                 example: SFI
   schemas:
+    PaymentSchedule:
+      additionalProperties: false
+      type: object
+      required:
+      - businessName
+      - frn
+      - sbi
+      - email
+      - address
+      - funding
+      - payments
+      - scheme
+      properties:
+        businessName:
+          $ref: '#/components/schemas/BusinessName'
+        frn:
+          $ref: '#/components/schemas/FRN'
+        sbi:
+          $ref: '#/components/schemas/SBI'
+        email: 
+          $ref: '#/components/schemas/Email'
+        address:
+          $ref: '#/components/schemas/Address'
+        scheme:
+          $ref: '#/components/schemas/Scheme'
+        schedule:
+          type: array
+          items:
+            - $ref: '#/components/schemas/Schedule'
+            - $ref: '#/components/schemas/ScheduleAdjustment'
+        adjustment:
+          $ref: '#/components/schemas/Adjustment'
     PaymentStatement:
       additionalProperties: false
       type: object
@@ -91,70 +130,40 @@ components:
             $ref: '#/components/schemas/Payment'
         scheme:
           $ref: '#/components/schemas/Scheme'
-    BusinessName:
-      type: string
-      description: The business name
-      example: Summer Days Farm
-    Email:
-      type: string
-      description: The business email address
-      example: farm@farms.com
-    FRN:
-      type: number
-      description: Firm Reference Number
-      minimum: 1000000000
-      maximum: 9999999999
-      example: 1234567890
-    SBI:
-      type: number
-      description: Single Business Identifier
-      minimum: 105000000
-      maximum: 999999999
-      example: 123456789
     Address:
       additionalProperties: false
       required:
-        - town
-        - county
+        - line3
+        - line5
         - postcode
       type: object
       properties:
-        street:
+        line1:
           $ref: '#/components/schemas/Street'
-        area:
+        line2:
           $ref: '#/components/schemas/Area'
-        town:
+        line3:
           $ref: '#/components/schemas/Town'
-        region:
+        line4:
           $ref: '#/components/schemas/Region'
-        county:
+        line5:
           $ref: '#/components/schemas/County'
         postcode:
           $ref: '#/components/schemas/Postcode'
-    Street:
-      type: string
-      description: The first line of the address
-      example: 1 Some Street
-    Area:
-      type: string
-      description: The second line of the address
-      example: Some Area
-    Town:
-      type: string
-      description: The third line of the address
-      example: Some Town
-    Region:
-      type: string
-      description: The fourth line of the address
-      example: Some Region
-    County:
-      type: string
-      description: The fifth line of the address
-      example: Some County
-    Postcode:
-      type: string
-      description: The postcode
-      example: FA1 2PY
+    Adjustment:
+      type: object
+      description: Overview of the total adjustment
+      required: 
+        - currentValue
+        - newValue
+        - adjustmentValue
+      properties:
+        currentValue:
+          $ref: '#/components/schemas/AdjustmentCurrentValue'
+        newValue:
+          $ref: '#/components/schemas/AdjustmentNewValue'
+        adjustmentValue:
+          $ref: '#/components/schemas/AdjustmentValue'
     Funding:
       additionalProperties: false
       type: object
@@ -185,20 +194,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Reduction'
-    Reduction:
-      type: object
-      required:
-      - reason
-      - value
-      properties:
-        reason:
-          type: string
-          description: The reduction name
-          example: Over declaration reduction
-        value:
-          type: string
-          description: The reduction value
-          example: '75.00'
     FundingTotal:
       additionalProperties: false
       type: object
@@ -225,6 +220,111 @@ components:
           $ref: '#/components/schemas/FundingQuarterlyReduction'
         quarterlyPayment:
           $ref: '#/components/schemas/FundingQuarterlyPayment'
+    Payment:
+      type: object
+      required:
+      - invoiceNumber
+      - reference
+      - dueDate
+      - settled
+      - calculated
+      - value
+      - period
+      properties:
+        invoiceNumber:
+          $ref: '#/components/schemas/InvoiceNumber'
+        reference:
+          $ref: '#/components/schemas/Reference'
+        dueDate:
+          $ref: '#/components/schemas/DueDate'
+        settled:
+          $ref: '#/components/schemas/Settled'
+        calculated:
+          $ref: '#/components/schemas/Calculated'
+        value:
+          $ref: '#/components/schemas/Value'
+        period:
+          $ref: '#/components/schemas/Period'
+    Schedule:
+      additionalProperties: false
+      type: object
+      required:
+      - order
+      - dueDate
+      - period
+      - value
+      properties:
+        order:
+          $ref: '#/components/schemas/Order'
+        dueDate:
+          $ref: '#/components/schemas/DueDate'
+        period:
+          $ref: '#/components/schemas/Period'
+        value:
+          $ref: '#/components/schemas/Value'    
+    ScheduleAdjustment:
+      additionalProperties: false
+      type: object
+      required:
+      - order
+      - dueDate
+      - period
+      - value
+      properties:
+        order:
+          $ref: '#/components/schemas/OrderAdjustment'
+        dueDate:
+          $ref: '#/components/schemas/DueDateAdjustment'
+        period:
+          $ref: '#/components/schemas/PeriodAdjustment'
+        value:
+          $ref: '#/components/schemas/Value'  
+    AdjustmentCurrentValue:
+      type: string
+      description: Current settled payment value
+      example: '1000.00'
+    AdjustmentNewValue:
+      type: string
+      description: New to-be settled payment value
+      example: '1500.00'
+    AdjustmentValue:
+      type: string
+      description: Delta between the new value and current value
+      example: '500.00'
+    Area:
+      type: string
+      description: The second line of the address
+      example: Some Area
+    BusinessName:
+      type: string
+      description: The business name
+      example: Summer Days Farm
+    Calculated:
+      type: string
+      description: The calculated date of the payment request
+      example: 16 June 2022
+    County:
+      type: string
+      description: The fifth line of the address
+      example: Some County
+    DueDate:
+      type: string
+      description: The due date of the payment request
+      example: 1 August 2022
+    DueDateAdjustment:
+      type: string      
+      description: The due date of the adjustment payment
+      example: ''
+    Email:
+      type: string
+      description: The business email address
+      example: farm@farms.com
+    FRN:
+      type: number
+      description: Firm Reference Number
+      minimum: 1000000000
+      maximum: 9999999999
+      example: 1234567890
     FundingName:
       type: string
       description: The funding option name
@@ -269,59 +369,60 @@ components:
       type: string
       description: The funding option quarterly payment in pounds
       example: '250.00'
-    Payment:
-      type: object
-      required:
-      - invoiceNumber
-      - reference
-      - dueDate
-      - settled
-      - calculated
-      - value
-      - period
-      properties:
-        invoiceNumber:
-          $ref: '#/components/schemas/InvoiceNumber'
-        reference:
-          $ref: '#/components/schemas/Reference'
-        dueDate:
-          $ref: '#/components/schemas/DueDate'
-        settled:
-          $ref: '#/components/schemas/Settled'
-        calculated:
-          $ref: '#/components/schemas/Calculated'
-        value:
-          $ref: '#/components/schemas/Value'
-        period:
-          $ref: '#/components/schemas/Period'
     InvoiceNumber:
       type: string
       description: Invoice number of payment request
       example: S000000200000002V001
-    Reference:
-      type: string
-      description: Settlement reference of payment request
-      example: '10027651'
-    DueDate:
-      type: string
-      description: The due date of the payment request
-      example: 1 August 2022
-    Settled:
-      type: string
-      description: The settled date of the payment request
-      example: 3 July 2022
-    Calculated:
-      type: string
-      description: The calculated date of the payment request
-      example: 16 June 2022
-    Value:
-      type: string
-      description: The value of the payment
-      example: '250.00'
+    Order:
+      type: number
+      format: integer
+      description: The order in which the schedule columns are displayed
+      example: 1
+    OrderAdjustment:
+      type: number
+      format: integer
+      description: The order in which the schedule columns are displayed
+      example: 2
     Period:
       type: string
       description: The period of the payment
       example: April to June 2022
+    PeriodAdjustment:
+      type: string
+      description: The period of the payment adjustment
+      example: Adjustment
+    Postcode:
+      type: string
+      description: The postcode
+      example: FA1 2PY
+    Reduction:
+      type: object
+      required:
+      - reason
+      - value
+      properties:
+        reason:
+          type: string
+          description: The reduction name
+          example: Over declaration reduction
+        value:
+          type: string
+          description: The reduction value
+          example: '75.00'
+    Reference:
+      type: string
+      description: Settlement reference of payment request
+      example: '10027651'
+    Region:
+      type: string
+      description: The fourth line of the address
+      example: Some Region
+    SBI:
+      type: number
+      description: Single Business Identifier
+      minimum: 105000000
+      maximum: 999999999
+      example: 123456789
     Scheme:
       additionalProperties: false
       type: object
@@ -361,4 +462,20 @@ components:
     SchemeAgreementNumber:
       type: string
       description: The agreement number
-      example: '00000002'
+      example: SFI1234567
+    Settled:
+      type: string
+      description: The settled date of the payment request
+      example: 3 July 2022
+    Street:
+      type: string
+      description: The first line of the address
+      example: 1 Some Street
+    Town:
+      type: string
+      description: The third line of the address
+      example: Some Town
+    Value:
+      type: string
+      description: The value of the payment
+      example: '250.00'

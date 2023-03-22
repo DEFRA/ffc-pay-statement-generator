@@ -31,7 +31,7 @@ module.exports = {
   },
   {
     order: 2,
-    dueDate: undefined,
+    dueDate: '',
     period: 'Adjustment',
     value: '125.00'
   },
@@ -39,18 +39,18 @@ module.exports = {
     order: 3,
     dueDate: '01/03/2023',
     period: 'December to February 2023',
-    value: '250.00'
+    value: '375.00'
   },
   {
     order: 4,
     dueDate: '01/06/2023',
     period: 'March to May 2023',
-    value: '250.00'
+    value: '375.00'
   },
   {
     order: 5,
     dueDate: '01/09/2023',
     period: 'June to August 2023',
-    value: '250.00'
+    value: '375.00'
   }]
 }
