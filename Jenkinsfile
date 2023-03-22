@@ -1,3 +1,3 @@
-@Library('defra-library@temp-remove-suppression') _
+@Library('defra-library@v-9') _
 
 buildNodeJs()

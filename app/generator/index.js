@@ -21,8 +21,6 @@ const generateDocument = async (request, type) => {
   const pdfDoc = printer.createPdfKitDocument(docDefinition)
   const filename = await publish(pdfDoc, request, moment(timestamp).format('YYYYMMDDHHmmssSS'), type)
 
-  console.log(`Helm value for schedulesArePublished is: ${config.schedulesArePublished}`)
-
   if (type.type === SCHEDULE.type) {
     if (config.schedulesArePublished) {
       await sendPublishMessage(request, filename, type.id)
