@@ -1,4 +1,5 @@
-const { getTable } = require('../../../../../../app/generator/content/schedule/part1/get-table')
+const { getTable } = require('../../../../../../app/generator/content/schedule/part3/get-table')
+const toCurrencyString = require('../../../../../../app/generator/to-currency-string')
 let mockSchedule
 
 describe('get table', () => {
@@ -73,42 +74,42 @@ describe('get table', () => {
 
   test('header is Payment period for first row', () => {
     const result = getTable(mockSchedule.schedule)
-    expect(result.table.body[0][0].text).toBe('Payment period')
+    expect(result.table.body[0][0].text).toBe('Payment type')
   })
 
   test('header is Payment amount for second row', () => {
     const result = getTable(mockSchedule.schedule)
-    expect(result.table.body[1][0].text).toBe('Payment amount')
+    expect(result.table.body[1][0].text).toBe('Amount')
   })
 
   test('header is Payment due for third row', () => {
     const result = getTable(mockSchedule.schedule)
-    expect(result.table.body[2][0].text).toBe('Payment due')
+    expect(result.table.body[2][0].text).toBe('Payment Period')
   })
 
   test('includes first instalment period as first column if first paid', () => {
     const result = getTable(mockSchedule.schedule)
-    expect(result.table.body[0][1].text).toBe(mockSchedule.schedule[0].period)
+    expect(result.table.body[0][1].text).toBe(mockSchedule.schedule[0].paymentType)
   })
 
   test('includes all payment period values from schedule as headers', () => {
     const result = getTable(mockSchedule.schedule)
     mockSchedule.schedule.forEach((instalment, i) => {
-      expect(result.table.body[0][i + 1].text).toBe(instalment.period)
+      expect(result.table.body[0][i + 1].text).toBe(instalment.paymentType)
     })
   })
 
   test('includes all values from schedule as values', () => {
     const result = getTable(mockSchedule.schedule)
     mockSchedule.schedule.forEach((instalment, i) => {
-      expect(result.table.body[1][i + 1].text).toBe(instalment.value)
+      expect(result.table.body[1][i + 1].text).toBe(toCurrencyString(instalment.value))
     })
   })
 
   test('includes all due dates from schedule', () => {
     const result = getTable(mockSchedule.schedule)
     mockSchedule.schedule.forEach((instalment, i) => {
-      expect(result.table.body[2][i + 1].text).toBe(instalment.dueDate)
+      expect(result.table.body[2][i + 1].text).toBe(instalment.period)
     })
   })
 })

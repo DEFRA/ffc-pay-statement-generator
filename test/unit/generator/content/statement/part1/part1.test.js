@@ -44,7 +44,7 @@ describe('generate part 1', () => {
 
   test('includes payment period value', () => {
     const result = part1(mockStatement)
-    expect(result.stack[1].table.body[0][0].stack[2].columns[1].text).toBe('July to September 2022')
+    expect(result.stack[1].table.body[0][0].stack[2].columns[1].text).toBe('Jul-Sep 2022')
   })
 
   test('includes calculation date title', () => {
@@ -54,7 +54,7 @@ describe('generate part 1', () => {
 
   test('includes calculation date value', () => {
     const result = part1(mockStatement)
-    expect(result.stack[1].table.body[0][0].stack[3].columns[1].text).toBe('16 June 2022')
+    expect(result.stack[1].table.body[0][0].stack[3].columns[1].text).toBe('16 Jun 2022')
   })
 
   test('includes reference title', () => {

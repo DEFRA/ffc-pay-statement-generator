@@ -302,7 +302,7 @@ components:
     Calculated:
       type: string
       description: The calculated date of the payment request
-      example: 16 June 2022
+      example: 16 Jun 2022
     County:
       type: string
       description: The fifth line of the address

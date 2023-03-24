@@ -170,7 +170,7 @@ describe('get address', () => {
       postcode: 'NE1 1AA'
     }
     const result = getAddress(businessName, address)
-    expect(result.absolutePosition.x).toBe(28.35)
+    expect(result.absolutePosition.x).toBe(0)
   })
 
   test('returns correct location y axis', () => {
@@ -178,6 +178,6 @@ describe('get address', () => {
       postcode: 'NE1 1AA'
     }
     const result = getAddress(businessName, address)
-    expect(result.absolutePosition.y).toBe(99.225)
+    expect(result.absolutePosition.y).toBe(70.875)
   })
 })

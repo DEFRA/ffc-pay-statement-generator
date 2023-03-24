@@ -6,7 +6,7 @@ const getAddress = (businessName, address) => {
   addressLines.filter(x => x !== undefined && x !== null && x !== '').forEach(x => {
     fullAddress += `${x}\n`
   })
-  return { text: fullAddress, style: 'address', absolutePosition: { x: millimetresToPoints(10), y: millimetresToPoints(35) } }
+  return { text: fullAddress, style: 'address', absolutePosition: { x: millimetresToPoints(0), y: millimetresToPoints(25) } }
 }
 
 module.exports = {

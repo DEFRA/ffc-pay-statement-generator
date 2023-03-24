@@ -1,12 +1,21 @@
-const { getAdjustment } = require('./get-adjustment')
-const { getTable } = require('./get-table')
+const path = require('path')
+const { millimetresToPoints } = require('../../../conversion')
+const { getAddress } = require('../../get-address')
+const getAgreementReference = require('./get-agreement-reference')
+const getBusinessName = require('./get-business-name')
+const getSBI = require('./get-sbi')
+const imagePath = path.join(__dirname, '../../..', 'images')
 
 const part1 = (schedule) => {
   return {
     stack: [
-      { text: 'Payment schedule', style: 'header2' },
-      getAdjustment(schedule.adjustment),
-      getTable(schedule.schedule)
+      { image: `${imagePath}/rpa-logo.jfif`, fit: [millimetresToPoints(200), millimetresToPoints(25)], style: 'logo' },
+      getAddress(schedule.businessName, schedule.address),
+      { text: `${schedule.scheme.name}`, style: 'header1' },
+      { text: 'Revised payment schedule', style: 'subTitle' },
+      getBusinessName(schedule.businessName),
+      getSBI(schedule.sbi),
+      getAgreementReference(schedule.scheme.agreementNumber)
     ],
     unbreakable: true
   }

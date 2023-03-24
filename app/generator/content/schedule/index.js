@@ -1,10 +1,12 @@
 const part1 = require('./part1')
-const summary = require('./summary')
+const part2 = require('./part2')
+const part3 = require('./part3')
 
 const createContent = (schedule) => {
   return [
-    summary(schedule),
-    part1(schedule)
+    part1(schedule),
+    part2(schedule),
+    part3(schedule)
   ]
 }
 
