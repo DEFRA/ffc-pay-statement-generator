@@ -14,7 +14,7 @@ describe('schedule Part 1', () => {
 
   test('includes address', () => {
     const result = part1(mockSchedule)
-    expect(result.stack[1].text).toMatch('Mr A Farmer\nA Farm\nNear a field\nNewcastle Upon Tyne\nTyne & Wear\nNE1 1AA')
+    expect(result.stack[1].text).toMatch('Mr A Farmer\nA Farm\nA Place\nA Location\nA Town\nA County\nNE1 1AA\n')
   })
 
   test('includes header with both scheme name and year for SFI', () => {

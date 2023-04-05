@@ -1,61 +1,37 @@
-module.exports = {
-  businessName: 'Mr A Farmer',
+const address = require('../mocks/components/address')
+const businessName = require('../mocks/components/business-name')
+
+const { topUpAdjustment, reductionAdjustment } = require('../mocks/objects/adjustment')
+
+const topUpScheduleTimeline = require('../mocks/objects/schedule')
+
+const baseSchedule = {
+  businessName,
   sbi: 123456789,
   frn: 1234567890,
   email: 'farmer@farms.com',
-  address: {
-    line1: 'A Farm',
-    line2: '',
-    line3: 'Near a field',
-    line4: 'Newcastle Upon Tyne',
-    line5: 'Tyne & Wear',
-    postcode: 'NE1 1AA'
-  },
+  address,
   scheme: {
     name: 'Sustainable Farming Incentive',
     shortName: 'SFI',
     year: '2022',
     frequency: 'Quarterly',
     agreementNumber: 'SFI1234567'
-  },
-  adjustment: {
-    currentValue: '1000.00',
-    newValue: '1500.00',
-    adjustmentValue: '500.00'
-  },
-  schedule: [{
-    order: 1,
-    dueDate: '01/12/2022',
-    period: 'Sep-Nov 2022',
-    value: '250.00',
-    paymentType: 'Quarterly Payment'
-  },
-  {
-    order: 2,
-    dueDate: '',
-    period: 'Adjustment',
-    value: '125.00',
-    paymentType: 'Immediate Payment'
-  },
-  {
-    order: 3,
-    dueDate: '01/03/2023',
-    period: 'Dec-Feb 2023',
-    value: '375.00',
-    paymentType: 'Quarterly Payment'
-  },
-  {
-    order: 4,
-    dueDate: '01/06/2023',
-    period: 'Mar-May 2023',
-    value: '375.00',
-    paymentType: 'Quarterly Payment'
-  },
-  {
-    order: 5,
-    dueDate: '01/09/2023',
-    period: 'Jun-Aug 2023',
-    value: '375.00',
-    paymentType: 'Quarterly Payment'
-  }]
+  }
+}
+
+const topUpSchedule = {
+  ...baseSchedule,
+  schedule: topUpScheduleTimeline,
+  adjustment: topUpAdjustment
+}
+
+const reductionSchedule = {
+  ...baseSchedule,
+  adjustment: reductionAdjustment
+}
+
+module.exports = {
+  topUpSchedule,
+  reductionSchedule
 }
