@@ -1,9 +1,10 @@
 const schema = require('../../../../app/messaging/schemas/adjustment')
+
 let mockAdjustment
 
 describe('adjustment schema', () => {
   beforeEach(() => {
-    mockAdjustment = JSON.parse(JSON.stringify(require('../../../mocks/mock-schedule').adjustment))
+    mockAdjustment = JSON.parse(JSON.stringify(require('../../../mocks/objects/adjustment').topUpAdjustment))
   })
 
   test('validates success if all present', () => {

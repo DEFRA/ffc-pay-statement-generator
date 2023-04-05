@@ -4,7 +4,7 @@ const { SCHEDULE, STATEMENT } = require('../../../app/constants/document-types')
 
 const { DATE: SYSTEM_TIME, TIMESTAMP: TIMESTAMP_SYSTEM_TIME } = require('../../mocks/components/system-time')
 
-const MOCK_SCHEDULE = require('../../mocks/mock-schedule')
+const { topUpSchedule: MOCK_SCHEDULE } = require('../../mocks/mock-schedule')
 const MOCK_STATEMENT = require('../../mocks/mock-statement')
 
 const {

@@ -1,10 +1,11 @@
 const { getTable } = require('../../../../../../app/generator/content/schedule/part3/get-table')
 const toCurrencyString = require('../../../../../../app/generator/to-currency-string')
+
 let mockSchedule
 
 describe('get table', () => {
   beforeEach(() => {
-    mockSchedule = JSON.parse(JSON.stringify(require('../../../../../mocks/mock-schedule')))
+    mockSchedule = JSON.parse(JSON.stringify(require('../../../../../mocks/mock-schedule').topUpSchedule))
   })
 
   test('includes table with three rows', () => {
@@ -72,17 +73,17 @@ describe('get table', () => {
     })
   })
 
-  test('header is Payment period for first row', () => {
+  test('header is Payment type for first row', () => {
     const result = getTable(mockSchedule.schedule)
     expect(result.table.body[0][0].text).toBe('Payment type')
   })
 
-  test('header is Payment amount for second row', () => {
+  test('header is Amount for second row', () => {
     const result = getTable(mockSchedule.schedule)
     expect(result.table.body[1][0].text).toBe('Amount')
   })
 
-  test('header is Payment due for third row', () => {
+  test('header is Payment Period for third row', () => {
     const result = getTable(mockSchedule.schedule)
     expect(result.table.body[2][0].text).toBe('Payment Period')
   })

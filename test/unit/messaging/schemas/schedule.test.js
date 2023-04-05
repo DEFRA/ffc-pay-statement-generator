@@ -1,10 +1,12 @@
 const schema = require('../../../../app/messaging/schemas/schedule')
+
 let mockSchedule
 
 describe('schedule schema', () => {
   beforeEach(() => {
-    mockSchedule = JSON.parse(JSON.stringify(require('../../../mocks/mock-schedule')))
+    mockSchedule = JSON.parse(JSON.stringify(require('../../../mocks/mock-schedule').topUpSchedule))
   })
+
   test('validates success if all present', () => {
     const result = schema.validate(mockSchedule)
     expect(result.error).toBeUndefined()

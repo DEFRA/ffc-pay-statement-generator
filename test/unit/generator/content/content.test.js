@@ -1,7 +1,7 @@
 const { STATEMENT, SCHEDULE } = require('../../../../app/constants/document-types')
 const { generateContent } = require('../../../../app/generator/content')
 const mockStatement = require('../../../mocks/mock-statement')
-const mockSchedule = require('../../../mocks/mock-schedule')
+const { topUpSchedule } = require('../../../mocks/mock-schedule')
 
 describe('generator content', () => {
   test('should throw error if unknown document type', () => {
@@ -14,7 +14,7 @@ describe('generator content', () => {
   })
 
   test('should return schedule content if schedule', () => {
-    const result = generateContent(mockSchedule, SCHEDULE)
+    const result = generateContent(topUpSchedule, SCHEDULE)
     expect(result[0].stack[3].text).toBe('Revised payment schedule')
   })
 })
