@@ -9,7 +9,7 @@ module.exports = {
   header1: {
     fontSize: 24,
     bold: true,
-    margin: [0, 5, 0, 10]
+    margin: [0, 10, 0, 10]
   },
   header2: {
     fontSize: 16,
@@ -42,11 +42,14 @@ module.exports = {
     alignment: 'right'
   },
   logo: {
-    margin: [400, 0, 0, millimetresToPoints(50)]
+    margin: [0, 0, 0, millimetresToPoints(50)]
   },
   address: {
     fontSize: 9.5,
     lineHeight: 1
+  },
+  scheduleLogo: {
+    margin: [400, 0, 0, millimetresToPoints(50)]
   },
   style: {
     margin: [0, 0, 0, 5]

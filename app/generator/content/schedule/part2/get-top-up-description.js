@@ -1,4 +1,4 @@
-const toCurrencyString = require('../../../../generator/to-currency-string')
+const getTopUpSummary = require('./get-top-up-summary')
 
 const getTopUpDescription = (schedule) => {
   return {
@@ -9,9 +9,7 @@ const getTopUpDescription = (schedule) => {
       { ul: ['an immediate payment - this is a one-off amount which will be a top-up to any quarterly payments you\'ve already received for this scheme yea', 'an increase to quarterly payments you\'ve not yet received'], listStyle: 'square' },
       { text: 'Payment schedule', style: 'header2' },
       'The table below explains when, and how much you\'ll be paid.\n',
-      `\nCurrent agreement value: ${toCurrencyString(schedule.adjustment.currentValue)}\n`,
-      `New agreement value: ${toCurrencyString(schedule.adjustment.newValue)}\n`,
-      `Reduction amount: ${toCurrencyString(schedule.adjustment.adjustmentValue)}`
+      getTopUpSummary(schedule.adjustment)
     ],
     unbreakable: true
   }

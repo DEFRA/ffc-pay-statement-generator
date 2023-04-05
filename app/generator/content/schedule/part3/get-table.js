@@ -7,6 +7,7 @@ const getTable = (schedule) => {
       vLineStyle: () => 'solid'
     },
     style: 'table',
+    fillColor: '#d9d9d9',
     table: {
       headerRows: 1,
       widths: ['*', ...schedule.map(x => ('*'))],

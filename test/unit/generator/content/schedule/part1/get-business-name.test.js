@@ -1,4 +1,4 @@
-const getBusinessName = require('../../../../../../app/generator/content/statement/summary/get-business-name')
+const getBusinessName = require('../../../../../../app/generator/content/schedule/part1/get-business-name')
 const businessName = 'Mr A Farmer'
 
 describe('get business name', () => {
