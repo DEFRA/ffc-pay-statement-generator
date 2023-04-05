@@ -1,7 +1,8 @@
 const getAgreementReference = require('../../../../../../app/generator/content/schedule/part1/get-agreement-reference')
-const agreementReference = '0072315489'
 
-describe('get business name', () => {
+const agreementReference = require('../../../../../mocks/components/agreement-reference')
+
+describe('get agreement reference', () => {
   test('returns two columns', () => {
     const result = getAgreementReference(agreementReference)
     expect(result.columns.length).toBe(2)
