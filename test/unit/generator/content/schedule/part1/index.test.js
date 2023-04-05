@@ -1,7 +1,7 @@
 const part1 = require('../../../../../../app/generator/content/schedule/part1')
 const mockSchedule = require('../../../../../mocks/mock-schedule')
 
-describe('generate summary', () => {
+describe('schedule Part 1', () => {
   test('includes RPA logo', () => {
     const result = part1(mockSchedule)
     expect(result.stack[0].image.endsWith('rpa-logo.jfif')).toBeTruthy()
