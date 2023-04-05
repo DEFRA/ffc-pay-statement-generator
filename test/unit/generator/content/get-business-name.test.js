@@ -1,5 +1,6 @@
-const getBusinessName = require('../../../../../../app/generator/content/schedule/part1/get-business-name')
-const businessName = 'Mr A Farmer'
+const getBusinessName = require('../../../../app/generator/content/get-business-name')
+
+const businessName = require('../../../mocks/components/business-name')
 
 describe('get business name', () => {
   test('returns two columns', () => {
@@ -19,7 +20,7 @@ describe('get business name', () => {
 
   test('returns business name column text', () => {
     const result = getBusinessName(businessName)
-    expect(result.columns[1].text).toBe('Mr A Farmer')
+    expect(result.columns[1].text).toBe(businessName)
   })
 
   test('returns business name column width', () => {
