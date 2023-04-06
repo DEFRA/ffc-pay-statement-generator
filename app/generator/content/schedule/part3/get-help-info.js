@@ -3,6 +3,7 @@ const getHelpInfo = () => {
     stack: [
       { text: 'Get help with your payment', style: 'header2' },
       'If you think your payments are wrong, you can:\n\n',
+      { text: 'google', link: 'http://google.com' },
       {
         ul: ['[log into the Rural Payments service](www.gov.uk/claim-rural-payments) to check your SFI standard agreement',
           'check statements and letters you\'ve received from us',

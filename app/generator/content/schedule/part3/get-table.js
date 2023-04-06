@@ -21,7 +21,7 @@ const getTable = (schedule) => {
           ...schedule.map(x => ({ text: toCurrencyString(x.value), style: 'tableNumber' }))
         ],
         [
-          { text: 'Payment Period', style: 'tableHeader' },
+          { text: 'Payment period', style: 'tableHeader' },
           ...schedule.map(x => ({ text: x.period, style: 'tableNumber' }))
         ]
       ]

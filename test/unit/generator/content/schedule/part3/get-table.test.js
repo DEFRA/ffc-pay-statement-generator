@@ -83,9 +83,9 @@ describe('get table', () => {
     expect(result.table.body[1][0].text).toBe('Amount')
   })
 
-  test('header is Payment Period for third row', () => {
+  test('header is Payment period for third row', () => {
     const result = getTable(mockSchedule.schedule)
-    expect(result.table.body[2][0].text).toBe('Payment Period')
+    expect(result.table.body[2][0].text).toBe('Payment period')
   })
 
   test('includes first instalment period as first column if first paid', () => {
