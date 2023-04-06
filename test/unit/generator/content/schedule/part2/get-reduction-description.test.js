@@ -58,14 +58,14 @@ describe('Get reduction description', () => {
     expect(result.stack[4]).toStrictEqual({ text: 'Payment schedule', style: 'header2' })
   })
 
-  test('should return "The table below explains when, and how much youll be paid.\n" for key stack 6 entry', () => {
+  test('should return "The table below explains when, and how much youll be paid.\n\n" for key stack 6 entry', () => {
     const result = getReductionDescription(reductionSchedule)
-    expect(result.stack[5]).toBe('The table below explains when, and how much you\'ll be paid.\n')
+    expect(result.stack[5]).toBe('The table below explains when, and how much you\'ll be paid.\n\n')
   })
 
-  test('should return "\nCurrent agreement value: £1,000.00\n" for key stack 7 entry', () => {
+  test('should return "Current agreement value: £1,000.00\n" for key stack 7 entry', () => {
     const result = getReductionDescription(reductionSchedule)
-    expect(result.stack[6]).toBe('\nCurrent agreement value: £1,000.00\n')
+    expect(result.stack[6]).toBe('Current agreement value: £1,000.00\n')
   })
 
   test('should return "New agreement value: £700.00\n" for key stack 8 entry', () => {
@@ -73,8 +73,8 @@ describe('Get reduction description', () => {
     expect(result.stack[7]).toBe('New agreement value: £700.00\n')
   })
 
-  test('should return "Reduction amount: -£300.00" for key stack 9 entry', () => {
+  test('should return "Reduction: £300.00" for key stack 9 entry', () => {
     const result = getReductionDescription(reductionSchedule)
-    expect(result.stack[8]).toBe('Reduction amount: £-300.00')
+    expect(result.stack[8]).toBe('Reduction: £300.00')
   })
 })
