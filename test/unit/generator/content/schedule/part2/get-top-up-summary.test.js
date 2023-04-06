@@ -9,7 +9,7 @@ const mockAdjustment = {
 describe('Get top up summary', () => {
   test('include current agreement line', () => {
     const result = getTopUpSummary(mockAdjustment)
-    expect(result.table.body[0][0].stack[0]).toEqual('\nCurrent agreement value: £1,000.00\n')
+    expect(result.table.body[0][0].stack[0]).toEqual('Current agreement value: £1,000.00\n')
   })
 
   test('includes new agreement line', () => {
@@ -19,6 +19,6 @@ describe('Get top up summary', () => {
 
   test('includes Top up amount line', () => {
     const result = getTopUpSummary(mockAdjustment)
-    expect(result.table.body[0][0].stack[2]).toEqual('Top up amount: £200.00')
+    expect(result.table.body[0][0].stack[2]).toEqual('Top up amount: £200.00\n')
   })
 })

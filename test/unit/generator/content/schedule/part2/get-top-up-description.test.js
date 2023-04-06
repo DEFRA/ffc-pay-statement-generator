@@ -60,7 +60,7 @@ describe('Get top-up description', () => {
 
   test('should return "The table below explains when, and how much youll be paid.\n" for key stack 6 entry', () => {
     const result = getTopUpDescription(topUpSchedule)
-    expect(result.stack[5]).toBe('The table below explains when, and how much you\'ll be paid.\n')
+    expect(result.stack[5]).toBe('The table below explains when, and how much you\'ll be paid.\n\n')
   })
 
   test('should return object for key stack 7 entry', () => {
