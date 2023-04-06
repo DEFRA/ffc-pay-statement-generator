@@ -1,4 +1,4 @@
-asyncapi: 2.4.0
+asyncapi: 2.6.0
 info:
   title: FFC Payment Statement Generator
   version: 1.0.2
@@ -46,15 +46,18 @@ components:
                 maximum: 9999999999
                 example: 1234567890
               apiLink:
-                description: api link for calling file stream of statement file that has been published unto blob
-                example: 'https://myStatementRetreivalApiEndpoint/statement-receiver/statement/v1/FFC_PaymentStatement_SFI_2022_1234567890_2022090615023001.pdf'  
+                description: >-
+                  api link for calling file stream of statement file that has
+                  been published unto blob
+                example: >-
+                  https://myStatementRetreivalApiEndpoint/statement-receiver/statement/v1/FFC_PaymentStatement_SFI_2022_1234567890_2022090615023001.pdf
               documentType:
                 type: string
                 enum:
                   - Payment statement
                   - Payment schedule
                 description: document type
-                example: 
+                example:
                   items:
                     - Payment statement
                     - Payment schedule
@@ -69,14 +72,14 @@ components:
       additionalProperties: false
       type: object
       required:
-      - businessName
-      - frn
-      - sbi
-      - email
-      - address
-      - funding
-      - payments
-      - scheme
+        - businessName
+        - frn
+        - sbi
+        - email
+        - address
+        - funding
+        - payments
+        - scheme
       properties:
         businessName:
           $ref: '#/components/schemas/BusinessName'
@@ -84,7 +87,7 @@ components:
           $ref: '#/components/schemas/FRN'
         sbi:
           $ref: '#/components/schemas/SBI'
-        email: 
+        email:
           $ref: '#/components/schemas/Email'
         address:
           $ref: '#/components/schemas/Address'
@@ -101,13 +104,13 @@ components:
       additionalProperties: false
       type: object
       required:
-      - businessName
-      - frn
-      - sbi
-      - address
-      - funding
-      - payments
-      - scheme
+        - businessName
+        - frn
+        - sbi
+        - address
+        - funding
+        - payments
+        - scheme
       properties:
         businessName:
           $ref: '#/components/schemas/BusinessName'
@@ -130,6 +133,13 @@ components:
             $ref: '#/components/schemas/Payment'
         scheme:
           $ref: '#/components/schemas/Scheme'
+    PaymentType:
+      type: string
+      description: The payment description 
+      enum:
+        - Immediate payment
+        - Quarterly payment
+      example: Quarterly payment
     Address:
       additionalProperties: false
       required:
@@ -153,7 +163,7 @@ components:
     Adjustment:
       type: object
       description: Overview of the total adjustment
-      required: 
+      required:
         - currentValue
         - newValue
         - adjustmentValue
@@ -168,11 +178,11 @@ components:
       additionalProperties: false
       type: object
       required:
-      - name
-      - annualValue
-      - quarterlyValue
-      - quarterlyReduction
-      - quarterlyPayment
+        - name
+        - annualValue
+        - quarterlyValue
+        - quarterlyReduction
+        - quarterlyPayment
       properties:
         name:
           $ref: '#/components/schemas/FundingName'
@@ -198,11 +208,11 @@ components:
       additionalProperties: false
       type: object
       required:
-      - name
-      - annualValue
-      - quarterlyValue
-      - quarterlyReduction
-      - quarterlyPayment
+        - name
+        - annualValue
+        - quarterlyValue
+        - quarterlyReduction
+        - quarterlyPayment
       properties:
         name:
           $ref: '#/components/schemas/FundingTotalName'
@@ -223,13 +233,13 @@ components:
     Payment:
       type: object
       required:
-      - invoiceNumber
-      - reference
-      - dueDate
-      - settled
-      - calculated
-      - value
-      - period
+        - invoiceNumber
+        - reference
+        - dueDate
+        - settled
+        - calculated
+        - value
+        - period
       properties:
         invoiceNumber:
           $ref: '#/components/schemas/InvoiceNumber'
@@ -249,36 +259,42 @@ components:
       additionalProperties: false
       type: object
       required:
-      - order
-      - dueDate
-      - period
-      - value
+        - order
+        - dueDate
+        - paymenType
+        - period
+        - value
       properties:
         order:
           $ref: '#/components/schemas/Order'
         dueDate:
           $ref: '#/components/schemas/DueDate'
+        paymentType:
+          $ref: '#/components/schemas/PaymentType'
         period:
           $ref: '#/components/schemas/Period'
         value:
-          $ref: '#/components/schemas/Value'    
+          $ref: '#/components/schemas/Value'
     ScheduleAdjustment:
       additionalProperties: false
       type: object
       required:
-      - order
-      - dueDate
-      - period
-      - value
+        - order
+        - dueDate
+        - paymenType
+        - period
+        - value
       properties:
         order:
           $ref: '#/components/schemas/OrderAdjustment'
         dueDate:
           $ref: '#/components/schemas/DueDateAdjustment'
+        paymentType:
+          $ref: '#/components/schemas/PaymentType'
         period:
           $ref: '#/components/schemas/PeriodAdjustment'
         value:
-          $ref: '#/components/schemas/Value'  
+          $ref: '#/components/schemas/Value'
     AdjustmentCurrentValue:
       type: string
       description: Current settled payment value
@@ -312,7 +328,7 @@ components:
       description: The due date of the payment request
       example: 1 August 2022
     DueDateAdjustment:
-      type: string      
+      type: string
       description: The due date of the adjustment payment
       example: ''
     Email:
@@ -398,8 +414,8 @@ components:
     Reduction:
       type: object
       required:
-      - reason
-      - value
+        - reason
+        - value
       properties:
         reason:
           type: string
@@ -427,11 +443,11 @@ components:
       additionalProperties: false
       type: object
       required:
-      - name
-      - shortName
-      - year
-      - frequency
-      - agreementNumber
+        - name
+        - shortName
+        - year
+        - frequency
+        - agreementNumber
       properties:
         name:
           $ref: '#/components/schemas/SchemeName'
