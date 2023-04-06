@@ -133,13 +133,6 @@ components:
             $ref: '#/components/schemas/Payment'
         scheme:
           $ref: '#/components/schemas/Scheme'
-    PaymentType:
-      type: string
-      description: The payment description 
-      enum:
-        - Immediate payment
-        - Quarterly payment
-      example: Quarterly payment
     Address:
       additionalProperties: false
       required:
@@ -290,7 +283,7 @@ components:
         dueDate:
           $ref: '#/components/schemas/DueDateAdjustment'
         paymentType:
-          $ref: '#/components/schemas/PaymentType'
+          $ref: '#/components/schemas/PaymentTypeAdjustment'
         period:
           $ref: '#/components/schemas/PeriodAdjustment'
         value:
@@ -399,6 +392,20 @@ components:
       format: integer
       description: The order in which the schedule columns are displayed
       example: 2
+    PaymentType:
+      type: string
+      description: The payment description 
+      enum:
+        - Immediate payment
+        - Quarterly payment
+      example: Quarterly payment
+    PaymentTypeAdjustment:
+      type: string
+      description: The payment description 
+      enum:
+        - Immediate payment
+        - Quarterly payment
+      example: Immediate payment
     Period:
       type: string
       description: The period of the payment
@@ -406,7 +413,7 @@ components:
     PeriodAdjustment:
       type: string
       description: The period of the payment adjustment
-      example: Adjustment
+      example: ''
     Postcode:
       type: string
       description: The postcode
