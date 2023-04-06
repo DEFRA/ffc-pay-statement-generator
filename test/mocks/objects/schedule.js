@@ -11,7 +11,7 @@ module.exports = [{
   order: 2,
   dueDate: '',
   paymentType: IMMEDIATE,
-  period: 'Adjustment',
+  period: '',
   value: '75.00'
 },
 {
