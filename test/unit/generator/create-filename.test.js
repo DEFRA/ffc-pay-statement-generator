@@ -1,10 +1,13 @@
 const moment = require('moment')
 const getFilename = require('../../../app/generator/create-filename')
+
 const { STATEMENT, SCHEDULE } = require('../../../app/constants/document-types')
+
 const STATEMENT_PREFIX = 'FFC_PaymentStatement_'
 const SCHEDULE_PREFIX = 'FFC_PaymentSchedule_'
 const DOCUMENT_PREFIX = 'FFC_PaymentDocument_'
 const EXTENSION = '.pdf'
+
 let mockStatement
 let mockSchedule
 let timestamp
@@ -12,7 +15,7 @@ let timestamp
 describe('create filename', () => {
   beforeEach(() => {
     mockStatement = require('../../mocks/mock-statement')
-    mockSchedule = require('../../mocks/mock-schedule')
+    mockSchedule = require('../../mocks/mock-schedule').topUpSchedule
     jest.useFakeTimers().setSystemTime(new Date(2022, 7, 5, 15, 30, 10, 120))
     timestamp = moment(new Date()).format('YYYYMMDDHHmmssSS')
   })

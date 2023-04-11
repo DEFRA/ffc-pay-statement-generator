@@ -5,7 +5,7 @@ let latestPeriod
 describe('get table', () => {
   beforeEach(() => {
     mockStatement = JSON.parse(JSON.stringify(require('../../../../../mocks/mock-statement')))
-    latestPeriod = 'July to September 2022'
+    latestPeriod = 'Jul-Sep 2022'
   })
 
   test('includes table with a single row', () => {
@@ -46,7 +46,7 @@ describe('get table', () => {
 
   test('includes payment period value', () => {
     const result = getTable(mockStatement.scheme, mockStatement.payments[0], latestPeriod)
-    expect(result.table.body[0][0].stack[2].columns[1].text).toBe('July to September 2022')
+    expect(result.table.body[0][0].stack[2].columns[1].text).toBe('Jul-Sep 2022')
   })
 
   test('includes calculation date title', () => {
@@ -56,7 +56,7 @@ describe('get table', () => {
 
   test('includes calculation date value', () => {
     const result = getTable(mockStatement.scheme, mockStatement.payments[0], latestPeriod)
-    expect(result.table.body[0][0].stack[3].columns[1].text).toBe('16 June 2022')
+    expect(result.table.body[0][0].stack[3].columns[1].text).toBe('16 Jun 2022')
   })
 
   test('includes reference title', () => {

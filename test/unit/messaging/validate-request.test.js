@@ -1,7 +1,7 @@
 const { validateRequest } = require('../../../app/messaging/validate-request')
 const { STATEMENT, SCHEDULE } = require('../../../app/constants/document-types')
 const mockStatement = require('../../mocks/mock-statement')
-const mockSchedule = require('../../mocks/mock-schedule')
+const { topUpSchedule } = require('../../mocks/mock-schedule')
 
 describe('validate message body can be processed as statement', () => {
   test('does not throw on valid statement', async () => {
@@ -51,7 +51,7 @@ describe('validate message body can be processed as statement', () => {
 
 describe('validate message body can be processed as schedule', () => {
   test('does not throw on valid schedule', async () => {
-    expect(() => validateRequest(mockSchedule, SCHEDULE)).not.toThrow()
+    expect(() => validateRequest(topUpSchedule, SCHEDULE)).not.toThrow()
   })
 
   test('throws on undefined schedule', async () => {

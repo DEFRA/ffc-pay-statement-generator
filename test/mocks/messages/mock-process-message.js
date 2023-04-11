@@ -1,6 +1,6 @@
 const { SCHEDULE } = require('../../../app/constants/document-types')
 
-const MOCK_SCHEDULE = require('../mock-schedule')
+const { topUpSchedule: MOCK_SCHEDULE } = require('../mock-schedule')
 
 const BASE_SERVICE_BUS_MESSAGE = {
   _rawAmqpMessage: {}, // incomplete

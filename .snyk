@@ -6,4 +6,9 @@ ignore:
     - pdfmake:
         reason: None given
         expires: '2023-01-11T12:16:21.571Z'
+  SNYK-JS-WORDWRAP-3149973:
+    - pdfmake:
+        reason: None given
+        expires: '2023-04-11T12:16:21.571Z'
+
 patch: {}

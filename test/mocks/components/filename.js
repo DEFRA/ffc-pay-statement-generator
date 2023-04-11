@@ -2,7 +2,7 @@ const moment = require('moment')
 
 const SYSTEM_TIME = require('./system-time')
 
-const MOCK_SCHEDULE = require('../mock-schedule')
+const { topUpSchedule: MOCK_SCHEDULE } = require('../mock-schedule')
 const MOCK_STATEMENT = require('../mock-statement')
 
 module.exports = {

@@ -23,9 +23,9 @@ module.exports = {
     reference: 'PY1234567',
     dueDate: '1 July 2022',
     settled: '1 July 2022',
-    calculated: '16 June 2022',
+    calculated: '16 Jun 2022',
     value: '242.15',
-    period: 'July to September 2022'
+    period: 'Jul-Sep 2022'
   }],
   funding: [{
     name: 'Arable and horticultural soils',

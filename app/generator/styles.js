@@ -48,6 +48,9 @@ module.exports = {
     fontSize: 9.5,
     lineHeight: 1
   },
+  scheduleLogo: {
+    margin: [400, 0, 0, millimetresToPoints(50)]
+  },
   style: {
     margin: [0, 0, 0, 5]
   }

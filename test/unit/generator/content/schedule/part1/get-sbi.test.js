@@ -1,4 +1,4 @@
-const getSBI = require('../../../../../../app/generator/content/statement/summary/get-sbi')
+const getSBI = require('../../../../../../app/generator/content/schedule/part1/get-sbi')
 const sbi = 123456789
 
 describe('get SBI', () => {
@@ -9,7 +9,7 @@ describe('get SBI', () => {
 
   test('returns title column text', () => {
     const result = getSBI(sbi)
-    expect(result.columns[0].text).toBe('Single Business Identifier (SBI):')
+    expect(result.columns[0].text).toBe('Single business identifier (SBI):')
   })
 
   test('returns title column width', () => {
