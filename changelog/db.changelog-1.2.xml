@@ -15,18 +15,10 @@
       <column name="addressLine5" type="VARCHAR(127)" />
       <column name="postcode" type="VARCHAR(8)" />
       <column name="email" type="VARCHAR(127)" />
-      <column name="schemeName" type="VARCHAR(175)">
-        <constraints nullable="false" />
-      </column>
-      <column name="schemeShortName" type="VARCHAR(50)">
-        <constraints nullable="false" />
-      </column>
-      <column name="schemeYear" type="VARCHAR(4)">
-        <constraints nullable="false" />
-      </column>
-      <column name="schemeFrequency" type="VARCHAR(50)">
-        <constraints nullable="false" />
-      </column>
+      <column name="schemeName" type="VARCHAR(175)" />
+      <column name="schemeShortName" type="VARCHAR(50)" />
+      <column name="schemeYear" type="VARCHAR(4)" />
+      <column name="schemeFrequency" type="VARCHAR(50)" />
     </addColumn>
   </changeSet>
 </databaseChangeLog>
