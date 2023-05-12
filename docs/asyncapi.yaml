@@ -323,9 +323,10 @@ components:
       description: The fifth line of the address
       example: Some County
     DocumentReference:
-      type: string
-      description: Unique hashed identifier of the document 
-      example: tobereviewed
+      type: number
+      description: Unique identifier of the document
+      minimum: 1
+      example: 1
     DueDate:
       type: string
       description: The due date of the payment request

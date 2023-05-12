@@ -1,1 +1,1 @@
-module.exports = 'tobereviewed'
+module.exports = 1
