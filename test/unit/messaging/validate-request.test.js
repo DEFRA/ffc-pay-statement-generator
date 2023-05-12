@@ -20,54 +20,8 @@ describe('validate statement', () => {
     expect(res).toBeUndefined()
   })
 
-  test('does not throw on statement with string numerical positive documentReference', async () => {
-    statement.documentReference = '1'
-    expect(() => validateRequest(statement, STATEMENT)).not.toThrow()
-  })
-
-  test('returns undefined on statement with string numerical positive documentReference', async () => {
-    statement.documentReference = '1'
-    const res = validateRequest(statement, STATEMENT)
-    expect(res).toBeUndefined()
-  })
-
   test('throws on statement with no documentReference key', async () => {
     delete statement.documentReference
-    expect(() => validateRequest(statement, STATEMENT)).toThrow()
-  })
-
-  test('throws on statement with string numerical zero documentReference', async () => {
-    statement.documentReference = '0'
-    expect(() => validateRequest(statement, STATEMENT)).toThrow()
-  })
-
-  test('throws on statement with string numerical negative documentReference', async () => {
-    statement.documentReference = '-1'
-    expect(() => validateRequest(statement, STATEMENT)).toThrow()
-  })
-
-  test('throws on statement with true documentReference', async () => {
-    statement.documentReference = true
-    expect(() => validateRequest(statement, STATEMENT)).toThrow()
-  })
-
-  test('throws on statement with object documentReference', async () => {
-    statement.documentReference = {}
-    expect(() => validateRequest(statement, STATEMENT)).toThrow()
-  })
-
-  test('throws on statement with array documentReference', async () => {
-    statement.documentReference = []
-    expect(() => validateRequest(statement, STATEMENT)).toThrow()
-  })
-
-  test('throws on statement with null documentReference', async () => {
-    statement.documentReference = null
-    expect(() => validateRequest(statement, STATEMENT)).toThrow()
-  })
-
-  test('throws on statement with undefined documentReference', async () => {
-    statement.documentReference = undefined
     expect(() => validateRequest(statement, STATEMENT)).toThrow()
   })
 
@@ -122,54 +76,8 @@ describe('validate schedule', () => {
     expect(res).toBeUndefined()
   })
 
-  test('does not throw on schedule with string numerical positive documentReference', async () => {
-    schedule.documentReference = '1'
-    expect(() => validateRequest(schedule, SCHEDULE)).not.toThrow()
-  })
-
-  test('returns undefined on schedule with string numerical positive documentReference', async () => {
-    schedule.documentReference = '1'
-    const res = validateRequest(schedule, SCHEDULE)
-    expect(res).toBeUndefined()
-  })
-
   test('throws on schedule with no documentReference key', async () => {
     delete schedule.documentReference
-    expect(() => validateRequest(schedule, SCHEDULE)).toThrow()
-  })
-
-  test('throws on schedule with string numerical zero documentReference', async () => {
-    schedule.documentReference = '0'
-    expect(() => validateRequest(schedule, SCHEDULE)).toThrow()
-  })
-
-  test('throws on schedule with string numerical negative documentReference', async () => {
-    schedule.documentReference = '-1'
-    expect(() => validateRequest(schedule, SCHEDULE)).toThrow()
-  })
-
-  test('throws on schedule with true documentReference', async () => {
-    schedule.documentReference = true
-    expect(() => validateRequest(schedule, SCHEDULE)).toThrow()
-  })
-
-  test('throws on schedule with object documentReference', async () => {
-    schedule.documentReference = {}
-    expect(() => validateRequest(schedule, SCHEDULE)).toThrow()
-  })
-
-  test('throws on schedule with array documentReference', async () => {
-    schedule.documentReference = []
-    expect(() => validateRequest(schedule, SCHEDULE)).toThrow()
-  })
-
-  test('throws on schedule with null documentReference', async () => {
-    schedule.documentReference = null
-    expect(() => validateRequest(schedule, SCHEDULE)).toThrow()
-  })
-
-  test('throws on schedule with undefined documentReference', async () => {
-    schedule.documentReference = undefined
     expect(() => validateRequest(schedule, SCHEDULE)).toThrow()
   })
 

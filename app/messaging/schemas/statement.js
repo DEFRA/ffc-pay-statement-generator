@@ -17,7 +17,7 @@ module.exports = Joi.object({
   email,
   address,
   scheme,
+  documentReference,
   payments: Joi.array().items(payment).required().min(1),
-  funding: Joi.array().items(funding).required().min(2).has(funding.keys({ name: 'Total' }).required()),
-  documentReference
+  funding: Joi.array().items(funding).required().min(2).has(funding.keys({ name: 'Total' }).required())
 }).required()
