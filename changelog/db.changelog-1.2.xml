@@ -5,7 +5,7 @@
   </changeSet>
   <changeSet author="Marc Templeton" id="2">
     <addColumn tableName="generations">
-      <column name="documentReference" type="VARCHAR(255)" />    
+      <column name="documentReference" type="INTEGER" /> 
     </addColumn>
   </changeSet>
 </databaseChangeLog>

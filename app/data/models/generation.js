@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     statementData: DataTypes.JSON,
     dateGenerated: DataTypes.DATE,
     filename: DataTypes.STRING,
-    documentReference: DataTypes.STRING
+    documentReference: DataTypes.INTEGER
   },
   {
     tableName: 'generations',
