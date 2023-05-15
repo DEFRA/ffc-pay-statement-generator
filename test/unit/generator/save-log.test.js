@@ -11,8 +11,6 @@ describe('create log', () => {
     jest.useFakeTimers().setSystemTime(new Date(2022, 7, 5, 15, 30, 10, 12))
     timestamp = moment(new Date()).format('YYYYMMDDHHmmssSS')
     statement = JSON.parse(JSON.stringify(require('../../mocks/mock-statement')))
-
-    // create = require('../../mocks/modules/data')
   })
 
   afterEach(() => {
