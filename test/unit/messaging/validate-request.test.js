@@ -391,23 +391,23 @@ describe('validate schedule', () => {
       schedule = {}
     })
 
-    test('throws on empty schedule', async () => {
-      expect(() => validateRequeststatement(schedule, SCHEDULE)).toThrow()
+    test('throws', async () => {
+      expect(() => validateRequest(schedule, SCHEDULE)).toThrow()
     })
 
-    test('throws Error on empty schedule', async () => {
+    test('throws Error', async () => {
       expect(() => validateRequest(schedule, SCHEDULE)).toThrow(Error)
     })
 
-    test('throws error with category key on empty schedule', async () => {
+    test('throws error with category key', async () => {
       try { validateRequest(schedule, SCHEDULE) } catch (err) { expect(Object.keys(err)).toContain('category') }
     })
 
-    test('throws error with VALIDATION value for category key on empty schedule', async () => {
+    test('throws error with VALIDATION value for category key', async () => {
       try { validateRequest(schedule, SCHEDULE) } catch (err) { expect(err.category).toBe(VALIDATION) }
     })
 
-    test('throws error which starts "Request content is invalid" on empty schedule', async () => {
+    test('throws error which starts "Request content is invalid"', async () => {
       expect(() => validateRequest(schedule, SCHEDULE)).toThrow(/^Request content is invalid/)
     })
   })
