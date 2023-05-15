@@ -1,12 +1,6 @@
 const moment = require('moment')
 
-const mockCreate = jest.fn()
-jest.mock('../../../app/data', () => {
-  return {
-    generation: { create: mockCreate }
-  }
-})
-
+const create = require('../../mocks/modules/data')
 const saveLog = require('../../../app/generator/save-log')
 
 let statement
@@ -16,8 +10,9 @@ describe('create log', () => {
   beforeEach(() => {
     jest.useFakeTimers().setSystemTime(new Date(2022, 7, 5, 15, 30, 10, 12))
     timestamp = moment(new Date()).format('YYYYMMDDHHmmssSS')
-
     statement = JSON.parse(JSON.stringify(require('../../mocks/mock-statement')))
+
+    // create = require('../../mocks/modules/data')
   })
 
   afterEach(() => {
@@ -27,28 +22,28 @@ describe('create log', () => {
   test('creates log with statement data', async () => {
     delete statement.documentReference
     await saveLog(statement, 'test.pdf', timestamp)
-    expect(mockCreate.mock.calls[0][0].statementData).toStrictEqual(statement)
+    expect(create.mock.calls[0][0].statementData).toStrictEqual(statement)
   })
 
   test('creates log with statement data with no documentReference', async () => {
     await saveLog(statement, 'test.pdf', timestamp)
 
     expect(Object.keys(statement)).toContain('documentReference')
-    expect(Object.keys(mockCreate.mock.calls[0][0].statementData)).not.toContain('documentReference')
+    expect(Object.keys(create.mock.calls[0][0].statementData)).not.toContain('documentReference')
   })
 
   test('creates log with documentReference', async () => {
     await saveLog(statement, 'test.pdf', timestamp)
-    expect(mockCreate.mock.calls[0][0].documentReference).toBe(statement.documentReference)
+    expect(create.mock.calls[0][0].documentReference).toBe(statement.documentReference)
   })
 
   test('creates log with generation time', async () => {
     await saveLog(statement, 'test.pdf', timestamp)
-    expect(mockCreate.mock.calls[0][0].dateGenerated).toStrictEqual(timestamp)
+    expect(create.mock.calls[0][0].dateGenerated).toStrictEqual(timestamp)
   })
 
   test('creates log with filename', async () => {
     await saveLog(statement, 'test.pdf', timestamp)
-    expect(mockCreate.mock.calls[0][0].filename).toBe('test.pdf')
+    expect(create.mock.calls[0][0].filename).toBe('test.pdf')
   })
 })
