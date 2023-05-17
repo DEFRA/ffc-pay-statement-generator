@@ -28,24 +28,13 @@ describe('validate statement', () => {
       delete statement.documentReference
     })
 
-    test('throws', async () => {
-      expect(() => validateRequest(statement, STATEMENT)).toThrow()
+    test('does not throw', async () => {
+      expect(() => validateRequest(statement, STATEMENT)).not.toThrow()
     })
 
-    test('throws Error', async () => {
-      expect(() => validateRequest(statement, STATEMENT)).toThrow(Error)
-    })
-
-    test('throws error with category key', async () => {
-      try { validateRequest(statement, STATEMENT) } catch (err) { expect(Object.keys(err)).toContain('category') }
-    })
-
-    test('throws error with VALIDATION value for category key', async () => {
-      try { validateRequest(statement, STATEMENT) } catch (err) { expect(err.category).toBe(VALIDATION) }
-    })
-
-    test('throws error which starts "Request content is invalid"', async () => {
-      expect(() => validateRequest(statement, STATEMENT)).toThrow(/^Request content is invalid/)
+    test('returns undefined', async () => {
+      const res = validateRequest(statement, STATEMENT)
+      expect(res).toBeUndefined()
     })
   })
 
@@ -320,29 +309,13 @@ describe('validate schedule', () => {
       delete schedule.documentReference
     })
 
-    test('throws', async () => {
-      delete schedule.documentReference
-      expect(() => validateRequest(schedule, SCHEDULE)).toThrow()
+    test('does not throw', async () => {
+      expect(() => validateRequest(schedule, SCHEDULE)).not.toThrow()
     })
 
-    test('throws Error', async () => {
-      delete schedule.documentReference
-      expect(() => validateRequest(schedule, SCHEDULE)).toThrow(Error)
-    })
-
-    test('throws error with category key', async () => {
-      delete schedule.documentReference
-      try { validateRequest(schedule, SCHEDULE) } catch (err) { expect(Object.keys(err)).toContain('category') }
-    })
-
-    test('throws error with VALIDATION value for category key', async () => {
-      delete schedule.documentReference
-      try { validateRequest(schedule, SCHEDULE) } catch (err) { expect(err.category).toBe(VALIDATION) }
-    })
-
-    test('throws error which starts "Request content is invalid"', async () => {
-      delete schedule.documentReference
-      expect(() => validateRequest(schedule, SCHEDULE)).toThrow(/^Request content is invalid/)
+    test('returns undefined', async () => {
+      const res = validateRequest(schedule, SCHEDULE)
+      expect(res).toBeUndefined()
     })
   })
 

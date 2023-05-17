@@ -1,6 +1,6 @@
 const Joi = require('joi')
 
-module.exports = Joi.number().integer().positive().required()
+module.exports = Joi.number().integer().positive().optional()
   .messages({
     'number.base': 'The document reference must be a number.',
     'number.integer': 'The document reference must be an integer.',
