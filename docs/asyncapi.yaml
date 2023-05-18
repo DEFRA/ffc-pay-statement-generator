@@ -80,6 +80,7 @@ components:
         - funding
         - payments
         - scheme
+        - documentReference
       properties:
         businessName:
           $ref: '#/components/schemas/BusinessName'
@@ -93,6 +94,8 @@ components:
           $ref: '#/components/schemas/Address'
         scheme:
           $ref: '#/components/schemas/Scheme'
+        documentReference:
+          $ref: '#/components/schemas/DocumentReference'
         schedule:
           type: array
           items:
@@ -111,6 +114,7 @@ components:
         - funding
         - payments
         - scheme
+        - documentReference
       properties:
         businessName:
           $ref: '#/components/schemas/BusinessName'
@@ -133,6 +137,8 @@ components:
             $ref: '#/components/schemas/Payment'
         scheme:
           $ref: '#/components/schemas/Scheme'
+        documentReference:
+          $ref: '#/components/schemas/DocumentReference'
     Address:
       additionalProperties: false
       required:
@@ -316,6 +322,11 @@ components:
       type: string
       description: The fifth line of the address
       example: Some County
+    DocumentReference:
+      type: number
+      description: Unique identifier of the document
+      minimum: 1
+      example: 1
     DueDate:
       type: string
       description: The due date of the payment request
