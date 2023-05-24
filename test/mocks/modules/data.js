@@ -14,16 +14,19 @@ const mockSequelize = {
 
 const mockCreate = jest.fn()
 
+const mockGeneration = {
+
+  create: mockCreate
+}
+
 jest.mock('../../../app/data', () => {
   return {
     sequelize: mockSequelize,
-    generation: {
-      create: mockCreate
-    }
+    generation: mockGeneration
   }
 })
 
 module.exports = {
   mockTransaction,
-  mockCreate
+  mockGeneration
 }
