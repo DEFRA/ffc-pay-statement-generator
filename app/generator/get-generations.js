@@ -5,7 +5,11 @@ const getGenerations = async (documentReference, transaction) => {
     transaction,
     lock: true,
     where: {
-      documentReference
+      [db.Sequelize.Op.and]: [{ documentReference }, {
+        documentReference: {
+          [db.Sequelize.Op.ne]: null
+        }
+      }]
     }
   })
 }
