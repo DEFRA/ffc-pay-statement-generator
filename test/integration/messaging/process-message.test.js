@@ -74,14 +74,14 @@ describe('process message', () => {
       test('should save 1 log entry', async () => {
         await processMessage(message, receiver)
 
-        const log = await db.generation.findOne({ where: { filename: `${filename}` } })
+        const log = await db.generation.findOne({ where: { filename } })
         expect(log).not.toBeNull()
       })
 
       test('should save log entry with statement data', async () => {
         await processMessage(message, receiver)
 
-        const log = await db.generation.findOne({ where: { filename: `${filename}` } })
+        const log = await db.generation.findOne({ where: { filename } })
         delete statement.documentReference
         expect(log.statementData).toStrictEqual(statement)
       })
@@ -89,7 +89,7 @@ describe('process message', () => {
       test('should save log entry with statement data with no document reference', async () => {
         await processMessage(message, receiver)
 
-        const log = await db.generation.findOne({ where: { filename: `${filename}` } })
+        const log = await db.generation.findOne({ where: { filename } })
         expect(Object.keys(message.body)).toContain('documentReference')
         expect(Object.keys(log.statementData)).not.toContain('documentReference')
       })
@@ -97,14 +97,14 @@ describe('process message', () => {
       test('should save log entry with document reference', async () => {
         await processMessage(message, receiver)
 
-        const log = await db.generation.findOne({ where: { filename: `${filename}` } })
+        const log = await db.generation.findOne({ where: { filename } })
         expect(log.documentReference).toStrictEqual(message.body.documentReference)
       })
 
       test('should save log entry with generation date', async () => {
         await processMessage(message, receiver)
 
-        const log = await db.generation.findOne({ where: { filename: `${filename}` } })
+        const log = await db.generation.findOne({ where: { filename } })
         expect(log.dateGenerated).toStrictEqual(new Date())
       })
 
@@ -365,6 +365,110 @@ describe('process message', () => {
       test('should complete message', async () => {
         await processMessage(message, receiver)
         expect(receiver.completeMessage).toHaveBeenCalled()
+      })
+    })
+
+    describe('When 2 statements are sent', () => {
+      beforeEach(async () => {
+        statement = JSON.parse(JSON.stringify(require('../../mocks/mock-statement')))
+        message = {
+          body: statement,
+          applicationProperties: {
+            type: STATEMENT.type
+          }
+        }
+      })
+
+      test('should publish 1 file to archive blob storage location', async () => {
+        await processMessage(message, receiver)
+        await processMessage(message, receiver)
+
+        const fileList = []
+        for await (const item of container.listBlobsFlat({ prefix: config.archiveFolder })) {
+          fileList.push(item.name)
+        }
+        expect(fileList).toHaveLength(1)
+      })
+
+      test('should publish file with name filename to archive blob storage location', async () => {
+        await processMessage(message, receiver)
+        await processMessage(message, receiver)
+
+        const fileList = []
+        for await (const item of container.listBlobsFlat({ prefix: config.archiveFolder })) {
+          fileList.push(item.name)
+        }
+        expect(fileList).toContain(`${config.folder}/${filename}`)
+      })
+
+      test('should save 1 log entry', async () => {
+        await processMessage(message, receiver)
+        await processMessage(message, receiver)
+
+        const log = await db.generation.findAll({ where: { documentReference: message.body.documentReference } })
+        expect(log).toHaveLength(1)
+      })
+
+      test('should save log entry with statement data', async () => {
+        await processMessage(message, receiver)
+        await processMessage(message, receiver)
+
+        const log = await db.generation.findOne({ where: { documentReference: message.body.documentReference } })
+        delete statement.documentReference
+        expect(log.statementData).toStrictEqual(statement)
+      })
+
+      test('should save log entry with statement data with no document reference', async () => {
+        await processMessage(message, receiver)
+        await processMessage(message, receiver)
+
+        const log = await db.generation.findOne({ where: { documentReference: message.body.documentReference } })
+        expect(Object.keys(message.body)).toContain('documentReference')
+        expect(Object.keys(log.statementData)).not.toContain('documentReference')
+      })
+
+      test('should save log entry with document reference', async () => {
+        await processMessage(message, receiver)
+        await processMessage(message, receiver)
+
+        const log = await db.generation.findOne({ where: { documentReference: message.body.documentReference } })
+        expect(log.documentReference).toStrictEqual(message.body.documentReference)
+      })
+
+      test('should save log entry with generation date', async () => {
+        await processMessage(message, receiver)
+        await processMessage(message, receiver)
+
+        const log = await db.generation.findOne({ where: { documentReference: message.body.documentReference } })
+        expect(log.dateGenerated).toStrictEqual(new Date())
+      })
+
+      test('should send 2 messages for publish and crm', async () => {
+        await processMessage(message, receiver)
+        await processMessage(message, receiver)
+
+        expect(sendMessage).toHaveBeenCalledTimes(2)
+      })
+
+      test('should send publish message with statement filename', async () => {
+        await processMessage(message, receiver)
+        await processMessage(message, receiver)
+
+        expect(sendMessage.mock.calls[0][0].body.filename).toBe(filename)
+      })
+
+      test('should send crm message with statement api link that contains filename', async () => {
+        await processMessage(message, receiver)
+        await processMessage(message, receiver)
+
+        expect(sendMessage.mock.calls[1][0].body.apiLink).toContain(filename)
+      })
+
+      test('should complete both  message', async () => {
+        await processMessage(message, receiver)
+        await processMessage(message, receiver)
+
+        expect(receiver.completeMessage).toHaveBeenCalledTimes(2)
       })
     })
   })
