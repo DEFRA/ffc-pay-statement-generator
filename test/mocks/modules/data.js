@@ -15,7 +15,6 @@ const mockSequelize = {
 const mockCreate = jest.fn()
 
 const mockGeneration = {
-
   create: mockCreate
 }
 
