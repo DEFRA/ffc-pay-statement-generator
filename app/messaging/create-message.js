@@ -7,7 +7,8 @@ const createMessage = (statement, filename, typeId) => {
       address: statement.address,
       email: statement.email,
       filename,
-      scheme: statement.scheme
+      scheme: statement.scheme,
+      documentReference: statement?.documentReference ?? null
     },
     type: `uk.gov.pay.${typeId}.publish`,
     source: 'ffc-pay-statement-generator'
