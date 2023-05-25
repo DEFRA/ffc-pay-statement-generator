@@ -70,10 +70,6 @@ describe('Generate document', () => {
       describe('When statement has not been processed before', () => {
         beforeEach(() => {
           getGenerations.mockResolvedValue(null)
-          publish.mockResolvedValue(MOCK_STATEMENT_FILENAME)
-
-          request = MOCK_STATEMENT
-          type = STATEMENT
         })
 
         test('should call getGenerations', async () => {
@@ -190,9 +186,6 @@ describe('Generate document', () => {
       describe('When statement has been processed before', () => {
         beforeEach(() => {
           getGenerations.mockResolvedValue(true) // come back to
-
-          request = MOCK_STATEMENT
-          type = STATEMENT
         })
 
         test('should call getGenerations', async () => {
@@ -268,10 +261,6 @@ describe('Generate document', () => {
       describe('When schedule has not been processed before', () => {
         beforeEach(() => {
           getGenerations.mockResolvedValue(null)
-          publish.mockResolvedValue(MOCK_SCHEDULE_FILENAME)
-
-          request = MOCK_SCHEDULE
-          type = SCHEDULE
         })
 
         test('should call getGenerations', async () => {
@@ -383,9 +372,6 @@ describe('Generate document', () => {
       describe('When schedule has been processed before', () => {
         beforeEach(() => {
           getGenerations.mockResolvedValue(true) // come back to
-
-          request = MOCK_STATEMENT
-          type = STATEMENT
         })
 
         test('should call getGenerations', async () => {
@@ -471,10 +457,6 @@ describe('Generate document', () => {
       describe('When statement has not been processed before', () => {
         beforeEach(() => {
           getGenerations.mockResolvedValue(null)
-          publish.mockResolvedValue(MOCK_STATEMENT_FILENAME)
-
-          request = MOCK_STATEMENT
-          type = STATEMENT
         })
 
         test('should call getGenerations', async () => {
@@ -596,9 +578,6 @@ describe('Generate document', () => {
       describe('When statement has been processed before', () => {
         beforeEach(() => {
           getGenerations.mockResolvedValue(true) // come back to
-
-          request = MOCK_STATEMENT
-          type = STATEMENT
         })
 
         test('should call getGenerations', async () => {
@@ -674,10 +653,6 @@ describe('Generate document', () => {
       describe('When schedule has not been processed before', () => {
         beforeEach(() => {
           getGenerations.mockResolvedValue(null)
-          publish.mockResolvedValue(MOCK_SCHEDULE_FILENAME)
-
-          request = MOCK_SCHEDULE
-          type = SCHEDULE
         })
 
         test('should call getGenerations', async () => {
@@ -799,9 +774,6 @@ describe('Generate document', () => {
       describe('When schedule has been processed before', () => {
         beforeEach(() => {
           getGenerations.mockResolvedValue(true) // come back to
-
-          request = MOCK_SCHEDULE
-          type = SCHEDULE
         })
 
         test('should call getGenerations', async () => {
