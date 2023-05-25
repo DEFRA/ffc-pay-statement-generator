@@ -451,6 +451,384 @@ describe('process message', () => {
       //   })
       // })
     })
+
+    describe('when message is a schedule', () => {
+      beforeEach(async () => {
+        schedule = JSON.parse(JSON.stringify(require('../../mocks/mock-schedule').topUpSchedule))
+
+        message = {
+          body: schedule,
+          applicationProperties: {
+            type: SCHEDULE.type
+          }
+        }
+
+        filename = `FFC_PaymentSchedule_SFI_2022_1234567890_${TIMESTAMP}.pdf`
+      })
+
+      describe('When schedule has not been processed before', () => {
+        test('should publish file with name filename to archive blob storage location', async () => {
+          await processMessage(message, receiver)
+
+          const fileList = []
+          for await (const item of container.listBlobsFlat({ prefix: config.storageConfig.archiveFolder })) {
+            fileList.push(item.name)
+          }
+          expect(fileList).toContain(`${config.storageConfig.folder}/${filename}`)
+        })
+
+        test('should save 1 log entry', async () => {
+          await processMessage(message, receiver)
+
+          const log = await db.generation.findOne({ where: { filename } })
+          expect(log).not.toBeNull()
+        })
+
+        test('should save log entry with schedule data', async () => {
+          await processMessage(message, receiver)
+
+          const log = await db.generation.findOne({ where: { filename } })
+          delete schedule.documentReference
+          expect(log.statementData).toStrictEqual(schedule)
+        })
+
+        test('should save log entry with schedule data with no document reference', async () => {
+          await processMessage(message, receiver)
+
+          const log = await db.generation.findOne({ where: { filename } })
+          expect(Object.keys(message.body)).toContain('documentReference')
+          expect(Object.keys(log.statementData)).not.toContain('documentReference')
+        })
+
+        test('should save log entry with document reference', async () => {
+          await processMessage(message, receiver)
+
+          const log = await db.generation.findOne({ where: { filename } })
+          expect(log.documentReference).toStrictEqual(message.body.documentReference)
+        })
+
+        test('should save log entry with generation date', async () => {
+          await processMessage(message, receiver)
+
+          const log = await db.generation.findOne({ where: { filename } })
+          expect(log.dateGenerated).toStrictEqual(new Date())
+        })
+
+        test('should send 1 message for crm', async () => {
+          await processMessage(message, receiver)
+          expect(sendMessage).toHaveBeenCalledTimes(1)
+        })
+
+        test('should send crm message with schedule api link that contains filename', async () => {
+          await processMessage(message, receiver)
+          expect(sendMessage.mock.calls[0][0].body.apiLink).toContain(filename)
+        })
+
+        test('should complete message', async () => {
+          await processMessage(message, receiver)
+          expect(receiver.completeMessage).toHaveBeenCalled()
+        })
+      })
+
+      describe('When schedule has been processed before', () => {
+        beforeEach(async () => {
+          filenameSavedDown = filename.split('_').slice(0, 5).concat(`${moment(new Date()).subtract(1, 'days').format('YYYYMMDDHHmmssSS').pdf}`).join('_')
+
+          const { documentReference: documentRef, ...data } = schedule
+
+          await db.generation.create({
+            statementData: data,
+            documentReference: documentRef,
+            filename: filenameSavedDown,
+            dateGenerated: moment(new Date()).subtract(1, 'days')
+          })
+        })
+
+        test('should not publish file with name filename to archive blob storage location', async () => {
+          await processMessage(message, receiver)
+
+          const fileList = []
+          for await (const item of container.listBlobsFlat({ prefix: config.storageConfig.archiveFolder })) {
+            fileList.push(item.name)
+          }
+          expect(fileList).not.toContain(`${config.storageConfig.folder}/${filename}`)
+        })
+
+        test('should not save another log entry', async () => {
+          const logBefore = await db.generation.findOne({ where: { filename: filenameSavedDown } })
+
+          await processMessage(message, receiver)
+
+          const logAfter = await db.generation.findOne({ where: { filename } })
+          expect(logBefore).not.toBeNull()
+          expect(logAfter).toBeNull()
+        })
+
+        test('should not send message for crm', async () => {
+          await processMessage(message, receiver)
+          expect(sendMessage).not.toHaveBeenCalled()
+        })
+
+        test('should complete message', async () => {
+          await processMessage(message, receiver)
+          expect(receiver.completeMessage).toHaveBeenCalled()
+        })
+      })
+
+      describe('When schedule has null documentReference and nulls exist in table', () => {
+        beforeEach(async () => {
+          filenameSavedDown = filename.split('_').slice(0, 5).concat(`${moment(new Date()).subtract(1, 'days').format('YYYYMMDDHHmmssSS').pdf}`).join('_')
+
+          const { documentReference: _, ...data } = schedule
+
+          await db.generation.create({
+            statementData: data,
+            documentReference: null,
+            filename: filenameSavedDown,
+            dateGenerated: new Date()
+          })
+        })
+
+        test('should publish file with name filename to archive blob storage location', async () => {
+          await processMessage(message, receiver)
+
+          const fileList = []
+          for await (const item of container.listBlobsFlat({ prefix: config.storageConfig.archiveFolder })) {
+            fileList.push(item.name)
+          }
+          expect(fileList).toContain(`${config.storageConfig.folder}/${filename}`)
+        })
+
+        test('should save another log entry', async () => {
+          const logBefore = await db.generation.findOne({ where: { filename: filenameSavedDown } })
+
+          await processMessage(message, receiver)
+
+          const logAfter = await db.generation.findOne({ where: { filename } })
+          expect(logBefore).not.toBeNull()
+          expect(logAfter).not.toBeNull()
+        })
+
+        test('should save log entry with schedule data', async () => {
+          await processMessage(message, receiver)
+
+          const log = await db.generation.findOne({ where: { filename } })
+          delete schedule.documentReference
+          expect(log.statementData).toStrictEqual(schedule)
+        })
+
+        test('should save log entry with schedule data with no document reference', async () => {
+          await processMessage(message, receiver)
+
+          const log = await db.generation.findOne({ where: { filename } })
+          expect(Object.keys(message.body)).toContain('documentReference')
+          expect(Object.keys(log.statementData)).not.toContain('documentReference')
+        })
+
+        test('should save log entry with document reference', async () => {
+          await processMessage(message, receiver)
+
+          const log = await db.generation.findOne({ where: { filename } })
+          expect(log.documentReference).toStrictEqual(message.body.documentReference)
+        })
+
+        test('should save log entry with generation date', async () => {
+          await processMessage(message, receiver)
+
+          const log = await db.generation.findOne({ where: { filename } })
+          expect(log.dateGenerated).toStrictEqual(new Date())
+        })
+
+        test('should send 1 message for crm', async () => {
+          await processMessage(message, receiver)
+          expect(sendMessage).toHaveBeenCalledTimes(1)
+        })
+
+        test('should send crm message with schedule api link that contains filename', async () => {
+          await processMessage(message, receiver)
+          expect(sendMessage.mock.calls[0][0].body.apiLink).toContain(filename)
+        })
+
+        test('should complete message', async () => {
+          await processMessage(message, receiver)
+          expect(receiver.completeMessage).toHaveBeenCalled()
+        })
+      })
+
+      describe('When schedule has null documentReference and no nulls exist in table', () => {
+        beforeEach(async () => {
+          message = {
+            body: { ...schedule, documentReference: null },
+            applicationProperties: {
+              type: SCHEDULE.type
+            }
+          }
+
+          filenameSavedDown = filename.split('_').slice(0, 5).concat(`${moment(new Date()).subtract(1, 'days').format('YYYYMMDDHHmmssSS').pdf}`).join('_')
+
+          const { documentReference: documentRef, ...data } = schedule
+
+          await db.generation.create({
+            statementData: data,
+            documentReference: documentRef,
+            filename: filenameSavedDown,
+            dateGenerated: new Date()
+          })
+        })
+
+        test('should publish file with name filename to archive blob storage location', async () => {
+          await processMessage(message, receiver)
+
+          const fileList = []
+          for await (const item of container.listBlobsFlat({ prefix: config.storageConfig.archiveFolder })) {
+            fileList.push(item.name)
+          }
+          expect(fileList).toContain(`${config.storageConfig.folder}/${filename}`)
+        })
+
+        test('should save another log entry', async () => {
+          const logBefore = await db.generation.findOne({ where: { filename: filenameSavedDown } })
+
+          await processMessage(message, receiver)
+
+          const logAfter = await db.generation.findOne({ where: { filename } })
+          expect(logBefore).not.toBeNull()
+          expect(logAfter).not.toBeNull()
+        })
+
+        test('should save log entry with schedule data', async () => {
+          await processMessage(message, receiver)
+
+          const log = await db.generation.findOne({ where: { filename } })
+          delete schedule.documentReference
+          expect(log.statementData).toStrictEqual(schedule)
+        })
+
+        test('should save log entry with schedule data with no document reference', async () => {
+          await processMessage(message, receiver)
+
+          const log = await db.generation.findOne({ where: { filename } })
+          expect(Object.keys(message.body)).toContain('documentReference')
+          expect(Object.keys(log.statementData)).not.toContain('documentReference')
+        })
+
+        test('should save log entry with document reference', async () => {
+          await processMessage(message, receiver)
+
+          const log = await db.generation.findOne({ where: { filename } })
+          expect(log.documentReference).toStrictEqual(message.body.documentReference)
+        })
+
+        test('should save log entry with generation date', async () => {
+          await processMessage(message, receiver)
+
+          const log = await db.generation.findOne({ where: { filename } })
+          expect(log.dateGenerated).toStrictEqual(new Date())
+        })
+
+        test('should send 1 message for crm', async () => {
+          await processMessage(message, receiver)
+          expect(sendMessage).toHaveBeenCalledTimes(1)
+        })
+
+        test('should send crm message with schedule api link that contains filename', async () => {
+          await processMessage(message, receiver)
+          expect(sendMessage.mock.calls[0][0].body.apiLink).toContain(filename)
+        })
+
+        test('should complete message', async () => {
+          await processMessage(message, receiver)
+          expect(receiver.completeMessage).toHaveBeenCalled()
+        })
+      })
+
+      describe('When 2 schedules are sent', () => {
+        test('should publish 1 file to archive blob storage location', async () => {
+          await processMessage(message, receiver)
+          await processMessage(message, receiver)
+
+          const fileList = []
+          for await (const item of container.listBlobsFlat({ prefix: config.storageConfig.archiveFolder })) {
+            fileList.push(item.name)
+          }
+          expect(fileList).toHaveLength(1)
+        })
+
+        test('should publish file with name filename to archive blob storage location', async () => {
+          await processMessage(message, receiver)
+          await processMessage(message, receiver)
+
+          const fileList = []
+          for await (const item of container.listBlobsFlat({ prefix: config.storageConfig.archiveFolder })) {
+            fileList.push(item.name)
+          }
+          expect(fileList).toContain(`${config.storageConfig.folder}/${filename}`)
+        })
+
+        test('should save 1 log entry', async () => {
+          await processMessage(message, receiver)
+          await processMessage(message, receiver)
+
+          const log = await db.generation.findAll({ where: { documentReference: message.body.documentReference } })
+          expect(log).toHaveLength(1)
+        })
+
+        test('should save log entry with schedule data', async () => {
+          await processMessage(message, receiver)
+          await processMessage(message, receiver)
+
+          const log = await db.generation.findOne({ where: { documentReference: message.body.documentReference } })
+          delete schedule.documentReference
+          expect(log.statementData).toStrictEqual(schedule)
+        })
+
+        test('should save log entry with schedule data with no document reference', async () => {
+          await processMessage(message, receiver)
+          await processMessage(message, receiver)
+
+          const log = await db.generation.findOne({ where: { documentReference: message.body.documentReference } })
+          expect(Object.keys(message.body)).toContain('documentReference')
+          expect(Object.keys(log.statementData)).not.toContain('documentReference')
+        })
+
+        test('should save log entry with document reference', async () => {
+          await processMessage(message, receiver)
+          await processMessage(message, receiver)
+
+          const log = await db.generation.findOne({ where: { documentReference: message.body.documentReference } })
+          expect(log.documentReference).toStrictEqual(message.body.documentReference)
+        })
+
+        test('should save log entry with generation date', async () => {
+          await processMessage(message, receiver)
+          await processMessage(message, receiver)
+
+          const log = await db.generation.findOne({ where: { documentReference: message.body.documentReference } })
+          expect(log.dateGenerated).toStrictEqual(new Date())
+        })
+
+        test('should send 1 message for crm', async () => {
+          await processMessage(message, receiver)
+          await processMessage(message, receiver)
+
+          expect(sendMessage).toHaveBeenCalledTimes(1)
+        })
+
+        test('should send crm message with schedule api link that contains filename', async () => {
+          await processMessage(message, receiver)
+          await processMessage(message, receiver)
+
+          expect(sendMessage.mock.calls[0][0].body.apiLink).toContain(filename)
+        })
+
+        test('should complete both messages', async () => {
+          await processMessage(message, receiver)
+          await processMessage(message, receiver)
+
+          expect(receiver.completeMessage).toHaveBeenCalledTimes(2)
+        })
+      })
+    })
   })
 
   describe('When schedulesArePublished is true', () => {
@@ -1246,7 +1624,7 @@ describe('process message', () => {
           await processMessage(message, receiver)
           await processMessage(message, receiver)
 
-          expect(sendMessage.mock.calls[1][0].body.apiLink).toContain(filename)
+          expect(sendMessage.mock.calls[0][0].body.apiLink).toContain(filename)
         })
 
         test('should complete both messages', async () => {
