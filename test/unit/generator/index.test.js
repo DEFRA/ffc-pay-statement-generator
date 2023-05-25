@@ -50,13 +50,13 @@ describe('Generate document', () => {
     saveLog.mockResolvedValue(undefined)
   })
 
+  afterEach(() => {
+    jest.clearAllMocks()
+  })
+
   describe('When schedulesArePublished is false', () => {
     beforeEach(() => {
       config.schedulesArePublished = false
-    })
-
-    afterEach(() => {
-      jest.clearAllMocks()
     })
 
     describe('When document is a statement', () => {
@@ -440,10 +440,6 @@ describe('Generate document', () => {
   describe('When schedulesArePublished is true', () => {
     beforeEach(() => {
       config.schedulesArePublished = true
-    })
-
-    afterEach(() => {
-      jest.clearAllMocks()
     })
 
     describe('When document is a statement', () => {
