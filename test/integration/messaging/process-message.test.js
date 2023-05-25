@@ -60,6 +60,7 @@ describe('process message', () => {
     describe('when message is a statement', () => {
       beforeEach(async () => {
         statement = JSON.parse(JSON.stringify(require('../../mocks/mock-statement')))
+        schedule = JSON.parse(JSON.stringify(require('../../mocks/mock-schedule').topUpSchedule))
         message = {
           body: statement,
           applicationProperties: {
@@ -453,12 +454,55 @@ describe('process message', () => {
           expect(receiver.completeMessage).toHaveBeenCalledTimes(2)
         })
       })
+
+      describe('When schedule has been processed before with same documentReference', () => {
+        beforeEach(async () => {
+          const { documentReference: documentRef, ...data } = schedule
+
+          await db.generation.create({
+            statementData: data,
+            documentReference: documentRef,
+            filename: SCHEDULE_EARLIER_FILENAME,
+            dateGenerated: moment(new Date()).subtract(1, 'days')
+          })
+        })
+
+        test('should not publish file with name STATEMENT_FILENAME to archive blob storage location', async () => {
+          await processMessage(message, receiver)
+
+          const fileList = []
+          for await (const item of container.listBlobsFlat({ prefix: config.storageConfig.archiveFolder })) {
+            fileList.push(item.name)
+          }
+          expect(fileList).not.toContain(`${config.storageConfig.folder}/${STATEMENT_FILENAME}`)
+        })
+
+        test('should not save another log entry', async () => {
+          const logBefore = await db.generation.findOne({ where: { filename: SCHEDULE_EARLIER_FILENAME } })
+
+          await processMessage(message, receiver)
+
+          const logAfter = await db.generation.findOne({ where: { filename: STATEMENT_FILENAME } })
+          expect(logBefore).not.toBeNull()
+          expect(logAfter).toBeNull()
+        })
+
+        test('should not send messages for publish and crm', async () => {
+          await processMessage(message, receiver)
+          expect(mockMessageSender().sendMessage).not.toHaveBeenCalled()
+        })
+
+        test('should complete message', async () => {
+          await processMessage(message, receiver)
+          expect(receiver.completeMessage).toHaveBeenCalled()
+        })
+      })
     })
 
     describe('when message is a schedule', () => {
       beforeEach(async () => {
         schedule = JSON.parse(JSON.stringify(require('../../mocks/mock-schedule').topUpSchedule))
-
+        statement = JSON.parse(JSON.stringify(require('../../mocks/mock-statement')))
         message = {
           body: schedule,
           applicationProperties: {
@@ -830,6 +874,49 @@ describe('process message', () => {
           expect(receiver.completeMessage).toHaveBeenCalledTimes(2)
         })
       })
+
+      describe('When statement has been processed before with same documentReference', () => {
+        beforeEach(async () => {
+          const { documentReference: documentRef, ...data } = statement
+
+          await db.generation.create({
+            statementData: data,
+            documentReference: documentRef,
+            filename: STATEMENT_EARLIER_FILENAME,
+            dateGenerated: moment(new Date()).subtract(1, 'days')
+          })
+        })
+
+        test('should not publish file with name SCHEDULE_FILENAME to archive blob storage location', async () => {
+          await processMessage(message, receiver)
+
+          const fileList = []
+          for await (const item of container.listBlobsFlat({ prefix: config.storageConfig.archiveFolder })) {
+            fileList.push(item.name)
+          }
+          expect(fileList).not.toContain(`${config.storageConfig.folder}/${SCHEDULE_FILENAME}`)
+        })
+
+        test('should not save another log entry', async () => {
+          const logBefore = await db.generation.findOne({ where: { filename: STATEMENT_EARLIER_FILENAME } })
+
+          await processMessage(message, receiver)
+
+          const logAfter = await db.generation.findOne({ where: { filename: SCHEDULE_FILENAME } })
+          expect(logBefore).not.toBeNull()
+          expect(logAfter).toBeNull()
+        })
+
+        test('should not send messages for publish and crm', async () => {
+          await processMessage(message, receiver)
+          expect(mockMessageSender().sendMessage).not.toHaveBeenCalled()
+        })
+
+        test('should complete message', async () => {
+          await processMessage(message, receiver)
+          expect(receiver.completeMessage).toHaveBeenCalled()
+        })
+      })
     })
   })
 
@@ -841,7 +928,7 @@ describe('process message', () => {
     describe('when message is a statement', () => {
       beforeEach(async () => {
         statement = JSON.parse(JSON.stringify(require('../../mocks/mock-statement')))
-
+        schedule = JSON.parse(JSON.stringify(require('../../mocks/mock-schedule').topUpSchedule))
         message = {
           body: statement,
           applicationProperties: {
@@ -1235,12 +1322,55 @@ describe('process message', () => {
           expect(receiver.completeMessage).toHaveBeenCalledTimes(2)
         })
       })
+
+      describe('When schedule has been processed before with same documentReference', () => {
+        beforeEach(async () => {
+          const { documentReference: documentRef, ...data } = schedule
+
+          await db.generation.create({
+            statementData: data,
+            documentReference: documentRef,
+            filename: SCHEDULE_EARLIER_FILENAME,
+            dateGenerated: moment(new Date()).subtract(1, 'days')
+          })
+        })
+
+        test('should not publish file with name STATEMENT_FILENAME to archive blob storage location', async () => {
+          await processMessage(message, receiver)
+
+          const fileList = []
+          for await (const item of container.listBlobsFlat({ prefix: config.storageConfig.archiveFolder })) {
+            fileList.push(item.name)
+          }
+          expect(fileList).not.toContain(`${config.storageConfig.folder}/${STATEMENT_FILENAME}`)
+        })
+
+        test('should not save another log entry', async () => {
+          const logBefore = await db.generation.findOne({ where: { filename: SCHEDULE_EARLIER_FILENAME } })
+
+          await processMessage(message, receiver)
+
+          const logAfter = await db.generation.findOne({ where: { filename: STATEMENT_FILENAME } })
+          expect(logBefore).not.toBeNull()
+          expect(logAfter).toBeNull()
+        })
+
+        test('should not send messages for publish and crm', async () => {
+          await processMessage(message, receiver)
+          expect(mockMessageSender().sendMessage).not.toHaveBeenCalled()
+        })
+
+        test('should complete message', async () => {
+          await processMessage(message, receiver)
+          expect(receiver.completeMessage).toHaveBeenCalled()
+        })
+      })
     })
 
     describe('when message is a schedule', () => {
       beforeEach(async () => {
         schedule = JSON.parse(JSON.stringify(require('../../mocks/mock-schedule').topUpSchedule))
-
+        statement = JSON.parse(JSON.stringify(require('../../mocks/mock-statement')))
         message = {
           body: schedule,
           applicationProperties: {
@@ -1632,6 +1762,49 @@ describe('process message', () => {
           await processMessage(message, receiver)
 
           expect(receiver.completeMessage).toHaveBeenCalledTimes(2)
+        })
+      })
+
+      describe('When statement has been processed before with same documentReference', () => {
+        beforeEach(async () => {
+          const { documentReference: documentRef, ...data } = statement
+
+          await db.generation.create({
+            statementData: data,
+            documentReference: documentRef,
+            filename: STATEMENT_EARLIER_FILENAME,
+            dateGenerated: moment(new Date()).subtract(1, 'days')
+          })
+        })
+
+        test('should not publish file with name SCHEDULE_FILENAME to archive blob storage location', async () => {
+          await processMessage(message, receiver)
+
+          const fileList = []
+          for await (const item of container.listBlobsFlat({ prefix: config.storageConfig.archiveFolder })) {
+            fileList.push(item.name)
+          }
+          expect(fileList).not.toContain(`${config.storageConfig.folder}/${SCHEDULE_FILENAME}`)
+        })
+
+        test('should not save another log entry', async () => {
+          const logBefore = await db.generation.findOne({ where: { filename: STATEMENT_EARLIER_FILENAME } })
+
+          await processMessage(message, receiver)
+
+          const logAfter = await db.generation.findOne({ where: { filename: SCHEDULE_FILENAME } })
+          expect(logBefore).not.toBeNull()
+          expect(logAfter).toBeNull()
+        })
+
+        test('should not send messages for publish and crm', async () => {
+          await processMessage(message, receiver)
+          expect(mockMessageSender().sendMessage).not.toHaveBeenCalled()
+        })
+
+        test('should complete message', async () => {
+          await processMessage(message, receiver)
+          expect(receiver.completeMessage).toHaveBeenCalled()
         })
       })
     })
