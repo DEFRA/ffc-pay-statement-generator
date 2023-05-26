@@ -1,6 +1,7 @@
-const { SCHEDULE } = require('../../../app/constants/document-types')
+const { STATEMENT: STATEMENT_TYPE, SCHEDULE: SCHEDULE_TYPE } = require('../../../app/constants/document-types')
 
-const { topUpSchedule: MOCK_SCHEDULE } = require('../mock-schedule')
+const STATEMENT = require('../mock-statement')
+const { topUpSchedule: SCHEDULE } = require('../mock-schedule')
 
 const BASE_SERVICE_BUS_MESSAGE = {
   _rawAmqpMessage: {}, // incomplete
@@ -21,14 +22,23 @@ const BASE_SERVICE_BUS_MESSAGE = {
   delivery: {} // incomplete
 }
 
+const STATEMENT_MESSAGE = {
+  ...BASE_SERVICE_BUS_MESSAGE,
+  body: STATEMENT,
+  applicationProperties: {
+    type: STATEMENT_TYPE.type
+  }
+}
+
 const SCHEDULE_MESSAGE = {
   ...BASE_SERVICE_BUS_MESSAGE,
-  body: MOCK_SCHEDULE,
+  body: SCHEDULE,
   applicationProperties: {
-    type: SCHEDULE.type
+    type: SCHEDULE_TYPE.type
   }
 }
 
 module.exports = {
+  STATEMENT_MESSAGE,
   SCHEDULE_MESSAGE
 }
