@@ -6,6 +6,8 @@ const TEST_TYPE_ID = 'test-type-id'
 let valid
 let message
 
+const DOCUMENT_REFERENCE = require('../../mocks/components/document-reference')
+
 describe('send crm message for statement', () => {
   beforeEach(() => {
     jest.clearAllMocks()
@@ -17,7 +19,8 @@ describe('send crm message for statement', () => {
       address: mockStatement.address,
       email: mockStatement.email,
       filename: FILENAME,
-      scheme: mockStatement.scheme
+      scheme: mockStatement.scheme,
+      documentReference: DOCUMENT_REFERENCE
     }
 
     message = {
