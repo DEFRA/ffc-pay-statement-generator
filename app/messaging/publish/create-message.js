@@ -1,4 +1,4 @@
-const MESSAGE_SOURCE = require('../constants/message-source')
+const MESSAGE_SOURCE = require('../../constants/message-source')
 
 const createMessage = (statement, filename, typeId) => {
   return {

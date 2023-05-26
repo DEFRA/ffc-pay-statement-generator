@@ -3,7 +3,7 @@ const { STATEMENT: STATEMENT_TYPE, SCHEDULE: SCHEDULE_TYPE } = require('../../..
 const { STATEMENT: STATEMENT_FILENAME, SCHEDULE: SCHEDULE_FILENAME } = require('../../mocks/components/filename')
 const { STATEMENT_MESSAGE, SCHEDULE_MESSAGE } = require('../../mocks/messages/publish')
 
-const createMessage = require('../../../app/messaging/create-message')
+const createMessage = require('../../../app/messaging/publish/create-message')
 
 let document
 let filename

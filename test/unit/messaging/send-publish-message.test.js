@@ -1,7 +1,7 @@
 const { mockMessageSender } = require('../../mocks/modules/ffc-messaging')
 
-jest.mock('../../../app/messaging/create-message')
-const createMessage = require('../../../app/messaging/create-message')
+jest.mock('../../../app/messaging/publish/create-message')
+const createMessage = require('../../../app/messaging/publish/create-message')
 
 const { STATEMENT: STATEMENT_TYPE, SCHEDULE: SCHEDULE_TYPE } = require('../../../app/constants/document-types')
 
@@ -9,7 +9,7 @@ const { STATEMENT: STATEMENT_FILENAME, SCHEDULE: SCHEDULE_FILENAME } = require('
 const { STATEMENT_MESSAGE: STATEMENT_MESSAGE_INCOMING, SCHEDULE_MESSAGE: SCHEDULE_MESSAGE_INCOMING } = require('../../mocks/messages/mock-process-message')
 const { STATEMENT_MESSAGE: STATEMENT_MESSAGE_OUTGOING, SCHEDULE_MESSAGE: SCHEDULE_MESSAGE_OUTGOING } = require('../../mocks/messages/publish')
 
-const sendPublishMessage = require('../../../app/messaging/send-publish-message')
+const sendPublishMessage = require('../../../app/messaging/publish/send-publish-message')
 
 let document
 let filename

@@ -20,8 +20,8 @@ const getDocumentDefinition = require('../../../app/generator/get-document-defin
 jest.mock('../../../app/generator/publish')
 const publish = require('../../../app/generator/publish')
 
-jest.mock('../../../app/messaging/send-publish-message')
-const sendPublishMessage = require('../../../app/messaging/send-publish-message')
+jest.mock('../../../app/messaging/publish/send-publish-message')
+const sendPublishMessage = require('../../../app/messaging/publish/send-publish-message')
 
 jest.mock('../../../app/messaging/crm/send-crm-message')
 const sendCrmMessage = require('../../../app/messaging/crm/send-crm-message')
