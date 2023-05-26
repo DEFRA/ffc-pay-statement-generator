@@ -1,3 +1,5 @@
+const MESSAGE_SOURCE = require('../constants/message-source')
+
 const createMessage = (statement, filename, typeId) => {
   return {
     body: {
@@ -11,7 +13,7 @@ const createMessage = (statement, filename, typeId) => {
       documentReference: statement?.documentReference ?? null
     },
     type: `uk.gov.pay.${typeId}.publish`,
-    source: 'ffc-pay-statement-generator'
+    source: MESSAGE_SOURCE
   }
 }
 

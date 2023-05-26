@@ -1,39 +1,48 @@
-const createMessage = require('../../../app/messaging/create-message')
-const mockStatement = require('../../mocks/mock-statement')
-const FILENAME = 'FFC_PaymentStatement_SFI_2022_1234567890_2022080515301012.pdf'
-const TEST_TYPE_ID = 'test-type-id'
+const { STATEMENT: STATEMENT_TYPE, SCHEDULE: SCHEDULE_TYPE } = require('../../../app/constants/document-types')
 
-let valid
+const { STATEMENT: STATEMENT_FILENAME, SCHEDULE: SCHEDULE_FILENAME } = require('../../mocks/components/filename')
+const { STATEMENT_MESSAGE, SCHEDULE_MESSAGE } = require('../../mocks/messages/publish')
+
+const createMessage = require('../../../app/messaging/create-message')
+
+let document
+let filename
+let type
+
 let message
 
-const DOCUMENT_REFERENCE = require('../../mocks/components/document-reference')
-
-describe('send crm message for statement', () => {
-  beforeEach(() => {
+describe('create publish message', () => {
+  afterEach(() => {
     jest.clearAllMocks()
-
-    valid = {
-      businessName: mockStatement.businessName,
-      sbi: mockStatement.sbi,
-      frn: mockStatement.frn,
-      address: mockStatement.address,
-      email: mockStatement.email,
-      filename: FILENAME,
-      scheme: mockStatement.scheme,
-      documentReference: DOCUMENT_REFERENCE
-    }
-
-    message = {
-      body: {
-        ...valid
-      },
-      type: `uk.gov.pay.${TEST_TYPE_ID}.publish`,
-      source: 'ffc-pay-statement-generator'
-    }
   })
 
-  test('should return valid message when statement and filename are given', async () => {
-    const result = createMessage(mockStatement, FILENAME, TEST_TYPE_ID)
-    expect(result).toStrictEqual(message)
+  describe('when document is a statement', () => {
+    beforeEach(() => {
+      document = JSON.parse(JSON.stringify(require('../../mocks/mock-statement')))
+      filename = STATEMENT_FILENAME
+      type = STATEMENT_TYPE.id
+
+      message = STATEMENT_MESSAGE
+    })
+
+    test('should return message', async () => {
+      const result = createMessage(document, filename, type)
+      expect(result).toStrictEqual(message)
+    })
+  })
+
+  describe('when document is a schedule', () => {
+    beforeEach(() => {
+      document = JSON.parse(JSON.stringify(require('../../mocks/mock-schedule').topUpSchedule))
+      filename = SCHEDULE_FILENAME
+      type = SCHEDULE_TYPE.id
+
+      message = SCHEDULE_MESSAGE
+    })
+
+    test('should return message', async () => {
+      const result = createMessage(document, filename, type)
+      expect(result).toStrictEqual(message)
+    })
   })
 })
