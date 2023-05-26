@@ -7,8 +7,6 @@ const { DATE: SYSTEM_TIME, TIMESTAMP: TIMESTAMP_SYSTEM_TIME } = require('../../m
 const { topUpSchedule: MOCK_SCHEDULE } = require('../../mocks/mock-schedule')
 const MOCK_STATEMENT = require('../../mocks/mock-statement')
 
-const { mockTransaction } = require('../../mocks/modules/data')
-
 const {
   SCHEDULE: MOCK_SCHEDULE_FILENAME,
   STATEMENT: MOCK_STATEMENT_FILENAME
@@ -82,9 +80,9 @@ describe('Generate document', () => {
           expect(getGenerations).toHaveBeenCalledTimes(1)
         })
 
-        test('should call getGenerations with request.documentReference and mockTransaction', async () => {
+        test('should call getGenerations with request.documentReference', async () => {
           await generateDocument(request, type)
-          expect(getGenerations).toHaveBeenCalledWith(request.documentReference, mockTransaction())
+          expect(getGenerations).toHaveBeenCalledWith(request.documentReference)
         })
 
         test('should call getDocumentDefinition', async () => {
@@ -176,11 +174,6 @@ describe('Generate document', () => {
           await generateDocument(request, type)
           expect(saveLog).toHaveBeenCalledWith(request, (await publish()), SYSTEM_TIME)
         })
-
-        test('should not call mockTransaction.rollback', async () => {
-          await generateDocument(request, type)
-          expect(mockTransaction().rollback).not.toHaveBeenCalled()
-        })
       })
 
       describe('When statement has been processed before', () => {
@@ -198,19 +191,9 @@ describe('Generate document', () => {
           expect(getGenerations).toHaveBeenCalledTimes(1)
         })
 
-        test('should call getGenerations with request.documentReference and mockTransaction', async () => {
+        test('should call getGenerations with request.documentReference', async () => {
           await generateDocument(request, type)
-          expect(getGenerations).toHaveBeenCalledWith(request.documentReference, mockTransaction())
-        })
-
-        test('should call mockTransaction.rollback', async () => {
-          await generateDocument(request, type)
-          expect(mockTransaction().rollback).toHaveBeenCalled()
-        })
-
-        test('should call mockTransaction.rollback once', async () => {
-          await generateDocument(request, type)
-          expect(mockTransaction().rollback).toHaveBeenCalledTimes(1)
+          expect(getGenerations).toHaveBeenCalledWith(request.documentReference)
         })
 
         test('should not call getDocumentDefinition', async () => {
@@ -242,11 +225,6 @@ describe('Generate document', () => {
           await generateDocument(request, type)
           expect(saveLog).not.toHaveBeenCalled()
         })
-
-        test('should not call mockTransaction.commit', async () => {
-          await generateDocument(request, type)
-          expect(mockTransaction().commit).not.toHaveBeenCalled()
-        })
       })
     })
 
@@ -273,9 +251,9 @@ describe('Generate document', () => {
           expect(getGenerations).toHaveBeenCalledTimes(1)
         })
 
-        test('should call getGenerations with request.documentReference and mockTransaction', async () => {
+        test('should call getGenerations with request.documentReference', async () => {
           await generateDocument(request, type)
-          expect(getGenerations).toHaveBeenCalledWith(request.documentReference, mockTransaction())
+          expect(getGenerations).toHaveBeenCalledWith(request.documentReference)
         })
 
         test('should call getDocumentDefinition', async () => {
@@ -357,16 +335,6 @@ describe('Generate document', () => {
           await generateDocument(request, type)
           expect(saveLog).toHaveBeenCalledWith(request, (await publish()), SYSTEM_TIME)
         })
-
-        test('should call mockTransaction.commit', async () => {
-          await generateDocument(request, type)
-          expect(mockTransaction().commit).toHaveBeenCalled()
-        })
-
-        test('should call mockTransaction.commit once', async () => {
-          await generateDocument(request, type)
-          expect(mockTransaction().commit).toHaveBeenCalledTimes(1)
-        })
       })
 
       describe('When schedule has been processed before', () => {
@@ -384,19 +352,9 @@ describe('Generate document', () => {
           expect(getGenerations).toHaveBeenCalledTimes(1)
         })
 
-        test('should call getGenerations with request.documentReference and mockTransaction', async () => {
+        test('should call getGenerations with request.documentReference', async () => {
           await generateDocument(request, type)
-          expect(getGenerations).toHaveBeenCalledWith(request.documentReference, mockTransaction())
-        })
-
-        test('should call mockTransaction.rollback', async () => {
-          await generateDocument(request, type)
-          expect(mockTransaction().rollback).toHaveBeenCalled()
-        })
-
-        test('should call mockTransaction.rollback once', async () => {
-          await generateDocument(request, type)
-          expect(mockTransaction().rollback).toHaveBeenCalledTimes(1)
+          expect(getGenerations).toHaveBeenCalledWith(request.documentReference)
         })
 
         test('should not call getDocumentDefinition', async () => {
@@ -427,11 +385,6 @@ describe('Generate document', () => {
         test('should not call saveLog', async () => {
           await generateDocument(request, type)
           expect(saveLog).not.toHaveBeenCalled()
-        })
-
-        test('should not call mockTransaction.commit', async () => {
-          await generateDocument(request, type)
-          expect(mockTransaction().commit).not.toHaveBeenCalled()
         })
       })
     })
@@ -465,9 +418,9 @@ describe('Generate document', () => {
           expect(getGenerations).toHaveBeenCalledTimes(1)
         })
 
-        test('should call getGenerations with request.documentReference and mockTransaction', async () => {
+        test('should call getGenerations with request.documentReference', async () => {
           await generateDocument(request, type)
-          expect(getGenerations).toHaveBeenCalledWith(request.documentReference, mockTransaction())
+          expect(getGenerations).toHaveBeenCalledWith(request.documentReference)
         })
 
         test('should call getDocumentDefinition', async () => {
@@ -559,16 +512,6 @@ describe('Generate document', () => {
           await generateDocument(request, type)
           expect(saveLog).toHaveBeenCalledWith(request, (await publish()), SYSTEM_TIME)
         })
-
-        test('should call mockTransaction.commit', async () => {
-          await generateDocument(request, type)
-          expect(mockTransaction().commit).toHaveBeenCalled()
-        })
-
-        test('should call mockTransaction.commit once', async () => {
-          await generateDocument(request, type)
-          expect(mockTransaction().commit).toHaveBeenCalledTimes(1)
-        })
       })
 
       describe('When statement has been processed before', () => {
@@ -586,19 +529,9 @@ describe('Generate document', () => {
           expect(getGenerations).toHaveBeenCalledTimes(1)
         })
 
-        test('should call getGenerations with request.documentReference and mockTransaction', async () => {
+        test('should call getGenerations with request.documentReference', async () => {
           await generateDocument(request, type)
-          expect(getGenerations).toHaveBeenCalledWith(request.documentReference, mockTransaction())
-        })
-
-        test('should call mockTransaction.rollback', async () => {
-          await generateDocument(request, type)
-          expect(mockTransaction().rollback).toHaveBeenCalled()
-        })
-
-        test('should call mockTransaction.rollback once', async () => {
-          await generateDocument(request, type)
-          expect(mockTransaction().rollback).toHaveBeenCalledTimes(1)
+          expect(getGenerations).toHaveBeenCalledWith(request.documentReference)
         })
 
         test('should not call getDocumentDefinition', async () => {
@@ -629,11 +562,6 @@ describe('Generate document', () => {
         test('should not call saveLog', async () => {
           await generateDocument(request, type)
           expect(saveLog).not.toHaveBeenCalled()
-        })
-
-        test('should not call mockTransaction.commit', async () => {
-          await generateDocument(request, type)
-          expect(mockTransaction().commit).not.toHaveBeenCalled()
         })
       })
     })
@@ -661,9 +589,9 @@ describe('Generate document', () => {
           expect(getGenerations).toHaveBeenCalledTimes(1)
         })
 
-        test('should call getGenerations with request.documentReference and mockTransaction', async () => {
+        test('should call getGenerations with request.documentReference', async () => {
           await generateDocument(request, type)
-          expect(getGenerations).toHaveBeenCalledWith(request.documentReference, mockTransaction())
+          expect(getGenerations).toHaveBeenCalledWith(request.documentReference)
         })
 
         test('should call getDocumentDefinition', async () => {
@@ -755,16 +683,6 @@ describe('Generate document', () => {
           await generateDocument(request, type)
           expect(saveLog).toHaveBeenCalledWith(request, (await publish()), SYSTEM_TIME)
         })
-
-        test('should call mockTransaction.commit', async () => {
-          await generateDocument(request, type)
-          expect(mockTransaction().commit).toHaveBeenCalled()
-        })
-
-        test('should call mockTransaction.commit once', async () => {
-          await generateDocument(request, type)
-          expect(mockTransaction().commit).toHaveBeenCalledTimes(1)
-        })
       })
 
       describe('When schedule has been processed before', () => {
@@ -782,19 +700,9 @@ describe('Generate document', () => {
           expect(getGenerations).toHaveBeenCalledTimes(1)
         })
 
-        test('should call getGenerations with request.documentReference and mockTransaction', async () => {
+        test('should call getGenerations with request.documentReference', async () => {
           await generateDocument(request, type)
-          expect(getGenerations).toHaveBeenCalledWith(request.documentReference, mockTransaction())
-        })
-
-        test('should call mockTransaction.rollback', async () => {
-          await generateDocument(request, type)
-          expect(mockTransaction().rollback).toHaveBeenCalled()
-        })
-
-        test('should call mockTransaction.rollback once', async () => {
-          await generateDocument(request, type)
-          expect(mockTransaction().rollback).toHaveBeenCalledTimes(1)
+          expect(getGenerations).toHaveBeenCalledWith(request.documentReference)
         })
 
         test('should not call getDocumentDefinition', async () => {
@@ -825,11 +733,6 @@ describe('Generate document', () => {
         test('should not call saveLog', async () => {
           await generateDocument(request, type)
           expect(saveLog).not.toHaveBeenCalled()
-        })
-
-        test('should not call mockTransaction.commit', async () => {
-          await generateDocument(request, type)
-          expect(mockTransaction().commit).not.toHaveBeenCalled()
         })
       })
     })

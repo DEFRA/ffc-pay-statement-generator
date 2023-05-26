@@ -18,36 +18,26 @@ const fonts = require('./fonts')
 const printer = new PdfPrinter(fonts)
 
 const generateDocument = async (request, type) => {
-  const transaction = await db.sequelize.transaction()
+  const existingDocument = await getGenerations(request.documentReference)
 
-  try {
-    const existingDocument = await getGenerations(request.documentReference, transaction)
+  if (existingDocument) {
+    console.info(`Duplicate document received, skipping ${existingDocument.documentReference}`)
+  } else {
+    const docDefinition = getDocumentDefinition(request, type)
+    const timestamp = new Date()
+    const pdfDoc = printer.createPdfKitDocument(docDefinition)
+    const filename = await publish(pdfDoc, request, moment(timestamp).format('YYYYMMDDHHmmssSS'), type)
 
-    if (existingDocument) {
-      console.info(`Duplicate document received, skipping ${existingDocument.documentReference}`)
-      await transaction.rollback()
-    } else {
-      const docDefinition = getDocumentDefinition(request, type)
-      const timestamp = new Date()
-      const pdfDoc = printer.createPdfKitDocument(docDefinition)
-      const filename = await publish(pdfDoc, request, moment(timestamp).format('YYYYMMDDHHmmssSS'), type)
-
-      if (type.type === SCHEDULE.type) {
-        if (config.schedulesArePublished) {
-          await sendPublishMessage(request, filename, type.id)
-        }
-      } else {
+    if (type.type === SCHEDULE.type) {
+      if (config.schedulesArePublished) {
         await sendPublishMessage(request, filename, type.id)
       }
-
-      await sendCrmMessage(request, filename, type)
-      await saveLog(request, filename, timestamp)
-
-      await transaction.commit()
+    } else {
+      await sendPublishMessage(request, filename, type.id)
     }
-  } catch (error) {
-    await transaction.rollback()
-    throw (error)
+
+    await sendCrmMessage(request, filename, type)
+    await saveLog(request, filename, timestamp)
   }
 }
 
