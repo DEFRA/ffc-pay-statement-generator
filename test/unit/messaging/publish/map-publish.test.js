@@ -2,7 +2,7 @@ const { STATEMENT: STATEMENT_TYPE, SCHEDULE: SCHEDULE_TYPE } = require('../../..
 
 const { STATEMENT_MESSAGE, SCHEDULE_MESSAGE } = require('../../../mocks/messages/mock-process-message')
 const { STATEMENT_MESSAGE: STATEMENT_MESSAGE_MAPPED, SCHEDULE_MESSAGE: SCHEDULE_MESSAGE_MAPPED } = require('../../../mocks/messages/publish')
-const { STATEMENT: STATEMENT_FILENAME } = require('../../../mocks/components/filename')
+const { STATEMENT: STATEMENT_FILENAME, SCHEDULE: SCHEDULE_FILENAME } = require('../../../mocks/components/filename')
 
 const mapPublish = require('../../../../app/messaging/publish/map-publish')
 
@@ -147,6 +147,197 @@ describe('map publish', () => {
           ...STATEMENT_MESSAGE_MAPPED,
           body: {
             ...STATEMENT_MESSAGE_MAPPED.body,
+            documentReference: null
+          }
+        }
+      })
+
+      test('returns an object', () => {
+        const result = mapPublish(document, filename, type)
+        expect(result).toBeInstanceOf(Object)
+      })
+
+      test('returns an object with 3 keys', () => {
+        const result = mapPublish(document, filename, type)
+        expect(Object.keys(result)).toHaveLength(3)
+      })
+
+      test('returns an object with "body" key', () => {
+        const result = mapPublish(document, filename, type)
+        expect(Object.keys(result)).toContain('body')
+      })
+
+      test('returns null for key "body.documentReference"', () => {
+        const result = mapPublish(document, filename, type)
+        expect(result.body.documentReference).toBeNull()
+      })
+
+      test('returns mappedPublish.body for key "body"', () => {
+        const result = mapPublish(document, filename, type)
+        expect(result.body).toStrictEqual(mappedPublish.body)
+      })
+
+      test('returns an object with "type" key', () => {
+        const result = mapPublish(document, filename, type)
+        expect(Object.keys(result)).toContain('type')
+      })
+
+      test('returns mappedPublish.type for key "type"', () => {
+        const result = mapPublish(document, filename, type)
+        expect(result.type).toStrictEqual(mappedPublish.type)
+      })
+
+      test('returns an object with "source" key', () => {
+        const result = mapPublish(document, filename, type)
+        expect(Object.keys(result)).toContain('source')
+      })
+
+      test('returns mappedPublish.source for key "source"', () => {
+        const result = mapPublish(document, filename, type)
+        expect(result.source).toStrictEqual(mappedPublish.source)
+      })
+
+      test('returns mappedPublish', () => {
+        const result = mapPublish(document, filename, type)
+        expect(result).toStrictEqual(mappedPublish)
+      })
+    })
+  })
+
+  describe('when document is a schedule', () => {
+    beforeEach(() => {
+      filename = SCHEDULE_FILENAME
+      type = SCHEDULE_TYPE.id
+    })
+
+    describe('when document is valid', () => {
+      beforeEach(() => {
+        document = SCHEDULE_MESSAGE.body
+        mappedPublish = SCHEDULE_MESSAGE_MAPPED
+      })
+
+      test('returns an object', () => {
+        const result = mapPublish(document, filename, type)
+        expect(result).toBeInstanceOf(Object)
+      })
+
+      test('returns an object with 3 keys', () => {
+        const result = mapPublish(document, filename, type)
+        expect(Object.keys(result)).toHaveLength(3)
+      })
+
+      test('returns an object with "body" key', () => {
+        const result = mapPublish(document, filename, type)
+        expect(Object.keys(result)).toContain('body')
+      })
+
+      test('returns mappedPublish.body for key "body"', () => {
+        const result = mapPublish(document, filename, type)
+        expect(result.body).toStrictEqual(mappedPublish.body)
+      })
+
+      test('returns an object with "type" key', () => {
+        const result = mapPublish(document, filename, type)
+        expect(Object.keys(result)).toContain('type')
+      })
+
+      test('returns mappedPublish.type for key "type"', () => {
+        const result = mapPublish(document, filename, type)
+        expect(result.type).toStrictEqual(mappedPublish.type)
+      })
+
+      test('returns an object with "source" key', () => {
+        const result = mapPublish(document, filename, type)
+        expect(Object.keys(result)).toContain('source')
+      })
+
+      test('returns mappedPublish.source for key "source"', () => {
+        const result = mapPublish(document, filename, type)
+        expect(result.source).toStrictEqual(mappedPublish.source)
+      })
+
+      test('returns mappedPublish', () => {
+        const result = mapPublish(document, filename, type)
+        expect(result).toStrictEqual(mappedPublish)
+      })
+    })
+
+    describe('when document has null documentReference', () => {
+      beforeEach(() => {
+        document = {
+          ...SCHEDULE_MESSAGE.body,
+          documentReference: null
+        }
+        mappedPublish = {
+          ...SCHEDULE_MESSAGE_MAPPED,
+          body: {
+            ...SCHEDULE_MESSAGE_MAPPED.body,
+            documentReference: null
+          }
+        }
+      })
+
+      test('returns an object', () => {
+        const result = mapPublish(document, filename, type)
+        expect(result).toBeInstanceOf(Object)
+      })
+
+      test('returns an object with 3 keys', () => {
+        const result = mapPublish(document, filename, type)
+        expect(Object.keys(result)).toHaveLength(3)
+      })
+
+      test('returns an object with "body" key', () => {
+        const result = mapPublish(document, filename, type)
+        expect(Object.keys(result)).toContain('body')
+      })
+
+      test('returns null for key "body.documentReference"', () => {
+        const result = mapPublish(document, filename, type)
+        expect(result.body.documentReference).toBeNull()
+      })
+
+      test('returns mappedPublish.body for key "body"', () => {
+        const result = mapPublish(document, filename, type)
+        expect(result.body).toStrictEqual(mappedPublish.body)
+      })
+
+      test('returns an object with "type" key', () => {
+        const result = mapPublish(document, filename, type)
+        expect(Object.keys(result)).toContain('type')
+      })
+
+      test('returns mappedPublish.type for key "type"', () => {
+        const result = mapPublish(document, filename, type)
+        expect(result.type).toStrictEqual(mappedPublish.type)
+      })
+
+      test('returns an object with "source" key', () => {
+        const result = mapPublish(document, filename, type)
+        expect(Object.keys(result)).toContain('source')
+      })
+
+      test('returns mappedPublish.source for key "source"', () => {
+        const result = mapPublish(document, filename, type)
+        expect(result.source).toStrictEqual(mappedPublish.source)
+      })
+
+      test('returns mappedPublish', () => {
+        const result = mapPublish(document, filename, type)
+        expect(result).toStrictEqual(mappedPublish)
+      })
+    })
+
+    describe('when document has undefined documentReference', () => {
+      beforeEach(() => {
+        document = {
+          ...SCHEDULE_MESSAGE.body,
+          documentReference: undefined
+        }
+        mappedPublish = {
+          ...SCHEDULE_MESSAGE_MAPPED,
+          body: {
+            ...SCHEDULE_MESSAGE_MAPPED.body,
             documentReference: null
           }
         }
