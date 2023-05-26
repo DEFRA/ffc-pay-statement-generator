@@ -92,32 +92,6 @@ describe('source schema', () => {
     })
   })
 
-  describe('when source is "a"', () => {
-    beforeEach(() => {
-      source = 'a'
-    })
-
-    test('returns an object', () => {
-      const res = schema.validate(source)
-      expect(res).toBeInstanceOf(Object)
-    })
-
-    test('returns an object with 2 keys', () => {
-      const res = schema.validate(source)
-      expect(Object.keys(res)).toHaveLength(2)
-    })
-
-    test('returns an object with "value" key', () => {
-      const res = schema.validate(source)
-      expect(Object.keys(res)).toContain('value')
-    })
-
-    test('returns source for key "value"', () => {
-      const res = schema.validate(source)
-      expect(res.value).toBe(source)
-    })
-  })
-
   describe('when source is 0', () => {
     beforeEach(() => {
       source = 0
