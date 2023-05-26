@@ -2,7 +2,7 @@ const { BlobServiceClient } = require('@azure/storage-blob')
 const config = require('../../app/config/storage')
 const db = require('../../app/data')
 
-const sendMessage = require('../mocks/modules/ffc-messaging')
+const { mockMessageSender } = require('../mocks/modules/ffc-messaging')
 
 const { processMessage } = require('../../app/messaging/process-message')
 
@@ -103,16 +103,16 @@ describe('process statement', () => {
 
   test('sends 2 messages for publish and crm', async () => {
     await processMessage(message, receiver)
-    expect(sendMessage).toHaveBeenCalledTimes(2)
+    expect(mockMessageSender().sendMessage).toHaveBeenCalledTimes(2)
   })
 
   test('sends publish message with statement filename', async () => {
     await processMessage(message, receiver)
-    expect(sendMessage.mock.calls[0][0].body.filename).toBe(FILE_NAME)
+    expect(mockMessageSender().sendMessage.mock.calls[0][0].body.filename).toBe(FILE_NAME)
   })
 
   test('sends crm message with statement api link that contains filename', async () => {
     await processMessage(message, receiver)
-    expect(sendMessage.mock.calls[1][0].body.apiLink).toContain(FILE_NAME)
+    expect(mockMessageSender().sendMessage.mock.calls[1][0].body.apiLink).toContain(FILE_NAME)
   })
 })
