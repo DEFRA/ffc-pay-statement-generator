@@ -12,23 +12,23 @@ describe('type schema', () => {
     })
 
     test('returns an object', () => {
-      const res = schema.validate(type)
-      expect(res).toBeInstanceOf(Object)
+      const result = schema.validate(type)
+      expect(result).toBeInstanceOf(Object)
     })
 
     test('returns an object with 1 key', () => {
-      const res = schema.validate(type)
-      expect(Object.keys(res)).toHaveLength(1)
+      const result = schema.validate(type)
+      expect(Object.keys(result)).toHaveLength(1)
     })
 
     test('returns an object with "value" key', () => {
-      const res = schema.validate(type)
-      expect(Object.keys(res)).toContain('value')
+      const result = schema.validate(type)
+      expect(Object.keys(result)).toContain('value')
     })
 
     test('returns type for key "value"', () => {
-      const res = schema.validate(type)
-      expect(res.value).toBe(type)
+      const result = schema.validate(type)
+      expect(result.value).toBe(type)
     })
   })
 
@@ -38,23 +38,23 @@ describe('type schema', () => {
     })
 
     test('returns an object', () => {
-      const res = schema.validate(type)
-      expect(res).toBeInstanceOf(Object)
+      const result = schema.validate(type)
+      expect(result).toBeInstanceOf(Object)
     })
 
     test('returns an object with 1 key', () => {
-      const res = schema.validate(type)
-      expect(Object.keys(res)).toHaveLength(1)
+      const result = schema.validate(type)
+      expect(Object.keys(result)).toHaveLength(1)
     })
 
     test('returns an object with "value" key', () => {
-      const res = schema.validate(type)
-      expect(Object.keys(res)).toContain('value')
+      const result = schema.validate(type)
+      expect(Object.keys(result)).toContain('value')
     })
 
     test('returns type for key "value"', () => {
-      const res = schema.validate(type)
-      expect(res.value).toBe(type)
+      const result = schema.validate(type)
+      expect(result.value).toBe(type)
     })
   })
 
@@ -64,58 +64,58 @@ describe('type schema', () => {
     })
 
     test('returns an object', () => {
-      const res = schema.validate(type)
-      expect(res).toBeInstanceOf(Object)
+      const result = schema.validate(type)
+      expect(result).toBeInstanceOf(Object)
     })
 
     test('returns an object with 2 keys', () => {
-      const res = schema.validate(type)
-      expect(Object.keys(res)).toHaveLength(2)
+      const result = schema.validate(type)
+      expect(Object.keys(result)).toHaveLength(2)
     })
 
     test('returns an object with "value" key', () => {
-      const res = schema.validate(type)
-      expect(Object.keys(res)).toContain('value')
+      const result = schema.validate(type)
+      expect(Object.keys(result)).toContain('value')
     })
 
     test('returns type for key "value"', () => {
-      const res = schema.validate(type)
-      expect(res.value).toBe(type)
+      const result = schema.validate(type)
+      expect(result.value).toBe(type)
     })
 
     test('returns an object with "error" key', () => {
-      const res = schema.validate(type)
-      expect(Object.keys(res)).toContain('error')
+      const result = schema.validate(type)
+      expect(Object.keys(result)).toContain('error')
     })
 
     test('returns an Error for key "error"', () => {
-      const res = schema.validate(type)
-      expect(res.error).toBeInstanceOf(Error)
+      const result = schema.validate(type)
+      expect(result.error).toBeInstanceOf(Error)
     })
 
     test('returns an object with 4 keys for key "error.details[0]"', () => {
-      const res = schema.validate(type)
-      expect(Object.keys(res.error.details[0])).toHaveLength(4)
+      const result = schema.validate(type)
+      expect(Object.keys(result.error.details[0])).toHaveLength(4)
     })
 
     test('returns an object with "type" key for key "error.details[0]"', () => {
-      const res = schema.validate(type)
-      expect(Object.keys(res.error.details[0])).toContain('type')
+      const result = schema.validate(type)
+      expect(Object.keys(result.error.details[0])).toContain('type')
     })
 
     test('returns "any.only" for key "error.details[0].type"', () => {
-      const res = schema.validate(type)
-      expect(res.error.details[0].type).toBe('any.only')
+      const result = schema.validate(type)
+      expect(result.error.details[0].type).toBe('any.only')
     })
 
     test('returns an object with "message" key for key "error.details[0]"', () => {
-      const res = schema.validate(type)
-      expect(Object.keys(res.error.details[0])).toContain('message')
+      const result = schema.validate(type)
+      expect(Object.keys(result.error.details[0])).toContain('message')
     })
 
     test('returns "The type must be one of TYPES" for key "error.details[0].message"', () => {
-      const res = schema.validate(type)
-      expect(res.error.details[0].message).toBe(`The type must be one of ${TYPES}.`)
+      const result = schema.validate(type)
+      expect(result.error.details[0].message).toBe(`The type must be one of ${TYPES}.`)
     })
   })
 
@@ -125,58 +125,58 @@ describe('type schema', () => {
     })
 
     test('returns an object', () => {
-      const res = schema.validate(type)
-      expect(res).toBeInstanceOf(Object)
+      const result = schema.validate(type)
+      expect(result).toBeInstanceOf(Object)
     })
 
     test('returns an object with 2 keys', () => {
-      const res = schema.validate(type)
-      expect(Object.keys(res)).toHaveLength(2)
+      const result = schema.validate(type)
+      expect(Object.keys(result)).toHaveLength(2)
     })
 
     test('returns an object with "value" key', () => {
-      const res = schema.validate(type)
-      expect(Object.keys(res)).toContain('value')
+      const result = schema.validate(type)
+      expect(Object.keys(result)).toContain('value')
     })
 
     test('returns type for key "value"', () => {
-      const res = schema.validate(type)
-      expect(res.value).toBe(type)
+      const result = schema.validate(type)
+      expect(result.value).toBe(type)
     })
 
     test('returns an object with "error" key', () => {
-      const res = schema.validate(type)
-      expect(Object.keys(res)).toContain('error')
+      const result = schema.validate(type)
+      expect(Object.keys(result)).toContain('error')
     })
 
     test('returns an Error for key "error"', () => {
-      const res = schema.validate(type)
-      expect(res.error).toBeInstanceOf(Error)
+      const result = schema.validate(type)
+      expect(result.error).toBeInstanceOf(Error)
     })
 
     test('returns an object with 4 keys for key "error.details[0]"', () => {
-      const res = schema.validate(type)
-      expect(Object.keys(res.error.details[0])).toHaveLength(4)
+      const result = schema.validate(type)
+      expect(Object.keys(result.error.details[0])).toHaveLength(4)
     })
 
     test('returns an object with "type" key for key "error.details[0]"', () => {
-      const res = schema.validate(type)
-      expect(Object.keys(res.error.details[0])).toContain('type')
+      const result = schema.validate(type)
+      expect(Object.keys(result.error.details[0])).toContain('type')
     })
 
     test('returns "any.only" for key "error.details[0].type"', () => {
-      const res = schema.validate(type)
-      expect(res.error.details[0].type).toBe('any.only')
+      const result = schema.validate(type)
+      expect(result.error.details[0].type).toBe('any.only')
     })
 
     test('returns an object with "message" key for key "error.details[0]"', () => {
-      const res = schema.validate(type)
-      expect(Object.keys(res.error.details[0])).toContain('message')
+      const result = schema.validate(type)
+      expect(Object.keys(result.error.details[0])).toContain('message')
     })
 
     test('returns "The type must be one of TYPES" for key "error.details[0].message"', () => {
-      const res = schema.validate(type)
-      expect(res.error.details[0].message).toBe(`The type must be one of ${TYPES}.`)
+      const result = schema.validate(type)
+      expect(result.error.details[0].message).toBe(`The type must be one of ${TYPES}.`)
     })
   })
 
@@ -186,58 +186,58 @@ describe('type schema', () => {
     })
 
     test('returns an object', () => {
-      const res = schema.validate(type)
-      expect(res).toBeInstanceOf(Object)
+      const result = schema.validate(type)
+      expect(result).toBeInstanceOf(Object)
     })
 
     test('returns an object with 2 keys', () => {
-      const res = schema.validate(type)
-      expect(Object.keys(res)).toHaveLength(2)
+      const result = schema.validate(type)
+      expect(Object.keys(result)).toHaveLength(2)
     })
 
     test('returns an object with "value" key', () => {
-      const res = schema.validate(type)
-      expect(Object.keys(res)).toContain('value')
+      const result = schema.validate(type)
+      expect(Object.keys(result)).toContain('value')
     })
 
     test('returns type for key "value"', () => {
-      const res = schema.validate(type)
-      expect(res.value).toBe(type)
+      const result = schema.validate(type)
+      expect(result.value).toBe(type)
     })
 
     test('returns an object with "error" key', () => {
-      const res = schema.validate(type)
-      expect(Object.keys(res)).toContain('error')
+      const result = schema.validate(type)
+      expect(Object.keys(result)).toContain('error')
     })
 
     test('returns an Error for key "error"', () => {
-      const res = schema.validate(type)
-      expect(res.error).toBeInstanceOf(Error)
+      const result = schema.validate(type)
+      expect(result.error).toBeInstanceOf(Error)
     })
 
     test('returns an object with 4 keys for key "error.details[0]"', () => {
-      const res = schema.validate(type)
-      expect(Object.keys(res.error.details[0])).toHaveLength(4)
+      const result = schema.validate(type)
+      expect(Object.keys(result.error.details[0])).toHaveLength(4)
     })
 
     test('returns an object with "type" key for key "error.details[0]"', () => {
-      const res = schema.validate(type)
-      expect(Object.keys(res.error.details[0])).toContain('type')
+      const result = schema.validate(type)
+      expect(Object.keys(result.error.details[0])).toContain('type')
     })
 
     test('returns "any.only" for key "error.details[0].type"', () => {
-      const res = schema.validate(type)
-      expect(res.error.details[0].type).toBe('any.only')
+      const result = schema.validate(type)
+      expect(result.error.details[0].type).toBe('any.only')
     })
 
     test('returns an object with "message" key for key "error.details[0]"', () => {
-      const res = schema.validate(type)
-      expect(Object.keys(res.error.details[0])).toContain('message')
+      const result = schema.validate(type)
+      expect(Object.keys(result.error.details[0])).toContain('message')
     })
 
     test('returns "The type must be one of TYPES" for key "error.details[0].message"', () => {
-      const res = schema.validate(type)
-      expect(res.error.details[0].message).toBe(`The type must be one of ${TYPES}.`)
+      const result = schema.validate(type)
+      expect(result.error.details[0].message).toBe(`The type must be one of ${TYPES}.`)
     })
   })
 
@@ -247,58 +247,58 @@ describe('type schema', () => {
     })
 
     test('returns an object', () => {
-      const res = schema.validate(type)
-      expect(res).toBeInstanceOf(Object)
+      const result = schema.validate(type)
+      expect(result).toBeInstanceOf(Object)
     })
 
     test('returns an object with 2 keys', () => {
-      const res = schema.validate(type)
-      expect(Object.keys(res)).toHaveLength(2)
+      const result = schema.validate(type)
+      expect(Object.keys(result)).toHaveLength(2)
     })
 
     test('returns an object with "value" key', () => {
-      const res = schema.validate(type)
-      expect(Object.keys(res)).toContain('value')
+      const result = schema.validate(type)
+      expect(Object.keys(result)).toContain('value')
     })
 
     test('returns type for key "value"', () => {
-      const res = schema.validate(type)
-      expect(res.value).toBe(type)
+      const result = schema.validate(type)
+      expect(result.value).toBe(type)
     })
 
     test('returns an object with "error" key', () => {
-      const res = schema.validate(type)
-      expect(Object.keys(res)).toContain('error')
+      const result = schema.validate(type)
+      expect(Object.keys(result)).toContain('error')
     })
 
     test('returns an Error for key "error"', () => {
-      const res = schema.validate(type)
-      expect(res.error).toBeInstanceOf(Error)
+      const result = schema.validate(type)
+      expect(result.error).toBeInstanceOf(Error)
     })
 
     test('returns an object with 4 keys for key "error.details[0]"', () => {
-      const res = schema.validate(type)
-      expect(Object.keys(res.error.details[0])).toHaveLength(4)
+      const result = schema.validate(type)
+      expect(Object.keys(result.error.details[0])).toHaveLength(4)
     })
 
     test('returns an object with "type" key for key "error.details[0]"', () => {
-      const res = schema.validate(type)
-      expect(Object.keys(res.error.details[0])).toContain('type')
+      const result = schema.validate(type)
+      expect(Object.keys(result.error.details[0])).toContain('type')
     })
 
     test('returns "any.only" for key "error.details[0].type"', () => {
-      const res = schema.validate(type)
-      expect(res.error.details[0].type).toBe('any.only')
+      const result = schema.validate(type)
+      expect(result.error.details[0].type).toBe('any.only')
     })
 
     test('returns an object with "message" key for key "error.details[0]"', () => {
-      const res = schema.validate(type)
-      expect(Object.keys(res.error.details[0])).toContain('message')
+      const result = schema.validate(type)
+      expect(Object.keys(result.error.details[0])).toContain('message')
     })
 
     test('returns "The type must be one of TYPES" for key "error.details[0].message"', () => {
-      const res = schema.validate(type)
-      expect(res.error.details[0].message).toBe(`The type must be one of ${TYPES}.`)
+      const result = schema.validate(type)
+      expect(result.error.details[0].message).toBe(`The type must be one of ${TYPES}.`)
     })
   })
 
@@ -308,58 +308,58 @@ describe('type schema', () => {
     })
 
     test('returns an object', () => {
-      const res = schema.validate(type)
-      expect(res).toBeInstanceOf(Object)
+      const result = schema.validate(type)
+      expect(result).toBeInstanceOf(Object)
     })
 
     test('returns an object with 2 keys', () => {
-      const res = schema.validate(type)
-      expect(Object.keys(res)).toHaveLength(2)
+      const result = schema.validate(type)
+      expect(Object.keys(result)).toHaveLength(2)
     })
 
     test('returns an object with "value" key', () => {
-      const res = schema.validate(type)
-      expect(Object.keys(res)).toContain('value')
+      const result = schema.validate(type)
+      expect(Object.keys(result)).toContain('value')
     })
 
     test('returns type for key "value"', () => {
-      const res = schema.validate(type)
-      expect(res.value).toBe(type)
+      const result = schema.validate(type)
+      expect(result.value).toBe(type)
     })
 
     test('returns an object with "error" key', () => {
-      const res = schema.validate(type)
-      expect(Object.keys(res)).toContain('error')
+      const result = schema.validate(type)
+      expect(Object.keys(result)).toContain('error')
     })
 
     test('returns an Error for key "error"', () => {
-      const res = schema.validate(type)
-      expect(res.error).toBeInstanceOf(Error)
+      const result = schema.validate(type)
+      expect(result.error).toBeInstanceOf(Error)
     })
 
     test('returns an object with 4 keys for key "error.details[0]"', () => {
-      const res = schema.validate(type)
-      expect(Object.keys(res.error.details[0])).toHaveLength(4)
+      const result = schema.validate(type)
+      expect(Object.keys(result.error.details[0])).toHaveLength(4)
     })
 
     test('returns an object with "type" key for key "error.details[0]"', () => {
-      const res = schema.validate(type)
-      expect(Object.keys(res.error.details[0])).toContain('type')
+      const result = schema.validate(type)
+      expect(Object.keys(result.error.details[0])).toContain('type')
     })
 
     test('returns "any.only" for key "error.details[0].type"', () => {
-      const res = schema.validate(type)
-      expect(res.error.details[0].type).toBe('any.only')
+      const result = schema.validate(type)
+      expect(result.error.details[0].type).toBe('any.only')
     })
 
     test('returns an object with "message" key for key "error.details[0]"', () => {
-      const res = schema.validate(type)
-      expect(Object.keys(res.error.details[0])).toContain('message')
+      const result = schema.validate(type)
+      expect(Object.keys(result.error.details[0])).toContain('message')
     })
 
     test('returns "The type must be one of TYPES" for key "error.details[0].message"', () => {
-      const res = schema.validate(type)
-      expect(res.error.details[0].message).toBe(`The type must be one of ${TYPES}.`)
+      const result = schema.validate(type)
+      expect(result.error.details[0].message).toBe(`The type must be one of ${TYPES}.`)
     })
   })
 
@@ -369,58 +369,58 @@ describe('type schema', () => {
     })
 
     test('returns an object', () => {
-      const res = schema.validate(type)
-      expect(res).toBeInstanceOf(Object)
+      const result = schema.validate(type)
+      expect(result).toBeInstanceOf(Object)
     })
 
     test('returns an object with 2 keys', () => {
-      const res = schema.validate(type)
-      expect(Object.keys(res)).toHaveLength(2)
+      const result = schema.validate(type)
+      expect(Object.keys(result)).toHaveLength(2)
     })
 
     test('returns an object with "value" key', () => {
-      const res = schema.validate(type)
-      expect(Object.keys(res)).toContain('value')
+      const result = schema.validate(type)
+      expect(Object.keys(result)).toContain('value')
     })
 
     test('returns type for key "value"', () => {
-      const res = schema.validate(type)
-      expect(res.value).toBe(type)
+      const result = schema.validate(type)
+      expect(result.value).toBe(type)
     })
 
     test('returns an object with "error" key', () => {
-      const res = schema.validate(type)
-      expect(Object.keys(res)).toContain('error')
+      const result = schema.validate(type)
+      expect(Object.keys(result)).toContain('error')
     })
 
     test('returns an Error for key "error"', () => {
-      const res = schema.validate(type)
-      expect(res.error).toBeInstanceOf(Error)
+      const result = schema.validate(type)
+      expect(result.error).toBeInstanceOf(Error)
     })
 
     test('returns an object with 4 keys for key "error.details[0]"', () => {
-      const res = schema.validate(type)
-      expect(Object.keys(res.error.details[0])).toHaveLength(4)
+      const result = schema.validate(type)
+      expect(Object.keys(result.error.details[0])).toHaveLength(4)
     })
 
     test('returns an object with "type" key for key "error.details[0]"', () => {
-      const res = schema.validate(type)
-      expect(Object.keys(res.error.details[0])).toContain('type')
+      const result = schema.validate(type)
+      expect(Object.keys(result.error.details[0])).toContain('type')
     })
 
     test('returns "any.only" for key "error.details[0].type"', () => {
-      const res = schema.validate(type)
-      expect(res.error.details[0].type).toBe('any.only')
+      const result = schema.validate(type)
+      expect(result.error.details[0].type).toBe('any.only')
     })
 
     test('returns an object with "message" key for key "error.details[0]"', () => {
-      const res = schema.validate(type)
-      expect(Object.keys(res.error.details[0])).toContain('message')
+      const result = schema.validate(type)
+      expect(Object.keys(result.error.details[0])).toContain('message')
     })
 
     test('returns "The type must be one of TYPES" for key "error.details[0].message"', () => {
-      const res = schema.validate(type)
-      expect(res.error.details[0].message).toBe(`The type must be one of ${TYPES}.`)
+      const result = schema.validate(type)
+      expect(result.error.details[0].message).toBe(`The type must be one of ${TYPES}.`)
     })
   })
 
@@ -430,58 +430,58 @@ describe('type schema', () => {
     })
 
     test('returns an object', () => {
-      const res = schema.validate(type)
-      expect(res).toBeInstanceOf(Object)
+      const result = schema.validate(type)
+      expect(result).toBeInstanceOf(Object)
     })
 
     test('returns an object with 2 keys', () => {
-      const res = schema.validate(type)
-      expect(Object.keys(res)).toHaveLength(2)
+      const result = schema.validate(type)
+      expect(Object.keys(result)).toHaveLength(2)
     })
 
     test('returns an object with "value" key', () => {
-      const res = schema.validate(type)
-      expect(Object.keys(res)).toContain('value')
+      const result = schema.validate(type)
+      expect(Object.keys(result)).toContain('value')
     })
 
     test('returns type for key "value"', () => {
-      const res = schema.validate(type)
-      expect(res.value).toBe(type)
+      const result = schema.validate(type)
+      expect(result.value).toBe(type)
     })
 
     test('returns an object with "error" key', () => {
-      const res = schema.validate(type)
-      expect(Object.keys(res)).toContain('error')
+      const result = schema.validate(type)
+      expect(Object.keys(result)).toContain('error')
     })
 
     test('returns an Error for key "error"', () => {
-      const res = schema.validate(type)
-      expect(res.error).toBeInstanceOf(Error)
+      const result = schema.validate(type)
+      expect(result.error).toBeInstanceOf(Error)
     })
 
     test('returns an object with 4 keys for key "error.details[0]"', () => {
-      const res = schema.validate(type)
-      expect(Object.keys(res.error.details[0])).toHaveLength(4)
+      const result = schema.validate(type)
+      expect(Object.keys(result.error.details[0])).toHaveLength(4)
     })
 
     test('returns an object with "type" key for key "error.details[0]"', () => {
-      const res = schema.validate(type)
-      expect(Object.keys(res.error.details[0])).toContain('type')
+      const result = schema.validate(type)
+      expect(Object.keys(result.error.details[0])).toContain('type')
     })
 
     test('returns "any.required" for key "error.details[0].type"', () => {
-      const res = schema.validate(type)
-      expect(res.error.details[0].type).toBe('any.required')
+      const result = schema.validate(type)
+      expect(result.error.details[0].type).toBe('any.required')
     })
 
     test('returns an object with "message" key for key "error.details[0]"', () => {
-      const res = schema.validate(type)
-      expect(Object.keys(res.error.details[0])).toContain('message')
+      const result = schema.validate(type)
+      expect(Object.keys(result.error.details[0])).toContain('message')
     })
 
     test('returns "The type is required." for key "error.details[0].message"', () => {
-      const res = schema.validate(type)
-      expect(res.error.details[0].message).toBe('The type is required.')
+      const result = schema.validate(type)
+      expect(result.error.details[0].message).toBe('The type is required.')
     })
   })
 })

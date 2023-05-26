@@ -28,5 +28,5 @@ module.exports = Joi.object({
   .messages({
     'object.base': 'The publish message must be an object.',
     'any.required': 'The publish message requires a message with a body.',
-    '*': 'The document reference must be a positive integer.'
+    '*': 'The publish message must be an object.'
   })

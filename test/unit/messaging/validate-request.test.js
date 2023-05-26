@@ -17,8 +17,8 @@ describe('validate statement', () => {
     })
 
     test('returns undefined', async () => {
-      const res = validateRequest(statement, STATEMENT)
-      expect(res).toBeUndefined()
+      const result = validateRequest(statement, STATEMENT)
+      expect(result).toBeUndefined()
     })
   })
 
@@ -33,8 +33,8 @@ describe('validate statement', () => {
     })
 
     test('returns undefined', async () => {
-      const res = validateRequest(statement, STATEMENT)
-      expect(res).toBeUndefined()
+      const result = validateRequest(statement, STATEMENT)
+      expect(result).toBeUndefined()
     })
   })
 
@@ -298,8 +298,8 @@ describe('validate schedule', () => {
     })
 
     test('returns undefined on valid schedule', async () => {
-      const res = validateRequest(schedule, SCHEDULE)
-      expect(res).toBeUndefined()
+      const result = validateRequest(schedule, SCHEDULE)
+      expect(result).toBeUndefined()
     })
   })
 
@@ -314,8 +314,8 @@ describe('validate schedule', () => {
     })
 
     test('returns undefined', async () => {
-      const res = validateRequest(schedule, SCHEDULE)
-      expect(res).toBeUndefined()
+      const result = validateRequest(schedule, SCHEDULE)
+      expect(result).toBeUndefined()
     })
   })
 
