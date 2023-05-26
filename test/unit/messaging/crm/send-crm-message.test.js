@@ -1,41 +1,119 @@
-const mockSendMessage = jest.fn()
-const mockCloseConnection = jest.fn()
-jest.mock('ffc-messaging', () => {
-  return {
-    MessageSender: jest.fn().mockImplementation(() => {
-      return {
-        sendMessage: mockSendMessage,
-        closeConnection: mockCloseConnection
-      }
-    })
-  }
-})
+const { mockMessageSender } = require('../../../mocks/modules/ffc-messaging')
 
 jest.mock('../../../../app/messaging/crm/create-crm-message')
 const createCrmMessage = require('../../../../app/messaging/crm/create-crm-message')
 
 const sendCrmMessage = require('../../../../app/messaging/crm/send-crm-message')
-const mockStatement = require('../../../mocks/mock-statement')
-const FILENAME = 'FFC_PaymentStatement_SFI_2022_1234567890_2022080515301012.pdf'
-const { STATEMENT } = require('../../../../app/constants/document-types')
 
-describe('send crm message', () => {
-  beforeEach(() => {
+const { STATEMENT: STATEMENT_FILENAME, SCHEDULE: SCHEDULE_FILENAME } = require('../../../mocks/components/filename')
+const { STATEMENT: STATEMENT_TYPE, SCHEDULE: SCHEDULE_TYPE } = require('../../../../app/constants/document-types')
+
+let document
+let filename
+let type
+
+describe('send CRM message', () => {
+  afterEach(() => {
     jest.clearAllMocks()
   })
 
-  test('should call createCrmMessage when statement and filename are given', async () => {
-    await sendCrmMessage(mockStatement, FILENAME, STATEMENT)
-    expect(createCrmMessage).toHaveBeenCalled()
+  describe('when document is a statement', () => {
+    beforeEach(() => {
+      document = JSON.parse(JSON.stringify(require('../../../mocks/mock-statement')))
+      filename = STATEMENT_FILENAME
+      type = STATEMENT_TYPE
+
+      createCrmMessage.mockReturnValue({ z: 1 })
+    })
+
+    test('should call createCrmMessage', async () => {
+      await sendCrmMessage(document, filename, type)
+      expect(createCrmMessage).toHaveBeenCalled()
+    })
+
+    test('should call createCrmMessage once', async () => {
+      await sendCrmMessage(document, filename, type)
+      expect(createCrmMessage).toHaveBeenCalledTimes(1)
+    })
+
+    test('should call createCrmMessage with document and filename', async () => {
+      await sendCrmMessage(document, filename, type)
+      expect(createCrmMessage).toHaveBeenCalledWith(document, filename, type)
+    })
+
+    test('should call mockMessageSender.sendMessage', async () => {
+      await sendCrmMessage(document, filename, type)
+      expect(mockMessageSender().sendMessage).toHaveBeenCalled()
+    })
+
+    test('should call mockMessageSender.sendMessage once', async () => {
+      await sendCrmMessage(document, filename, type)
+      expect(mockMessageSender().sendMessage).toHaveBeenCalledTimes(1)
+    })
+
+    test('should call mockMessageSender.sendMessage with document and filename', async () => {
+      await sendCrmMessage(document, filename, type)
+      expect(mockMessageSender().sendMessage).toHaveBeenCalledWith({ a: 1 })
+    })
+
+    test('should call mockMessageSender.closeConnection', async () => {
+      await sendCrmMessage(document, filename, type)
+      expect(mockMessageSender().closeConnection).toHaveBeenCalled()
+    })
+
+    test('should call mockMessageSender.closeConnection once', async () => {
+      await sendCrmMessage(document, filename, type)
+      expect(mockMessageSender().closeConnection).toHaveBeenCalledTimes(1)
+    })
   })
 
-  test('should call createCrmMessage once when statement and filename are given', async () => {
-    await sendCrmMessage(mockStatement, FILENAME, STATEMENT)
-    expect(createCrmMessage).toHaveBeenCalledTimes(1)
-  })
+  describe('when document is a schedule', () => {
+    beforeEach(() => {
+      document = JSON.parse(JSON.stringify(require('../../../mocks/mock-schedule')))
+      filename = SCHEDULE_FILENAME
+      type = SCHEDULE_TYPE
 
-  test('should call createCrmMessage with statement and filename when statement and filename are given', async () => {
-    await sendCrmMessage(mockStatement, FILENAME, STATEMENT)
-    expect(createCrmMessage).toHaveBeenCalledWith(mockStatement, FILENAME, STATEMENT)
+      createCrmMessage.mockReturnValue({ z: 1 })
+    })
+
+    test('should call createCrmMessage', async () => {
+      await sendCrmMessage(document, filename, type)
+      expect(createCrmMessage).toHaveBeenCalled()
+    })
+
+    test('should call createCrmMessage once', async () => {
+      await sendCrmMessage(document, filename, type)
+      expect(createCrmMessage).toHaveBeenCalledTimes(1)
+    })
+
+    test('should call createCrmMessage with document and filename', async () => {
+      await sendCrmMessage(document, filename, type)
+      expect(createCrmMessage).toHaveBeenCalledWith(document, filename, type)
+    })
+
+    test('should call mockMessageSender.sendMessage', async () => {
+      await sendCrmMessage(document, filename, type)
+      expect(mockMessageSender().sendMessage).toHaveBeenCalled()
+    })
+
+    test('should call mockMessageSender.sendMessage once', async () => {
+      await sendCrmMessage(document, filename, type)
+      expect(mockMessageSender().sendMessage).toHaveBeenCalledTimes(1)
+    })
+
+    test('should call mockMessageSender.sendMessage with document and filename', async () => {
+      await sendCrmMessage(document, filename, type)
+      expect(mockMessageSender().sendMessage).toHaveBeenCalledWith({ a: 1 })
+    })
+
+    test('should call mockMessageSender.closeConnection', async () => {
+      await sendCrmMessage(document, filename, type)
+      expect(mockMessageSender().closeConnection).toHaveBeenCalled()
+    })
+
+    test('should call mockMessageSender.closeConnection once', async () => {
+      await sendCrmMessage(document, filename, type)
+      expect(mockMessageSender().closeConnection).toHaveBeenCalledTimes(1)
+    })
   })
 })
