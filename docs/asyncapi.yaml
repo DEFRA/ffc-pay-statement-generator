@@ -1,7 +1,7 @@
 asyncapi: 2.6.0
 info:
   title: FFC Payment Statement Generator
-  version: 1.0.2
+  version: 1.0.3
   description: Generate PDF payment statements
 channels:
   ffc-pay-statements/ffc-pay-statement-generator:
@@ -10,13 +10,29 @@ channels:
         oneOf:
           - $ref: '#/components/messages/PaymentSchedule'
           - $ref: '#/components/messages/PaymentStatement'
+  ffc-pay-statement-publish/ffc-pay-statement-publisher:
+    publish:
+      message:
+        oneOf:
+          - $ref: '#/components/messages/PubSched'
+          - $ref: '#/components/messages/PubStat'
 components:
   messages:
     PaymentSchedule:
-      name: Payment schedule
+      name: Payment statement
       contentType: application/json
       payload:
         $ref: '#/components/schemas/PaymentSchedule'
+    PubSched:
+      name: Payment schedule
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/PubSched'
+    PubStat:
+      name: Payment statement
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/PubStat'
     PaymentStatement:
       name: Payment statement
       contentType: application/json
@@ -139,6 +155,34 @@ components:
           $ref: '#/components/schemas/Scheme'
         documentReference:
           $ref: '#/components/schemas/DocumentReference'
+    PubSched:
+      additionalProperties: false
+      type: object
+      required:
+        - body
+        - type
+        - source
+      properties:
+        body:
+          $ref: '#/components/schemas/BodyStatement'
+        type:
+          $ref: '#/components/schemas/TypeStatement'
+        source:
+          $ref: '#/components/schemas/Source'
+    PubStat:
+      additionalProperties: false
+      type: object
+      required:
+        - body
+        - type
+        - source
+      properties:
+        body:
+          $ref: '#/components/schemas/BodySchedule'
+        type:
+          $ref: '#/components/schemas/TypeSchedule'
+        source:
+          $ref: '#/components/schemas/Source'
     Address:
       additionalProperties: false
       required:
@@ -310,6 +354,14 @@ components:
       type: string
       description: The second line of the address
       example: Some Area
+    BodySchedule:
+      type: string
+      description: The business name
+      example: body scheudle
+    BodyStatement:
+      type: string
+      description: The business name
+      example: body statement
     BusinessName:
       type: string
       description: The business name
@@ -501,6 +553,10 @@ components:
       type: string
       description: The settled date of the payment request
       example: 3 July 2022
+    Source:
+      type: string
+      description: The source of the message being sent
+      example: ffc-pay-statement-generator
     Street:
       type: string
       description: The first line of the address
@@ -509,6 +565,20 @@ components:
       type: string
       description: The third line of the address
       example: Some Town
+    Type:
+      type: string
+      description: The type of message being sent
+      oneOf:
+          - $ref: '#/components/schemas/TypeSchedule'
+          - $ref: '#/components/schemas/TypeStatement'
+    TypeSchedule:
+      type: string
+      description: The schedule type of message being sent
+      example: uk.gov.pay.schedule.publish
+    TypeStatement:
+      type: string
+      description: The statement type of message being sent
+      example: uk.gov.pay.statement.publish
     Value:
       type: string
       description: The value of the payment
