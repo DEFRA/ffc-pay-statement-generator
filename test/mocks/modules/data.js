@@ -1,11 +1,31 @@
-const mockCreate = jest.fn()
+const mockCommit = jest.fn()
+const mockRollback = jest.fn()
 
-jest.mock('../../../app/data', () => {
+const mockTransaction = jest.fn().mockImplementation(() => {
   return {
-    generation: {
-      create: mockCreate
-    }
+    commit: mockCommit,
+    rollback: mockRollback
   }
 })
 
-module.exports = mockCreate
+const mockSequelize = {
+  transaction: mockTransaction
+}
+
+const mockCreate = jest.fn()
+
+const mockGeneration = {
+  create: mockCreate
+}
+
+jest.mock('../../../app/data', () => {
+  return {
+    sequelize: mockSequelize,
+    generation: mockGeneration
+  }
+})
+
+module.exports = {
+  mockTransaction,
+  mockGeneration
+}
