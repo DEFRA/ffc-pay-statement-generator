@@ -1,14 +1,13 @@
 const { mockMessageSender } = require('../../mocks/modules/ffc-messaging')
 
+jest.mock('../../../app/messaging/create-message')
+const createMessage = require('../../../app/messaging/create-message')
+
 const { STATEMENT: STATEMENT_TYPE, SCHEDULE: SCHEDULE_TYPE } = require('../../../app/constants/document-types')
 
 const { STATEMENT: STATEMENT_FILENAME, SCHEDULE: SCHEDULE_FILENAME } = require('../../mocks/components/filename')
-const { STATEMENT_MESSAGE, SCHEDULE_MESSAGE } = require('../../mocks/messages/publish')
-
-const { STATEMENT_MESSAGE: ST, SCHEDULE_MESSAGE: SC } = require('../../mocks/messages/mock-process-message')
-
-jest.mock('../../../app/messaging/create-message')
-const createMessage = require('../../../app/messaging/create-message')
+const { STATEMENT_MESSAGE: STATEMENT_MESSAGE_INCOMING, SCHEDULE_MESSAGE: SCHEDULE_MESSAGE_INCOMING } = require('../../mocks/messages/mock-process-message')
+const { STATEMENT_MESSAGE: STATEMENT_MESSAGE_OUTGOING, SCHEDULE_MESSAGE: SCHEDULE_MESSAGE_OUTGOING } = require('../../mocks/messages/publish')
 
 const sendPublishMessage = require('../../../app/messaging/send-publish-message')
 
@@ -23,11 +22,11 @@ describe('send publish message', () => {
 
   describe('when document is a statement', () => {
     beforeEach(() => {
-      document = ST.body
+      document = STATEMENT_MESSAGE_INCOMING.body
       filename = STATEMENT_FILENAME
       type = STATEMENT_TYPE.id
 
-      createMessage.mockReturnValue(STATEMENT_MESSAGE)
+      createMessage.mockReturnValue(STATEMENT_MESSAGE_OUTGOING)
     })
 
     test('should call createMessage', async () => {
@@ -92,12 +91,12 @@ describe('send publish message', () => {
 
     test('should call mockMessageSender.sendMessage with body.type', async () => {
       await sendPublishMessage(document, filename, type)
-      expect(mockMessageSender().sendMessage.mock.calls[0][0].type).toBe(STATEMENT_MESSAGE.type)
+      expect(mockMessageSender().sendMessage.mock.calls[0][0].type).toBe(STATEMENT_MESSAGE_OUTGOING.type)
     })
 
     test('should call mockMessageSender.sendMessage with body.source', async () => {
       await sendPublishMessage(document, filename, type)
-      expect(mockMessageSender().sendMessage.mock.calls[0][0].source).toBe(STATEMENT_MESSAGE.source)
+      expect(mockMessageSender().sendMessage.mock.calls[0][0].source).toBe(STATEMENT_MESSAGE_OUTGOING.source)
     })
 
     test('should call mockMessageSender.sendMessage with createMessage', async () => {
@@ -118,11 +117,11 @@ describe('send publish message', () => {
 
   describe('when document is a schedule', () => {
     beforeEach(() => {
-      document = SC.body
+      document = SCHEDULE_MESSAGE_INCOMING.body
       filename = SCHEDULE_FILENAME
       type = SCHEDULE_TYPE.id
 
-      createMessage.mockReturnValue(SCHEDULE_MESSAGE)
+      createMessage.mockReturnValue(SCHEDULE_MESSAGE_OUTGOING)
     })
 
     test('should call createMessage', async () => {
@@ -187,12 +186,12 @@ describe('send publish message', () => {
 
     test('should call mockMessageSender.sendMessage with body.type', async () => {
       await sendPublishMessage(document, filename, type)
-      expect(mockMessageSender().sendMessage.mock.calls[0][0].type).toBe(SCHEDULE_MESSAGE.type)
+      expect(mockMessageSender().sendMessage.mock.calls[0][0].type).toBe(SCHEDULE_MESSAGE_OUTGOING.type)
     })
 
     test('should call mockMessageSender.sendMessage with body.source', async () => {
       await sendPublishMessage(document, filename, type)
-      expect(mockMessageSender().sendMessage.mock.calls[0][0].source).toBe(SCHEDULE_MESSAGE.source)
+      expect(mockMessageSender().sendMessage.mock.calls[0][0].source).toBe(SCHEDULE_MESSAGE_OUTGOING.source)
     })
 
     test('should call mockMessageSender.sendMessage with createMessage', async () => {
