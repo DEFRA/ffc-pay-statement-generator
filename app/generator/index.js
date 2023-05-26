@@ -2,7 +2,6 @@ const PdfPrinter = require('pdfmake')
 const moment = require('moment')
 
 const config = require('../config')
-const db = require('../data')
 
 const { SCHEDULE } = require('../constants/document-types')
 
