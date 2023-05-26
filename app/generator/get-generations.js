@@ -1,9 +1,7 @@
 const db = require('../data')
 
-const getGenerations = async (documentReference, transaction) => {
+const getGenerations = async (documentReference) => {
   return db.generation.findOne({
-    transaction,
-    lock: true,
     where: {
       [db.Sequelize.Op.and]: [{ documentReference }, {
         documentReference: {
