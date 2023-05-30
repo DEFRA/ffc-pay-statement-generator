@@ -14,4 +14,6 @@ jest.mock('ffc-messaging', () => {
   }
 })
 
-module.exports = { mockMessageSender }
+module.exports = {
+  mockMessageSender
+}

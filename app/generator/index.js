@@ -10,7 +10,7 @@ const getDocumentDefinition = require('./get-document-definition')
 const publish = require('./publish')
 const saveLog = require('./save-log')
 
-const sendPublishMessage = require('../messaging/send-publish-message')
+const sendPublishMessage = require('../messaging/publish/send-publish-message')
 const sendCrmMessage = require('../messaging/crm/send-crm-message')
 
 const fonts = require('./fonts')

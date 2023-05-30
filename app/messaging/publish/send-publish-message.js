@@ -1,4 +1,4 @@
-const config = require('../config')
+const config = require('../../config')
 const { MessageSender } = require('ffc-messaging')
 const createMessage = require('./create-message')
 
