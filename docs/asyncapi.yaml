@@ -32,12 +32,12 @@ components:
       name: Payment schedule
       contentType: application/json
       payload:
-        $ref: '#/components/schemas/DocumentSchedule'
+        $ref: '#/components/schemas/BodySchedule'
     DocumentStatement:
       name: Payment statement
       contentType: application/json
       payload:
-        $ref: '#/components/schemas/DocumentStatement'
+        $ref: '#/components/schemas/BodyStatement'
     Crm:
       name: Crm Message
       contentType: application/json
@@ -189,6 +189,34 @@ components:
           $ref: '#/components/schemas/AdjustmentNewValue'
         adjustmentValue:
           $ref: '#/components/schemas/AdjustmentValue'
+    BodySchedule:
+      additionalProperties: false
+      type: object
+      required:
+        - body
+        - source
+        - type
+      properties:
+        body:
+          $ref: '#/components/schemas/DocumentSchedule'
+        source:
+          $ref: '#/components/schemas/Source'
+        type:
+          $ref: '#/components/schemas/TypeSchedule'
+    BodyStatement:
+      additionalProperties: false
+      type: object
+      required:
+        - body
+        - source
+        - type
+      properties:
+        body:
+          $ref: '#/components/schemas/DocumentStatement'
+        source:
+          $ref: '#/components/schemas/Source'
+        type:
+          $ref: '#/components/schemas/TypeStatement'
     DocumentSchedule:
       additionalProperties: false
       type: object
@@ -382,14 +410,6 @@ components:
       type: string
       description: The second line of the address
       example: Some Area
-    BodySchedule:
-      type: string
-      description: The business name
-      example: body scheudle
-    BodyStatement:
-      type: string
-      description: The business name
-      example: body statement
     BusinessName:
       type: string
       description: The business name
