@@ -19,10 +19,15 @@ channels:
 components:
   messages:
     PaymentSchedule:
-      name: Payment statement
+      name: Payment schedule
       contentType: application/json
       payload:
         $ref: '#/components/schemas/PaymentSchedule'
+    PaymentStatement:
+      name: Payment statement
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/PaymentStatement'
     DocumentSchedule:
       name: Payment schedule
       contentType: application/json
@@ -33,11 +38,6 @@ components:
       contentType: application/json
       payload:
         $ref: '#/components/schemas/DocumentStatement'
-    PaymentStatement:
-      name: Payment statement
-      contentType: application/json
-      payload:
-        $ref: '#/components/schemas/PaymentStatement'
     Crm:
       name: Crm Message
       contentType: application/json
