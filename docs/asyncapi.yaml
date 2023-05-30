@@ -1,8 +1,8 @@
 asyncapi: 2.6.0
 info:
-  title: FFC Payment Statement Generator
+  title: FFC Payment Document Generator
   version: 1.0.3
-  description: Generate PDF payment statements
+  description: Generate PDF payment documents
 channels:
   ffc-pay-statements/ffc-pay-statement-generator:
     subscribe:
@@ -14,8 +14,8 @@ channels:
     publish:
       message:
         oneOf:
-          - $ref: '#/components/messages/PubSched'
-          - $ref: '#/components/messages/PubStat'
+          - $ref: '#/components/messages/DocumentSchedule'
+          - $ref: '#/components/messages/DocumentStatement'
 components:
   messages:
     PaymentSchedule:
@@ -23,16 +23,16 @@ components:
       contentType: application/json
       payload:
         $ref: '#/components/schemas/PaymentSchedule'
-    PubSched:
+    DocumentSchedule:
       name: Payment schedule
       contentType: application/json
       payload:
-        $ref: '#/components/schemas/PubSched'
-    PubStat:
+        $ref: '#/components/schemas/DocumentSchedule'
+    DocumentStatement:
       name: Payment statement
       contentType: application/json
       payload:
-        $ref: '#/components/schemas/PubStat'
+        $ref: '#/components/schemas/DocumentStatement'
     PaymentStatement:
       name: Payment statement
       contentType: application/json
@@ -155,34 +155,6 @@ components:
           $ref: '#/components/schemas/Scheme'
         documentReference:
           $ref: '#/components/schemas/DocumentReference'
-    PubSched:
-      additionalProperties: false
-      type: object
-      required:
-        - body
-        - type
-        - source
-      properties:
-        body:
-          $ref: '#/components/schemas/BodyStatement'
-        type:
-          $ref: '#/components/schemas/TypeStatement'
-        source:
-          $ref: '#/components/schemas/Source'
-    PubStat:
-      additionalProperties: false
-      type: object
-      required:
-        - body
-        - type
-        - source
-      properties:
-        body:
-          $ref: '#/components/schemas/BodySchedule'
-        type:
-          $ref: '#/components/schemas/TypeSchedule'
-        source:
-          $ref: '#/components/schemas/Source'
     Address:
       additionalProperties: false
       required:
@@ -217,6 +189,62 @@ components:
           $ref: '#/components/schemas/AdjustmentNewValue'
         adjustmentValue:
           $ref: '#/components/schemas/AdjustmentValue'
+    DocumentSchedule:
+      additionalProperties: false
+      type: object
+      required:
+        - address
+        - businessName
+        - documentReference
+        - filename
+        - frn 
+        - sbi
+        - scheme
+      properties:
+        address:
+          $ref: '#/components/schemas/Address'
+        businessName:
+          $ref: '#/components/schemas/BusinessName'
+        documentReference:
+          $ref: '#/components/schemas/DocumentReference'
+        email:
+          $ref: '#/components/schemas/Email'
+        filename:
+          $ref: '#/components/schemas/FilenameSchedule'
+        frn:
+          $ref: '#/components/schemas/FRN'
+        sbi:
+          $ref: '#/components/schemas/SBI'
+        scheme:
+          $ref: '#/components/schemas/Scheme'
+    DocumentStatement:
+      additionalProperties: false
+      type: object
+      required:
+        - address
+        - businessName
+        - documentReference
+        - filename
+        - frn 
+        - sbi
+        - scheme
+      properties:
+        address:
+          $ref: '#/components/schemas/Address'
+        businessName:
+          $ref: '#/components/schemas/BusinessName'
+        documentReference:
+          $ref: '#/components/schemas/DocumentReference'
+        email:
+          $ref: '#/components/schemas/Email'
+        filename:
+          $ref: '#/components/schemas/FilenameStatement'
+        frn:
+          $ref: '#/components/schemas/FRN'
+        sbi:
+          $ref: '#/components/schemas/SBI'
+        scheme:
+          $ref: '#/components/schemas/Scheme'
     Funding:
       additionalProperties: false
       type: object
@@ -397,6 +425,14 @@ components:
       minimum: 1000000000
       maximum: 9999999999
       example: 1234567890
+    FilenameSchedule:
+      type: string
+      description: The PDF filename for the payment schedule
+      example: FFC_PaymentSchedule_SFI_2022_1234567890_2023051810180298.pdf
+    FilenameStatement:
+      type: string
+      description: The PDF filename for the payment statement
+      example: FFC_PaymentStatement_SFI_2022_1234567890_2023051810180298.pdf
     FundingName:
       type: string
       description: The funding option name
