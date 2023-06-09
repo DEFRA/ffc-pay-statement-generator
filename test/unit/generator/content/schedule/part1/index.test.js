@@ -20,11 +20,11 @@ describe('schedule Part 1', () => {
 
   test('includes header with both scheme name and year for SFI', () => {
     const result = part1(topUpSchedule)
-    expect(result.stack[2].text).toBe('Sustainable Farming Incentive')
+    expect(result.stack[5].text).toBe(`${topUpSchedule.scheme.name} (${topUpSchedule.scheme.shortName}) revised payment schedule `)
   })
 
-  test('includes subtitle', () => {
+  test('header style is set to header3', () => {
     const result = part1(topUpSchedule)
-    expect(result.stack[3].text).toBe('Revised payment schedule')
+    expect(result.stack[5].style).toBe('header3')
   })
 })

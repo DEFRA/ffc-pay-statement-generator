@@ -6,7 +6,7 @@ describe('schedule part 2', () => {
   describe('Get top-up description', () => {
     test('should include 1st paragraph', () => {
       const result = part2(topUpSchedule)
-      expect(result.stack[0]).toEqual(`\n\nWe recently sent you a letter to tell you the annual value of your ${topUpSchedule.scheme.name} (${topUpSchedule.scheme.shortName}) agreement has increased.`)
+      expect(result.stack[0]).toEqual(`The annual value of your ${topUpSchedule.scheme.name} (${topUpSchedule.scheme.shortName}) agreement has increased.`)
     })
 
     test('should include 2nd paragraph', () => {

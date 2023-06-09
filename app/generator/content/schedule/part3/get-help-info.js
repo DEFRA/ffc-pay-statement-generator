@@ -1,12 +1,13 @@
 const getHelpInfo = () => {
   return {
     stack: [
-      { text: 'Get help with your payment', style: 'header2' },
-      'If you think your payments are wrong, you can:\n\n',
+      { text: 'More information', style: 'header3' },
+      'If you think your payments are wrong, you should:\n',
       {
         ul: [{
           text: [
-            { text: 'log into the Rural Payments service', link: 'www.gov.uk/claim-rural-payments', decoration: 'underline' },
+            'log into the Rural Payments service ',
+            { text: 'www.gov.uk/claim-rural-payments', link: 'https://www.gov.uk/claim-rural-payments', decoration: 'underline' },
             ' to check your SFI standard agreement'
           ]
         },
@@ -14,16 +15,27 @@ const getHelpInfo = () => {
         {
           text: [
             'review the SFI scheme information at ',
-            { text: 'www.gov.uk/government/collections/sustainable-farming-incentive-guidance', link: 'www.gov.uk/government/collections/sustainable-farming-incentive-guidance', decoration: 'underline' }
+            { text: 'www.gov.uk/government/collections/sustainable-farming-incentive-guidance', link: 'https://www.gov.uk/government/collections/sustainable-farming-incentive-guidance', decoration: 'underline' }
           ]
         }],
         listStyle: 'square'
       },
+      { text: 'If you have any questions about this email', style: 'header3' },
       {
         text: [
-          '\n\nIf you still have questions about your payments, you can ',
-          { text: 'use the query form', link: 'https://www.gov.uk/government/publications/contact-the-rpa-about-sfi', decoration: 'underline' },
-          ' to contact us.'
+          'You can email ',
+          { text: 'ruralpayments@defra.gov.uk', link: 'mailto:ruralpayments@defra.gov.uk', decoration: 'underline' },
+          ' or call us on 03000 200 301 (Monday to Friday, 8.30am to 5pm). Please tell us your SBI and Agreement number if applicable which are at the top of this email.'
+        ]
+      },
+      { text: 'SFI', style: 'header3' },
+      {
+        text: [
+          'Rural Payments Agency | PO Box 325 | WORKSOP | S95 1DG',
+          { text: '\nruralpayments@defra.gov.uk', link: 'mailto:ruralpayments@defra.gov.uk', decoration: 'underline' },
+          ' | 03000 200 301 | ',
+          { text: 'gov.uk/defra/sfi', link: 'https://www.gov.uk/government/collections/sustainable-farming-incentive-guidance', decoration: 'underline' },
+          '\nFollow us on Twitter @Ruralpay'
         ]
       }
     ]
