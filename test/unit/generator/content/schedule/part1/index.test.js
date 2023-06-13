@@ -27,4 +27,9 @@ describe('schedule Part 1', () => {
     const result = part1(topUpSchedule)
     expect(result.stack[5].style).toBe('header3')
   })
+
+  test('includes unbreakable instruction', () => {
+    const result = part1(topUpSchedule)
+    expect(result.unbreakable).toBeTruthy()
+  })
 })

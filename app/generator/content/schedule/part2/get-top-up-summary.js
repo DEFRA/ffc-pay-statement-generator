@@ -14,8 +14,8 @@ const getTopUpSummary = (adjustment) => {
             `Current agreement value: ${toCurrencyString(adjustment.currentValue)}\n`,
             `New agreement value: ${toCurrencyString(adjustment.newValue)}\n`,
             `Top up amount: ${toCurrencyString(adjustment.adjustmentValue)}\n`
-          ],
-          fillColor: '#d9d9d9'
+          ]
+
         }]
       ]
     }

@@ -10,7 +10,7 @@ describe('get agreement reference', () => {
 
   test('returns title column text', () => {
     const result = getAgreementReference(agreementReference)
-    expect(result.columns[0].text).toBe('Agreement reference number:')
+    expect(result.columns[0].text).toBe('Agreement number:')
   })
 
   test('returns title column width', () => {

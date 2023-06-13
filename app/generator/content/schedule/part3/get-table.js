@@ -1,5 +1,5 @@
 const toCurrencyString = require('../../../../generator/to-currency-string')
-const { IMMEDIATE } = require('../../../../../app/constants/payment-types')
+const getPaymentTypeRowSpan = require('./get-payment-type-row-span')
 
 const getTable = (schedule) => {
   const rowsCount = schedule.length + 1
@@ -9,7 +9,6 @@ const getTable = (schedule) => {
       vLineStyle: () => 'solid'
     },
     style: 'table',
-    fillColor: '#d9d9d9',
     table: {
       headerRows: 1,
       widths: ['*', '*', '*'],
@@ -20,7 +19,7 @@ const getTable = (schedule) => {
           { text: 'Amount', style: 'tableHeader' }
         ],
         ...schedule.map(x => ([
-          { rowSpan: getRowSpan(x.paymentType, rowsCount, x.order), text: x.paymentType, style: 'tableNumber' },
+          { rowSpan: getPaymentTypeRowSpan(x.paymentType, rowsCount, x.order), text: x.paymentType, style: 'tableNumber' },
           { text: x.period, style: 'tableNumber' },
           { text: toCurrencyString(x.value), style: 'tableNumber' }
         ]))
@@ -29,10 +28,6 @@ const getTable = (schedule) => {
   }
 
   return table
-}
-
-const getRowSpan = (paymentType, rowsCount, order) => {
-  return paymentType === IMMEDIATE ? 1 : rowsCount - Number(order)
 }
 
 module.exports = {

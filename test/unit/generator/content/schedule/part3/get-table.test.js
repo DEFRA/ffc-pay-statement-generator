@@ -8,7 +8,7 @@ describe('get table', () => {
     mockSchedule = JSON.parse(JSON.stringify(require('../../../../../mocks/mock-schedule').topUpSchedule))
   })
 
-  test('includes table with number of colums equal schedule length + 1 ', () => {
+  test('includes table with number of rows equal schedule length + 1 ', () => {
     const result = getTable(mockSchedule.schedule)
     expect(result.table.body.length).toBe(mockSchedule.schedule.length + 1)
   })

@@ -9,7 +9,7 @@ describe('get SBI', () => {
 
   test('returns title column text', () => {
     const result = getSBI(sbi)
-    expect(result.columns[0].text).toBe('Single business identifier (SBI):')
+    expect(result.columns[0].text).toBe('SBI:')
   })
 
   test('returns title column width', () => {

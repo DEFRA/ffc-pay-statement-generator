@@ -1,7 +1,7 @@
 const getSBI = (sbi) => {
   return {
     columns: [
-      { width: 200, text: 'Single business identifier (SBI):' },
+      { width: 200, text: 'SBI:' },
       { width: '*', text: sbi }
     ],
     style: 'column',

@@ -18,14 +18,14 @@ module.exports = [
   {
     order: 3,
     dueDate: '01/06/2023',
-    period: 'Mar-May 2023',
     paymentType: QUARTERLY,
+    period: 'Mar-May 2023',
     value: '325.00'
   },
   {
     order: 4,
     dueDate: '01/09/2023',
-    period: 'Jun-Aug 2023',
     paymentType: QUARTERLY,
+    period: 'Jun-Aug 2023',
     value: '325.00'
   }]
