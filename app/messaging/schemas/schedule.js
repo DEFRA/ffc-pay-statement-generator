@@ -19,5 +19,6 @@ module.exports = Joi.object({
   scheme,
   documentReference,
   adjustment,
+  remainingAmount: Joi.number().integer().required(),
   schedule: Joi.array().items(paymentSchedule).required()
 }).required()
