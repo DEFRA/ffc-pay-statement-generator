@@ -8,27 +8,27 @@ describe('get table', () => {
     mockSchedule = JSON.parse(JSON.stringify(require('../../../../../mocks/mock-schedule').topUpSchedule))
   })
 
-  test('includes table with three rows', () => {
+  test('includes table with number of rows equal schedule length + 1 ', () => {
     const result = getTable(mockSchedule.schedule)
-    expect(result.table.body.length).toBe(3)
+    expect(result.table.body.length).toBe(mockSchedule.schedule.length + 1)
   })
 
-  test('includes table with six columns when four instalments and a top up', () => {
+  test('includes table with 3 fixed columns', () => {
     const result = getTable(mockSchedule.schedule)
-    expect(result.table.widths.length).toBe(mockSchedule.schedule.length + 1)
+    expect(result.table.widths.length).toBe(3)
   })
 
-  test('includes table with five columns when four instalments', () => {
+  test('includes table with five rows when four instalments', () => {
     mockSchedule.schedule.pop()
     const result = getTable(mockSchedule.schedule)
-    expect(result.table.widths.length).toBe(mockSchedule.schedule.length + 1)
+    expect(result.table.body.length).toBe(mockSchedule.schedule.length + 1)
   })
 
-  test('includes table with four columns when three instalments', () => {
+  test('includes table with four rows when three instalments', () => {
     mockSchedule.schedule.pop()
     mockSchedule.schedule.pop()
     const result = getTable(mockSchedule.schedule)
-    expect(result.table.widths.length).toBe(mockSchedule.schedule.length + 1)
+    expect(result.table.body.length).toBe(mockSchedule.schedule.length + 1)
   })
 
   test('should use auto width columns for every column', () => {
@@ -56,14 +56,7 @@ describe('get table', () => {
     })
   })
 
-  test('should use tableHeader style for first column', () => {
-    const result = getTable(mockSchedule.schedule)
-    result.table.body.forEach(row => {
-      expect(row[0].style).toBe('tableHeader')
-    })
-  })
-
-  test('should use tableNumber style for value rows', () => {
+  test('should use tableNumber style for other cells that are not header row', () => {
     const result = getTable(mockSchedule.schedule)
     result.table.body.filter((r, i) => i > 0).forEach(row => {
       const valueRows = row.filter((x, i) => i > 0)
@@ -78,39 +71,37 @@ describe('get table', () => {
     expect(result.table.body[0][0].text).toBe('Payment type')
   })
 
-  test('header is Amount for second row', () => {
+  test('header is Immediate payment for second row', () => {
     const result = getTable(mockSchedule.schedule)
-    expect(result.table.body[1][0].text).toBe('Amount')
+    expect(result.table.body[1][0].text).toBe('Immediate payment')
   })
 
-  test('header is Payment period for third row', () => {
+  test('header is Quarterly payment for third row', () => {
     const result = getTable(mockSchedule.schedule)
-    expect(result.table.body[2][0].text).toBe('Payment period')
+    expect(result.table.body[2][0].text).toBe('Quarterly payment')
   })
 
-  test('includes first instalment period as first column if first paid', () => {
+  test('includes first payment period as second column of second row', () => {
     const result = getTable(mockSchedule.schedule)
-    expect(result.table.body[0][1].text).toBe(mockSchedule.schedule[0].paymentType)
+    expect(result.table.body[1][1].text).toBe(mockSchedule.schedule[0].period)
   })
 
-  test('includes all payment period values from schedule as headers', () => {
+  test('includes first payment values as third column of second row', () => {
     const result = getTable(mockSchedule.schedule)
-    mockSchedule.schedule.forEach((instalment, i) => {
-      expect(result.table.body[0][i + 1].text).toBe(instalment.paymentType)
-    })
+    expect(result.table.body[1][2].text).toBe(toCurrencyString(mockSchedule.schedule[0].value))
   })
 
   test('includes all values from schedule as values', () => {
     const result = getTable(mockSchedule.schedule)
     mockSchedule.schedule.forEach((instalment, i) => {
-      expect(result.table.body[1][i + 1].text).toBe(toCurrencyString(instalment.value))
+      expect(result.table.body[i + 1][2].text).toBe(toCurrencyString(instalment.value))
     })
   })
 
-  test('includes all due dates from schedule', () => {
+  test('includes all period from schedule', () => {
     const result = getTable(mockSchedule.schedule)
     mockSchedule.schedule.forEach((instalment, i) => {
-      expect(result.table.body[2][i + 1].text).toBe(instalment.period)
+      expect(result.table.body[i + 1][1].text).toBe(instalment.period)
     })
   })
 })

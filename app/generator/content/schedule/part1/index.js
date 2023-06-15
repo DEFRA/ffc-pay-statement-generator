@@ -11,11 +11,10 @@ const part1 = (schedule) => {
     stack: [
       { image: `${imagePath}/rpa-logo.jfif`, fit: [millimetresToPoints(200), millimetresToPoints(25)], style: 'scheduleLogo' },
       getAddress(schedule.businessName, schedule.address),
-      { text: `${schedule.scheme.name}`, style: 'header1' },
-      { text: 'Revised payment schedule', style: 'subTitle' },
-      getBusinessName(schedule.businessName),
       getSBI(schedule.sbi),
-      getAgreementReference(schedule.scheme.agreementNumber)
+      getBusinessName(schedule.businessName),
+      getAgreementReference(schedule.scheme.agreementNumber),
+      { text: `${schedule.scheme.name} (${schedule.scheme.shortName}) revised payment schedule `, style: 'header3' }
     ],
     unbreakable: true
   }

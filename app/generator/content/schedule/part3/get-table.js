@@ -1,29 +1,28 @@
 const toCurrencyString = require('../../../../generator/to-currency-string')
+const getPaymentTypeRowSpan = require('./get-payment-type-row-span')
 
 const getTable = (schedule) => {
+  const rowsCount = schedule.length + 1
   const table = {
     layout: {
       hLineStyle: () => 'solid',
       vLineStyle: () => 'solid'
     },
     style: 'table',
-    fillColor: '#d9d9d9',
     table: {
       headerRows: 1,
-      widths: ['*', ...schedule.map(x => ('*'))],
+      widths: ['*', '*', '*'],
       body: [
         [
           { text: 'Payment type', style: 'tableHeader' },
-          ...schedule.map(x => ({ text: x.paymentType, style: 'tableHeader' }))
-        ],
-        [
-          { text: 'Amount', style: 'tableHeader' },
-          ...schedule.map(x => ({ text: toCurrencyString(x.value), style: 'tableNumber' }))
-        ],
-        [
           { text: 'Payment period', style: 'tableHeader' },
-          ...schedule.map(x => ({ text: x.period, style: 'tableNumber' }))
-        ]
+          { text: 'Amount', style: 'tableHeader' }
+        ],
+        ...schedule.map(x => ([
+          { rowSpan: getPaymentTypeRowSpan(x.paymentType, rowsCount, x.order), text: x.paymentType, style: 'tableNumber' },
+          { text: x.period, style: 'tableNumber' },
+          { text: toCurrencyString(x.value), style: 'tableNumber' }
+        ]))
       ]
     }
   }

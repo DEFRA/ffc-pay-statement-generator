@@ -15,6 +15,6 @@ describe('generator content', () => {
 
   test('should return schedule content if schedule', () => {
     const result = generateContent(topUpSchedule, SCHEDULE)
-    expect(result[0].stack[3].text).toBe('Revised payment schedule')
+    expect(result[0].stack[5].text).toBe(`${topUpSchedule.scheme.name} (${topUpSchedule.scheme.shortName}) revised payment schedule `)
   })
 })

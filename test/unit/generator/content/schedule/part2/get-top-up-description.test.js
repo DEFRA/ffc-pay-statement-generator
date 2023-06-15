@@ -33,9 +33,9 @@ describe('Get top-up description', () => {
     expect(result.stack).toHaveLength(7)
   })
 
-  test('should return "\n\nWe recently sent you a letter to tell you the annual value of your topUpSchedule.scheme.name} (topUpSchedule.scheme.shortName) agreement has increased." for key stack 1 entry', () => {
+  test('should return "The annual value of your topUpSchedule.scheme.name} (topUpSchedule.scheme.shortName) agreement has increased." for key stack 1 entry', () => {
     const result = getTopUpDescription(topUpSchedule)
-    expect(result.stack[0]).toBe(`\n\nWe recently sent you a letter to tell you the annual value of your ${topUpSchedule.scheme.name} (${topUpSchedule.scheme.shortName}) agreement has increased.`)
+    expect(result.stack[0]).toBe(`The annual value of your ${topUpSchedule.scheme.name} (${topUpSchedule.scheme.shortName}) agreement has increased.`)
   })
 
   test('should return "\nThe payment schedule sets out the payments youll receive for the rest of the current scheme year.\n" for key stack 2 entry', () => {
@@ -53,14 +53,14 @@ describe('Get top-up description', () => {
     expect(result.stack[3]).toStrictEqual({ ul: ['an immediate payment - this is a one-off amount which will be a top-up to any quarterly payments you\'ve already received for this scheme year', 'an increase to quarterly payments you\'ve not yet received'], listStyle: 'square' })
   })
 
-  test('should return "{ text: "Payment schedule", style: "header2" }" for key stack 5 entry', () => {
+  test('should return "{ text: "Payment schedule", style: "header3" }" for key stack 5 entry', () => {
     const result = getTopUpDescription(topUpSchedule)
-    expect(result.stack[4]).toStrictEqual({ text: 'Payment schedule', style: 'header2' })
+    expect(result.stack[4]).toStrictEqual({ text: 'Payment schedule', style: 'header3' })
   })
 
-  test('should return "The table below explains when, and how much youll be paid.\n" for key stack 6 entry', () => {
+  test('should return "The table below shows your revised payments." for key stack 6 entry', () => {
     const result = getTopUpDescription(topUpSchedule)
-    expect(result.stack[5]).toBe('The table below explains when, and how much you\'ll be paid.\n\n')
+    expect(result.stack[5]).toBe('The table below shows your revised payments.\n\n')
   })
 
   test('should return object for key stack 7 entry', () => {
