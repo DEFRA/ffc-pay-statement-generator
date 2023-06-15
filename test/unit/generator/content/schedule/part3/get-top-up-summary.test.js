@@ -12,6 +12,12 @@ describe('Get top up summary', () => {
     expect(result.stack[0]).toBe('The table below shows your revised payments.\n\n')
   })
 
+  test('should use solid line style for grid', () => {
+    const result = getTopUpSummary(mockAdjustment)
+    expect(result.stack[1].layout.hLineStyle()).toBe('solid')
+    expect(result.stack[1].layout.vLineStyle()).toBe('solid')
+  })
+
   test('include current agreement line', () => {
     const result = getTopUpSummary(mockAdjustment)
     expect(result.stack[1].table.body[0][0].stack[0]).toEqual('Current agreement value: £1,000.00\n')

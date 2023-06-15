@@ -7,6 +7,12 @@ describe('Get reduction summary', () => {
     expect(result.stack[0]).toBe('The table below shows your revised quarterly payments.\n\n')
   })
 
+  test('should use solid line style for grid', () => {
+    const result = getReductionSummary(reductionSchedule)
+    expect(result.stack[1].layout.hLineStyle()).toBe('solid')
+    expect(result.stack[1].layout.vLineStyle()).toBe('solid')
+  })
+
   test('should return "Current agreement value: £1,000.00\n" for key stack 2 line 1` entry', () => {
     const result = getReductionSummary(reductionSchedule)
     expect(result.stack[1].table.body[0][0].stack[0]).toBe('Current agreement value: £1,000.00\n')
