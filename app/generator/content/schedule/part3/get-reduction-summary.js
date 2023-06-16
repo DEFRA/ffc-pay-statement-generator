@@ -20,7 +20,6 @@ const getReductionSummary = (schedule) => {
             `Reduction: ${toCurrencyString(String(Math.abs(adjustment.adjustmentValue)))}`,
             `Remaining balance: ${toCurrencyString(String(Math.abs(schedule.remainingAmount)))}`
               ]
-
             }]
           ]
         }
