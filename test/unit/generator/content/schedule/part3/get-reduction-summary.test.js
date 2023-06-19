@@ -1,5 +1,6 @@
 const getReductionSummary = require('../../../../../../app/generator/content/schedule/part3/get-reduction-summary')
 const { reductionSchedule } = require('../../../../../mocks/mock-schedule')
+const remainingAmount = require('../../../../../mocks/components/remaining-amount')
 
 describe('Get reduction summary', () => {
   test('should return "The table below shows your revised quarterly payments.\n\n" for key stack 1 entry', () => {
@@ -30,6 +31,6 @@ describe('Get reduction summary', () => {
 
   test('should return "Remaining Balance: £200.00" for key stack 2 line 4 entry', () => {
     const result = getReductionSummary(reductionSchedule)
-    expect(result.stack[1].table.body[0][0].stack[3]).toBe('Remaining balance: £200.01')
+    expect(result.stack[1].table.body[0][0].stack[3]).toBe(`Remaining balance: £${remainingAmount}`)
   })
 })
