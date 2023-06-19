@@ -13,7 +13,7 @@ const baseSchedule = {
   email: 'farmer@farms.com',
   documentReference,
   address,
-  remainingAmount: 200,
+  remainingAmount: 200.01,
   scheme: {
     name: 'Sustainable Farming Incentive',
     shortName: 'SFI',

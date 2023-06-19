@@ -30,6 +30,6 @@ describe('Get reduction summary', () => {
 
   test('should return "Remaining Balance: £200.00" for key stack 2 line 4 entry', () => {
     const result = getReductionSummary(reductionSchedule)
-    expect(result.stack[1].table.body[0][0].stack[3]).toBe('Remaining balance: £200.00')
+    expect(result.stack[1].table.body[0][0].stack[3]).toBe('Remaining balance: £200.01')
   })
 })
