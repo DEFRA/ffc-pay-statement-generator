@@ -45,6 +45,7 @@ describe('schedule part 3', () => {
       part3(topUpSchedule)
       expect(getTopUpSummary).toHaveBeenCalled()
     })
+
     test('Ensure getTopUpSummary is called once', () => {
       part3(topUpSchedule)
       expect(getTopUpSummary).toHaveBeenCalledTimes(1)

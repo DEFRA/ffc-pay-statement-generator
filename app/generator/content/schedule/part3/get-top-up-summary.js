@@ -18,7 +18,6 @@ const getTopUpSummary = (adjustment) => {
                 `New agreement value: ${toCurrencyString(adjustment.newValue)}\n`,
                 `Top up amount: ${toCurrencyString(adjustment.adjustmentValue)}\n`
               ]
-
             }]
           ]
         }
