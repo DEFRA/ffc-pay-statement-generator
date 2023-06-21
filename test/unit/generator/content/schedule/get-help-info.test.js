@@ -1,4 +1,4 @@
-const getHelpInfo = require('../../../../../../app/generator/content/schedule/part3/get-help-info')
+const getHelpInfo = require('../../../../../app/generator/content/schedule/get-help-info')
 
 describe('get help info', () => {
   const result = getHelpInfo()
@@ -28,5 +28,9 @@ describe('get help info', () => {
 
   test('First segment line 2 hyperlink decoration to be underline', () => {
     expect(result.stack[2].ul[0].text[1].decoration).toBe('underline')
+  })
+
+  test('should be unbreakable', () => {
+    expect(result.unbreakable).toBeTruthy()
   })
 })

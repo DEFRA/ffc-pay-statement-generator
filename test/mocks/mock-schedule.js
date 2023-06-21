@@ -1,6 +1,7 @@
 const address = require('../mocks/components/address')
 const businessName = require('../mocks/components/business-name')
 const documentReference = require('../mocks/components/document-reference')
+const remainingAmount = require('../mocks/components/remaining-amount')
 
 const { topUpAdjustment, reductionAdjustment } = require('../mocks/objects/adjustment')
 
@@ -13,6 +14,7 @@ const baseSchedule = {
   email: 'farmer@farms.com',
   documentReference,
   address,
+  remainingAmount,
   scheme: {
     name: 'Sustainable Farming Incentive',
     shortName: 'SFI',
