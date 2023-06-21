@@ -97,6 +97,7 @@ components:
         - payments
         - scheme
         - documentReference
+        - remainingAmount
       properties:
         businessName:
           $ref: '#/components/schemas/BusinessName'
@@ -112,6 +113,8 @@ components:
           $ref: '#/components/schemas/Scheme'
         documentReference:
           $ref: '#/components/schemas/DocumentReference'
+        remainingAmount:
+          $ref: '#/components/schemas/RemainingAmount'
         schedule:
           type: array
           items:
@@ -131,6 +134,7 @@ components:
         - payments
         - scheme
         - documentReference
+        - remainingAmount
       properties:
         businessName:
           $ref: '#/components/schemas/BusinessName'
@@ -155,6 +159,8 @@ components:
           $ref: '#/components/schemas/Scheme'
         documentReference:
           $ref: '#/components/schemas/DocumentReference'
+        remainingAmount:
+          $ref: '#/components/schemas/RemainingAmount'
     Address:
       additionalProperties: false
       required:
@@ -224,6 +230,7 @@ components:
         - address
         - businessName
         - documentReference
+        - remainingAmount
         - filename
         - frn 
         - sbi
@@ -235,6 +242,8 @@ components:
           $ref: '#/components/schemas/BusinessName'
         documentReference:
           $ref: '#/components/schemas/DocumentReference'
+        remainingAmount:
+          $ref: '#/components/schemas/RemainingAmount'
         email:
           $ref: '#/components/schemas/Email'
         filename:
@@ -252,6 +261,7 @@ components:
         - address
         - businessName
         - documentReference
+        - remainingAmount
         - filename
         - frn 
         - sbi
@@ -263,6 +273,8 @@ components:
           $ref: '#/components/schemas/BusinessName'
         documentReference:
           $ref: '#/components/schemas/DocumentReference'
+        remainingAmount:
+          $ref: '#/components/schemas/RemainingAmount'
         email:
           $ref: '#/components/schemas/Email'
         filename:
@@ -427,6 +439,9 @@ components:
       description: Unique identifier of the document
       minimum: 1
       example: 1
+    RemainingAmount:
+      type: number
+      description: Remaining amount to be paid can be any number
     DueDate:
       type: string
       description: The due date of the payment request

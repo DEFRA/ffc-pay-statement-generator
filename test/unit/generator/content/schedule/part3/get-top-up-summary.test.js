@@ -3,7 +3,7 @@ const getTopUpSummary = require('../../../../../../app/generator/content/schedul
 const { topUpAdjustment } = require('../../../../../mocks/objects/adjustment')
 
 describe('Get top-up summary', () => {
-  test('should return "The table below shows your revised payments." for key stack 6 entry', () => {
+  test('should return "The table below shows your revised payments." for key stack 1 entry', () => {
     const result = getTopUpSummary(topUpAdjustment)
     expect(result.stack[0]).toBe('The table below shows your revised payments.\n\n')
   })
