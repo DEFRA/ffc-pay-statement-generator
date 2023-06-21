@@ -17,5 +17,9 @@ ignore:
     - '*':
         reason: None Given
         expires: 2023-06-23T15:52:27.522Z
-        created: 2023-06-15T15:52:27.531Z    
+        created: 2023-06-15T15:52:27.531Z 
+  SNYK-JS-SEMVER-3247795:
+    - '*':
+        reason: None given
+        expires: '2023-06-25T12:16:21.571Z'   
 patch: {}
