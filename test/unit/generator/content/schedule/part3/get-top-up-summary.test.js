@@ -14,17 +14,17 @@ describe('Get top-up summary', () => {
     expect(result.stack[1].layout.vLineStyle()).toBe('solid')
   })
 
-  test('should return "Current agreement value: £1,000.00\n" for key stack 2 line 1` entry', () => {
+  test('should return "Current agreement value: topUpAdjustment.currentValue\n" for key stack 2 line 1` entry', () => {
     const result = getTopUpSummary(topUpAdjustment)
     expect(result.stack[1].table.body[0][0].stack[0]).toEqual(`Current agreement value: ${toCurrencyString(topUpAdjustment.currentValue)}\n`)
   })
 
-  test('should return "New agreement value: £1,300.00\n" for key stack 2 line 2 entry', () => {
+  test('should return "New agreement value: topUpAdjustment.newValue\n" for key stack 2 line 2 entry', () => {
     const result = getTopUpSummary(topUpAdjustment)
     expect(result.stack[1].table.body[0][0].stack[1]).toEqual(`New agreement value: ${toCurrencyString(topUpAdjustment.newValue)}\n`)
   })
 
-  test('should return "Top up amount: £300.00\n" for key stack 2 line 3 entry', () => {
+  test('should return "Top up amount: topUpAdjustment.adjustmentValue\n" for key stack 2 line 3 entry', () => {
     const result = getTopUpSummary(topUpAdjustment)
     expect(result.stack[1].table.body[0][0].stack[2]).toEqual(`Top up amount: ${toCurrencyString(topUpAdjustment.adjustmentValue)}\n`)
   })
