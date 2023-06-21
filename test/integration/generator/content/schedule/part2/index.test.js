@@ -1,6 +1,6 @@
-const part2 = require('../../../../app/generator/content/schedule/part2')
+const part2 = require('../../../../../../app/generator/content/schedule/part2')
 
-const { topUpSchedule, reductionSchedule } = require('../../../mocks/mock-schedule')
+const { topUpSchedule, reductionSchedule } = require('../../../../../mocks/mock-schedule')
 
 describe('schedule part 2', () => {
   describe('Get top-up description', () => {
