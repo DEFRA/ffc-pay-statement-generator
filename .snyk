@@ -2,24 +2,14 @@
 version: v1.25.0
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
-  SNYK-JS-PDFMAKE-3160329:
-    - pdfmake:
-        reason: None given
-        expires: '2023-01-11T12:16:21.571Z'
-  SNYK-JS-WORDWRAP-3149973:
-    - pdfmake:
-        reason: None given
-        expires: '2023-04-11T12:16:21.571Z'
-    - '*':
-        reason: None Given
-        expires: 2023-06-13T15:52:27.522Z
-        created: 2023-05-11T15:52:27.531Z    
-    - '*':
-        reason: None Given
-        expires: 2023-06-23T15:52:27.522Z
-        created: 2023-06-15T15:52:27.531Z 
   SNYK-JS-SEMVER-3247795:
     - '*':
-        reason: None given
-        expires: '2023-06-25T12:16:21.571Z'   
+        reason: None Given
+        expires: 2023-07-21T11:20:48.838Z
+        created: 2023-06-21T11:20:48.846Z
+  SNYK-JS-WORDWRAP-3149973:
+    - '*':
+        reason: None Given
+        expires: 2023-07-21T11:21:01.800Z
+        created: 2023-06-21T11:21:01.810Z
 patch: {}
