@@ -28,14 +28,14 @@ describe('Get reduction description', () => {
     expect(Array.isArray(result.stack)).toBe(true)
   })
 
-  test('should return an array of length 9 for key stack', () => {
+  test('should return an array of length 4 for key stack', () => {
     const result = getReductionDescription(reductionSchedule)
-    expect(result.stack).toHaveLength(9)
+    expect(result.stack).toHaveLength(4)
   })
 
   test('should return "\n\nWe recently sent you a letter to tell you the annual value of your reductionSchedule.scheme.name reductionSchedule.scheme.shortName agreement has decreased." for key stack 1 entry', () => {
     const result = getReductionDescription(reductionSchedule)
-    expect(result.stack[0]).toBe(`\n\nWe recently sent you a letter to tell you the annual value of your ${reductionSchedule.scheme.name} (${reductionSchedule.scheme.shortName}) agreement has decreased.`)
+    expect(result.stack[0]).toBe(`The annual value of your ${reductionSchedule.scheme.name} (${reductionSchedule.scheme.shortName}) agreement has decreased.`)
   })
 
   test('should return "\nThe payment schedule sets out the payments you\'ll receive for the rest of the current scheme year.\n" for key stack 2 entry', () => {
@@ -51,30 +51,5 @@ describe('Get reduction description', () => {
   test('should return "{ ul: ["take account of money you\'ve already been paid", "be paid to you in equal amounts over the remaining quarters for this scheme year"], listStyle: "square" }" for key stack 4 entry', () => {
     const result = getReductionDescription(reductionSchedule)
     expect(result.stack[3]).toStrictEqual({ ul: ['take account of money you\'ve already been paid', 'be paid to you in equal amounts over the remaining quarters for this scheme year'], listStyle: 'square' })
-  })
-
-  test('should return "{ text: "Payment schedule", style: "header2" }" for key stack 5 entry', () => {
-    const result = getReductionDescription(reductionSchedule)
-    expect(result.stack[4]).toStrictEqual({ text: 'Payment schedule', style: 'header2' })
-  })
-
-  test('should return "The table below explains when, and how much youll be paid.\n\n" for key stack 6 entry', () => {
-    const result = getReductionDescription(reductionSchedule)
-    expect(result.stack[5]).toBe('The table below explains when, and how much you\'ll be paid.\n\n')
-  })
-
-  test('should return "Current agreement value: £1,000.00\n" for key stack 7 entry', () => {
-    const result = getReductionDescription(reductionSchedule)
-    expect(result.stack[6]).toBe('Current agreement value: £1,000.00\n')
-  })
-
-  test('should return "New agreement value: £700.00\n" for key stack 8 entry', () => {
-    const result = getReductionDescription(reductionSchedule)
-    expect(result.stack[7]).toBe('New agreement value: £700.00\n')
-  })
-
-  test('should return "Reduction: £300.00" for key stack 9 entry', () => {
-    const result = getReductionDescription(reductionSchedule)
-    expect(result.stack[8]).toBe('Reduction: £300.00')
   })
 })

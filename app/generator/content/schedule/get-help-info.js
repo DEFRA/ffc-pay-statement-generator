@@ -38,7 +38,8 @@ const getHelpInfo = () => {
           '\nFollow us on Twitter @Ruralpay'
         ]
       }
-    ]
+    ],
+    unbreakable: true
   }
 }
 
