@@ -33,7 +33,6 @@
     "pdfmake": "0.2.7",
     "pg": "8.7.3",
     "pg-hstore": "2.3.4",
-    "semver": "^7.5.3",
     "sequelize": "6.29.0"
   },
   "devDependencies": {
