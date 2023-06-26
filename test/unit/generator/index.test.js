@@ -23,6 +23,9 @@ const getDocumentDefinition = require('../../../app/generator/get-document-defin
 jest.mock('../../../app/generator/publish')
 const publish = require('../../../app/generator/publish')
 
+jest.mock('../../../app/generator/schedule/send-email')
+const sendEmail = require('../../../app/generator/schedule/send-email')
+
 jest.mock('../../../app/messaging/publish/send-publish-message')
 const sendPublishMessage = require('../../../app/messaging/publish/send-publish-message')
 
@@ -43,6 +46,7 @@ describe('Generate document', () => {
 
     getGenerations.mockResolvedValue(null)
     getDocumentDefinition.mockReturnValue('docDef')
+    sendEmail.mockReturnValue(undefined)
     sendPublishMessage.mockResolvedValue(undefined)
     sendCrmMessage.mockResolvedValue(undefined)
     saveLog.mockResolvedValue(undefined)
