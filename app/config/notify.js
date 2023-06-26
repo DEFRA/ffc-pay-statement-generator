@@ -1,15 +1,15 @@
 const Joi = require('joi')
 
 const schema = Joi.object({
-  notifyEmailAddress: Joi.string().required(),
-  notifyApiKey: Joi.string().required(),
-  notifyEmailTemplateKey: Joi.string().required()
+  emailAddress: Joi.string().required(),
+  apiKey: Joi.string().required(),
+  emailTemplateKey: Joi.string().required()
 })
 
 const config = {
-  notifyEmailAddress: process.env.NOTIFY_EMAIL_ADDRESS,
-  notifyApiKey: process.env.NOTIFY_API_KEY,
-  notifyEmailTemplateKey: process.env.NOTIFY_EMAIL_TEMPLATE_KEY
+  emailAddress: process.env.NOTIFY_EMAIL_ADDRESS,
+  apiKey: process.env.NOTIFY_API_KEY,
+  emailTemplateKey: process.env.NOTIFY_EMAIL_TEMPLATE_KEY
 }
 
 const result = schema.validate(config, {

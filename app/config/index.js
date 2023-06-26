@@ -37,6 +37,6 @@ value.publishTopic = mqConfig.publishTopic
 value.crmTopic = mqConfig.crmTopic
 value.dbConfig = dbConfig
 value.storageConfig = storageConfig
-// value.notifyConfig = notifyConfig
+value.notifyConfig = notifyConfig
 
 module.exports = value
