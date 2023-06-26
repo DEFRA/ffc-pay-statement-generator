@@ -178,6 +178,11 @@ describe('Generate document', () => {
           await generateDocument(request, type)
           expect(saveLog).toHaveBeenCalledWith(request, (await publish()), SYSTEM_TIME)
         })
+
+        test('should not call sendEmail', async () => {
+          await generateDocument(request, type)
+          expect(sendEmail).not.toHaveBeenCalled()
+        })
       })
 
       describe('When statement has been processed before', () => {
@@ -213,6 +218,11 @@ describe('Generate document', () => {
         test('should not call publish', async () => {
           await generateDocument(request, type)
           expect(publish).not.toHaveBeenCalled()
+        })
+
+        test('should not call sendEmail', async () => {
+          await generateDocument(request, type)
+          expect(sendEmail).not.toHaveBeenCalled()
         })
 
         test('should not call sendPublishMessage', async () => {
@@ -305,9 +315,19 @@ describe('Generate document', () => {
           expect(publish).toHaveBeenCalledWith(mockPdfPrinter().createPdfKitDocument(), request, TIMESTAMP_SYSTEM_TIME, type)
         })
 
-        test('should NOT call sendPublishMessage', async () => {
+        test('should call sendEmail', async () => {
           await generateDocument(request, type)
-          expect(sendPublishMessage).not.toHaveBeenCalled()
+          expect(sendEmail).toHaveBeenCalled()
+        })
+
+        test('should call sendEmail once', async () => {
+          await generateDocument(request, type)
+          expect(sendEmail).toHaveBeenCalledTimes(1)
+        })
+
+        test('should call sendEmail with no arguments', async () => {
+          await generateDocument(request, type)
+          expect(sendEmail).toHaveBeenCalledWith()
         })
 
         test('should call sendCrmMessage', async () => {
@@ -338,6 +358,11 @@ describe('Generate document', () => {
         test('should call saveLog with request, publish() and SYSTEM_TIME', async () => {
           await generateDocument(request, type)
           expect(saveLog).toHaveBeenCalledWith(request, (await publish()), SYSTEM_TIME)
+        })
+
+        test('should not call sendPublishMessage', async () => {
+          await generateDocument(request, type)
+          expect(sendPublishMessage).not.toHaveBeenCalled()
         })
       })
 
@@ -374,6 +399,11 @@ describe('Generate document', () => {
         test('should not call publish', async () => {
           await generateDocument(request, type)
           expect(publish).not.toHaveBeenCalled()
+        })
+
+        test('should not call sendEmail', async () => {
+          await generateDocument(request, type)
+          expect(sendEmail).not.toHaveBeenCalled()
         })
 
         test('should not call sendPublishMessage', async () => {
@@ -516,6 +546,11 @@ describe('Generate document', () => {
           await generateDocument(request, type)
           expect(saveLog).toHaveBeenCalledWith(request, (await publish()), SYSTEM_TIME)
         })
+
+        test('should not call sendEmail', async () => {
+          await generateDocument(request, type)
+          expect(sendEmail).not.toHaveBeenCalled()
+        })
       })
 
       describe('When statement has been processed before', () => {
@@ -551,6 +586,11 @@ describe('Generate document', () => {
         test('should not call publish', async () => {
           await generateDocument(request, type)
           expect(publish).not.toHaveBeenCalled()
+        })
+
+        test('should not call sendEmail', async () => {
+          await generateDocument(request, type)
+          expect(sendEmail).not.toHaveBeenCalled()
         })
 
         test('should not call sendPublishMessage', async () => {
@@ -643,6 +683,21 @@ describe('Generate document', () => {
           expect(publish).toHaveBeenCalledWith(mockPdfPrinter().createPdfKitDocument(), request, TIMESTAMP_SYSTEM_TIME, type)
         })
 
+        test('should call sendEmail', async () => {
+          await generateDocument(request, type)
+          expect(sendEmail).toHaveBeenCalled()
+        })
+
+        test('should call sendEmail once', async () => {
+          await generateDocument(request, type)
+          expect(sendEmail).toHaveBeenCalledTimes(1)
+        })
+
+        test('should call sendEmail with no arguments', async () => {
+          await generateDocument(request, type)
+          expect(sendEmail).toHaveBeenCalledWith()
+        })
+
         test('should call sendPublishMessage', async () => {
           await generateDocument(request, type)
           expect(sendPublishMessage).toHaveBeenCalled()
@@ -722,6 +777,11 @@ describe('Generate document', () => {
         test('should not call publish', async () => {
           await generateDocument(request, type)
           expect(publish).not.toHaveBeenCalled()
+        })
+
+        test('should not call sendEmail', async () => {
+          await generateDocument(request, type)
+          expect(sendEmail).not.toHaveBeenCalled()
         })
 
         test('should not call sendPublishMessage', async () => {

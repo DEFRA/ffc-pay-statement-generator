@@ -8,10 +8,10 @@ const { SCHEDULE } = require('../constants/document-types')
 const getGenerations = require('./get-generations')
 const getDocumentDefinition = require('./get-document-definition')
 const publish = require('./publish')
-const saveLog = require('./save-log')
-
+const sendEmail = require('./schedule/send-email')
 const sendPublishMessage = require('../messaging/publish/send-publish-message')
 const sendCrmMessage = require('../messaging/crm/send-crm-message')
+const saveLog = require('./save-log')
 
 const fonts = require('./fonts')
 const printer = new PdfPrinter(fonts)
@@ -28,6 +28,7 @@ const generateDocument = async (request, type) => {
     const filename = await publish(pdfDoc, request, moment(timestamp).format('YYYYMMDDHHmmssSS'), type)
 
     if (type.type === SCHEDULE.type) {
+      await sendEmail()
       if (config.schedulesArePublished) {
         await sendPublishMessage(request, filename, type.id)
       }

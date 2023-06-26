@@ -1,9 +1,9 @@
 const Joi = require('joi')
 
 const schema = Joi.object({
-  emailAddress: Joi.string().required(),
-  apiKey: Joi.string().required(),
-  emailTemplateKey: Joi.string().required()
+  emailAddress: Joi.string(),
+  apiKey: Joi.string(),
+  emailTemplateKey: Joi.string()
 })
 
 const config = {
