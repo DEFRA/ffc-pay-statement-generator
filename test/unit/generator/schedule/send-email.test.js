@@ -35,7 +35,7 @@ describe('Send email', () => {
       expect(mockNotifyClient().sendEmail).toHaveBeenCalledTimes(1)
     })
 
-    test('should call mockNotifyClient.sendEmail with notifyConfig.emailTemplateKey, and notifyConfig.emailAddress', async () => {
+    test('should call mockNotifyClient.sendEmail with notifyConfig.emailTemplateKey and notifyConfig.emailAddress', async () => {
       await sendEmail()
       expect(mockNotifyClient().sendEmail).toHaveBeenCalledWith(notifyConfig.emailTemplateKey, notifyConfig.emailAddress)
     })
@@ -77,7 +77,7 @@ describe('Send email', () => {
       expect(mockNotifyClient().sendEmail).toHaveBeenCalledTimes(1)
     })
 
-    test('should call mockNotifyClient.sendEmail with notifyConfig.emailTemplateKey, and notifyConfig.emailAddress', async () => {
+    test('should call mockNotifyClient.sendEmail with notifyConfig.emailTemplateKey and notifyConfig.emailAddress', async () => {
       try { await sendEmail() } catch {}
       expect(mockNotifyClient().sendEmail).toHaveBeenCalledWith(notifyConfig.emailTemplateKey, notifyConfig.emailAddress)
     })
