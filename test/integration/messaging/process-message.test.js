@@ -15,6 +15,7 @@ const {
 } = require('../../mocks/components/filename')
 
 const { mockMessageSender } = require('../../mocks/modules/ffc-messaging')
+const { mockNotifyClient } = require('../../mocks/modules/notifications-node-client')
 
 const { processMessage } = require('../../../app/messaging/process-message')
 

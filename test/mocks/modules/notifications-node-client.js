@@ -1,4 +1,4 @@
-const mockSendEmail = jest.fn()
+const mockSendEmail = jest.fn().mockResolvedValue(undefined)
 
 const mockNotifyClient = jest.fn().mockImplementation(() => {
   return {
