@@ -9,7 +9,7 @@ const imagePath = path.join(__dirname, '../../..', 'images')
 const part1 = (schedule) => {
   return {
     stack: [
-      { image: `${imagePath}/rpa-logo.jfif`, fit: [millimetresToPoints(200), millimetresToPoints(25)], style: 'scheduleLogo' },
+      { image: `${imagePath}/v2/logo.jpg`, fit: [millimetresToPoints(200), millimetresToPoints(25)], style: 'scheduleLogo' },
       getAddress(schedule.businessName, schedule.address),
       getSBI(schedule.sbi),
       getBusinessName(schedule.businessName),
