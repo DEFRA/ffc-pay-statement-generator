@@ -1,3 +1,3 @@
-@Library('defra-library@temp-remove-npm-audit') _
+@Library('defra-library@9') _
 
-buildNodeJs()
+buildNodeJs npmAuditFailOnIssues: false
