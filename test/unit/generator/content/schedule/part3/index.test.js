@@ -7,8 +7,11 @@ const getReductionSummary = require('../../../../../../app/generator/content/sch
 jest.mock('../../../../../../app/generator/content/schedule/part3/get-top-up-summary')
 const getTopUpSummary = require('../../../../../../app/generator/content/schedule/part3/get-top-up-summary')
 
+jest.mock('../../../../../../app/generator/content/schedule/part3/get-reduction-zero-summary')
+const getReductionZeroSummary = require('../../../../../../app/generator/content/schedule/part3/get-reduction-zero-summary')
+
 const part3 = require('../../../../../../app/generator/content/schedule/part3')
-const { topUpSchedule, reductionSchedule } = require('../../../../../mocks/mock-schedule')
+const { topUpSchedule, reductionSchedule, reductionZeroSchedule } = require('../../../../../mocks/mock-schedule')
 
 describe('schedule part 3', () => {
   afterEach(() => {
@@ -67,7 +70,7 @@ describe('schedule part 3', () => {
     })
   })
 
-  describe('reduction schedule part 3', () => {
+  describe('reduction zero schedule part 3', () => {
     test('Ensure reduction summary header style is set to header3', () => {
       const result = part3(reductionSchedule)
       expect(result.stack[0].style).toBe('header3')
@@ -115,6 +118,63 @@ describe('schedule part 3', () => {
 
     test('includes unbreakable instruction when reduction schedule', () => {
       const result = part3(reductionSchedule)
+      expect(result.unbreakable).toBeTruthy()
+    })
+  })
+
+  describe('reduction Zero schedule part 3', () => {
+    test('Ensure reduction zero summary header style is set to header3', () => {
+      const result = part3(reductionZeroSchedule)
+      expect(result.stack[0].style).toBe('header3')
+    })
+
+    test('Ensure reduction zero summary title text is "Payment schedule"', () => {
+      const result = part3(reductionZeroSchedule)
+      expect(result.stack[0].text).toBe('Payment schedule')
+    })
+
+    test('Ensure getTable is called', () => {
+      part3(reductionZeroSchedule)
+      expect(getTable).toHaveBeenCalled()
+    })
+
+    test('Ensure getTable is called once', () => {
+      part3(reductionZeroSchedule)
+      expect(getTable).toHaveBeenCalledTimes(1)
+    })
+
+    test('Ensure getTable is called with reductionZeroSchedule.schedule', () => {
+      part3(reductionZeroSchedule)
+      expect(getTable).toHaveBeenCalledWith(reductionZeroSchedule.schedule)
+    })
+
+    test('Ensure getReductionSummary is called', () => {
+      part3(reductionZeroSchedule)
+      expect(getReductionZeroSummary).toHaveBeenCalled()
+    })
+
+    test('Ensure getReductionZeroSummary is called once', () => {
+      part3(reductionZeroSchedule)
+      expect(getReductionZeroSummary).toHaveBeenCalledTimes(1)
+    })
+
+    test('Ensure getReductionZeroSummary is called with reductionZeroSchedule', () => {
+      part3(reductionZeroSchedule)
+      expect(getReductionZeroSummary).toHaveBeenCalledWith(reductionZeroSchedule)
+    })
+
+    test('Ensure getTopUpSummary is not called', () => {
+      part3(reductionZeroSchedule)
+      expect(getTopUpSummary).not.toHaveBeenCalled()
+    })
+
+    test('Ensure getReductionpSummary is not called', () => {
+      part3(reductionZeroSchedule)
+      expect(getReductionSummary).not.toHaveBeenCalled()
+    })
+
+    test('includes unbreakable instruction when reduction schedule', () => {
+      const result = part3(reductionZeroSchedule)
       expect(result.unbreakable).toBeTruthy()
     })
   })

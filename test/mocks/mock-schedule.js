@@ -35,7 +35,14 @@ const reductionSchedule = {
   adjustment: reductionAdjustment
 }
 
+const reductionZeroSchedule = {
+  ...baseSchedule,
+  remainingAmount: 0,
+  adjustment: reductionAdjustment
+}
+
 module.exports = {
   topUpSchedule,
-  reductionSchedule
+  reductionSchedule,
+  reductionZeroSchedule
 }
