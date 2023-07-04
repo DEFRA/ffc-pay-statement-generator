@@ -325,9 +325,9 @@ describe('Generate document', () => {
           expect(sendEmail).toHaveBeenCalledTimes(1)
         })
 
-        test('should call sendEmail with no arguments', async () => {
+        test('should call sendEmail with publish()', async () => {
           await generateDocument(request, type)
-          expect(sendEmail).toHaveBeenCalledWith()
+          expect(sendEmail).toHaveBeenCalledWith(await publish())
         })
 
         test('should call sendCrmMessage', async () => {
@@ -693,9 +693,9 @@ describe('Generate document', () => {
           expect(sendEmail).toHaveBeenCalledTimes(1)
         })
 
-        test('should call sendEmail with no arguments', async () => {
+        test('should call sendEmail with publish()', async () => {
           await generateDocument(request, type)
-          expect(sendEmail).toHaveBeenCalledWith()
+          expect(sendEmail).toHaveBeenCalledWith(await publish())
         })
 
         test('should call sendPublishMessage', async () => {
