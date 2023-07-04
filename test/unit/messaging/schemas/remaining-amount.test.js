@@ -1,7 +1,6 @@
-const REMAINING_AMOUNT = require('../../../mocks/components/remaining-amount')
-
+const { topUpRemainingAmount } = require('../../../mocks/components/remaining-amount')
+const REMAINING_AMOUNT = topUpRemainingAmount
 const schema = require('../../../../app/messaging/schemas/remaining-amount')
-
 let remainingAmount
 
 describe('remaining amount schema', () => {

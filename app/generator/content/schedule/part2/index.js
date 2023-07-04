@@ -12,8 +12,6 @@ const part2 = (schedule) => {
       return getReductionZeroDescription(schedule)
     case (remainingAmount < 0):
       return getRecoveryDescription(schedule)
-    default:
-      return ''
   }
 }
 
