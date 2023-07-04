@@ -42,9 +42,9 @@ container:
   statementReceiverApiVersion: v1
   statementReceiverEndpoint: https://ffc-pay-statement-receiver
   schedulesArePublished: false
-  emailAddress: 
-  apiKey:
-  emailTemplateKey:
+  emailAddress: dummy
+  apiKey: dummy
+  emailTemplateKey: dummy
 
 ingress:
   server: example.com
