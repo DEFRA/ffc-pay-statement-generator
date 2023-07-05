@@ -3,6 +3,7 @@ const mqConfig = require('./message')
 const dbConfig = require('./database')
 const storageConfig = require('./storage')
 const notifyConfig = require('./notify')
+
 const { DEVELOPMENT, TEST, PRODUCTION } = require('./environments')
 
 const schema = Joi.object({
