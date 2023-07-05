@@ -1,7 +1,6 @@
 const getReductionDescription = require('./get-reduction-description')
 const getTopUpDescription = require('./get-top-up-description')
 const getReductionZeroDescription = require('./get-reduction-zero-description')
-const getRecoveryDescription = require('./get-recovery-description')
 
 const part2 = (schedule) => {
   const remainingAmount = schedule.remainingAmount
@@ -11,7 +10,7 @@ const part2 = (schedule) => {
     case (remainingAmount === 0):
       return getReductionZeroDescription(schedule)
     case (remainingAmount < 0):
-      return getRecoveryDescription(schedule)
+      getReductionDescription(schedule)
   }
 }
 
