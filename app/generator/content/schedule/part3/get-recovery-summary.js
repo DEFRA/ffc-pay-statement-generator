@@ -15,10 +15,10 @@ const getRecoverySummary = (schedule) => {
           body: [
             [{
               stack: [
-            `Current agreement value: ${toCurrencyString(adjustment.currentValue)}\n`,
-            `New agreement value: ${toCurrencyString(adjustment.newValue)}\n`,
-            `Reduction: ${toCurrencyString(String(Math.abs(adjustment.adjustmentValue)))}`,
-            `Remaining balance: ${toCurrencyString(String(Math.abs(schedule.remainingAmount)))}`
+                `Current agreement value: ${toCurrencyString(adjustment.currentValue)}\n`,
+                `New agreement value: ${toCurrencyString(adjustment.newValue)}\n`,
+                `Reduction: ${toCurrencyString(String(Math.abs(adjustment.adjustmentValue)))}`,
+                `Remaining balance: ${toCurrencyString(String(Math.abs(schedule.remainingAmount)))}`
               ]
             }]
           ]

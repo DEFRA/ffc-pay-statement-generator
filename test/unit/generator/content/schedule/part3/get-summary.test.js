@@ -14,7 +14,7 @@ const getSummary = require('../../../../../../app/generator/content/schedule/par
 
 const { topUpSchedule, reductionSchedule, reductionZeroSchedule, recoverySchedule } = require('../../../../../mocks/mock-schedule')
 
-describe('schedule part 2', () => {
+describe('get summary', () => {
   afterEach(() => {
     jest.clearAllMocks()
   })

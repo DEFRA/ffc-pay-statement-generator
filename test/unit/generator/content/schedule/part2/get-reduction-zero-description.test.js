@@ -30,7 +30,7 @@ describe('Get reduction zero description', () => {
 
   test('should return an array of length 4 for key stack', () => {
     const result = getReductionZeroDescription(reductionZeroSchedule)
-    expect(result.stack).toHaveLength(4)
+    expect(result.stack).toHaveLength(2)
   })
 
   test('should return "\n\nWe recently sent you a letter to tell you the annual value of your reductionZeroSchedule.scheme.name reductionZeroSchedule.scheme.shortName agreement has decreased." for key stack 1 entry', () => {
@@ -38,18 +38,8 @@ describe('Get reduction zero description', () => {
     expect(result.stack[0]).toBe(`The annual value of your ${reductionZeroSchedule.scheme.name} (${reductionZeroSchedule.scheme.shortName}) agreement has decreased.`)
   })
 
-  test('should return "\nThe payment schedule sets out the payments you\'ll receive for the rest of the current scheme year.\n" for key stack 2 entry', () => {
+  test('should return "\nYour payment schedule below has been revised to show the decrease. You have already been paid the full amount for the new agreement. You\'ll not receive a payment for the remaining quarter(s)." for key stack 2 entry', () => {
     const result = getReductionZeroDescription(reductionZeroSchedule)
-    expect(result.stack[1]).toBe('\nThe payment schedule sets out the payments you\'ll receive for the rest of the current scheme year.\n')
-  })
-
-  test('should return "\nPayments you\'ll receive will:\n\n" for key stack 3 entry', () => {
-    const result = getReductionZeroDescription(reductionZeroSchedule)
-    expect(result.stack[2]).toBe('\nPayments you\'ll receive will:\n\n')
-  })
-
-  test('should return "{ ul: ["take account of money you\'ve already been paid", "be paid to you in equal amounts over the remaining quarters for this scheme year"], listStyle: "square" }" for key stack 4 entry', () => {
-    const result = getReductionZeroDescription(reductionZeroSchedule)
-    expect(result.stack[3]).toStrictEqual({ ul: ['take account of money you\'ve already been paid', 'be paid to you in equal amounts over the remaining quarters for this scheme year'], listStyle: 'square' })
+    expect(result.stack[1]).toBe('\nYour payment schedule below has been revised to show the decrease. You have already been paid the full amount for the new agreement. You\'ll not receive a payment for the remaining quarter(s).')
   })
 })

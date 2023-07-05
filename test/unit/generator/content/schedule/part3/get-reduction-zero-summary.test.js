@@ -19,18 +19,23 @@ describe('Get reduction zero summary', () => {
     expect(result.stack[1].table.body[0][0].stack[0]).toBe(`Current agreement value: ${toCurrencyString(reductionZeroSchedule.adjustment.currentValue)}\n`)
   })
 
-  test('should return "New agreement value: reductionZeroSchedule.adjustment.newValue\n" for key stack 2 line 2 entry', () => {
+  test('should return "Reduction: reductionZeroSchedule.adjustment.adjustmentValue" for key stack 2 line 2 entry', () => {
     const result = getReductionZeroSummary(reductionZeroSchedule)
-    expect(result.stack[1].table.body[0][0].stack[1]).toBe(`New agreement value: ${toCurrencyString(reductionZeroSchedule.adjustment.newValue)}\n`)
+    expect(result.stack[1].table.body[0][0].stack[1]).toBe(`Reduction: ${toCurrencyString(String(Math.abs(reductionZeroSchedule.adjustment.adjustmentValue)))}\n`)
   })
 
-  test('should return "Reduction: reductionZeroSchedule.adjustment.adjustmentValue" for key stack 2 line 3 entry', () => {
+  test('should return "New agreement value: reductionZeroSchedule.adjustment.newValue\n" for key stack 2 line 3 entry', () => {
     const result = getReductionZeroSummary(reductionZeroSchedule)
-    expect(result.stack[1].table.body[0][0].stack[2]).toBe(`Reduction: ${toCurrencyString(String(Math.abs(reductionZeroSchedule.adjustment.adjustmentValue)))}`)
+    expect(result.stack[1].table.body[0][0].stack[2]).toBe(`New agreement value: ${toCurrencyString(reductionZeroSchedule.adjustment.newValue)}\n`)
   })
 
-  test('should return "Remaining Balance: reductionZeroSchedule.remainingAmount" for key stack 2 line 4 entry', () => {
+  test('should return "Total payments recived: reductionZeroSchedule.adjustment.adjustmentValue" for key stack 2 line 4 entry', () => {
     const result = getReductionZeroSummary(reductionZeroSchedule)
-    expect(result.stack[1].table.body[0][0].stack[3]).toBe(`Remaining balance: ${toCurrencyString(String(reductionZeroSchedule.remainingAmount))}`)
+    expect(result.stack[1].table.body[0][0].stack[3]).toBe(`Total payments recived: ${toCurrencyString(reductionZeroSchedule.adjustment.newValue)}\n`)
+  })
+
+  test('should return "Remaining Balance: reductionZeroSchedule.remainingAmount" for key stack 2 line 5 entry', () => {
+    const result = getReductionZeroSummary(reductionZeroSchedule)
+    expect(result.stack[1].table.body[0][0].stack[4]).toBe(`Remaining balance: ${toCurrencyString(String(reductionZeroSchedule.remainingAmount))}`)
   })
 })
