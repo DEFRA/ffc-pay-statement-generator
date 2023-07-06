@@ -15,6 +15,7 @@ describe('schedule part 2', () => {
   afterEach(() => {
     jest.clearAllMocks()
   })
+
   describe('top-up description', () => {
     test('Ensure getTopUpDescription is called', () => {
       part2(topUpSchedule)
@@ -26,7 +27,7 @@ describe('schedule part 2', () => {
       expect(getTopUpDescription).toHaveBeenCalledTimes(1)
     })
 
-    test('Ensure getTopUpDescription is called with topUpSchedule.adjustment', () => {
+    test('Ensure getTopUpDescription is called with topUpSchedule', () => {
       part2(topUpSchedule)
       expect(getTopUpDescription).toHaveBeenCalledWith(topUpSchedule)
     })
@@ -96,7 +97,7 @@ describe('schedule part 2', () => {
     })
   })
 
-  describe('description with schedule of negativeRemainingAmount', () => {
+  describe('negative remaining amount description', () => {
     test('Ensure getReductionDescription is called', () => {
       part2(negativeRemainingAmountSchedule)
       expect(getReductionDescription).toHaveBeenCalled()

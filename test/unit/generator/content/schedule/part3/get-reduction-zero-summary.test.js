@@ -1,5 +1,6 @@
 const toCurrencyString = require('../../../../../../app/generator/to-currency-string')
 const getReductionZeroSummary = require('../../../../../../app/generator/content/schedule/part3/get-reduction-zero-summary')
+
 const { reductionZeroSchedule } = require('../../../../../mocks/mock-schedule')
 
 describe('Get reduction zero summary', () => {

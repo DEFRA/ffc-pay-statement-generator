@@ -15,6 +15,7 @@ describe('get summary', () => {
   afterEach(() => {
     jest.clearAllMocks()
   })
+
   describe('top-up summary', () => {
     test('Ensure getTopUpSummary is called', () => {
       getSummary(topUpSchedule)
@@ -96,7 +97,7 @@ describe('get summary', () => {
     })
   })
 
-  describe('summary with schedule of negativeRemainingAmount', () => {
+  describe('negative remaining amount summary', () => {
     test('Ensure getReductionSummary is called', () => {
       getSummary(negativeRemainingAmountSchedule)
       expect(getReductionSummary).toHaveBeenCalled()
@@ -107,7 +108,7 @@ describe('get summary', () => {
       expect(getReductionSummary).toHaveBeenCalledTimes(1)
     })
 
-    test('Ensure getReductionSummary is called with reductionSchedule', () => {
+    test('Ensure getReductionSummary is called with negativeRemainingAmountSchedule', () => {
       getSummary(negativeRemainingAmountSchedule)
       expect(getReductionSummary).toHaveBeenCalledWith(negativeRemainingAmountSchedule)
     })

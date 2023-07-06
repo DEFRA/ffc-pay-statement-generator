@@ -5,7 +5,7 @@ jest.mock('../../../../../../app/generator/content/schedule/part3/get-summary')
 const getSummary = require('../../../../../../app/generator/content/schedule/part3/get-summary')
 
 const part3 = require('../../../../../../app/generator/content/schedule/part3')
-const { topUpSchedule, reductionSchedule, reductionZeroSchedule } = require('../../../../../mocks/mock-schedule')
+const { topUpSchedule, reductionSchedule, reductionZeroSchedule, negativeRemainingAmountSchedule } = require('../../../../../mocks/mock-schedule')
 
 describe('schedule part 3', () => {
   afterEach(() => {
@@ -55,7 +55,7 @@ describe('schedule part 3', () => {
       expect(getTable).toHaveBeenCalledTimes(1)
     })
 
-    test('Ensure getTable is called with reductionSchedule', () => {
+    test('Ensure getTable is called with reductionSchedule.schedule', () => {
       part3(reductionSchedule)
       expect(getTable).toHaveBeenCalledWith(reductionSchedule.schedule)
     })
@@ -105,6 +105,38 @@ describe('schedule part 3', () => {
     test('Ensure getSummary is called with reductionZeroSchedule', () => {
       part3(reductionZeroSchedule)
       expect(getSummary).toHaveBeenCalledWith(reductionZeroSchedule)
+    })
+  })
+
+  describe('negative remaining amount schedule part 3', () => {
+    test('Ensure getTable is called', () => {
+      part3(negativeRemainingAmountSchedule)
+      expect(getTable).toHaveBeenCalled()
+    })
+
+    test('Ensure getTable is called once', () => {
+      part3(negativeRemainingAmountSchedule)
+      expect(getTable).toHaveBeenCalledTimes(1)
+    })
+
+    test('Ensure getTable is called with negativeRemainingAmountSchedule.schedule', () => {
+      part3(negativeRemainingAmountSchedule)
+      expect(getTable).toHaveBeenCalledWith(negativeRemainingAmountSchedule.schedule)
+    })
+
+    test('Ensure getSummary is called', () => {
+      part3(negativeRemainingAmountSchedule)
+      expect(getSummary).toHaveBeenCalled()
+    })
+
+    test('Ensure getSummary is called once', () => {
+      part3(negativeRemainingAmountSchedule)
+      expect(getSummary).toHaveBeenCalledTimes(1)
+    })
+
+    test('Ensure getSummary is called with negativeRemainingAmountSchedule', () => {
+      part3(negativeRemainingAmountSchedule)
+      expect(getSummary).toHaveBeenCalledWith(negativeRemainingAmountSchedule)
     })
   })
 })
