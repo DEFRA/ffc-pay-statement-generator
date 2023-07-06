@@ -1,15 +1,8 @@
-jest.mock('../../../../../../app/generator/content/schedule/part3/get-table')
-const { getTable } = require('../../../../../../app/generator/content/schedule/part3/get-table')
-
 const part3 = require('../../../../../../app/generator/content/schedule/part3')
 
 const { topUpSchedule, reductionSchedule, reductionZeroSchedule, negativeRemainingAmountSchedule } = require('../../../../../mocks/mock-schedule')
 
-describe('schedule part 3 integration with getSummary components', () => {
-  beforeEach(() => {
-    getTable.mockResolvedValue(null)
-  })
-
+describe('schedule part 3', () => {
   afterEach(() => {
     jest.clearAllMocks()
   })

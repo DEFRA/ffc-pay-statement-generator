@@ -3,7 +3,7 @@ const businessName = require('../mocks/components/business-name')
 const documentReference = require('../mocks/components/document-reference')
 const { topUpRemainingAmount, reductionRemainingAmount, reductionZeroRemainingAmount, negativeRemainingAmount } = require('../mocks/components/remaining-amount')
 const { topUpAdjustment, reductionAdjustment } = require('../mocks/objects/adjustment')
-const topUpScheduleTimeline = require('../mocks/objects/schedule')
+const { topUpScheduleTimeline, reductionScheduleTimeline, reductionZeroScheduleTimeline, negativeRemainingAmountScheduleTimeline } = require('../mocks/objects/schedule-timelines')
 
 const baseSchedule = {
   businessName,
@@ -31,18 +31,21 @@ const topUpSchedule = {
 const reductionSchedule = {
   ...baseSchedule,
   remainingAmount: reductionRemainingAmount,
+  schedule: reductionScheduleTimeline,
   adjustment: reductionAdjustment
 }
 
 const reductionZeroSchedule = {
   ...baseSchedule,
   remainingAmount: reductionZeroRemainingAmount,
+  schedule: reductionZeroScheduleTimeline,
   adjustment: reductionAdjustment
 }
 
 const negativeRemainingAmountSchedule = {
   ...baseSchedule,
   remainingAmount: negativeRemainingAmount,
+  schedule: negativeRemainingAmountScheduleTimeline,
   adjustment: reductionAdjustment
 }
 
