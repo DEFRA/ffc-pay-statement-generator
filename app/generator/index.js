@@ -28,7 +28,7 @@ const generateDocument = async (request, type) => {
     const filename = await publish(pdfDoc, request, moment(timestamp).format('YYYYMMDDHHmmssSS'), type)
 
     if (type.type === SCHEDULE.type) {
-      await sendEmail(filename)
+      await sendEmail(filename, request.scheme.agreementNumber)
       if (config.schedulesArePublished) {
         await sendPublishMessage(request, filename, type.id)
       }

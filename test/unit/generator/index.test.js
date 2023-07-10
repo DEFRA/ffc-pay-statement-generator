@@ -325,9 +325,9 @@ describe('Generate document', () => {
           expect(sendEmail).toHaveBeenCalledTimes(1)
         })
 
-        test('should call sendEmail with publish()', async () => {
+        test('should call sendEmail with publish() and request.scheme.agreementNumber', async () => {
           await generateDocument(request, type)
-          expect(sendEmail).toHaveBeenCalledWith(await publish())
+          expect(sendEmail).toHaveBeenCalledWith(await publish(), request.scheme.agreementNumber)
         })
 
         test('should call sendCrmMessage', async () => {
@@ -693,9 +693,9 @@ describe('Generate document', () => {
           expect(sendEmail).toHaveBeenCalledTimes(1)
         })
 
-        test('should call sendEmail with publish()', async () => {
+        test('should call sendEmail with publish() and request.scheme.agreementNumber', async () => {
           await generateDocument(request, type)
-          expect(sendEmail).toHaveBeenCalledWith(await publish())
+          expect(sendEmail).toHaveBeenCalledWith(await publish(), request.scheme.agreementNumber)
         })
 
         test('should call sendPublishMessage', async () => {
