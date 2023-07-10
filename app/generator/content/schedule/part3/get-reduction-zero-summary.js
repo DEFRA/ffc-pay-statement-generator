@@ -1,6 +1,6 @@
 const toCurrencyString = require('../../../to-currency-string')
 
-const getReductionSummary = (schedule) => {
+const getReductionZeroSummary = (schedule) => {
   const adjustment = schedule.adjustment
   return {
     stack: [
@@ -16,8 +16,9 @@ const getReductionSummary = (schedule) => {
             [{
               stack: [
                 `Current agreement value: ${toCurrencyString(adjustment.currentValue)}\n`,
+                `Reduction: ${toCurrencyString(String(Math.abs(adjustment.adjustmentValue)))}\n`,
                 `New agreement value: ${toCurrencyString(adjustment.newValue)}\n`,
-                `Reduction: ${toCurrencyString(String(Math.abs(adjustment.adjustmentValue)))}`,
+                `Total payments recived: ${toCurrencyString(adjustment.newValue)}\n`,
                 `Remaining balance: ${toCurrencyString(String(Math.abs(schedule.remainingAmount)))}`
               ]
             }]
@@ -28,4 +29,4 @@ const getReductionSummary = (schedule) => {
   }
 }
 
-module.exports = getReductionSummary
+module.exports = getReductionZeroSummary

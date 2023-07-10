@@ -1,14 +1,11 @@
 jest.mock('../../../../../../app/generator/content/schedule/part3/get-table')
 const { getTable } = require('../../../../../../app/generator/content/schedule/part3/get-table')
 
-jest.mock('../../../../../../app/generator/content/schedule/part3/get-reduction-summary')
-const getReductionSummary = require('../../../../../../app/generator/content/schedule/part3/get-reduction-summary')
-
-jest.mock('../../../../../../app/generator/content/schedule/part3/get-top-up-summary')
-const getTopUpSummary = require('../../../../../../app/generator/content/schedule/part3/get-top-up-summary')
+jest.mock('../../../../../../app/generator/content/schedule/part3/get-summary')
+const getSummary = require('../../../../../../app/generator/content/schedule/part3/get-summary')
 
 const part3 = require('../../../../../../app/generator/content/schedule/part3')
-const { topUpSchedule, reductionSchedule } = require('../../../../../mocks/mock-schedule')
+const { topUpSchedule, reductionSchedule, reductionZeroSchedule, negativeRemainingAmountSchedule } = require('../../../../../mocks/mock-schedule')
 
 describe('schedule part 3', () => {
   afterEach(() => {
@@ -16,16 +13,6 @@ describe('schedule part 3', () => {
   })
 
   describe('top-up schedule part 3', () => {
-    test('Ensure top-up summary header style is set to header3', () => {
-      const result = part3(topUpSchedule)
-      expect(result.stack[0].style).toBe('header3')
-    })
-
-    test('Ensure top-up summary title text is "Payment schedule"', () => {
-      const result = part3(topUpSchedule)
-      expect(result.stack[0].text).toBe('Payment schedule')
-    })
-
     test('Ensure getTable is called', () => {
       part3(topUpSchedule)
       expect(getTable).toHaveBeenCalled()
@@ -41,43 +28,23 @@ describe('schedule part 3', () => {
       expect(getTable).toHaveBeenCalledWith(topUpSchedule.schedule)
     })
 
-    test('Ensure getTopUpSummary is called', () => {
+    test('Ensure getSummary is called', () => {
       part3(topUpSchedule)
-      expect(getTopUpSummary).toHaveBeenCalled()
+      expect(getSummary).toHaveBeenCalled()
     })
 
-    test('Ensure getTopUpSummary is called once', () => {
+    test('Ensure getSummary is called once', () => {
       part3(topUpSchedule)
-      expect(getTopUpSummary).toHaveBeenCalledTimes(1)
+      expect(getSummary).toHaveBeenCalledTimes(1)
     })
 
-    test('Ensure getTopUpSummary is called with topUpSchedule.adjustment', () => {
+    test('Ensure getSummary is called with topUpSchedule', () => {
       part3(topUpSchedule)
-      expect(getTopUpSummary).toHaveBeenCalledWith(topUpSchedule.adjustment)
-    })
-
-    test('Ensure getReductionSummary is not called', () => {
-      part3(topUpSchedule)
-      expect(getReductionSummary).not.toHaveBeenCalled()
-    })
-
-    test('includes unbreakable instruction when top up schedule', () => {
-      const result = part3(topUpSchedule)
-      expect(result.unbreakable).toBeTruthy()
+      expect(getSummary).toHaveBeenCalledWith(topUpSchedule)
     })
   })
 
   describe('reduction schedule part 3', () => {
-    test('Ensure reduction summary header style is set to header3', () => {
-      const result = part3(reductionSchedule)
-      expect(result.stack[0].style).toBe('header3')
-    })
-
-    test('Ensure reduction summary title text is "Payment schedule"', () => {
-      const result = part3(reductionSchedule)
-      expect(result.stack[0].text).toBe('Payment schedule')
-    })
-
     test('Ensure getTable is called', () => {
       part3(reductionSchedule)
       expect(getTable).toHaveBeenCalled()
@@ -93,29 +60,83 @@ describe('schedule part 3', () => {
       expect(getTable).toHaveBeenCalledWith(reductionSchedule.schedule)
     })
 
-    test('Ensure getReductionSummary is called', () => {
+    test('Ensure getSummary is called', () => {
       part3(reductionSchedule)
-      expect(getReductionSummary).toHaveBeenCalled()
+      expect(getSummary).toHaveBeenCalled()
     })
 
-    test('Ensure getReductionSummary is called once', () => {
+    test('Ensure getSummary is called once', () => {
       part3(reductionSchedule)
-      expect(getReductionSummary).toHaveBeenCalledTimes(1)
+      expect(getSummary).toHaveBeenCalledTimes(1)
     })
 
-    test('Ensure getReductionSummary is called with reductionSchedule', () => {
+    test('Ensure getSummary is called with reductionSchedule', () => {
       part3(reductionSchedule)
-      expect(getReductionSummary).toHaveBeenCalledWith(reductionSchedule)
+      expect(getSummary).toHaveBeenCalledWith(reductionSchedule)
+    })
+  })
+
+  describe('reduction Zero schedule part 3', () => {
+    test('Ensure getTable is called', () => {
+      part3(reductionZeroSchedule)
+      expect(getTable).toHaveBeenCalled()
     })
 
-    test('Ensure getTopUpSummary is not called', () => {
-      part3(reductionSchedule)
-      expect(getTopUpSummary).not.toHaveBeenCalled()
+    test('Ensure getTable is called once', () => {
+      part3(reductionZeroSchedule)
+      expect(getTable).toHaveBeenCalledTimes(1)
     })
 
-    test('includes unbreakable instruction when reduction schedule', () => {
-      const result = part3(reductionSchedule)
-      expect(result.unbreakable).toBeTruthy()
+    test('Ensure getTable is called with reductionZeroSchedule.schedule', () => {
+      part3(reductionZeroSchedule)
+      expect(getTable).toHaveBeenCalledWith(reductionZeroSchedule.schedule)
+    })
+
+    test('Ensure getSummary is called', () => {
+      part3(reductionZeroSchedule)
+      expect(getSummary).toHaveBeenCalled()
+    })
+
+    test('Ensure getSummary is called once', () => {
+      part3(reductionZeroSchedule)
+      expect(getSummary).toHaveBeenCalledTimes(1)
+    })
+
+    test('Ensure getSummary is called with reductionZeroSchedule', () => {
+      part3(reductionZeroSchedule)
+      expect(getSummary).toHaveBeenCalledWith(reductionZeroSchedule)
+    })
+  })
+
+  describe('negative remaining amount schedule part 3', () => {
+    test('Ensure getTable is called', () => {
+      part3(negativeRemainingAmountSchedule)
+      expect(getTable).toHaveBeenCalled()
+    })
+
+    test('Ensure getTable is called once', () => {
+      part3(negativeRemainingAmountSchedule)
+      expect(getTable).toHaveBeenCalledTimes(1)
+    })
+
+    test('Ensure getTable is called with negativeRemainingAmountSchedule.schedule', () => {
+      part3(negativeRemainingAmountSchedule)
+      expect(getTable).toHaveBeenCalledWith(negativeRemainingAmountSchedule.schedule)
+    })
+
+    test('Ensure getSummary is called', () => {
+      part3(negativeRemainingAmountSchedule)
+      expect(getSummary).toHaveBeenCalled()
+    })
+
+    test('Ensure getSummary is called once', () => {
+      part3(negativeRemainingAmountSchedule)
+      expect(getSummary).toHaveBeenCalledTimes(1)
+    })
+
+    test('Ensure getSummary is called with negativeRemainingAmountSchedule', () => {
+      part3(negativeRemainingAmountSchedule)
+      expect(getSummary).toHaveBeenCalledWith(negativeRemainingAmountSchedule)
     })
   })
 })
