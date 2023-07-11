@@ -15,8 +15,9 @@ const {
 } = require('../../mocks/components/filename')
 
 const { mockMessageSender } = require('../../mocks/modules/ffc-messaging')
+const { mockNotifyClient } = require('../../mocks/modules/notifications-node-client')
 
-const { processMessage } = require('../../../app/messaging/process-message')
+const processMessage = require('../../../app/messaging/process-message')
 
 let blobServiceClient
 let container
@@ -132,6 +133,11 @@ describe('process message', () => {
           expect(mockMessageSender().sendMessage.mock.calls[1][0].body.apiLink).toContain(STATEMENT_FILENAME)
         })
 
+        test('should not send email via Notify', async () => {
+          await processMessage(message, receiver)
+          expect(mockNotifyClient().sendEmail).not.toHaveBeenCalled()
+        })
+
         test('should complete message', async () => {
           await processMessage(message, receiver)
           expect(receiver.completeMessage).toHaveBeenCalled()
@@ -173,6 +179,11 @@ describe('process message', () => {
         test('should not send messages for publish and crm', async () => {
           await processMessage(message, receiver)
           expect(mockMessageSender().sendMessage).not.toHaveBeenCalled()
+        })
+
+        test('should not send email via Notify', async () => {
+          await processMessage(message, receiver)
+          expect(mockNotifyClient().sendEmail).not.toHaveBeenCalled()
         })
 
         test('should complete message', async () => {
@@ -265,6 +276,11 @@ describe('process message', () => {
           expect(mockMessageSender().sendMessage.mock.calls[1][0].body.apiLink).toContain(STATEMENT_FILENAME)
         })
 
+        test('should not send email via Notify', async () => {
+          await processMessage(message, receiver)
+          expect(mockNotifyClient().sendEmail).not.toHaveBeenCalled()
+        })
+
         test('should complete message', async () => {
           await processMessage(message, receiver)
           expect(receiver.completeMessage).toHaveBeenCalled()
@@ -353,6 +369,11 @@ describe('process message', () => {
         test('should send crm message with statement api link that contains STATEMENT_FILENAME', async () => {
           await processMessage(message, receiver)
           expect(mockMessageSender().sendMessage.mock.calls[1][0].body.apiLink).toContain(STATEMENT_FILENAME)
+        })
+
+        test('should not send email via Notify', async () => {
+          await processMessage(message, receiver)
+          expect(mockNotifyClient().sendEmail).not.toHaveBeenCalled()
         })
 
         test('should complete message', async () => {
@@ -447,7 +468,12 @@ describe('process message', () => {
           expect(mockMessageSender().sendMessage.mock.calls[1][0].body.apiLink).toContain(STATEMENT_FILENAME)
         })
 
-        test('should complete both  message', async () => {
+        test('should not send any emails via Notify', async () => {
+          await processMessage(message, receiver)
+          expect(mockNotifyClient().sendEmail).not.toHaveBeenCalled()
+        })
+
+        test('should complete both messages', async () => {
           await processMessage(message, receiver)
           await processMessage(message, receiver)
 
@@ -490,6 +516,11 @@ describe('process message', () => {
         test('should not send messages for publish and crm', async () => {
           await processMessage(message, receiver)
           expect(mockMessageSender().sendMessage).not.toHaveBeenCalled()
+        })
+
+        test('should not send email via Notify', async () => {
+          await processMessage(message, receiver)
+          expect(mockNotifyClient().sendEmail).not.toHaveBeenCalled()
         })
 
         test('should complete message', async () => {
@@ -569,6 +600,11 @@ describe('process message', () => {
           expect(mockMessageSender().sendMessage.mock.calls[0][0].body.apiLink).toContain(SCHEDULE_FILENAME)
         })
 
+        test('should send email via Notify', async () => {
+          await processMessage(message, receiver)
+          expect(mockNotifyClient().sendEmail).toHaveBeenCalledTimes(1)
+        })
+
         test('should complete message', async () => {
           await processMessage(message, receiver)
           expect(receiver.completeMessage).toHaveBeenCalled()
@@ -610,6 +646,11 @@ describe('process message', () => {
         test('should not send message for crm', async () => {
           await processMessage(message, receiver)
           expect(mockMessageSender().sendMessage).not.toHaveBeenCalled()
+        })
+
+        test('should not send email via Notify', async () => {
+          await processMessage(message, receiver)
+          expect(mockNotifyClient().sendEmail).not.toHaveBeenCalled()
         })
 
         test('should complete message', async () => {
@@ -697,6 +738,11 @@ describe('process message', () => {
           expect(mockMessageSender().sendMessage.mock.calls[0][0].body.apiLink).toContain(SCHEDULE_FILENAME)
         })
 
+        test('should send email via Notify', async () => {
+          await processMessage(message, receiver)
+          expect(mockNotifyClient().sendEmail).toHaveBeenCalledTimes(1)
+        })
+
         test('should complete message', async () => {
           await processMessage(message, receiver)
           expect(receiver.completeMessage).toHaveBeenCalled()
@@ -780,6 +826,11 @@ describe('process message', () => {
         test('should send crm message with schedule api link that contains SCHEDULE_FILENAME', async () => {
           await processMessage(message, receiver)
           expect(mockMessageSender().sendMessage.mock.calls[0][0].body.apiLink).toContain(SCHEDULE_FILENAME)
+        })
+
+        test('should send email via Notify', async () => {
+          await processMessage(message, receiver)
+          expect(mockNotifyClient().sendEmail).toHaveBeenCalledTimes(1)
         })
 
         test('should complete message', async () => {
@@ -867,6 +918,11 @@ describe('process message', () => {
           expect(mockMessageSender().sendMessage.mock.calls[0][0].body.apiLink).toContain(SCHEDULE_FILENAME)
         })
 
+        test('should send 1 email via Notify', async () => {
+          await processMessage(message, receiver)
+          expect(mockNotifyClient().sendEmail).toHaveBeenCalledTimes(1)
+        })
+
         test('should complete both messages', async () => {
           await processMessage(message, receiver)
           await processMessage(message, receiver)
@@ -910,6 +966,11 @@ describe('process message', () => {
         test('should not send messages for publish and crm', async () => {
           await processMessage(message, receiver)
           expect(mockMessageSender().sendMessage).not.toHaveBeenCalled()
+        })
+
+        test('should not send email via Notify', async () => {
+          await processMessage(message, receiver)
+          expect(mockNotifyClient().sendEmail).not.toHaveBeenCalled()
         })
 
         test('should complete message', async () => {
@@ -1000,6 +1061,11 @@ describe('process message', () => {
           expect(mockMessageSender().sendMessage.mock.calls[1][0].body.apiLink).toContain(STATEMENT_FILENAME)
         })
 
+        test('should not send email via Notify', async () => {
+          await processMessage(message, receiver)
+          expect(mockNotifyClient().sendEmail).not.toHaveBeenCalled()
+        })
+
         test('should complete message', async () => {
           await processMessage(message, receiver)
           expect(receiver.completeMessage).toHaveBeenCalled()
@@ -1041,6 +1107,11 @@ describe('process message', () => {
         test('should not send messages for publish and crm', async () => {
           await processMessage(message, receiver)
           expect(mockMessageSender().sendMessage).not.toHaveBeenCalled()
+        })
+
+        test('should not send email via Notify', async () => {
+          await processMessage(message, receiver)
+          expect(mockNotifyClient().sendEmail).not.toHaveBeenCalled()
         })
 
         test('should complete message', async () => {
@@ -1133,6 +1204,11 @@ describe('process message', () => {
           expect(mockMessageSender().sendMessage.mock.calls[1][0].body.apiLink).toContain(STATEMENT_FILENAME)
         })
 
+        test('should not send email via Notify', async () => {
+          await processMessage(message, receiver)
+          expect(mockNotifyClient().sendEmail).not.toHaveBeenCalled()
+        })
+
         test('should complete message', async () => {
           await processMessage(message, receiver)
           expect(receiver.completeMessage).toHaveBeenCalled()
@@ -1221,6 +1297,11 @@ describe('process message', () => {
         test('should send crm message with statement api link that contains STATEMENT_FILENAME', async () => {
           await processMessage(message, receiver)
           expect(mockMessageSender().sendMessage.mock.calls[1][0].body.apiLink).toContain(STATEMENT_FILENAME)
+        })
+
+        test('should not send email via Notify', async () => {
+          await processMessage(message, receiver)
+          expect(mockNotifyClient().sendEmail).not.toHaveBeenCalled()
         })
 
         test('should complete message', async () => {
@@ -1315,7 +1396,12 @@ describe('process message', () => {
           expect(mockMessageSender().sendMessage.mock.calls[1][0].body.apiLink).toContain(STATEMENT_FILENAME)
         })
 
-        test('should complete both  message', async () => {
+        test('should not send any emails via Notify', async () => {
+          await processMessage(message, receiver)
+          expect(mockNotifyClient().sendEmail).not.toHaveBeenCalled()
+        })
+
+        test('should complete both messages', async () => {
           await processMessage(message, receiver)
           await processMessage(message, receiver)
 
@@ -1323,7 +1409,7 @@ describe('process message', () => {
         })
       })
 
-      describe('When schedule has been processed before with same documentReference', () => {
+      describe('When statement has been processed before with same documentReference', () => {
         beforeEach(async () => {
           const { documentReference: documentRef, ...data } = schedule
 
@@ -1358,6 +1444,11 @@ describe('process message', () => {
         test('should not send messages for publish and crm', async () => {
           await processMessage(message, receiver)
           expect(mockMessageSender().sendMessage).not.toHaveBeenCalled()
+        })
+
+        test('should not send email via Notify', async () => {
+          await processMessage(message, receiver)
+          expect(mockNotifyClient().sendEmail).not.toHaveBeenCalled()
         })
 
         test('should complete message', async () => {
@@ -1442,6 +1533,11 @@ describe('process message', () => {
           expect(mockMessageSender().sendMessage.mock.calls[1][0].body.apiLink).toContain(SCHEDULE_FILENAME)
         })
 
+        test('should send email via Notify', async () => {
+          await processMessage(message, receiver)
+          expect(mockNotifyClient().sendEmail).toHaveBeenCalledTimes(1)
+        })
+
         test('should complete message', async () => {
           await processMessage(message, receiver)
           expect(receiver.completeMessage).toHaveBeenCalled()
@@ -1483,6 +1579,11 @@ describe('process message', () => {
         test('should not send messages for publish and crm', async () => {
           await processMessage(message, receiver)
           expect(mockMessageSender().sendMessage).not.toHaveBeenCalled()
+        })
+
+        test('should not send email via Notify', async () => {
+          await processMessage(message, receiver)
+          expect(mockNotifyClient().sendEmail).not.toHaveBeenCalled()
         })
 
         test('should complete message', async () => {
@@ -1575,6 +1676,11 @@ describe('process message', () => {
           expect(mockMessageSender().sendMessage.mock.calls[1][0].body.apiLink).toContain(SCHEDULE_FILENAME)
         })
 
+        test('should send email via Notify', async () => {
+          await processMessage(message, receiver)
+          expect(mockNotifyClient().sendEmail).toHaveBeenCalledTimes(1)
+        })
+
         test('should complete message', async () => {
           await processMessage(message, receiver)
           expect(receiver.completeMessage).toHaveBeenCalled()
@@ -1663,6 +1769,11 @@ describe('process message', () => {
         test('should send crm message with schedule api link that contains SCHEDULE_FILENAME', async () => {
           await processMessage(message, receiver)
           expect(mockMessageSender().sendMessage.mock.calls[1][0].body.apiLink).toContain(SCHEDULE_FILENAME)
+        })
+
+        test('should send email via Notify', async () => {
+          await processMessage(message, receiver)
+          expect(mockNotifyClient().sendEmail).toHaveBeenCalledTimes(1)
         })
 
         test('should complete message', async () => {
@@ -1757,6 +1868,11 @@ describe('process message', () => {
           expect(mockMessageSender().sendMessage.mock.calls[1][0].body.apiLink).toContain(SCHEDULE_FILENAME)
         })
 
+        test('should send 1 email via Notify', async () => {
+          await processMessage(message, receiver)
+          expect(mockNotifyClient().sendEmail).toHaveBeenCalledTimes(1)
+        })
+
         test('should complete both messages', async () => {
           await processMessage(message, receiver)
           await processMessage(message, receiver)
@@ -1765,7 +1881,7 @@ describe('process message', () => {
         })
       })
 
-      describe('When statement has been processed before with same documentReference', () => {
+      describe('When schedule has been processed before with same documentReference', () => {
         beforeEach(async () => {
           const { documentReference: documentRef, ...data } = statement
 
@@ -1800,6 +1916,11 @@ describe('process message', () => {
         test('should not send messages for publish and crm', async () => {
           await processMessage(message, receiver)
           expect(mockMessageSender().sendMessage).not.toHaveBeenCalled()
+        })
+
+        test('should not send email via Notify', async () => {
+          await processMessage(message, receiver)
+          expect(mockNotifyClient().sendEmail).not.toHaveBeenCalled()
         })
 
         test('should complete message', async () => {

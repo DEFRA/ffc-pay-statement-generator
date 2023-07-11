@@ -20,6 +20,4 @@ const processMessage = async (message, receiver) => {
   }
 }
 
-module.exports = {
-  processMessage
-}
+module.exports = processMessage
