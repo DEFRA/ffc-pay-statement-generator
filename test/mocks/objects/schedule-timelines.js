@@ -55,7 +55,7 @@ const reductionZeroScheduleTimeline = [
     value: '0.00'
   }]
 
-const negativeRemainingAmountScheduleTimeline = [
+const recoveryScheduleTimeline = [
   {
     order: 1,
     dueDate: '01/09/2023',
@@ -68,5 +68,5 @@ module.exports = {
   topUpScheduleTimeline,
   reductionScheduleTimeline,
   reductionZeroScheduleTimeline,
-  negativeRemainingAmountScheduleTimeline
+  recoveryScheduleTimeline
 }

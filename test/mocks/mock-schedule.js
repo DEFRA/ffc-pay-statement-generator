@@ -1,9 +1,9 @@
 const address = require('../mocks/components/address')
 const businessName = require('../mocks/components/business-name')
 const documentReference = require('../mocks/components/document-reference')
-const { topUpRemainingAmount, reductionRemainingAmount, reductionZeroRemainingAmount, negativeRemainingAmount } = require('../mocks/components/remaining-amount')
+const { topUpRemainingAmount, reductionRemainingAmount, reductionZeroRemainingAmount, recoveryRemainingAmount } = require('../mocks/components/remaining-amount')
 const { topUpAdjustment, reductionAdjustment } = require('../mocks/objects/adjustment')
-const { topUpScheduleTimeline, reductionScheduleTimeline, reductionZeroScheduleTimeline, negativeRemainingAmountScheduleTimeline } = require('../mocks/objects/schedule-timelines')
+const { topUpScheduleTimeline, reductionScheduleTimeline, reductionZeroScheduleTimeline, recoveryScheduleTimeline } = require('../mocks/objects/schedule-timelines')
 
 const baseSchedule = {
   businessName,
@@ -42,10 +42,10 @@ const reductionZeroSchedule = {
   adjustment: reductionAdjustment
 }
 
-const negativeRemainingAmountSchedule = {
+const recoverySchedule = {
   ...baseSchedule,
-  remainingAmount: negativeRemainingAmount,
-  schedule: negativeRemainingAmountScheduleTimeline,
+  remainingAmount: recoveryRemainingAmount,
+  schedule: recoveryScheduleTimeline,
   adjustment: reductionAdjustment
 }
 
@@ -53,5 +53,5 @@ module.exports = {
   topUpSchedule,
   reductionSchedule,
   reductionZeroSchedule,
-  negativeRemainingAmountSchedule
+  recoverySchedule
 }
