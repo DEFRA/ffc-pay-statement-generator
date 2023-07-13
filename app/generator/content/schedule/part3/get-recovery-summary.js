@@ -18,7 +18,7 @@ const getRecoverySummary = (schedule) => {
                 `Current agreement value: ${toCurrencyString(adjustment.currentValue)}\n`,
                 `Reduction: ${toCurrencyString(String(Math.abs(adjustment.adjustmentValue)))}\n`,
                 `New agreement value: ${toCurrencyString(adjustment.newValue)}\n`,
-                `Total payments recived: ${toCurrencyString(adjustment.newValue)}\n`,
+                `Total payments received: ${toCurrencyString(String(adjustment.newValue - schedule.remainingAmount))}\n`,
                 `Recovery payment due: ${toCurrencyString(String(Math.abs(schedule.remainingAmount)))}`,
                 `\nAn invoice for ${toCurrencyString(String(Math.abs(schedule.remainingAmount)))} is included with this email`
               ]

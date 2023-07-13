@@ -29,9 +29,9 @@ describe('Get recovery summary', () => {
     expect(result.stack[1].table.body[0][0].stack[2]).toBe(`New agreement value: ${toCurrencyString(recoverySchedule.adjustment.newValue)}\n`)
   })
 
-  test('should return "Total payments recived: recoverySchedule.adjustment.adjustmentValue" for key stack 2 line 4 entry', () => {
+  test('should return "Total payments recived: recoverySchedule.adjustment.newValue - recoverySchedule.remainingAmount" for key stack 2 line 4 entry', () => {
     const result = getRecoverySummary(recoverySchedule)
-    expect(result.stack[1].table.body[0][0].stack[3]).toBe(`Total payments recived: ${toCurrencyString(recoverySchedule.adjustment.newValue)}\n`)
+    expect(result.stack[1].table.body[0][0].stack[3]).toBe(`Total payments received: ${toCurrencyString(String(recoverySchedule.adjustment.newValue - recoverySchedule.remainingAmount))}\n`)
   })
 
   test('should return "Remaining Balance: recoverySchedule.remainingAmount" for key stack 2 line 5 entry', () => {
