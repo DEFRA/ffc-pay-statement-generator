@@ -44,6 +44,11 @@ describe('get summary', () => {
       getSummary(topUpSchedule)
       expect(getReductionZeroSummary).not.toHaveBeenCalled()
     })
+
+    test('Ensure getRecoverySummary is not called', () => {
+      getSummary(reductionSchedule)
+      expect(getRecoverySummary).not.toHaveBeenCalled()
+    })
   })
 
   describe('reduction summary', () => {
