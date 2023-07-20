@@ -1,6 +1,7 @@
 const toCurrencyString = require('../../../../../../app/generator/to-currency-string')
-const getRecoverySummary = require('../../../../../../app/generator/content/schedule/part3/get-recovery-summary')
 const { recoverySchedule } = require('../../../../../mocks/mock-schedule')
+
+const getRecoverySummary = require('../../../../../../app/generator/content/schedule/part3/get-recovery-summary')
 
 describe('Get recovery summary', () => {
   test('should return an object', () => {
