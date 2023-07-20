@@ -11,7 +11,7 @@ const part2 = (schedule) => {
     case (remainingAmount === 0):
       return getReductionZeroDescription(schedule)
     case (remainingAmount < 0):
-      getRecoveryDescription(schedule)
+      return getRecoveryDescription(schedule)
   }
 }
 
