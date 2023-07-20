@@ -33,7 +33,7 @@ describe('Get recovery description', () => {
     expect(result.stack).toHaveLength(2)
   })
 
-  test('should return "\n\nWe recently sent you a letter to tell you the annual value of your recoverySchedule.scheme.name recoverySchedule.scheme.shortName agreement has decreased." for key stack 1 entry', () => {
+  test('should return "\nThe annual value of your recoverySchedule.scheme.name (recoverySchedule.scheme.shortName) agreement has decreased." for key stack 1 entry', () => {
     const result = getRecoveryDescription(recoverySchedule)
     expect(result.stack[0]).toBe(`The annual value of your ${recoverySchedule.scheme.name} (${recoverySchedule.scheme.shortName}) agreement has decreased.`)
   })
