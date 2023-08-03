@@ -21,6 +21,11 @@ module.exports = {
 		bold: true,
 		margin: [0, 10, 0, 10]
 	},
+	header14: {
+		fontSize: 14,
+		bold: true,
+		margin: [0, 10, 0, 10]
+	},
 	subTitle: {
 		fontSize: 18,
 		margin: [0, 0, 0, 30]
