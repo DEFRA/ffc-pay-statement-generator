@@ -1,6 +1,6 @@
 const path = require('path')
 const { millimetresToPoints } = require('../../../conversion')
-const getAddress = require('../../get-address')
+const getAddress = require('../../statement/summary/get-address')
 const getBusinessName = require('../../get-business-name')
 const getAgreementReference = require('./get-agreement-reference')
 const getSBI = require('./get-sbi')

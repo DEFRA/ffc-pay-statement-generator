@@ -1,4 +1,4 @@
-const getAddress = require('../../../../app/generator/content/get-address')
+const getAddress = require('../../../../app/generator/content/statement/summary/get-address')
 
 const businessName = require('../../../mocks/components/business-name')
 const fullAddress = require('../../../mocks/components/address')

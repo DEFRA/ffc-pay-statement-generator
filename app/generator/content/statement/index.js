@@ -1,7 +1,7 @@
-const summary = require('./summary');
-const part1 = require('./part1');
-const part2 = require('./part2');
-const getHelpInfo = require('../common/part3/get-help-info');
+const summary = require('./summary')
+const part1 = require('./part1')
+const part2 = require('./part2')
+const getHelpInfo = require('../common/part3/get-help-info')
 
 const createContent = (statement) => {
 	return [

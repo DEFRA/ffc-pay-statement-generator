@@ -1,7 +1,7 @@
-const toCurrencyString = require('../../../to-currency-string');
-const getCalculationDate = require('./get-calculation-date');
-const getPaymentPeriod = require('./get-payment-period');
-const getReference = require('./get-reference');
+const toCurrencyString = require('../../../to-currency-string')
+const getCalculationDate = require('./get-calculation-date')
+const getPaymentPeriod = require('./get-payment-period')
+const getReference = require('./get-reference')
 
 const getTable = (scheme, latestPayment) => {
 	return {
