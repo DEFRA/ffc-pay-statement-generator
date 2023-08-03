@@ -1,10 +1,10 @@
-const path = require('path');
-const { millimetresToPoints } = require('../../../conversion');
-const getAddress = require('../../get-address');
-const getBusinessName = require('../../get-business-name');
-const getSBI = require('./get-sbi');
-const getAgreementNumber = require('../part1/get-agreement-number');
-const imagePath = path.join(__dirname, '../../..', 'images');
+const path = require('path')
+const { millimetresToPoints } = require('../../../conversion')
+const getAddress = require('../../get-address')
+const getBusinessName = require('../../get-business-name')
+const getSBI = require('./get-sbi')
+const getAgreementNumber = require('../part1/get-agreement-number')
+const imagePath = path.join(__dirname, '../../..', 'images')
 
 const summary = (statement) => {
 	return {
