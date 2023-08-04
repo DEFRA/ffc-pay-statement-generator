@@ -1,11 +1,11 @@
 const path = require('path')
 const getSummary = require('../../get-summary')
 
-const summary = (statement) => {
+const summary = (summary) => {
 	return {
 		stack: [
 			getSummary(summary),
-			`\n\nThis statement explains your payment for the ${statement.scheme.name} (${statement.scheme.shortName}). It is made up of 3 parts.`,
+			`\n\nThis summary explains your payment for the ${summary.scheme.name} (${summary.scheme.shortName}). It is made up of 3 parts.`,
 			'\nPart 1 provides a summary of the most recent payment.',
 			'Part 2 explains how we calculated the payment.',
 			'Part 3 highlights where to go for more support.'
@@ -14,4 +14,4 @@ const summary = (statement) => {
 	};
 };
 
-module.exports = statement;
+module.exports = summary;

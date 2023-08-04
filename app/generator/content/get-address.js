@@ -1,4 +1,4 @@
-const { millimetresToPoints } = require('../../../conversion')
+const { millimetresToPoints } = require('../conversion')
 
 const getAddress = (businessName, address) => {
   let fullAddress = `${businessName}\n`
