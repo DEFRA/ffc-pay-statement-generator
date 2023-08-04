@@ -54,7 +54,10 @@ module.exports = {
 		lineHeight: 1
 	},
 	scheduleLogo: {
-		margin: [400, 20, 0, millimetresToPoints(50)]
+		margin: [0, 20, 0, millimetresToPoints(50)]
+	},
+	scheduleAddress: {
+		margin: [0, 10, 0, 10 ]
 	},
 	style: {
 		margin: [0, 0, 0, 5]
