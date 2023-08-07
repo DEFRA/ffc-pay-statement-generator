@@ -1,5 +1,5 @@
 const path = require('path')
-const getSummary = require('../../get-summary')
+const getSummary = require('../../summary-layout')
 
 const summary = (summary) => {
 	return {
