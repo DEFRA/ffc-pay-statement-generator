@@ -1,4 +1,4 @@
-const { millimetresToPoints } = require('./conversion');
+const { millimetresToPoints } = require('./conversion')
 
 module.exports = {
 	default: {
@@ -57,9 +57,9 @@ module.exports = {
 		margin: [0, 20, 0, millimetresToPoints(50)]
 	},
 	scheduleAddress: {
-		margin: [0, 10, 0, 10 ]
+		margin: [0, 10, 0, 10]
 	},
 	style: {
 		margin: [0, 0, 0, 5]
 	}
-};
+}
