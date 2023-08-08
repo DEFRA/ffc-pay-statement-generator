@@ -6,7 +6,7 @@ const getAgreementNumber = (agreementNumber) => {
 		],
 		style: 'column',
 		columnGap: 10
-	};
-};
+	}
+}
 
-module.exports = getAgreementNumber;
+module.exports = getAgreementNumber

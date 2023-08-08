@@ -22,10 +22,10 @@ const getSummary = (summary) => {
 			{ text: 'Payment summary', style: 'header14' },
 			getSBI(summary.sbi),
 			getBusinessName(summary.businessName),
-			getAgreementNumber(summary.scheme.agreementNumber),
+			getAgreementNumber(summary.scheme.agreementNumber)
 		],
 		unbreakable: true
-	};
-};
+	}
+}
 
-module.exports = getSummary;
+module.exports = getSummary
