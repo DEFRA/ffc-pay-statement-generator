@@ -17,37 +17,37 @@ const fonts = require('./fonts')
 const printer = new PdfPrinter(fonts)
 
 const generateDocument = async (request, type) => {
-	const existingDocument = await getGenerations(request.documentReference)
+  const existingDocument = await getGenerations(request.documentReference)
 
-	if (existingDocument) {
-		console.info(
+  if (existingDocument) {
+    console.info(
 			`Duplicate document received, skipping ${existingDocument.documentReference}`
-		)
-	} else {
-		const docDefinition = getDocumentDefinition(request, type)
-		const timestamp = new Date()
-		const pdfDoc = printer.createPdfKitDocument(docDefinition)
-		const filename = await publish(
-			pdfDoc,
-			request,
-			moment(timestamp).format('YYYYMMDDHHmmssSS'),
-			type
-		)
+    )
+  } else {
+    const docDefinition = getDocumentDefinition(request, type)
+    const timestamp = new Date()
+    const pdfDoc = printer.createPdfKitDocument(docDefinition)
+    const filename = await publish(
+      pdfDoc,
+      request,
+      moment(timestamp).format('YYYYMMDDHHmmssSS'),
+      type
+    )
 
-		if (type.type === SCHEDULE.type) {
-			await sendEmail(filename, request.scheme.agreementNumber)
-			if (config.schedulesArePublished) {
-				await sendPublishMessage(request, filename, type.id)
-			}
-		} else {
-			await sendPublishMessage(request, filename, type.id)
-		}
+    if (type.type === SCHEDULE.type) {
+      await sendEmail(filename, request.scheme.agreementNumber)
+      if (config.schedulesArePublished) {
+        await sendPublishMessage(request, filename, type.id)
+      }
+    } else {
+      await sendPublishMessage(request, filename, type.id)
+    }
 
-		await sendCrmMessage(request, filename, type)
-		await saveLog(request, filename, timestamp)
-	}
+    await sendCrmMessage(request, filename, type)
+    await saveLog(request, filename, timestamp)
+  }
 }
 
 module.exports = {
-	generateDocument
+  generateDocument
 }

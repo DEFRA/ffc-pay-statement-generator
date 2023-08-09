@@ -4,14 +4,14 @@ const part2 = require('./part2')
 const getHelpInfo = require('../get-help-info')
 
 const createContent = (statement) => {
-	return [
-		summary(statement),
-		part1(statement),
-		part2(statement),
-		getHelpInfo()
-	];
-};
+  return [
+    summary(statement),
+    part1(statement),
+    part2(statement),
+    getHelpInfo()
+  ]
+}
 
 module.exports = {
-	createContent
-};
+  createContent
+}
