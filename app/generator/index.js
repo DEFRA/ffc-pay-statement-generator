@@ -20,8 +20,7 @@ const generateDocument = async (request, type) => {
   const existingDocument = await getGenerations(request.documentReference)
 
   if (existingDocument) {
-    console.info(
-			`Duplicate document received, skipping ${existingDocument.documentReference}`
+    console.info(`Duplicate document received, skipping ${existingDocument.documentReference}`
     )
   } else {
     const docDefinition = getDocumentDefinition(request, type)

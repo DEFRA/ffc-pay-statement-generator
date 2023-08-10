@@ -1,10 +1,9 @@
-const path = require('path')
-const summary = require('../../summary-layout')
+const getSummary = require('../../summary-layout')
 
 const part1 = (schedule) => {
   return {
     stack: [
-      getSummary(summary),
+      getSummary(),
       {
         text: `${schedule.scheme.name} (${schedule.scheme.shortName}) revised payment schedule `,
         style: 'header3'
