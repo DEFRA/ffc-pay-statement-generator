@@ -11,7 +11,7 @@ const getHelpInfo = () => {
             ' to check your SFI standard agreement'
           ]
         },
-          'check statements and letters you\'ve received from us',
+        'check statements and letters you\'ve received from us',
         {
           text: [
             'review the SFI scheme information at ',

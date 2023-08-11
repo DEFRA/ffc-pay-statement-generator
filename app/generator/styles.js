@@ -31,7 +31,7 @@ module.exports = {
   },
   table: {
     fontSize: 10,
-    margin: [0, 10, 0, 10]
+    margin: [0, 10, 0, 10],
     backgroundColor: 'white'
   },
   tableHeader: {
@@ -47,7 +47,7 @@ module.exports = {
   },
   address: {
     fontSize: 9.5,
-    lineHeight: 1
+    lineHeight: 1,
     margin: [0, 10, 0, millimetresToPoints(50)]
   },
   scheduleLogo: {
