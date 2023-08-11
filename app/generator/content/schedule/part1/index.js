@@ -1,4 +1,4 @@
-const getSummary = require('../../summary-layout')
+const getSummary = require('../../common-template')
 
 const part1 = (schedule) => {
   return {
@@ -6,7 +6,7 @@ const part1 = (schedule) => {
       getSummary(),
       {
         text: `${schedule.scheme.name} (${schedule.scheme.shortName}) revised payment schedule `,
-        style: 'header3'
+        style: 'h3'
       }
     ],
     unbreakable: true

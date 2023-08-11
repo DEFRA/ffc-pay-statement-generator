@@ -6,23 +6,18 @@ module.exports = {
     fontSize: 12,
     lineHeight: 1.15
   },
-  header1: {
-    fontSize: 24,
+  h1: {
+    fontSize: 16,
     bold: true,
     margin: [0, 10, 0, 10]
   },
-  header2: {
-    fontSize: 16,
+  h2: {
+    fontSize: 14,
     bold: true,
     margin: [0, 40, 0, 10]
   },
-  header3: {
+  h3: {
     fontSize: 12,
-    bold: true,
-    margin: [0, 10, 0, 10]
-  },
-  header14: {
-    fontSize: 14,
     bold: true,
     margin: [0, 10, 0, 10]
   },
@@ -37,6 +32,7 @@ module.exports = {
   table: {
     fontSize: 10,
     margin: [0, 10, 0, 10]
+    backgroundColor: 'white'
   },
   tableHeader: {
     fontSize: 12,
@@ -52,6 +48,7 @@ module.exports = {
   address: {
     fontSize: 9.5,
     lineHeight: 1
+    margin: [0, 10, 0, millimetresToPoints(50)]
   },
   scheduleLogo: {
     margin: [0, 20, 0, millimetresToPoints(50)]

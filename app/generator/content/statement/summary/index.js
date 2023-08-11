@@ -1,4 +1,4 @@
-const getSummary = require('../../summary-layout')
+const getSummary = require('../../common-template')
 
 const summary = (summary) => {
   return {

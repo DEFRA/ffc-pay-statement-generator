@@ -4,7 +4,7 @@ const getSummary = require('./get-summary')
 const part3 = (schedule) => {
   return {
     stack: [
-      { text: 'Payment schedule', style: 'header3' },
+      { text: 'Payment schedule', style: 'h3' },
       getSummary(schedule),
       getTable(schedule.schedule)
     ],

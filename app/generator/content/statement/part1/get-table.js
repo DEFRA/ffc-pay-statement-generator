@@ -25,7 +25,7 @@ const getTable = (scheme, latestPayment) => {
               getCalculationDate(latestPayment.calculated),
               getReference(latestPayment.reference)
             ],
-            fillColor: '#ffffff'
+            style: 'table'
           }
         ]
       ]

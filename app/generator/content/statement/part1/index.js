@@ -5,7 +5,7 @@ const part1 = (statement) => {
   const latestPayment = getLatestPayment(statement.payments)
   return {
     stack: [
-      { text: 'Part 1. Payment summary', style: 'header14' },
+      { text: 'Part 1. Payment summary', style: 'h3' },
       getTable(statement.scheme, latestPayment)
     ],
     unbreakable: true
