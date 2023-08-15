@@ -20,7 +20,7 @@ describe('get table', () => {
 
   test('includes table cell with background colour', () => {
     const result = getTable(mockStatement.scheme, mockStatement.payments[0], latestPeriod)
-    expect(result.table.body[0][0].fillColor).toBe('#d9d9d9')
+    expect(result.table.body[0][0].fillColor).toBe('#ffffff')
   })
 
   test('includes payment schedule', () => {

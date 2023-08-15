@@ -9,7 +9,7 @@ describe('generate part 3', () => {
 
   test('includes header with style', () => {
     const result = part3(mockStatement)
-    expect(result.stack[0].style).toBe('header2')
+    expect(result.stack[0].style).toBe('h2')
   })
 
   test('includes more support introduction', () => {
