@@ -3,7 +3,7 @@ const getTable = require('./get-table')
 const part2 = (statement) => {
   return {
     stack: [
-      { text: 'Part 2. Calculation', style: 'header2' },
+      { text: 'Part 2. Calculation', style: 'h2' },
       { text: `We calculated the total ${statement.scheme.shortName} payment amount by adding together payments for all the standards which are part of your agreement, as shown in this table.` },
       getTable(statement.funding),
       {
