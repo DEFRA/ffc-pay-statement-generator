@@ -6,23 +6,23 @@ module.exports = {
     fontSize: 12,
     lineHeight: 1.15
   },
-  header1: {
-    fontSize: 24,
+  h1: {
+    fontSize: 16,
     bold: true,
     margin: [0, 10, 0, 10]
   },
-  header2: {
-    fontSize: 16,
+  h2: {
+    fontSize: 14,
     bold: true,
     margin: [0, 40, 0, 10]
   },
-  header3: {
+  h3: {
     fontSize: 12,
     bold: true,
     margin: [0, 10, 0, 10]
   },
   subTitle: {
-    fontSize: 18,
+    fontSize: 14,
     margin: [0, 0, 0, 30]
   },
   link: {
