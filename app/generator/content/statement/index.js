@@ -6,7 +6,7 @@ const part3 = require('../get-help-info')
 
 const createContent = (statement) => {
   return [
-    commonHeader(),
+    commonHeader(statement),
     summary(statement),
     part1(statement),
     part2(statement),
