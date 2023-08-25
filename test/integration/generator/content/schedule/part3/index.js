@@ -1,6 +1,6 @@
 const part3 = require('../../../../../../app/generator/content/schedule/part3')
 
-const { topUpSchedule, reductionSchedule, reductionZeroSchedule, negativeRemainingAmountSchedule } = require('../../../../../mocks/mock-schedule')
+const { topUpSchedule, reductionSchedule, reductionZeroSchedule, recoverySchedule } = require('../../../../../mocks/mock-schedule')
 
 describe('schedule part 3', () => {
   afterEach(() => {
@@ -58,19 +58,19 @@ describe('schedule part 3', () => {
     })
   })
 
-  describe('negative remaining amount schedule part 3', () => {
+  describe('recovery schedule part 3', () => {
     test('Ensure header style is set to header3', () => {
-      const result = part3(negativeRemainingAmountSchedule)
+      const result = part3(recoverySchedule)
       expect(result.stack[0].style).toBe('header3')
     })
 
     test('Ensure  title text is "Payment schedule"', () => {
-      const result = part3(negativeRemainingAmountSchedule)
+      const result = part3(recoverySchedule)
       expect(result.stack[0].text).toBe('Payment schedule')
     })
 
     test('includes unbreakable instruction', () => {
-      const result = part3(negativeRemainingAmountSchedule)
+      const result = part3(recoverySchedule)
       expect(result.unbreakable).toBeTruthy()
     })
   })

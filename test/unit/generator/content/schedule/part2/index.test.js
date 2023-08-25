@@ -7,9 +7,12 @@ const getReductionDescription = require('../../../../../../app/generator/content
 jest.mock('../../../../../../app/generator/content/schedule/part2/get-reduction-zero-description')
 const getReductionZeroDescription = require('../../../../../../app/generator/content/schedule/part2/get-reduction-zero-description')
 
+jest.mock('../../../../../../app/generator/content/schedule/part2/get-recovery-description')
+const getRecoveryDescription = require('../../../../../../app/generator/content/schedule/part2/get-recovery-description')
+
 const part2 = require('../../../../../../app/generator/content/schedule/part2')
 
-const { topUpSchedule, reductionSchedule, reductionZeroSchedule, negativeRemainingAmountSchedule } = require('../../../../../mocks/mock-schedule')
+const { topUpSchedule, reductionSchedule, reductionZeroSchedule, recoverySchedule } = require('../../../../../mocks/mock-schedule')
 
 describe('schedule part 2', () => {
   afterEach(() => {
@@ -41,6 +44,11 @@ describe('schedule part 2', () => {
       part2(topUpSchedule)
       expect(getReductionZeroDescription).not.toHaveBeenCalled()
     })
+
+    test('Ensure getRecoveryDescription is not called', () => {
+      part2(topUpSchedule)
+      expect(getRecoveryDescription).not.toHaveBeenCalled()
+    })
   })
 
   describe('reduction description', () => {
@@ -68,6 +76,11 @@ describe('schedule part 2', () => {
       part2(reductionSchedule)
       expect(getReductionZeroDescription).not.toHaveBeenCalled()
     })
+
+    test('Ensure getRecoveryDescription is not called', () => {
+      part2(reductionSchedule)
+      expect(getRecoveryDescription).not.toHaveBeenCalled()
+    })
   })
 
   describe('reduction Zero description', () => {
@@ -91,35 +104,45 @@ describe('schedule part 2', () => {
       expect(getTopUpDescription).not.toHaveBeenCalled()
     })
 
-    test('Ensure getReductionpDescription is not called', () => {
+    test('Ensure getReductionDescription is not called', () => {
       part2(reductionZeroSchedule)
       expect(getReductionDescription).not.toHaveBeenCalled()
     })
+
+    test('Ensure getRecoveryDescription is not called', () => {
+      part2(reductionZeroSchedule)
+      expect(getRecoveryDescription).not.toHaveBeenCalled()
+    })
   })
 
-  describe('negative remaining amount description', () => {
-    test('Ensure getReductionDescription is called', () => {
-      part2(negativeRemainingAmountSchedule)
-      expect(getReductionDescription).toHaveBeenCalled()
+  describe('recovery description', () => {
+    test('Ensure getRecoveryDescription is called', () => {
+      part2(recoverySchedule)
+      expect(getRecoveryDescription).toHaveBeenCalled()
     })
 
-    test('Ensure getReductionDescription is called once', () => {
-      part2(negativeRemainingAmountSchedule)
-      expect(getReductionDescription).toHaveBeenCalledTimes(1)
+    test('Ensure getRecoveryDescription is called once', () => {
+      part2(recoverySchedule)
+      expect(getRecoveryDescription).toHaveBeenCalledTimes(1)
     })
 
-    test('Ensure getReductionDescription is called with reductionSchedule', () => {
-      part2(negativeRemainingAmountSchedule)
-      expect(getReductionDescription).toHaveBeenCalledWith(negativeRemainingAmountSchedule)
+    test('Ensure getRecoveryDescription is called with recoverySchedule', () => {
+      part2(recoverySchedule)
+      expect(getRecoveryDescription).toHaveBeenCalledWith(recoverySchedule)
     })
 
     test('Ensure getTopUpDescription is not called', () => {
-      part2(negativeRemainingAmountSchedule)
+      part2(recoverySchedule)
       expect(getTopUpDescription).not.toHaveBeenCalled()
     })
 
+    test('Ensure getReductionDescription is not called', () => {
+      part2(recoverySchedule)
+      expect(getReductionDescription).not.toHaveBeenCalled()
+    })
+
     test('Ensure getReductionZeroDescription is not called', () => {
-      part2(negativeRemainingAmountSchedule)
+      part2(recoverySchedule)
       expect(getReductionZeroDescription).not.toHaveBeenCalled()
     })
   })
