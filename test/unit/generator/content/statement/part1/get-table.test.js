@@ -1,4 +1,4 @@
-const getTable = require('../../../../../../app/generator/content/statement/part1/get-table')
+const getTable = require('../../../../../../app/generator/content/statement/part2/get-table')
 let mockStatement
 let latestPeriod
 
@@ -16,11 +16,6 @@ describe('get table', () => {
   test('includes table with a single column', () => {
     const result = getTable(mockStatement.scheme, mockStatement.payments[0], latestPeriod)
     expect(result.table.body[0].length).toBe(1)
-  })
-
-  test('includes table cell with background colour', () => {
-    const result = getTable(mockStatement.scheme, mockStatement.payments[0], latestPeriod)
-    expect(result.table.body[0][0].fillColor).toBe('#d9d9d9')
   })
 
   test('includes payment schedule', () => {

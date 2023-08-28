@@ -7,12 +7,12 @@ module.exports = {
     lineHeight: 1.15
   },
   header1: {
-    fontSize: 24,
+    fontSize: 16,
     bold: true,
     margin: [0, 10, 0, 10]
   },
   header2: {
-    fontSize: 16,
+    fontSize: 14,
     bold: true,
     margin: [0, 40, 0, 10]
   },

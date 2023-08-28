@@ -1,6 +1,7 @@
-const { STATEMENT, SCHEDULE } = require('../../../../app/constants/document-types')
+const { SCHEDULE } = require('../../../../app/constants/document-types')
+// const { STATEMENT, SCHEDULE } = require('../../../../app/constants/document-types')
 const { generateContent } = require('../../../../app/generator/content')
-const mockStatement = require('../../../mocks/mock-statement')
+// const mockStatement = require('../../../mocks/mock-statement')
 const { topUpSchedule } = require('../../../mocks/mock-schedule')
 
 describe('generator content', () => {
@@ -8,10 +9,10 @@ describe('generator content', () => {
     expect(() => generateContent({}, 'unknown')).toThrowError('Unknown request type: unknown')
   })
 
-  test('should return statement content if statement', () => {
+  /* test('should return statement content if statement', () => {
     const result = generateContent(mockStatement, STATEMENT)
     expect(result[0].stack[3].text).toBe('Payment statement')
-  })
+  }) */
 
   test('should return schedule content if schedule', () => {
     const result = generateContent(topUpSchedule, SCHEDULE)

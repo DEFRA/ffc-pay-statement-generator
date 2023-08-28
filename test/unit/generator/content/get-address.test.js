@@ -23,12 +23,12 @@ describe('get address', () => {
 
     test('should return correct x-axis location', () => {
       const result = getAddress(businessName, address)
-      expect(result.absolutePosition.x).toBe(28.35)
+      expect(result.absolutePosition.x).toBe(0)
     })
 
     test('should return correct y-axis location', () => {
       const result = getAddress(businessName, address)
-      expect(result.absolutePosition.y).toBe(99.225)
+      expect(result.absolutePosition.y).toBe(127.575)
     })
   })
 
@@ -49,12 +49,12 @@ describe('get address', () => {
 
     test('should return correct x-axis location', () => {
       const result = getAddress(businessName, address)
-      expect(result.absolutePosition.x).toBe(28.35)
+      expect(result.absolutePosition.x).toBe(0)
     })
 
     test('should return correct y-axis location', () => {
       const result = getAddress(businessName, address)
-      expect(result.absolutePosition.y).toBe(99.225)
+      expect(result.absolutePosition.y).toBe(127.575)
     })
   })
 
@@ -80,12 +80,12 @@ describe('get address', () => {
 
     test('should return correct x-axis location', () => {
       const result = getAddress(businessName, address)
-      expect(result.absolutePosition.x).toBe(28.35)
+      expect(result.absolutePosition.x).toBe(0)
     })
 
     test('should return correct y-axis location', () => {
       const result = getAddress(businessName, address)
-      expect(result.absolutePosition.y).toBe(99.225)
+      expect(result.absolutePosition.y).toBe(127.575)
     })
   })
 
@@ -111,12 +111,12 @@ describe('get address', () => {
 
     test('should return correct x-axis location', () => {
       const result = getAddress(businessName, address)
-      expect(result.absolutePosition.x).toBe(28.35)
+      expect(result.absolutePosition.x).toBe(0)
     })
 
     test('should return correct y-axis location', () => {
       const result = getAddress(businessName, address)
-      expect(result.absolutePosition.y).toBe(99.225)
+      expect(result.absolutePosition.y).toBe(127.575)
     })
   })
 
@@ -142,12 +142,12 @@ describe('get address', () => {
 
     test('should return correct x-axis location', () => {
       const result = getAddress(businessName, address)
-      expect(result.absolutePosition.x).toBe(28.35)
+      expect(result.absolutePosition.x).toBe(0)
     })
 
     test('should return correct y-axis location', () => {
       const result = getAddress(businessName, address)
-      expect(result.absolutePosition.y).toBe(99.225)
+      expect(result.absolutePosition.y).toBe(127.575)
     })
   })
 })

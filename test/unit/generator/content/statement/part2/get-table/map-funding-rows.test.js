@@ -1,4 +1,4 @@
-const mapFundingRows = require('../../../../../../../app/generator/content/statement/part2/get-table/map-funding-rows')
+const mapFundingRows = require('../../../../../../../app/generator/content/statement/part3/get-table/map-funding-rows')
 let mockStatement
 
 describe('map funding rows', () => {

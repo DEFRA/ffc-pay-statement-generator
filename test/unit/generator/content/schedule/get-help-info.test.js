@@ -1,4 +1,4 @@
-const getHelpInfo = require('../../../../../app/generator/content/schedule/get-help-info')
+const getHelpInfo = require('../../../../../app/generator/content/get-help-info')
 
 describe('get help info', () => {
   const result = getHelpInfo()

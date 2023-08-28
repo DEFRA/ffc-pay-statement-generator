@@ -1,4 +1,4 @@
-const getLatestPayment = require('../../../../../../app/generator/content/statement/part1/get-latest-payment')
+const getLatestPayment = require('../../../../../../app/generator/content/statement/part2/get-latest-payment')
 
 describe('get latest payment', () => {
   test('gets latest payment when only one payment', () => {
