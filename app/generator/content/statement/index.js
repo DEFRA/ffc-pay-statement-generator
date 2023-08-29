@@ -5,12 +5,13 @@ const part3 = require('./part3')
 const getHelpInfo = require('../get-help-info')
 
 const createContent = (statement) => {
+  const helpInfoLabel = 'Part 3. '
   return [
     summary(statement),
     part1(statement),
     part2(statement),
     part3(statement),
-    getHelpInfo()
+    getHelpInfo(helpInfoLabel)
   ]
 }
 

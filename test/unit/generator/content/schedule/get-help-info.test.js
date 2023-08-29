@@ -1,7 +1,8 @@
 const getHelpInfo = require('../../../../../app/generator/content/get-help-info')
+const helpInfoLabel = ''
 
 describe('get help info', () => {
-  const result = getHelpInfo()
+  const result = getHelpInfo(helpInfoLabel)
 
   test('First segment header style is set to header3', () => {
     expect(result.stack[0].style).toBe('header3')

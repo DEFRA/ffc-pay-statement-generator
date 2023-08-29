@@ -15,12 +15,12 @@ const getTable = (fundings) => {
         [
           { text: 'Standard', style: 'tableHeader' },
           { text: 'Level', style: 'tableHeader' },
-          { text: 'Rate', style: 'tableHeader' },
+          { text: 'Rate (£)', style: 'tableHeader' },
           { text: 'Land area (ha)', style: 'tableHeader' },
-          { text: 'Annual value', style: 'tableHeader' },
-          { text: 'Quarterly value', style: 'tableHeader' },
-          { text: 'Quarterly reduction', style: 'tableHeader' },
-          { text: 'Quarterly payment', style: 'tableHeader' }
+          { text: 'Annual value (£)', style: 'tableHeader' },
+          { text: 'Quarterly value (£)', style: 'tableHeader' },
+          { text: 'Quarterly reduction (£)', style: 'tableHeader' },
+          { text: 'Quarterly payment (£)', style: 'tableHeader' }
         ],
         ...mapFundingRows(fundings.filter(x => x.name !== 'Total'))
       ]
