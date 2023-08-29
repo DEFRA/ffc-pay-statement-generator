@@ -1,7 +1,7 @@
 const getHelpInfo = (partLabel) => {
   return {
     stack: [
-      { text: `${partLabel}More information`, style: 'header3' },
+      { text: `${partLabel}More information`, style: 'header2' },
       'If you think your payments are wrong, you should:\n',
       {
         ul: [{
