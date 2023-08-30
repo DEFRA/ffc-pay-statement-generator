@@ -1,4 +1,4 @@
-const part1 = require('../../../../../../app/generator/content/statement/part1')
+const part1 = require('../../../../../../app/generator/content/statement/part2')
 const mockStatement = require('../../../../../mocks/mock-statement')
 
 describe('generate part 1', () => {
@@ -20,11 +20,6 @@ describe('generate part 1', () => {
   test('includes table with a single column', () => {
     const result = part1(mockStatement)
     expect(result.stack[1].table.body[0].length).toBe(1)
-  })
-
-  test('includes table cell with background colour', () => {
-    const result = part1(mockStatement)
-    expect(result.stack[1].table.body[0][0].fillColor).toBe('#d9d9d9')
   })
 
   test('includes payment schedule', () => {

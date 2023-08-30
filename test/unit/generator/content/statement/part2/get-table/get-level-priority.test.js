@@ -1,4 +1,4 @@
-const getLevelPriority = require('../../../../../../../app/generator/content/statement/part2/get-table/get-level-priority')
+const getLevelPriority = require('../../../../../../../app/generator/content/statement/part3/get-table/get-level-priority')
 
 describe('get level priority', () => {
   test('returns 1 if level is Introductory', () => {

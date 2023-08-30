@@ -1,10 +1,11 @@
-const getHelpInfo = require('../../../../../app/generator/content/schedule/get-help-info')
+const getHelpInfo = require('../../../../../app/generator/content/get-help-info')
+const helpInfoBlock = ''
 
 describe('get help info', () => {
-  const result = getHelpInfo()
+  const result = getHelpInfo(helpInfoBlock)
 
-  test('First segment header style is set to header3', () => {
-    expect(result.stack[0].style).toBe('header3')
+  test('First segment header style is set to header2', () => {
+    expect(result.stack[0].style).toBe('header2')
   })
   test('First segment title text is "More information"', () => {
     expect(result.stack[0].text).toBe('More information')

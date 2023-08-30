@@ -8,10 +8,10 @@ const mapFundingRows = (fundings) => {
     x.level,
     { text: formatZeroValues(x.rate), style: 'tableNumber' },
     { text: formatZeroValues(x.area), style: 'tableNumber' },
-    { text: `${toCurrencyString(x.annualValue)}`, style: 'tableNumber' },
-    { text: `${toCurrencyString(x.quarterlyValue)}`, style: 'tableNumber' },
-    { text: `${toCurrencyString(x.quarterlyReduction)}`, style: 'tableNumber' },
-    { text: `£${x.quarterlyPayment}`, style: 'tableNumber' }
+    { text: `${toCurrencyString(x.annualValue).substring(1)}`, style: 'tableNumber' },
+    { text: `${toCurrencyString(x.quarterlyValue).substring(1)}`, style: 'tableNumber' },
+    { text: `${toCurrencyString(x.quarterlyReduction).substring(1)}`, style: 'tableNumber' },
+    { text: `${x.quarterlyPayment}`, style: 'tableNumber' }
   ]))
 }
 

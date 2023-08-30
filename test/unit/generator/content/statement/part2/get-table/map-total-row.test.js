@@ -1,4 +1,4 @@
-const mapTotalRow = require('../../../../../../../app/generator/content/statement/part2/get-table/map-total-row')
+const mapTotalRow = require('../../../../../../../app/generator/content/statement/part3/get-table/map-total-row')
 let totalRow
 let reductions
 

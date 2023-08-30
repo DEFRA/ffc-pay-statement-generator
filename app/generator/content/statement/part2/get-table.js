@@ -19,8 +19,7 @@ const getTable = (scheme, latestPayment) => {
             getPaymentPeriod(latestPayment.period),
             getCalculationDate(latestPayment.calculated),
             getReference(latestPayment.reference)
-          ],
-          fillColor: '#d9d9d9'
+          ]
         }]
       ]
     }

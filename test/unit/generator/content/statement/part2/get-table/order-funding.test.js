@@ -1,4 +1,4 @@
-const orderFunding = require('../../../../../../../app/generator/content/statement/part2/get-table/order-funding')
+const orderFunding = require('../../../../../../../app/generator/content/statement/part3/get-table/order-funding')
 
 describe('order funding', () => {
   test('returns only item if one funding option', () => {

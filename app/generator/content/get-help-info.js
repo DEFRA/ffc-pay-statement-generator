@@ -1,7 +1,7 @@
-const getHelpInfo = () => {
+const getHelpInfo = (partLabel) => {
   return {
     stack: [
-      { text: 'More information', style: 'header3' },
+      { text: `${partLabel}More information`, style: 'header2' },
       'If you think your payments are wrong, you should:\n',
       {
         ul: [{
@@ -26,16 +26,6 @@ const getHelpInfo = () => {
           'You can email ',
           { text: 'ruralpayments@defra.gov.uk', link: 'mailto:ruralpayments@defra.gov.uk', decoration: 'underline' },
           ' or call us on 03000 200 301 (Monday to Friday, 8.30am to 5pm). Please tell us your SBI and Agreement number if applicable which are at the top of this email.'
-        ]
-      },
-      { text: 'SFI', style: 'header3' },
-      {
-        text: [
-          'Rural Payments Agency | PO Box 325 | WORKSOP | S95 1DG',
-          { text: '\nruralpayments@defra.gov.uk', link: 'mailto:ruralpayments@defra.gov.uk', decoration: 'underline' },
-          ' | 03000 200 301 | ',
-          { text: 'gov.uk/defra/sfi', link: 'https://www.gov.uk/government/collections/sustainable-farming-incentive-guidance', decoration: 'underline' },
-          '\nFollow us on Twitter @Ruralpay'
         ]
       }
     ],
