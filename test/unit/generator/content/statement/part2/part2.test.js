@@ -53,22 +53,22 @@ describe('generate part 2', () => {
 
   test('includes annual value', () => {
     const result = part3(mockStatement)
-    expect(result.stack[2].table.body[1][4].text).toBe(`£${mockStatement.funding[0].annualValue}`)
+    expect(result.stack[2].table.body[1][4].text).toBe(`${mockStatement.funding[0].annualValue}`)
   })
 
   test('includes quarterly value', () => {
     const result = part3(mockStatement)
-    expect(result.stack[2].table.body[1][5].text).toBe(`£${mockStatement.funding[0].quarterlyValue}`)
+    expect(result.stack[2].table.body[1][5].text).toBe(`${mockStatement.funding[0].quarterlyValue}`)
   })
 
   test('includes quarterly reduction', () => {
     const result = part3(mockStatement)
-    expect(result.stack[2].table.body[1][6].text).toBe(`£${mockStatement.funding[0].quarterlyReduction}`)
+    expect(result.stack[2].table.body[1][6].text).toBe(`${mockStatement.funding[0].quarterlyReduction}`)
   })
 
   test('includes quarterly payment', () => {
     const result = part3(mockStatement)
-    expect(result.stack[2].table.body[1][7].text).toBe(`£${mockStatement.funding[0].quarterlyPayment}`)
+    expect(result.stack[2].table.body[1][7].text).toBe(`${mockStatement.funding[0].quarterlyPayment}`)
   })
 
   test('includes all help text lines', () => {

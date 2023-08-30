@@ -5,13 +5,13 @@ const part3 = require('./part3')
 const getHelpInfo = require('../get-help-info')
 
 const createContent = (schedule) => {
-  const helpInfoLabel = ''
+  const helpInfoBlock = ''
   return [
     summary(schedule),
     part1(schedule),
     part2(schedule),
     part3(schedule),
-    getHelpInfo(helpInfoLabel)
+    getHelpInfo(helpInfoBlock)
   ]
 }
 

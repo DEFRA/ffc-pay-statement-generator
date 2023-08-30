@@ -48,7 +48,7 @@ describe('map funding rows', () => {
 
   test('includes annual value', () => {
     const result = mapFundingRows(mockStatement.funding)
-    expect(result[0][4].text).toBe(`£${mockStatement.funding[0].annualValue}`)
+    expect(result[0][4].text).toBe(`${mockStatement.funding[0].annualValue}`)
   })
 
   test('includes annual value with style', () => {
@@ -58,7 +58,7 @@ describe('map funding rows', () => {
 
   test('includes quarterly value', () => {
     const result = mapFundingRows(mockStatement.funding)
-    expect(result[0][5].text).toBe(`£${mockStatement.funding[0].quarterlyValue}`)
+    expect(result[0][5].text).toBe(`${mockStatement.funding[0].quarterlyValue}`)
   })
 
   test('includes quarterly value with style', () => {
@@ -68,7 +68,7 @@ describe('map funding rows', () => {
 
   test('includes quarterly reduction', () => {
     const result = mapFundingRows(mockStatement.funding)
-    expect(result[0][6].text).toBe(`£${mockStatement.funding[0].quarterlyReduction}`)
+    expect(result[0][6].text).toBe(`${mockStatement.funding[0].quarterlyReduction}`)
   })
 
   test('includes quarterly reduction with style', () => {
@@ -78,7 +78,7 @@ describe('map funding rows', () => {
 
   test('includes quarterly payment', () => {
     const result = mapFundingRows(mockStatement.funding)
-    expect(result[0][7].text).toBe(`£${mockStatement.funding[0].quarterlyPayment}`)
+    expect(result[0][7].text).toBe(`${mockStatement.funding[0].quarterlyPayment}`)
   })
 
   test('includes quarterly payment with style', () => {

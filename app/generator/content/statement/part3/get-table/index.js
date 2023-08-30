@@ -15,7 +15,7 @@ const getTable = (fundings) => {
         [
           { text: 'Standard', style: 'tableHeader' },
           { text: 'Level', style: 'tableHeader' },
-          { text: 'Rate (£)', style: 'tableHeader' },
+          { text: 'Rate per ha (£)', style: 'tableHeader' },
           { text: 'Land area (ha)', style: 'tableHeader' },
           { text: 'Annual value (£)', style: 'tableHeader' },
           { text: 'Quarterly value (£)', style: 'tableHeader' },

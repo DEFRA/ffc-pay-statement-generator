@@ -38,21 +38,21 @@ describe('get table', () => {
 
   test('includes annual value', () => {
     const result = getTable(mockStatement.funding)
-    expect(result.table.body[1][4].text).toBe(`£${mockStatement.funding[0].annualValue}`)
+    expect(result.table.body[1][4].text).toBe(`${mockStatement.funding[0].annualValue}`)
   })
 
   test('includes quarterly value', () => {
     const result = getTable(mockStatement.funding)
-    expect(result.table.body[1][5].text).toBe(`£${mockStatement.funding[0].quarterlyValue}`)
+    expect(result.table.body[1][5].text).toBe(`${mockStatement.funding[0].quarterlyValue}`)
   })
 
   test('includes quarterly reduction', () => {
     const result = getTable(mockStatement.funding)
-    expect(result.table.body[1][6].text).toBe(`£${mockStatement.funding[0].quarterlyReduction}`)
+    expect(result.table.body[1][6].text).toBe(`${mockStatement.funding[0].quarterlyReduction}`)
   })
 
   test('includes quarterly payment', () => {
     const result = getTable(mockStatement.funding)
-    expect(result.table.body[1][7].text).toBe(`£${mockStatement.funding[0].quarterlyPayment}`)
+    expect(result.table.body[1][7].text).toBe(`${mockStatement.funding[0].quarterlyPayment}`)
   })
 })
