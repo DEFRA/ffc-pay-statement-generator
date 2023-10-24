@@ -1,4 +1,4 @@
-const toCurrencyString = require('../../../../to-currency-string')
+const toCurrencyString = require('../../../../../to-currency-string')
 const orderFunding = require('./order-funding')
 
 const mapFundingRows = (fundings) => {
