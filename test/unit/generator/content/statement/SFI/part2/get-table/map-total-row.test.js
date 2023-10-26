@@ -1,11 +1,11 @@
-const mapTotalRow = require('../../../../../../../app/generator/content/statement/part3/get-table/map-total-row')
+const mapTotalRow = require('../../../../../../../../app/generator/content/statement/SFI/part3/get-table/map-total-row')
 let totalRow
 let reductions
 
 describe('map total row', () => {
   beforeEach(() => {
-    totalRow = JSON.parse(JSON.stringify(require('../../../../../../mocks/mock-statement').funding.find(x => x.name === 'Total')))
-    reductions = require('../../../../../../mocks/reductions')
+    totalRow = JSON.parse(JSON.stringify(require('../../../../../../../mocks/mock-statement').funding.find(x => x.name === 'Total')))
+    reductions = require('../../../../../../../mocks/reductions')
   })
 
   test('includes all table columns', () => {

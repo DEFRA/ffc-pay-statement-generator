@@ -1,18 +1,15 @@
-const summary = require('../summary')
-const part1 = require('./part1')
-const part2 = require('./part2')
-const part3 = require('./part3')
-const getHelpInfo = require('../get-help-info')
+const { SHORT_NAMES } = require('../../../constants/scheme-names')
+const { createContent: createSFIContent } = require('./SFI')
 
 const createContent = (statement) => {
-  const helpInfoBlock = 'Part 3. '
-  return [
-    summary(statement),
-    part1(statement),
-    part2(statement),
-    part3(statement),
-    getHelpInfo(helpInfoBlock)
-  ]
+  switch (statement.scheme.shortName) {
+    case SHORT_NAMES.SFI:
+      return createSFIContent(statement)
+    case SHORT_NAMES.SFIA:
+      throw new Error('SFIA Scheme Template has not been created')
+    default:
+      throw new Error(`Unknown Scheme Code: ${statement.scheme.shortName}`)
+  }
 }
 
 module.exports = {

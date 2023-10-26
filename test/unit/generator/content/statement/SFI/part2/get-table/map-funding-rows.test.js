@@ -1,9 +1,9 @@
-const mapFundingRows = require('../../../../../../../app/generator/content/statement/part3/get-table/map-funding-rows')
+const mapFundingRows = require('../../../../../../../../app/generator/content/statement/SFI/part3/get-table/map-funding-rows')
 let mockStatement
 
 describe('map funding rows', () => {
   beforeEach(() => {
-    mockStatement = JSON.parse(JSON.stringify(require('../../../../../../mocks/mock-statement')))
+    mockStatement = JSON.parse(JSON.stringify(require('../../../../../../../mocks/mock-statement')))
   })
 
   test('includes all table rows when five funding options', () => {
