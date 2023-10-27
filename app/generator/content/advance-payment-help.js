@@ -1,7 +1,7 @@
-const advancedPaymentHelp = (partLabel) => {
+const advancedPaymentHelp = () => {
   return {
     stack: [
-      { text: `${partLabel}More information`, style: 'header2' },
+      { text: 'More information', style: 'header3' },
       'If you think your payments are wrong, you should:\n',
       {
         ul: [{
@@ -30,9 +30,9 @@ const advancedPaymentHelp = (partLabel) => {
       },
       {
         text: [
-          'Yours faithfully ',
-          { text: 'Karen Brash' },
-          'Sustainable Farming Incentive Operational Delivery manager'
+          'Yours faithfully \n',
+          { text: 'Karen Brash \n' },
+          { text: 'Sustainable Farming Incentive Operational Delivery manager', bold: true }
         ]
       }
     ],

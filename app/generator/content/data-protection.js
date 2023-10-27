@@ -1,7 +1,7 @@
-const dataProtection = (partLabel) => {
+const dataProtection = () => {
   return {
     stack: [
-      { text: `${partLabel}Data Protection`, style: 'header3' },
+      { text: 'Data Protection', style: 'header3' },
       'For information on how we handle personal data go to GOV.UK and search for <insert remaining text here + formatting>',
 
       { text: 'About this email', style: 'header3' },
