@@ -2,7 +2,7 @@ const dataProtection = (partLabel) => {
   return {
     stack: [
       { text: `${partLabel}Data Protection`, style: 'header3' },
-      'For information on how we handle personal data go to GOV.UK and search for <insert rest here/>formatting>',
+      'For information on how we handle personal data go to GOV.UK and search for <insert remaining text here + formatting>',
 
       { text: 'About this email', style: 'header3' },
       'This email has been sent to you because the email address has been provided to us. If you no longer wish to be contacted electronically, please let us know. If you have done this recently please allow for this to take effect.',

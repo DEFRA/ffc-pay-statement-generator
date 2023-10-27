@@ -14,7 +14,7 @@ const summary = (document) => {
       getAgreementNumber(document.scheme.agreementNumber),
       { text: 'Our ref: SFI 23 Accelerated payment v1.0' },
       '\n\n',
-      { text: 'Dear <INSERT businessName>' }
+      { text: 'Dear' }, getBusinessName(document.businessName)
     ],
     unbreakable: true
   }

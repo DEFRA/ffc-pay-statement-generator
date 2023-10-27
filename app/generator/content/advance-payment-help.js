@@ -32,7 +32,7 @@ const advancedPaymentHelp = (partLabel) => {
         text: [
           'Yours faithfully ',
           { text: 'Karen Brash' },
-          'Sustainable Farming Incentive Operational Delivery manager'
+          `\nSustainable Farming Incentive Operational Delivery manager`
         ]
       }
     ],

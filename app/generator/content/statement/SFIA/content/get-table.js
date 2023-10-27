@@ -4,7 +4,7 @@ const getPaymentPeriod = require('./get-payment-period')
 const getTable = (latestPayment) => {
   return {
     layout: {
-      hLineStyle: () => 'solid',
+      hLineStyle: () => 'none',
       vLineStyle: () => 'solid'
     },
     table: {
