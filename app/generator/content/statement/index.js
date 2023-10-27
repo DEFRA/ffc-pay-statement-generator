@@ -1,6 +1,7 @@
 const { SHORT_NAMES } = require('../../../constants/scheme-names')
 const { createContent: createSFIContent } = require('./SFI')
 const { createContent: createSFIAContent } = require('./SFIA')
+
 const createContent = (statement) => {
   switch (statement.scheme.shortName) {
     case SHORT_NAMES.SFI:
