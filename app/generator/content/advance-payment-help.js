@@ -1,8 +1,10 @@
 const advancedPaymentHelp = () => {
   return {
+    style: 'govuk-body-s',
     stack: [
       { text: 'More information', style: 'header3' },
-      'If you think your payments are wrong, you should:\n',
+      { text: 'If you think your payments are wrong, you should:' },
+      '\n',
       {
         ul: [{
           text: [
@@ -25,18 +27,23 @@ const advancedPaymentHelp = () => {
         text: [
           'You can email ',
           { text: 'ruralpayments@defra.gov.uk', link: 'mailto:ruralpayments@defra.gov.uk', decoration: 'underline' },
-          ' You can email ruralpayments@defra.gov.uk, adding SFI in the subject header of your email, or call us on 03000 200 301 (Monday to Friday, 8.30am to 5pm). Please tell us your SBI and Agreement number if applicable which are at the top of this email'
+          ' You can email ruralpayments@defra.gov.uk, adding SFI in the subject header of your email, or call us on 03000 200 301 (Monday to Friday, 8.30am to 5pm). Please tell us your SBI and Agreement number if applicable which are at the top of this email',
+          '\n\n'
         ]
       },
       {
         text: [
-          'Yours faithfully \n',
-          { text: 'Karen Brash \n' },
-          { text: 'Sustainable Farming Incentive Operational Delivery manager', bold: true }
+          { text: 'Yours faithfully ' },
+          '\n\n',
+          { text: 'Karen Brash' },
+          '\n',
+          { text: 'Sustainable Farming Incentive Operational Delivery manager', bold: true },
+          '\n\n',
+          { text: 'Rural Payments Agency | PO Box 325 | WORKSOP | S95 1DE \n ruralpayments@defra.gov.uk | 03000 200 301 | gov.uk/defra/sfi \n Follow us on Twitter @Ruralpay' },
+          '\n'
         ]
       }
-    ],
-    unbreakable: true
+    ]
   }
 }
 

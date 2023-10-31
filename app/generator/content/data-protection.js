@@ -1,8 +1,11 @@
 const dataProtection = () => {
   return {
+    style: 'govuk-body-s',
     stack: [
       { text: 'Data Protection', style: 'header3' },
-      'For information on how we handle personal data go to GOV.UK and search for <insert remaining text here + formatting>',
+      { text: 'For information on how we handle personal data go to GOV.UK and search for' },
+      { text: '\'Rural Payments Agency personal information charter.\'', link: 'https://www.gov.uk/claim-rural-payments', decoration: 'underline' },
+      '\n',
 
       { text: 'About this email', style: 'header3' },
       'This email has been sent to you because the email address has been provided to us. If you no longer wish to be contacted electronically, please let us know. If you have done this recently please allow for this to take effect.',
@@ -15,8 +18,7 @@ const dataProtection = () => {
 
       { text: 'The Rural Payments Agency does not accept responsibility for changes made to this message after it was sent.' },
       'While all reasonable care has been taken to avoid the transmission of viruses, it is your responsibility to ensure that onward transmission, opening or use of this message and any attachments will not adversely affect your systems or data. No responsibility is accepted by the Rural Payments Agency in this regard and you should carry out appropriate virus and other checks.'
-    ],
-    unbreakable: true
+    ]
   }
 }
 

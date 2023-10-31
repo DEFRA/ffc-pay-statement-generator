@@ -1,7 +1,7 @@
-const greetBusinessName = (businessName) => {
+const greetName = (businessName) => {
   return {
     columns: [
-      { width: '30', text: 'Dear' },
+      { width: 30, text: ' Dear' },
       { width: '*', text: businessName }
     ],
     style: 'column',
@@ -9,4 +9,4 @@ const greetBusinessName = (businessName) => {
   }
 }
 
-module.exports = greetBusinessName
+module.exports = greetName
