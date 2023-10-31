@@ -11,6 +11,7 @@ const getTable = (latestPayment) => {
       { text: `Your SFI agreement and management payment is £ ${toCurrencyString(latestPayment.value)}`, bold: true },
       '\n',
       { text: getPaymentPeriod(latestPayment.period) },
+      { text: 'Payment period: 1 October to 31 December 2023' },
       '\n',
       { text: 'Payments are usually made within 2 working days of this statement.' }
     ]
