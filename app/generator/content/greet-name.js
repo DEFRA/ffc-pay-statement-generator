@@ -1,7 +1,7 @@
 const greetName = (businessName) => {
   return {
     columns: [
-      { width: 30, text: ' Dear' },
+      { width: 27, text: ' Dear' },
       { width: '*', text: businessName }
     ],
     style: 'column',

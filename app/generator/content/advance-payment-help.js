@@ -2,7 +2,8 @@ const advancedPaymentHelp = () => {
   return {
     style: 'govuk-body-s',
     stack: [
-      { text: 'More information', style: 'header3' },
+      '\n',
+      { text: 'More information', bold: true },
       { text: 'If you think your payments are wrong, you should:' },
       '\n',
       {
@@ -22,7 +23,8 @@ const advancedPaymentHelp = () => {
         }],
         listStyle: 'square'
       },
-      { text: 'If you have any questions about this email', style: 'header3' },
+      '\n',
+      { text: 'If you have any questions about this email', bold: true },
       {
         text: [
           'You can email ',

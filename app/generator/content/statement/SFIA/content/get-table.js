@@ -7,7 +7,7 @@ const part2 = (latestPayment) => {
       '\n',
       { text: ' Payment summary', bold: true },
       '\n',
-      { text: `Your SFI agreement and management payment is £ ${toCurrencyString(latestPayment.value)}`, bold: true },
+      { text: `Your SFI agreement and management payment is ${toCurrencyString(latestPayment.value)}`, bold: true },
       '\n',
       { text: 'Payment period: 1 October to 31 December 2023' },
       '\n',
