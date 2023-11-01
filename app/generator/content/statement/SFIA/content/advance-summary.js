@@ -3,7 +3,6 @@ const { millimetresToPoints } = require('../../../../conversion')
 const getBusinessName = require('./get-business-name')
 const getSBI = require('./get-sbi')
 const getAgreementNumber = require('./get-agreement-number')
-const greetName = require('../../../greet-name')
 const imagePath = path.join(__dirname, '../../../../', 'images')
 
 const summary = (document) => {
@@ -15,7 +14,7 @@ const summary = (document) => {
       getAgreementNumber(document.scheme.agreementNumber),
       { text: 'Our ref: SFI 23 Accelerated payment v1.0' },
       '\n',
-      greetName(document.businessName)
+      { text: 'Dear Sir / Madam' }
     ]
   }
 }
