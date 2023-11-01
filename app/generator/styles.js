@@ -26,7 +26,7 @@ module.exports = {
     margin: [0, 0, 0, 30]
   },
   SFIAHeader: {
-    fontSize: 14,
+    fontSize: 16,
     bold: true,
     margin: [0, 20, 0, 10]
   },
