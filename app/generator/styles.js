@@ -25,6 +25,11 @@ module.exports = {
     fontSize: 18,
     margin: [0, 0, 0, 30]
   },
+  SFIAHeader: {
+    fontSize: 14,
+    bold: true,
+    margin: [0, 20, 0, 10]
+  },
   link: {
     decoration: 'underline',
     color: 'blue'
