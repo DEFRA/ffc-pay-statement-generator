@@ -6,7 +6,7 @@ const createContent = (statement) => {
     case SHORT_NAMES.SFI:
       return createSFIContent(statement)
     case SHORT_NAMES.SFIA:
-      throw new Error('SFIA Scheme Template has not been created')
+      return createSFIContent(statement)
     default:
       throw new Error(`Unknown Scheme Code: ${statement.scheme.shortName}`)
   }

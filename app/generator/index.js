@@ -11,6 +11,7 @@ const publish = require('./publish')
 const sendPublishMessage = require('../messaging/publish/send-publish-message')
 const sendCrmMessage = require('../messaging/crm/send-crm-message')
 const saveLog = require('./save-log')
+const getNoNotifyByAgreementNumber = require('./get-no-notify-by-agreement-number')
 
 const fonts = require('./fonts')
 const printer = new PdfPrinter(fonts)
@@ -31,7 +32,10 @@ const generateDocument = async (request, type) => {
         await sendPublishMessage(request, filename, type.id)
       }
     } else {
-      await sendPublishMessage(request, filename, type.id)
+      const isNoNotify = await getNoNotifyByAgreementNumber(request.scheme.agreementNumber)
+      if (!isNoNotify) {
+        await sendPublishMessage(request, filename, type.id)
+      }
     }
 
     await sendCrmMessage(request, filename, type)
