@@ -25,6 +25,11 @@ module.exports = {
     fontSize: 18,
     margin: [0, 0, 0, 30]
   },
+  SFIAHeader: {
+    fontSize: 16,
+    bold: true,
+    margin: [0, 20, 0, 10]
+  },
   link: {
     decoration: 'underline',
     color: 'blue'
@@ -43,6 +48,9 @@ module.exports = {
   },
   logo: {
     margin: [0, 20, 0, millimetresToPoints(50)]
+  },
+  logoSFIA: {
+    margin: [0, 40, 0, millimetresToPoints(20)]
   },
   address: {
     fontSize: 9.5,
