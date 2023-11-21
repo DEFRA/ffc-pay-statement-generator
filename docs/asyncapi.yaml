@@ -10,35 +10,45 @@ channels:
         oneOf:
           - $ref: '#/components/messages/PaymentSchedule'
           - $ref: '#/components/messages/PaymentStatement'
-  ffc-pay-statement-publish/ffc-pay-statement-publisher:
+  ffc-pay-statement-publish:
     publish:
       message:
         oneOf:
           - $ref: '#/components/messages/DocumentSchedule'
           - $ref: '#/components/messages/DocumentStatement'
+  ffc-pay-statement-crm:
+    publish:
+      message:
+        oneOf:
+          - $ref: '#/components/messages/Crm'
 components:
   messages:
     PaymentSchedule:
+      title: Payment schedule
       name: Payment schedule
       contentType: application/json
       payload:
         $ref: '#/components/schemas/PaymentSchedule'
     PaymentStatement:
+      title: Payment statement
       name: Payment statement
       contentType: application/json
       payload:
         $ref: '#/components/schemas/PaymentStatement'
     DocumentSchedule:
+      title: Payment schedule
       name: Payment schedule
       contentType: application/json
       payload:
         $ref: '#/components/schemas/BodySchedule'
     DocumentStatement:
+      title: Payment Statement
       name: Payment statement
       contentType: application/json
       payload:
         $ref: '#/components/schemas/BodyStatement'
     Crm:
+      title: Crm Message
       name: Crm Message
       contentType: application/json
       payload:
