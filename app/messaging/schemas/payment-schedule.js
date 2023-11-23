@@ -4,8 +4,8 @@ const { IMMEDIATE, QUARTERLY } = require('../../constants/payment-types')
 
 module.exports = Joi.object({
   order: Joi.number().required(),
-  dueDate: Joi.string().optional().allow('', null),
+  dueDate: Joi.date().optional().allow('', null),
   paymentType: Joi.string().valid(IMMEDIATE, QUARTERLY).required(),
   period: Joi.string().optional().allow('', null),
-  value: Joi.string().required()
+  value: Joi.number().required()
 })
