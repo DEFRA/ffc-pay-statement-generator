@@ -9,7 +9,7 @@ const imagePath = path.join(__dirname, '../..', 'images')
 const summary = (document) => {
   return {
     stack: [
-      { image: `${imagePath}/v2/logo.jpg`, fit: [millimetresToPoints(200), millimetresToPoints(25)], style: 'logo' },
+      { image: `${imagePath}/v2/rpa-logo.png`, fit: [millimetresToPoints(200), millimetresToPoints(25)], style: 'logo' },
       getAddress(document.businessName, document.address),
       getSBI(document.sbi),
       getBusinessName(document.businessName),

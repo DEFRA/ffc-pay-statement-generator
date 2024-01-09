@@ -49,13 +49,11 @@ module.exports = {
   logo: {
     margin: [0, 20, 0, millimetresToPoints(50)]
   },
-  logoSFIA: {
-    margin: [0, 40, 0, millimetresToPoints(20)]
-  },
   address: {
     fontSize: 9.5,
     lineHeight: 1
   },
+  // remove this scheduleLogo once the rpa logo method is complete
   scheduleLogo: {
     margin: [400, 20, 0, millimetresToPoints(50)]
   },
