@@ -8,7 +8,7 @@ const imagePath = path.join(__dirname, '../../../../', 'images')
 const summary = (document) => {
   return {
     stack: [
-      { image: `${imagePath}/v2/rpa-logo-long.png`, fit: [millimetresToPoints(90), millimetresToPoints(18)], style: 'logoSFIA' },
+      { image: `${imagePath}/v2/rpa-logo.png`, fit: [millimetresToPoints(90), millimetresToPoints(18)], style: 'logo' },
       getSBI(document.sbi),
       getBusinessName(document.businessName),
       getAgreementNumber(document.scheme.agreementNumber),
