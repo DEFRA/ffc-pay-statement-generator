@@ -53,10 +53,6 @@ module.exports = {
     fontSize: 9.5,
     lineHeight: 1
   },
-  // remove this scheduleLogo once the rpa logo method is complete
-  scheduleLogo: {
-    margin: [400, 20, 0, millimetresToPoints(50)]
-  },
   style: {
     margin: [0, 0, 0, 5]
   }
