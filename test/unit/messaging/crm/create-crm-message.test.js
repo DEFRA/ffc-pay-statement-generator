@@ -5,7 +5,7 @@ const { statementReceiverApiVersion, statementReceiverEndpoint } = require('../.
 const createCrmMessage = require('../../../../app/messaging/crm/create-crm-message')
 const mockStatement = require('../../../mocks/mock-statement')
 const { STATEMENT, SCHEDULE } = require('../../../../app/constants/document-types')
-const FILENAME = 'FFC_PaymentStatement_SFI_2022_1234567890_2022080515301012.pdf'
+const FILENAME = 'FFC_PaymentStatement_SFI_2022_1234567890_202208051530.pdf'
 
 let crmValid
 let crmMessage
