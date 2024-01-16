@@ -472,14 +472,12 @@ components:
       example: 1234567890
     FilenameSchedule:
       type: string
-      description: The PDF filename for the payment schedule, formatted as product code using 3 to 6 uppercase characters, descriptor in PascalCase, Scheme ID using 3 to 6 uppercase characters, Scheme Year using 4 digits, FRN using 10 digits, date and time using 12 digits and then .pdf. All separated by underscore.
+      description: The PDF filename for the payment schedule.
       example: FFC_PaymentSchedule_SFI_2022_1234567890_202305181018.pdf
-      pattern: ^[A-Z]{3,6}\_[A-Z]([A-Z0-9]*[a-z][a-z0-9]*[A-Z]|[a-z0-9]*[A-Z][A-Z0-9]*[a-z])[A-Za-z0-9]*\_[A-Z]{3,6}_\d{4}_\d{10}_\d{12}\.pdf$
     FilenameStatement:
       type: string
-      description: The PDF filename for the payment statement, formatted as product code using 3 to 6 uppercase characters, descriptor in PascalCase, Scheme ID using 3 to 6 uppercase characters, Scheme Year using 4 digits, FRN using 10 digits, date and time using 12 digits and then .pdf. All separated by underscore.
+      description: The PDF filename for the payment statement.
       example: FFC_PaymentStatement_SFI_2022_1234567890_202305181018.pdf
-      pattern: ^[A-Z]{3,6}\_[A-Z]([A-Z0-9]*[a-z][a-z0-9]*[A-Z]|[a-z0-9]*[A-Z][A-Z0-9]*[a-z])[A-Za-z0-9]*\_[A-Z]{3,6}_\d{4}_\d{10}_\d{12}\.pdf$ 
     FundingName:
       type: string
       description: The funding option name
