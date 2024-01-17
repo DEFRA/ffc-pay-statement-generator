@@ -16,7 +16,7 @@ const createCrmMessage = require('../../../../app/messaging/crm/create-crm-messa
 
 const sendCrmMessage = require('../../../../app/messaging/crm/send-crm-message')
 const mockStatement = require('../../../mocks/mock-statement')
-const FILENAME = 'FFC_PaymentStatement_SFI_2022_1234567890_202208051530.pdf'
+const FILENAME = 'FFC_PaymentStatement_SFI_2022_1234567890_2022080515301212.pdf'
 const { STATEMENT } = require('../../../../app/constants/document-types')
 
 describe('send crm message', () => {
