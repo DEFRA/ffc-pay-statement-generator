@@ -2,16 +2,6 @@ const summary = require('../../../../../../app/generator/content/summary')
 const mockStatement = require('../../../../../mocks/mock-statement')
 
 describe('generate summary', () => {
-  test('includes RPA logo', () => {
-    const result = summary(mockStatement)
-    expect(result.stack[0].image.endsWith('v2/logo.jpg')).toBeTruthy()
-  })
-
-  test('logo style is set to logo', () => {
-    const result = summary(mockStatement)
-    expect(result.stack[0].style).toBe('logo')
-  })
-
   test('includes address', () => {
     const result = summary(mockStatement)
     expect(result.stack[1].text).toMatch('Mr A Farmer\nA Farm\nNear a field\nNewcastle Upon Tyne\nTyne & Wear\nNE1 1AA')

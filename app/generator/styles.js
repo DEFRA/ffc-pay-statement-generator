@@ -49,15 +49,9 @@ module.exports = {
   logo: {
     margin: [0, 20, 0, millimetresToPoints(50)]
   },
-  logoSFIA: {
-    margin: [0, 40, 0, millimetresToPoints(20)]
-  },
   address: {
     fontSize: 9.5,
     lineHeight: 1
-  },
-  scheduleLogo: {
-    margin: [400, 20, 0, millimetresToPoints(50)]
   },
   style: {
     margin: [0, 0, 0, 5]
