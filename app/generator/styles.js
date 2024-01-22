@@ -47,9 +47,10 @@ module.exports = {
     alignment: 'right'
   },
   logo: {
-    margin: [0, 20, 0, millimetresToPoints(50)]
+    margin: [0, 20, 0, millimetresToPoints(15)]
   },
   address: {
+    margin: [0, 5, 0, millimetresToPoints(25)],
     fontSize: 9.5,
     lineHeight: 1
   },
