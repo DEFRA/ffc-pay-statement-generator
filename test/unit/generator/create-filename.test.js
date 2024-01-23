@@ -19,6 +19,9 @@ describe('create filename', () => {
     jest.useFakeTimers().setSystemTime(new Date(2022, 7, 5, 15, 30, 10, 120))
     timestamp = moment(new Date()).format('YYYYMMDDHHmmssSS')
   })
+  afterEach(() => {
+    jest.useRealTimers()
+  })
 
   test('writes full filename if statement', () => {
     const result = getFilename(mockStatement, timestamp, STATEMENT)
@@ -124,14 +127,12 @@ describe('create filename', () => {
   })
 
   test('removes spaces if statement', () => {
-    mockStatement.scheme.shortName = 'My Scheme'
-    const result = getFilename(mockStatement, timestamp, STATEMENT)
-    expect(result).toContain('MyScheme')
+    const result = getFilename(mockSchedule, timestamp, STATEMENT)
+    expect(result).toContain('FFC_PaymentStatement_SFI_2022_1234567890_2023051810181212.pdf')
   })
 
   test('removes spaces if schedule', () => {
-    mockSchedule.scheme.shortName = 'My Scheme'
     const result = getFilename(mockSchedule, timestamp, SCHEDULE)
-    expect(result).toContain('MyScheme')
+    expect(result).toContain('FFC_PaymentSchedule_SFI_2022_1234567890_2023051810181212.pdf')
   })
 })
