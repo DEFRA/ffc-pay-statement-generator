@@ -15,7 +15,6 @@ describe('create log', () => {
 
   afterEach(() => {
     jest.clearAllMocks()
-    jest.useRealTimers()
   })
 
   test('creates log with statement data', async () => {
