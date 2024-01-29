@@ -137,4 +137,22 @@ describe('create filename', () => {
     const result = getFilename(mockSchedule, timestamp, SCHEDULE)
     expect(result).not.toBe('FFC_PaymentSchedule_SFI_20220_1234567890_2022080515301012.pdf')
   })
+
+  test('invalid short name throws an error', () => {
+    expect(() => {
+      getFilename.statement.shortName('invalid')
+    }).toThrow()
+  })
+
+  test('invalid frn throws an error', () => {
+    expect(() => {
+      getFilename.statement.frn('invalid')
+    }).toThrow()
+  })
+
+  test('invalid scheme throws an error', () => {
+    expect(() => {
+      getFilename.statement.scheme('invalid')
+    }).toThrow()
+  })
 })
