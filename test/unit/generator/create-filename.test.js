@@ -137,14 +137,4 @@ describe('create filename', () => {
     const result = getFilename(mockSchedule, timestamp, SCHEDULE)
     expect(result).not.toBe('FFC_PaymentSchedule_SFI_20220_1234567890_2022080515301012.pdf')
   })
-
-  // test('should throw an error if the filename is not valid', () => {
-  //   const statement = {
-  //     scheme: {
-  //       year: 20220
-  //     },
-  //     frn: '12345678900'
-  //   }
-  //   expect(() => getFilename(statement)).toThrow()
-  // })
 })
