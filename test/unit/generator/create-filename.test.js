@@ -138,21 +138,28 @@ describe('create filename', () => {
     expect(result).not.toBe('FFC_PaymentSchedule_SFI_20220_1234567890_2022080515301012.pdf')
   })
 
-  test('invalid short name throws an error', () => {
-    expect(() => {
-      getFilename.statement.shortName('invalid')
-    }).toThrow()
+  test('throws an error when an error is found', () => {
+    const result = getFilename(mockSchedule, timestamp, SCHEDULE)
+    expect(result).not.toContain('Error')
   })
 
-  test('invalid frn throws an error', () => {
-    expect(() => {
-      getFilename.statement.frn('invalid')
-    }).toThrow()
+  test('should throw an error when scheme is invalid', () => {
+    const result = getFilename(mockSchedule, STATEMENT)
+    expect(() => getFilename(result.schemeTest.error)).toThrow()
   })
 
-  test('invalid scheme throws an error', () => {
-    expect(() => {
-      getFilename.statement.scheme('invalid')
-    }).toThrow()
+  test('should throw an error when scheme year is invalid', () => {
+    const result = getFilename(mockSchedule, STATEMENT)
+    expect(() => getFilename(result.schemeYearTest.error)).toThrow()
+  })
+
+  test('should throw an error when frn is invalid', () => {
+    const result = getFilename(mockSchedule, STATEMENT)
+    expect(() => getFilename(result.frnTest.error)).toThrow()
+  })
+
+  test('should throw an error when timestamp is invalid', () => {
+    const result = getFilename(mockSchedule, timestamp, STATEMENT)
+    expect(() => getFilename(result.timeTest.error)).toThrow()
   })
 })
