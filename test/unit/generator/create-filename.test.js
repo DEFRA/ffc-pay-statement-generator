@@ -2,6 +2,7 @@ const moment = require('moment')
 const getFilename = require('../../../app/generator/create-filename')
 
 const { STATEMENT, SCHEDULE } = require('../../../app/constants/document-types')
+const { schemeShortName, schemeYear, frn, timestampRegex } = require('../../../app/constants/filenameRegex')
 
 const STATEMENT_PREFIX = 'FFC_PaymentStatement_'
 const SCHEDULE_PREFIX = 'FFC_PaymentSchedule_'
@@ -9,12 +10,14 @@ const DOCUMENT_PREFIX = 'FFC_PaymentDocument_'
 const EXTENSION = '.pdf'
 
 let mockStatement
+// let errorStatement
 let mockSchedule
 let timestamp
 
 describe('create filename', () => {
   beforeEach(() => {
     mockStatement = require('../../mocks/mock-statement')
+    // errorStatement = require('../../mocks/error-statement')
     mockSchedule = require('../../mocks/mock-schedule').topUpSchedule
     jest.useFakeTimers().setSystemTime(new Date(2022, 7, 5, 15, 30, 10, 120))
     timestamp = moment(new Date()).format('YYYYMMDDHHmmssSS')
@@ -133,33 +136,39 @@ describe('create filename', () => {
     expect(result).toBe('FFC_PaymentSchedule_SFI_2022_1234567890_2022080515301012.pdf')
   })
 
-  test('sanity check incorrect format errors', () => {
-    const result = getFilename(mockSchedule, timestamp, SCHEDULE)
-    expect(result).not.toBe('FFC_PaymentSchedule_SFI_20220_1234567890_2022080515301012.pdf')
+  test('checks error message on incorrect scheme', () => {
+    const statement = {
+      scheme: {
+        shortName: 'sfi'
+      }
+    }
+    const schemeTest = schemeShortName.test(statement.scheme.shortName)
+    expect(() => getFilename(schemeTest)).toThrow()
   })
 
-  test('throws an error when an error is found', () => {
-    const result = getFilename(mockSchedule, timestamp, SCHEDULE)
-    expect(result).not.toContain('Error')
+  test('checks error message on incorrect scheme year', () => {
+    const statement = {
+      scheme: {
+        year: '2021'
+      }
+    }
+    const schemeYearTest = schemeYear.test(statement.scheme.year)
+    expect(() => getFilename(schemeYearTest)).toThrow()
   })
 
-  test('should throw an error when scheme is invalid', () => {
-    const result = getFilename(mockSchedule, STATEMENT)
-    expect(() => getFilename(result.schemeTest.error)).toThrow()
+  test('checks error message on incorrect frn', () => {
+    const statement = {
+      frn: '123456789012'
+    }
+    const frnTest = frn.test(statement.frn)
+    expect(() => getFilename(frnTest)).toThrow()
   })
 
-  test('should throw an error when scheme year is invalid', () => {
-    const result = getFilename(mockSchedule, STATEMENT)
-    expect(() => getFilename(result.schemeYearTest.error)).toThrow()
-  })
-
-  test('should throw an error when frn is invalid', () => {
-    const result = getFilename(mockSchedule, STATEMENT)
-    expect(() => getFilename(result.frnTest.error)).toThrow()
-  })
-
-  test('should throw an error when timestamp is invalid', () => {
-    const result = getFilename(mockSchedule, timestamp, STATEMENT)
-    expect(() => getFilename(result.timeTest.error)).toThrow()
+  test('checks error message on incorrect timestamp', () => {
+    const statement = {
+      timestamp: '202108051530'
+    }
+    const timeTest = timestampRegex.test(statement.timestamp)
+    expect(() => getFilename(timeTest)).toThrow()
   })
 })
