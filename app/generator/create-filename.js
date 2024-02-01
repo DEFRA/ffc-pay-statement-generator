@@ -3,21 +3,21 @@ const { schemeShortName, schemeYear, frn, timestampRegex } = require('../constan
 
 const createFilename = (statement, timestamp, type) => {
   const prefix = getPrefix(type)
-  const schemeTest = schemeShortName.test(statement.scheme.shortName + ' check scheme name docs')
-  if (schemeTest.error) {
-    throw new Error(schemeTest.error)
+  const schemeTest = schemeShortName.test(statement.scheme.shortName)
+  if (!schemeTest) {
+    throw new Error('invalid short name')
   }
-  const schemeYearTest = schemeYear.test(statement.scheme.year + ' check scheme year docs')
-  if (schemeYearTest.error) {
-    throw new Error(schemeYearTest.error)
+  const schemeYearTest = schemeYear.test(statement.scheme.year)
+  if (!schemeYearTest) {
+    throw new Error('invalid scheme year')
   }
   const frnTest = frn.test(statement.frn)
-  if (frnTest.error) {
-    throw new Error(frnTest.error + ' check frn docs')
+  if (!frnTest) {
+    throw new Error('invalid frn number')
   }
   const timeTest = timestampRegex.test(timestamp)
-  if (timeTest.error) {
-    throw new Error(timeTest.error + ' check timestamp docs')
+  if (!timeTest) {
+    throw new Error('invalid timestamp')
   }
   const filename = `FFC_Payment${prefix}_${statement.scheme.shortName}_${statement.scheme.year}_${statement.frn}_${timestamp}.pdf`.replace(/\s/g, '')
   return filename
