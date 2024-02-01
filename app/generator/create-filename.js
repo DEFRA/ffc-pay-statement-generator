@@ -7,7 +7,7 @@ const createFilename = (statement, timestamp, type) => {
   if (schemeTest.error) {
     throw new Error(schemeTest.error)
   }
-  const schemeYearTest = schemeYear.test(statement.scheme.Year + ' check scheme year docs')
+  const schemeYearTest = schemeYear.test(statement.scheme.year + ' check scheme year docs')
   if (schemeYearTest.error) {
     throw new Error(schemeYearTest.error)
   }
