@@ -124,14 +124,12 @@ describe('create filename', () => {
   })
 
   test('removes spaces if statement', () => {
-    mockStatement.scheme.shortName = 'My Scheme'
-    const result = getFilename(mockStatement, timestamp, STATEMENT)
-    expect(result).toContain('MyScheme')
+    const result = getFilename(mockSchedule, timestamp, STATEMENT)
+    expect(result).toBe('FFC_PaymentStatement_SFI_2022_1234567890_2022080515301012.pdf')
   })
 
   test('removes spaces if schedule', () => {
-    mockSchedule.scheme.shortName = 'My Scheme'
     const result = getFilename(mockSchedule, timestamp, SCHEDULE)
-    expect(result).toContain('MyScheme')
+    expect(result).toBe('FFC_PaymentSchedule_SFI_2022_1234567890_2022080515301012.pdf')
   })
 })
