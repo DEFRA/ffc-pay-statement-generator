@@ -47,17 +47,12 @@ module.exports = {
     alignment: 'right'
   },
   logo: {
-    margin: [0, 20, 0, millimetresToPoints(50)]
-  },
-  logoSFIA: {
-    margin: [0, 40, 0, millimetresToPoints(20)]
+    margin: [0, 20, 0, millimetresToPoints(15)]
   },
   address: {
+    margin: [0, 5, 0, millimetresToPoints(25)],
     fontSize: 9.5,
     lineHeight: 1
-  },
-  scheduleLogo: {
-    margin: [400, 20, 0, millimetresToPoints(50)]
   },
   style: {
     margin: [0, 0, 0, 5]

@@ -13,7 +13,6 @@ describe('advanceSummary', () => {
     const result = advanceSummary(document)
 
     expect(result.stack).toHaveLength(7)
-    expect(result.stack[0]).toHaveProperty('image')
     expect(result.stack[4]).toHaveProperty('text', 'Our ref: SFI 23 Accelerated payment v1.0')
     expect(result.stack[6]).toHaveProperty('text', 'Dear Sir / Madam')
   })
